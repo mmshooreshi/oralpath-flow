@@ -1,0 +1,214 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1.15cm,footskip=0pt,headsep=0pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\newcommand{\MathCollectFalse}{}
+\newcommand{\MathCollectTrue}{}
+\let\@kernel@tabular@init\relax
+\makeatother
+
+\usepackage{xepersian}
+
+\settextfont[
+  Path = Peyda/,
+  BoldFont = Peyda-Bold.ttf,
+  ItalicFont = Peyda-Medium.ttf,
+  BoldItalicFont = Peyda-Bold.ttf
+]{Peyda-Regular.ttf}
+
+\setlatintextfont{Times New Roman}
+
+\IfFileExists{Peyda/Symbola.ttf}{%
+  \newfontfamily\symb[Path=Peyda/]{Symbola.ttf}%
+}{%
+  \IfFileExists{editor/Peyda/Symbola.ttf}{%
+    \newfontfamily\symb[Path=editor/Peyda/]{Symbola.ttf}%
+  }{%
+    \newfontfamily\symb{Symbola}%
+  }%
+}
+\newcommand{\emoji}[1]{{\symb #1}}
+
+\linespread{1.12}
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\definecolor{hlgray}{HTML}{E2E8F0}
+\definecolor{hlyellow}{HTML}{FEF08A}
+\definecolor{hlred}{HTML}{FEE2E2}
+\definecolor{darkred}{HTML}{991B1B}
+\definecolor{navy}{HTML}{0A2540}
+\definecolor{teal}{HTML}{0D9488}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries فلوچارت تصمیم‌گیری بالینی: لوکوپلاکی دهانی (\lr{Oral Leukoplakia})}\\[2pt]
+{\small\itshape تریاژ سیستماتیک، حذف عوامل تروماتیک، ارزیابی دیسپلازی با بیوپسی، پروتکل‌های اکسیزیون و پایش بدخیمی}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{6pt}
+
+\begin{center}
+\begin{latin}
+\linespread{0.95}\selectfont
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily\footnotesize, align=center},
+    stepbox/.style={rectangle, draw=black, fill=white, line width=0.7pt, inner sep=4.5pt, rounded corners=2.5pt},
+    decision/.style={diamond, aspect=2.0, draw=black, fill=white, line width=0.7pt, inner sep=2.5pt, font=\sffamily\scriptsize\bfseries},
+    arrow/.style={-{Stealth[scale=0.88]}, thick, black}
+]
+
+% 1. Initial Presentation
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+    \rl{\textbf{تظاهر بالینی: پلاک سفید بدون توجیه مخاط دهان (\lr{White Plaque})}}\\[2pt]
+    \scriptsize \rl{پلاک غیرقابل برداشت با گاز؛ رد سایر بیماری‌های مشخص مخاط دهان (\lr{WHO 2021})}
+};
+
+% 2. Screening & Elimination
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.85) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱: حذف تروماهای سایش دندانی و ترایال ضدقارچ کاندیدیازیس}}}\\[2pt]
+    \scriptsize \rl{اصلاح نواحی تیز دندانی/پروتزی $\bullet$ درمان ضدقارچ: \lr{Fluconazole 100\,mg/d $\times$ 14--21d}}
+};
+
+% 3. Persistence Decision
+\node (d1) [decision] at (0, -3.85) {\rl{پایداری؟}\\[-1pt]\scriptsize \rl{بیش از ۱۴ روز}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.85) {
+    \rl{\textbf{کراتوز سایشی / برفک}}\\[2pt]
+    \scriptsize \rl{بهبودی کامل پلاک؛}\\
+    \rl{پیگیری روتین دوره‌ای}
+};
+
+% 4. Mandatory Biopsy
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.15) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی الزامی با اسکالپل (\lr{Incisional Biopsy}) با عمق کافی شامل لامینا پروپریا \emoji{🔬}}}}\\[2pt]
+    \scriptsize \rl{بیوپسی‌های مپینگ چندگانه در صورت پلاک‌های بزرگتر از ۲ سانتی‌متر یا غیرهموژن (\lr{speckled, nodular, verrucous})}
+};
+
+% 5. Histopathology Decision
+\node (d2) [decision] at (0, -8.35) {\rl{درجه دیسپلازی}\\[-1pt]\scriptsize \lr{Dysplasia?}};
+
+% 6. Histopathology 4 Columns
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -10.65) {
+    \rl{\textbf{فاقد دیسپلازی}}\\[2pt]
+    \scriptsize \lr{Hyperkeratosis / Acanthosis}\\\rl{مخاط با هایپرپلازی خوش‌خیم}\\\rl{ریسک بدخیمی سالیانه: \colorbox{hlgray}{\strut\textbf{۰٫۳٪}}}
+};
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -10.65) {
+    \rl{\textbf{دیسپلازی خفیف (\lr{Mild})}}\\[2pt]
+    \scriptsize \rl{آتیپی در یک‌سوم تحتانی اپیتلیوم}\\\rl{نیاز به پیگیری و حذف ریسک‌فاکتور}\\\rl{ریسک بدخیمی سالیانه: \textbf{۱٫۱٪}}
+};
+\node (h3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -10.65) {
+    \rl{\textbf{دیسپلازی متوسط / شدید / \lr{CIS}}}\\[2pt]
+    \scriptsize \rl{آتیپی در دو‌سوم فوقانی یا تمام ضخامت}\\\rl{اندیکاسیون قطعی مداخله جراحی}\\\rl{ریسک سالیانه: \colorbox{hlred}{\strut\color{darkred}\textbf{۳٫۲٪ تا ۸٫۵٪}}}
+};
+\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -10.65) {
+    \rl{\textbf{وروکوز پرولیفراتیو (\lr{PVL}) \emoji{🛡}}}\\[2pt]
+    \scriptsize \rl{مولتی‌فوکال، پیشرونده و مقاوم}\\\rl{بالاترین نرخ دگرگونی بدخیم}\\\rl{ریسک سالیانه: \colorbox{hlred}{\strut\color{darkred}\textbf{۹٫۳٪ تا ۱۴٫۲٪}}}
+};
+
+% 7. Interventions
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.15) {
+    \rl{\textbf{تحت‌نظر داشتن فعال}}\\[2pt]
+    \scriptsize \rl{قطع کامل دخانیات و الکل}\\\rl{کنترل تروما $\bullet$ جراحی توصیه نمی‌شود}
+};
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -13.15) {
+    \rl{\textbf{اکسیزیون در برابر پیگیری}}\\[2pt]
+    \scriptsize \rl{اکسیزیون در نواحی پرخطر یا سایز بزرگ؛}\\\rl{در غیر این صورت پیگیری نزدیک}
+};
+\node (i3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -13.15) {
+    \rl{\textbf{رزکسیون قطعی جراحی}}\\[2pt]
+    \scriptsize \rl{اکسیزیون کامل با اسکالپل یا لیزر $\text{CO}_2$}\\\textbf{\rl{مارجین ۳ تا ۵ میلی‌متر}}\rl{ تا سطح فاشیا}
+};
+\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.15) {
+    \rl{\textbf{ابلیشن متوالی با لیزر}}\\[2pt]
+    \scriptsize \rl{تخلیه با لیزر $\text{CO}_2$ (پرهیز از جراحی وسیع)}\\\colorbox{hlred}{\strut\color{darkred}\textbf{\rl{پرتودرمانی ممنوع است}}}
+};
+
+% 8. Recall Schedules
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -15.65) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه یکبار}}}\\[2pt]
+    \scriptsize \rl{فتوگرافی بالینی متوالی مادام‌العمر}
+};
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -15.65) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۳ تا ۴ ماه}}}\\[2pt]
+    \scriptsize \rl{پیگیری فشرده در ۲ سال نخست}
+};
+\node (s3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -15.65) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۲ تا ۳ ماه}}}\\[2pt]
+    \scriptsize \rl{سال اول؛ سپس هر ۳ تا ۴ ماه؛ لمس لنفاوی}
+};
+\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -15.65) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۱ تا ۲ ماه}}}\\[2pt]
+    \scriptsize \rl{مپینگ دائم فیلدهای مخاطی جدید}
+};
+
+% 9. Trigger Box
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -18.35) {
+    \centerline{\rl{\textbf{اندیکاسیون‌های الزامی برای بیوپسی مجدد فوری و افزایش مرحله درمانی:}}}\par\vspace{3pt}
+    \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی مجدد فوری اجباری است در:}} (۱) بروز نمای اریتروپلاکی (تغییرات قرمز در پلاک) $\bullet$ (۲) سفتی قابل لمس یا بافت وروکوز برجسته $\bullet$ (۳) زخم یا خونریزی خودبه‌خودی $\bullet$ (۴) رشد سریع (افزایش مساحت بیش از ۲۰٪ در پیگیری) $\bullet$ (۵) لنفادنوپاتی گردنی مشکوک.}
+};
+
+% 10. Refractory Box
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -20.85) {
+    \centerline{\rl{\textbf{پروتکل افزایش گام‌به‌گام درمان برای ضایعات مقاوم / راجعه / غیرقابل جراحی:}}}\par\vspace{3pt}
+    \scriptsize \rl{\textbf{سطح ۳ (ابلیتیو):} فتودینامیک‌تراپی موضعی با \lr{5-ALA} (\lr{120 J/cm\textsuperscript{2}}) یا تبخیر پیوسته با لیزر $\text{CO}_2$ در فیلدهای وسیع مخاطی.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۴ (دارویی):} ایزوترتینوئین خوراکی (\lr{0.5--1.0 mg/kg/d} به مدت ۳ ماه، سپس تیپر به \lr{0.25 mg/kg/d}؛ \colorbox{hlred}{\strut\color{darkred}\textbf{تراتوژن: \lr{iPLEDGE}}}). دوز نگهدارنده: لیکوپن خوراکی \lr{8\,mg/day}.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۵ (هدفمند):} پروتکل‌های مولکولی: مهارکننده‌های \lr{EGFR} (ارلوتینیب؛ کارآزمایی \lr{EPOC})، متفورمین (محور \lr{AMPK/mTOR})، مهارکننده‌های چک‌پوینت \lr{PD-1/PD-L1}.}
+};
+
+% Connections
+\draw [arrow] (n1) -- (n2);
+\draw [arrow] (n2) -- (d1);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{خیر}} (r_benign.west);
+\draw [arrow] (d1.south) -- node[right=4pt, font=\scriptsize\bfseries] {\rl{بله}} (n3.north);
+\draw [arrow] (n3.south) -- (d2.north);
+
+% Bus-Bar from Decision 2 to 4 Histology columns
+\draw [thick, black] (d2.south) -- (0, -9.45);
+\draw [thick, black] (-6.15, -9.45) -- (6.15, -9.45);
+\draw [arrow] (-6.15, -9.45) -- (h1.north);
+\draw [arrow] (-2.05, -9.45) -- (h2.north);
+\draw [arrow] (2.05, -9.45) -- (h3.north);
+\draw [arrow] (6.15, -9.45) -- (h4.north);
+
+% Column Downward Arrows
+\draw [arrow] (h1.south) -- (i1.north);
+\draw [arrow] (h2.south) -- (i2.north);
+\draw [arrow] (h3.south) -- (i3.north);
+\draw [arrow] (h4.south) -- (i4.north);
+
+\draw [arrow] (i1.south) -- (s1.north);
+\draw [arrow] (i2.south) -- (s2.north);
+\draw [arrow] (i3.south) -- (s3.north);
+\draw [arrow] (i4.south) -- (s4.north);
+
+% Collector Bus into Trigger Box
+\draw [thick, black] (s1.south) -- (-6.15, -16.95);
+\draw [thick, black] (s2.south) -- (-2.05, -16.95);
+\draw [thick, black] (s3.south) -- (2.05, -16.95);
+\draw [thick, black] (s4.south) -- (6.15, -16.95);
+\draw [thick, black] (-6.15, -16.95) -- (6.15, -16.95);
+\draw [arrow] (0, -16.95) -- (trigger.north);
+
+\draw [arrow] (trigger.south) -- (refract.north);
+
+\end{tikzpicture}
+\end{latin}
+\end{center}
+
+\end{document}

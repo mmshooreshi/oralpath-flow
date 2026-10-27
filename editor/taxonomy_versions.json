@@ -1,0 +1,58 @@
+[
+  {
+    "id": "snap_1791651370065",
+    "name": "نسخه پایه تشخیصی (WHO)",
+    "timestamp": "2026/10/10 - 12:56:10",
+    "data": [
+      {
+        "id": "node_1",
+        "title": "تومورهای ادنتوژنیک فکین (Odontogenic Tumors)",
+        "children": [
+          {
+            "id": "node_1_1",
+            "title": "آملوبلاستوما (Ameloblastoma)",
+            "children": [
+              {
+                "id": "node_1_1_1",
+                "title": "رزکسیون با مارجین ۱ الی ۱.۵ سانتی‌متر استخوان سالم",
+                "children": []
+              },
+              {
+                "id": "node_1_1_2",
+                "title": "بازسازی کانتور و پیوند استخوان فک",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_1_2",
+            "title": "کراتوسیستیک ادنتوژنیک (KCOT)",
+            "children": [
+              {
+                "id": "node_1_2_1",
+                "title": "انولکلاسیون با کورتاژ محیطی و محلول کارنوی",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "node_2",
+        "title": "ضایعات پیش‌سرطانی دهان (Pre-Malignant Lesions)",
+        "children": [
+          {
+            "id": "node_2_1",
+            "title": "لوکوپلاکی هموژن — پایش دوره‌ای (Low Risk)",
+            "children": []
+          },
+          {
+            "id": "node_2_2",
+            "title": "اریتروپلاکی و لوکوپلاکی خالدار — بیوپسی فوری (High Risk)",
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+]

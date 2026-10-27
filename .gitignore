@@ -1,0 +1,27 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.fls
+*.fdb_latexmk
+missfont.log
+
+# Temporary test/debug outputs
+test_*
+crop_*
+check_*
+final_page-*.png
+fa_page-*.png
+ui_*.png
+new_render*.png
+*.bak*
+
+# Python
+__pycache__/
+*.py[cod]
+
+# OS
+.DS_Store
+Thumbs.db

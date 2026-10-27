@@ -1,0 +1,290 @@
+[
+  {
+    "id": "cat_fibro_osseous",
+    "title": "ضایعات Fibro-Osseous",
+    "children": [
+      {
+        "id": "item_fibrous_dysplasia",
+        "title": "فیبروز دیسپلازی (Fibrous Dysplasia)",
+        "doc": "fibrous_dysplasia",
+        "children": []
+      },
+      {
+        "id": "item_juvenile_ossifying_fibroma",
+        "title": "Juvenile Ossifying Fibroma (JOF)",
+        "doc": "juvenile_ossifying_fibroma",
+        "children": []
+      },
+      {
+        "id": "item_ossifying_fibroma",
+        "title": "Ossifying Fibroma (OF)",
+        "doc": "ossifying_fibroma",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "cat_inflammatory",
+    "title": "ضایعات التهابی",
+    "children": [
+      {
+        "id": "item_osteonecrosis_mandible",
+        "title": "استئونکروز مندیبل (MRONJ / Osteonecrosis)",
+        "doc": "osteonecrosis_mandible",
+        "children": []
+      },
+      {
+        "id": "item_pyogenic_granuloma",
+        "title": "پایوژنیک گرانولوما (Pyogenic Granuloma)",
+        "doc": "pyogenic_granuloma",
+        "children": []
+      },
+      {
+        "id": "item_radicular_cyst",
+        "title": "رادیکولار سیست (Radicular Cyst)",
+        "doc": "radicular_cyst",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "cat_benign_mesenchymal",
+    "title": "تومورهای خوش‌خیم مزانشیمی",
+    "children": [
+      {
+        "id": "item_capillary_hemangioma",
+        "title": "Capillary Hemangioma",
+        "doc": "capillary_hemangioma",
+        "children": []
+      },
+      {
+        "id": "item_lymphangioma",
+        "title": "لنفانژیوم (Lymphangioma)",
+        "doc": "lymphangioma",
+        "children": []
+      },
+      {
+        "id": "item_lipomatous_tumor",
+        "title": "لیپوماتوز تومور (Lipoma / Lipomatous)",
+        "doc": "lipomatous_tumor",
+        "children": []
+      },
+      {
+        "id": "item_plexiform_neurofibroma",
+        "title": "پلکسی‌فرم نوروفیبروما (Plexiform Neurofibroma)",
+        "doc": "plexiform_neurofibroma",
+        "children": []
+      },
+      {
+        "id": "item_fibro_fatty_tissue",
+        "title": "Fibro-fatty Tissue (ضایعه فیبروفتی)",
+        "doc": "fibro_fatty_tissue",
+        "children": []
+      },
+      {
+        "id": "item_fibromatosis",
+        "title": "فیبروماتوزیس (Desmoid / Fibromatosis)",
+        "doc": "fibromatosis",
+        "children": []
+      },
+      {
+        "id": "item_inflammatory_myofibroblastic_tumor",
+        "title": "Inflammatory Myofibroblastic Tumor (IMT)",
+        "doc": "inflammatory_myofibroblastic_tumor",
+        "children": []
+      },
+      {
+        "id": "item_desmoplastic_fibroma",
+        "title": "دسموپلاستیک فیبروما (با منشأ استخوانی)",
+        "doc": "desmoplastic_fibroma",
+        "children": []
+      },
+      {
+        "id": "item_osteoma",
+        "title": "استئوما (Osteoma با منشأ استخوانی)",
+        "doc": "osteoma",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "cat_odontogenic_tumors",
+    "title": "تومورهای ادنتوژنیک",
+    "children": [
+      {
+        "id": "item_ameloblastoma",
+        "title": "آملوبلاستوما (Ameloblastoma)",
+        "doc": "odontogenic_tumors",
+        "children": []
+      },
+      {
+        "id": "item_odontogenic_fibroma",
+        "title": "ادنتوژنیک فیبروما (Odontogenic Fibroma)",
+        "doc": "odontogenic_fibroma",
+        "children": []
+      },
+      {
+        "id": "item_odontogenic_myxoma",
+        "title": "ادنتوژنیک میگزوما (Odontogenic Myxoma)",
+        "doc": "odontogenic_tumors",
+        "children": []
+      },
+      {
+        "id": "item_cementoblastoma",
+        "title": "سمنتوبلاستوما (Cementoblastoma)",
+        "doc": "cementoblastoma",
+        "children": []
+      },
+      {
+        "id": "item_odontoma",
+        "title": "ادنتوما (Odontoma کمپلکس و کامپوند)",
+        "doc": "odontoma",
+        "children": []
+      },
+      {
+        "id": "item_ameloblastic_fibroma",
+        "title": "املوبلاستیک فیبروما (Ameloblastic Fibroma)",
+        "doc": "ameloblastic_fibroma",
+        "children": []
+      },
+      {
+        "id": "item_ameloblastic_fibro_odontoma",
+        "title": "املوبلاستیک فیبروادنتوم (AFO)",
+        "doc": "ameloblastic_fibro_odontoma",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "cat_odontogenic_cysts",
+    "title": "ضایعات کیستیک ادنتوژنیک",
+    "children": [
+      {
+        "id": "item_dentigerous_cyst",
+        "title": "دنتیژروس (Dentigerous Cyst)",
+        "doc": "dentigerous_cyst",
+        "children": []
+      },
+      {
+        "id": "item_inflammatory_dentigerous_cyst",
+        "title": "دنتیژروس سیست التهابی",
+        "doc": "inflammatory_dentigerous_cyst",
+        "children": []
+      },
+      {
+        "id": "item_odontogenic_keratocyst",
+        "title": "ادنتوژنیک کراتوسیست (OKC)",
+        "doc": "odontogenic_keratocyst",
+        "children": []
+      },
+      {
+        "id": "item_eruption_cyst",
+        "title": "Eruption Cyst (کیست رویشی)",
+        "doc": "eruption_cyst",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "cat_developmental",
+    "title": "ضایعات تکاملی",
+    "children": [
+      {
+        "id": "item_cgcg",
+        "title": "CGCG (گرانولوم سلول غول‌آسای مرکزی)",
+        "doc": "cgcg",
+        "children": []
+      },
+      {
+        "id": "item_reparative_cgcg",
+        "title": "Reparative CGCG",
+        "doc": "reparative_cgcg",
+        "children": []
+      },
+      {
+        "id": "item_aneurysmal_bone_cyst",
+        "title": "Abc (Aneurysmal Bone Cyst)",
+        "doc": "aneurysmal_bone_cyst",
+        "children": []
+      },
+      {
+        "id": "item_brown_tumor",
+        "title": "Brown Tumor (تومور قهوه‌ای پاراتیروئید)",
+        "doc": "brown_tumor",
+        "children": []
+      },
+      {
+        "id": "item_cherubism",
+        "title": "چرابیسم (Cherubism)",
+        "doc": "cherubism",
+        "children": []
+      },
+      {
+        "id": "item_giant_cell_neoplasm",
+        "title": "نئوپلاسم سلول جاینت (Giant Cell Tumor)",
+        "doc": "giant_cell_neoplasm",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "cat_benign_epithelial",
+    "title": "تومورهای خوش‌خیم اپیتلیالی",
+    "children": [
+      {
+        "id": "item_squamous_papilloma",
+        "title": "اسکواموس پاپیلوما (Squamous Papilloma)",
+        "doc": "squamous_papilloma",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "cat_non_odontogenic_cysts",
+    "title": "ضایعات کیستیک غیر ادنتوژنیک",
+    "children": [
+      {
+        "id": "item_dermoid_cyst",
+        "title": "کیست درموئید (Dermoid Cyst)",
+        "doc": "dermoid_cyst",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "cat_malignancy",
+    "title": "بدخیمی",
+    "children": [
+      {
+        "id": "item_spindle_cell_tumor",
+        "title": "Spindle Cell Tumor (کارسینوم/سارکوم سلول دوکی)",
+        "doc": "spindle_cell_tumor",
+        "children": []
+      },
+      {
+        "id": "item_ewing_sarcoma",
+        "title": "Ewing Sarcoma (سارکوم یوئینگ فکین)",
+        "doc": "ewing_sarcoma",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "cat_traumatic",
+    "title": "تروما",
+    "children": [
+      {
+        "id": "item_mucocele",
+        "title": "موکوسل (Mucocele / Extravasation)",
+        "doc": "mucocele",
+        "children": []
+      },
+      {
+        "id": "item_ranula",
+        "title": "رانولا (Ranula / کیست بزاقی زیرزبان)",
+        "doc": "ranula",
+        "children": []
+      }
+    ]
+  }
+]

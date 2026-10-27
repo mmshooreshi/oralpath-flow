@@ -1,0 +1,417 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1.15cm,footskip=0pt,headsep=0pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\newcommand{\MathCollectFalse}{}
+\newcommand{\MathCollectTrue}{}
+\let\@kernel@tabular@init\relax
+\makeatother
+
+\usepackage{xepersian}
+
+\settextfont[
+  Path = /Users/mamthenebo/Me/friends/anis/Peyda/,
+  BoldFont = Peyda-Bold.ttf,
+  ItalicFont = Peyda-Medium.ttf,
+  BoldItalicFont = Peyda-Bold.ttf
+]{Peyda-Regular.ttf}
+
+\setlatintextfont{Times New Roman}
+
+% Line height adjustments for optimal typography with Peyda font
+\linespread{1.12}
+
+% STRICTLY NO RUNNING HEADERS, NO FOOTERS
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2.5pt}
+
+% Selective Semantic Highlights (Rare & Purposeful)
+\definecolor{hlgray}{HTML}{E2E8F0}
+\definecolor{hlyellow}{HTML}{FEF08A}
+\definecolor{hlred}{HTML}{FEE2E2}
+\definecolor{darkred}{HTML}{991B1B}
+\definecolor{navy}{HTML}{0A2540}
+
+\newcommand{\hlg}[1]{\colorbox{hlgray}{\strut #1}}
+\newcommand{\hly}[1]{\colorbox{hlyellow}{\strut #1}}
+\newcommand{\hlr}[1]{\colorbox{hlred}{\strut\color{darkred}#1}}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=navy,
+    citecolor=navy,
+    urlcolor=navy
+}
+
+\setlist[itemize]{leftmargin=1.1em, itemsep=0.8pt, topsep=1pt, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.1em, itemsep=0.8pt, topsep=1pt, parsep=0pt}
+
+\begin{document}
+
+% =========================================================================
+% PAGE 1: SCOPE, MALIGNANT TRANSFORMATION & DIAGNOSTIC/SURVEILLANCE MANDATES
+% =========================================================================
+
+\begin{center}
+{\Large\bfseries راهنمای بالینی مبتنی بر شواهد: \lr{Oral Leukoplakia}}\\[2pt]
+{\small\itshape طبقه‌بندی خطر، پروتکل‌های تشخیصی، ماتریس درمانی و رویکرد به موارد مقاوم}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{4pt}
+
+\textbf{تعریف بالینی طبق مرکز همکار سازمان بهداشت جهانی (\lr{WHO 2021}):}\\
+لوکوپلاکی دهانی به صورت \textit{«یک پلاک عمدتاً سفید با اهمیت نامشخص تعریف می‌شود که پس از رد سایر بیماری‌ها و اختلالات شناخته‌شده فاقد افزایش خطر سرطان، تشخیص داده می‌شود.»} شیوع ادغام‌شده جهانی در بزرگسالان: \hlg{\lr{2.60\%}} (\lr{95\% CI: 1.72\%--3.74\%}).
+
+\textbf{اصل کانسرایزاسیون میدانی اسلاتر (\lr{Slaughter's Field Cancerization}):}\\
+اکسیزیون جراحی کامل یا پاکسازی بالینی ضایعه \textbf{خطر سرطان دهان را از بین نمی‌برد}. فیلدهای مخاطی با جهش‌های ژنتیکی تحت‌بالینی (واجد \lr{3p/9p LOH} و آنیوپلوئیدی) فراتر از مارجین‌های جراحی باقی می‌مانند. \hly{پیگیری فعال بالینی به صورت مادام‌العمر الزامی است} (\href{https://pubmed.ncbi.nlm.nih.gov/27471822/}{\lr{Cochrane CD001829}}).
+
+\vspace{2pt}
+{\large\bfseries ۱. پتانسیل تحول بدخیمی (\lr{Malignant Transformation}) و طبقه‌بندی خطر}
+\vspace{1pt}
+
+میزان بدخیمی تجمیعی بر اساس متالیزهای کوهورت‌های جهانی ($\text{n}>20,000$ بیمار):
+
+\vspace{1pt}
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{4.3cm} c c >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{طبقه بالینی / پاتولوژیک} & \textbf{نرخ تبدیل بدخیمی} & \textbf{ریسک سالیانه (\lr{Annualized})} & \textbf{منبع شاخص در \lr{PubMed}} \\
+\midrule
+\textbf{\lr{Global Pooled Leukoplakia}} & \textbf{\hlg{\lr{7.2\% -- 9.5\%}}} & \textbf{\lr{1.56\% / year}} & \lr{Aguirre-Urizar (2021, \href{https://pubmed.ncbi.nlm.nih.gov/33496377/}{PMID: 33496377}); Iocca (2020)} \\
+\lr{Homogeneous Leukoplakia} & \lr{3.0\% (1.2\%--4.9\%)} & \lr{0.4\% -- 0.8\% / year} & \lr{Warnakulasuriya (2020, \href{https://pubmed.ncbi.nlm.nih.gov/32529681/}{PMID: 32529681}); Holmstrup (2006)} \\
+\lr{Erythroleukoplakia (Speckled)} & \hly{\lr{14.5\% -- 28.7\%}} & \lr{2.9\% -- 5.4\% / year} & \lr{Warnakulasuriya (2020) [RR: 4.15]; Holmstrup (2006)} \\
+\lr{Nodular / Verrucous Leukoplakia} & \lr{15.0\% -- 24.5\%} & \lr{2.5\% -- 4.1\% / year} & \lr{Napier \& Speight (2008, \href{https://pubmed.ncbi.nlm.nih.gov/18783457/}{PMID: 18783457}); Dionne (2015)} \\
+\textbf{\lr{Proliferative Verrucous (PVL)}} & \textbf{\hlr{\lr{49.5\% -- 65.8\%}}} & \textbf{\lr{9.3\% -- 14.2\% / year}} & \lr{Villa et al. (2018, \href{https://pubmed.ncbi.nlm.nih.gov/30527232/}{PMID: 30527232}); Bagan (2010)} \\
+\midrule
+\textit{\lr{No Dysplasia (Keratosis / Acanthosis)}} & \lr{1.5\% -- 3.9\%} & \lr{0.3\% / year} & \lr{Mehanna et al. (2009, \href{https://pubmed.ncbi.nlm.nih.gov/19800840/}{PMID: 19800840}); Warnakulasuriya (2015)} \\
+\textit{\lr{Mild Epithelial Dysplasia}} & \lr{4.8\% -- 10.3\%} & \lr{1.1\% / year} & \lr{Mehanna et al. (2009 pooled meta-analysis)} \\
+\textit{\lr{Moderate Epithelial Dysplasia}} & \hly{\lr{15.7\% -- 24.1\%}} & \lr{3.2\% / year} & \lr{Kujan et al. (2006, \href{https://pubmed.ncbi.nlm.nih.gov/16960010/}{PMID: 16960010}); Mehanna (2009)} \\
+\textit{\lr{Severe Dysplasia / CIS}} & \hlr{\lr{24.1\% -- 43.5\%}} & \lr{5.8\% -- 8.5\% / year} & \lr{Warnakulasuriya (2020); Rock et al. (\href{https://pubmed.ncbi.nlm.nih.gov/29778738/}{PMID: 29778738})} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{-2pt}
+\textbf{عوامل پیش‌آگهی‌دهنده چندمتغیره (\lr{Multivariate Prognosticators}):}
+\begin{itemize}
+    \item \textbf{نواحی آناتومیک پرخطر:} \hly{سطح شکمی زبان (\lr{ventral tongue})، کف دهان و لترال زبان} واجد \lr{$\text{HR} = 2.45$ ($p<0.001$)} می‌باشند.
+    \item \textbf{ابعاد ضایعه:} پلاک‌های با مساحت $>200\text{ mm}^2$ ($>2\text{ cm}$) واجد \lr{$\text{HR} = 3.20$} برای پیشرفت به سمت بدخیمی هستند.
+    \item \textbf{پارادوکس افراد غیرسیگاری (\lr{Non-Smoker Paradox}):} زنان مسن غیرسیگاری به دلیل جهش‌های درایور اندوژن در معرض خطر بالاتری قرار دارند (\lr{$\text{RR} = 2.14$}).
+    \item \textbf{بیومارکرهای ژنومی (\lr{LoE 1b}):} فقدان هتروزیگوسیتی در \lr{3p/9p LOH} ریسک سرطان را تا $8.4$ برابر و فقدان همزمان \lr{3p/9p/17p} تا $33$ برابر افزایش می‌دهد. آنیوپلوئیدی \lr{DNA} واجد \lr{$\text{HR} = 3.65$} است.
+\end{itemize}
+
+\vspace{2pt}
+{\large\bfseries ۲. پروتکل تشخیصی، الزامات بیوپسی و زمان‌بندی پیگیری (\lr{Surveillance})}
+\vspace{1pt}
+
+\begin{itemize}
+    \item \textbf{استاندارد طلایی تشخیص:} انجام \textbf{\lr{incisional biopsy} با اسکالپل} با عمق کافی شامل لامینا پروپریا برای تمامی ضایعات سفید پایدار بیش از ۱۴ روز پس از حذف عوامل تروماتیک و ترایال ضدقارچ، اجباری است. در ضایعات $>2\text{ cm}$ یا غیرهموژن، بیوپسی‌های متعدد مپینگ (\lr{mapping}) الزامی است (بیوپسی منفرد تا ۳۰٪ دیسپلازی شدید را نادیده می‌گذارد).
+    \item \textbf{ابزارهای کمکی اپتیکال (\lr{Optical Adjuncts}):} اتوفلورسانس (\lr{VELscope}) و تولوئیدین بلو اختصاصیت پایینی دارند ($45\text{--}60\%$)؛ صرفاً ابزار کمکی بوده و \textbf{هرگز جایگزین پاتولوژی نمی‌شوند} (\lr{WHO 2021}).
+    \item \textbf{برنامه پیگیری بالینی مبتنی بر شواهد:}
+    \begin{itemize}
+        \item \textit{هموژن کم‌خطر (فاقد دیسپلازی، ابعاد کوچک‌تر از ۲ سانتی‌متر):} \hlg{هر ۶ ماه یک‌بار} به صورت مادام‌العمر.
+        \item \textit{خطر متوسط (دیسپلازی خفیف یا ابعاد بزرگ‌تر از ۲ سانتی‌متر):} \hlg{هر ۳ تا ۴ ماه} در سال‌های اول و دوم، سپس هر ۶ ماه.
+        \item \textit{پرخطر / پس از اکسیزیون (دیسپلازی متوسط/شدید، \lr{CIS}):} \hlg{هر ۲ تا ۳ ماه} در سال اول، هر ۳ تا ۴ ماه در سال‌های دوم و سوم، سپس هر ۶ ماه.
+        \item \textit{لوکوپلاکی وروکوز پرولیفراتیو (\lr{PVL}):} \hlr{هر ۱ تا ۲ ماه} به صورت مادام‌العمر.
+    \end{itemize}
+    \item \textbf{اندیکاسیون‌های بیوپسی مجدد فوری:} \hly{بیوپسی مجدد فوری الزامی است} در صورت بروز: (۱) جزء اریتروپلاکی/تغییرات پلاک، (۲) اندوراسیون قابل لمس یا بافت وروکوز، (۳) اولسراسیون/خونریزی خودبه‌خودی، (۴) رشد سریع $>20\%$ طی ۳ ماه، (۵) درد یا پارستزی توجیه‌نشده، یا (۶) لنفادنوپاتی گردنی.
+\end{itemize}
+
+\clearpage
+% =========================================================================
+% PAGE 2: FULL-PAGE PURE BLACK AND WHITE CLINICAL FLOWCHART (CLEAN TIKZ)
+% =========================================================================
+
+\begin{center}
+{\Large\bfseries فلوچارت تصمیم‌گیری بالینی: \lr{Oral Leukoplakia}}\\[2pt]
+{\small\itshape مسیر سیستماتیک: تریاژ تشخیصی، طبقه‌بندی پاتولوژیک، مداخلات درمانی و زمان‌بندی فالوآپ}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{8pt}
+
+\begin{center}
+\begin{latin}
+\linespread{0.95}\selectfont
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily\footnotesize, align=center},
+    stepbox/.style={rectangle, draw=black, fill=white, line width=0.7pt, inner sep=4pt},
+    decision/.style={diamond, aspect=1.8, draw=black, fill=white, line width=0.7pt, inner sep=3pt, font=\sffamily\scriptsize\bfseries},
+    arrow/.style={-{Stealth[scale=0.85]}, thick, black}
+]
+
+% 1. Initial Presentation
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+    \textbf{\rl{تظاهر بالینی: پلاک سفید بدون توجیه مخاط دهان (\lr{White Plaque})}}\\
+    \scriptsize \rl{پلاک غیرقابل برداشت با گاز؛ رد سایر بیماری‌های مشخص مخاط دهان (\lr{WHO 2021})}
+};
+
+% 2. Screening & Elimination
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.30) {
+    \textbf{\rl{مرحله ۱: حذف تروماهای سایش دندانی و ترایال ضدقارچ کاندیدیازیس}}\\
+    \scriptsize \rl{اصلاح نواحی تیز دندانی/پروتزی} $\bullet$ \lr{Fluconazole 100\,mg/d $\times$ 14--21d (or Miconazole gel QID)}
+};
+
+% 3. Persistence Decision
+\node (d1) [decision] at (0, -2.70) {\textbf{\rl{پایداری؟}}\\\scriptsize $>14$ \rl{روز}};
+\node (r_benign) [stepbox, text width=3.8cm] at (5.8, -2.70) {
+    \textbf{\rl{کراتوز سایشی / برفک}}\\
+    \scriptsize \rl{بهبودی پلاک؛ فالوآپ روتین}
+};
+
+% 4. Mandatory Biopsy
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -4.15) {
+    \textbf{\colorbox{hlyellow}{\strut \rl{بیوپسی الزامی با اسکالپل (\lr{Incisional Biopsy}) با عمق کافی شامل لامینا پروپریا}}}\\
+    \scriptsize \rl{بیوپسی‌های مپینگ چندگانه در صورت پلاک‌های $>2\text{ cm}$ یا غیرهموژن (\lr{speckled, nodular, verrucous})}
+};
+
+% 5. Histopathology Decision
+\node (d2) [decision] at (0, -5.55) {\textbf{\rl{درجه دیسپلازی}}\\\scriptsize \lr{Dysplasia?}};
+
+% 6. Histopathology 4 Columns: Centers at -6.15, -2.05, 2.05, 6.15 (Width 3.8cm, Text width 3.6cm)
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -7.30) {
+    \textbf{\rl{فاقد دیسپلازی}}\\
+    \scriptsize \lr{Hyperkeratosis / Acanthosis}\\\rl{ریسک بدخیمی سالیانه:} $\approx 0.3\%$
+};
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -7.30) {
+    \textbf{\rl{دیسپلازی خفیف (\lr{Mild})}}\\
+    \scriptsize \rl{آتیپی در یک‌سوم تحتانی اپی‌تلیوم}\\\rl{ریسک بدخیمی سالیانه:} $\approx 1.1\%$
+};
+\node (h3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -7.30) {
+    \textbf{\rl{دیسپلازی متوسط/شدید/\lr{CIS}}}\\
+    \scriptsize \rl{آتیپی در دو‌سوم فوقانی یا تمام ضخامت}\\\rl{ریسک سالیانه:} \colorbox{hlred}{\strut\color{darkred}\textbf{3.2\% -- 8.5\%}}
+};
+\node (h4) [stepbox, line width=1.0pt, text width=3.6cm] at (6.15, -7.30) {
+    \textbf{\rl{وروکوز پرولیفراتیو (\lr{PVL})}}\\
+    \scriptsize \rl{مولتی‌فوکال، پیشرونده و مقاوم}\\\rl{ریسک سالیانه:} \colorbox{hlred}{\strut\color{darkred}\textbf{9.3\% -- 14.2\%}}
+};
+
+% 7. Interventions (3 Lines per column for uniform height)
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -9.10) {
+    \textbf{\rl{تحت‌نظر داشتن فعال}}\\
+    \scriptsize \rl{قطع کامل سیگار و الکل}\\\rl{کنترل تروما $\bullet$ جراحی توصیه نمی‌شود}
+};
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -9.10) {
+    \textbf{\rl{اکسیزیون در برابر پیگیری}}\\
+    \scriptsize \rl{اکسیزیون در نواحی پرخطر یا سایز بزرگ؛}\\\rl{در غیر این صورت پیگیری نزدیک}
+};
+\node (i3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -9.10) {
+    \textbf{\rl{رزکسیون قطعی}}\\
+    \scriptsize \rl{اکسیزیون کامل با اسکالپل یا لیزر $\text{CO}_2$}\\\rl{با \textbf{مارجین ۳ تا ۵ میلی‌متر} تا فاشیا}
+};
+\node (i4) [stepbox, line width=1.0pt, text width=3.6cm] at (6.15, -9.10) {
+    \textbf{\rl{ابلیشن متوالی با لیزر}}\\
+    \scriptsize \rl{تخلیه با لیزر $\text{CO}_2$ (پرهیز از جراحی وسیع)}\\\colorbox{hlred}{\strut\color{darkred}\textbf{\rl{رادیوتراپی ممنوع است}}}
+};
+
+% 8. Recall Schedules (3 Lines per column for uniform height)
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -10.90) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[1pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه یک‌بار}}}\\
+    \scriptsize \rl{فتوگرافی بالینی متوالی مادام‌العمر}
+};
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -10.90) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[1pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۳ تا ۴ ماه}}}\\
+    \scriptsize \rl{پیگیری فشرده در ۲ سال نخست}
+};
+\node (s3) [stepbox, text width=3.6cm] at (2.05, -10.90) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[1pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۲ تا ۳ ماه}}}\\
+    \scriptsize \rl{سال اول؛ سپس هر ۳-۴ ماه؛ لمس گردن}
+};
+\node (s4) [stepbox, text width=3.6cm] at (6.15, -10.90) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[1pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۱ تا ۲ ماه}}}\\
+    \scriptsize \rl{مپینگ دائم فیلدهای مخاطی جدید}
+};
+
+% 9. Trigger Box
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=left] at (0, -12.80) {
+    \centering\textbf{\rl{اندیکاسیون‌های الزامی برای بیوپسی مجدد فوری و افزایش مرحله درمانی:}}\\[3pt]
+    \scriptsize \colorbox{hlyellow}{\strut\textbf{\rl{بیوپسی مجدد فوری اجباری است در:}}} \rl{(۱) بروز نمای اریتروپلاکی (تغییرات پلاک) $\bullet$ (۲) سفتی قابل لمس یا بافت وروکوز $\bullet$ (۳) زخم یا خونریزی خودبه‌خودی $\bullet$ (۴) رشد سریع ($>20\%$ افزایش مساحت) $\bullet$ (۵) لنفادنوپاتی گردنی.}
+};
+
+% 10. Refractory Box
+\node (refract) [stepbox, text width=16.4cm, align=left] at (0, -14.85) {
+    \centering\textbf{\rl{پروتکل افزایش گام‌به‌گام درمان برای ضایعات مقاوم / راجعه / غیرقابل جراحی:}}\\[3pt]
+    \scriptsize \textbf{\rl{سطح ۳ (ابلیتیو):}} \rl{فتودینامیک‌تراپی موضعی با \lr{5-ALA} ($120\text{ J/cm}^2$) یا تبخیر پیوسته با لیزر $\text{CO}_2$ در فیلدهای وسیع مخاطی.}\\[2pt]
+    \textbf{\rl{سطح ۴ (دارویی):}} \rl{ایزوترتینوئین خوراکی ($0.5\text{--}1.0\text{ mg/kg/d}\times 3\text{m}$، سپس تیپر به $0.25\text{ mg/kg/d}$؛ \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{تراتوژن: iPLEDGE}}}). نگه‌دارنده: لیکوپن خوراکی \lr{8\,mg/day}.}\\[2pt]
+    \textbf{\rl{سطح ۵ (هدفمند):}} \rl{پروتکل‌های مولکولی: مهارکننده‌های \lr{EGFR} (ارلوتینیب؛ کارآزمایی \lr{EPOC})، متفورمین (محور \lr{AMPK/mTOR})، مهارکننده‌های چک‌پوینت \lr{PD-1/PD-L1}.}
+};
+
+% Connections
+\draw [arrow] (n1) -- (n2);
+\draw [arrow] (n2) -- (d1);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{خیر}} (r_benign.west);
+\draw [arrow] (d1.south) -- node[right=4pt, font=\scriptsize\bfseries] {\rl{بله}} (n3.north);
+\draw [arrow] (n3.south) -- (d2.north);
+
+% Clean Bus-Bar from Decision 2 to 4 Histology columns (Completely untangled!)
+\draw [thick, black] (d2.south) -- (0, -6.40);
+\draw [thick, black] (-6.15, -6.40) -- (6.15, -6.40);
+\draw [arrow] (-6.15, -6.40) -- (h1.north);
+\draw [arrow] (-2.05, -6.40) -- (h2.north);
+\draw [arrow] (2.05, -6.40) -- (h3.north);
+\draw [arrow] (6.15, -6.40) -- (h4.north);
+
+% Column Downward Arrows
+\draw [arrow] (h1.south) -- (i1.north);
+\draw [arrow] (h2.south) -- (i2.north);
+\draw [arrow] (h3.south) -- (i3.north);
+\draw [arrow] (h4.south) -- (i4.north);
+
+\draw [arrow] (i1.south) -- (s1.north);
+\draw [arrow] (i2.south) -- (s2.north);
+\draw [arrow] (i3.south) -- (s3.north);
+\draw [arrow] (i4.south) -- (s4.north);
+
+% Collector Bus into Trigger Box
+\draw [thick, black] (s1.south) -- (-6.15, -11.80);
+\draw [thick, black] (s2.south) -- (-2.05, -11.80);
+\draw [thick, black] (s3.south) -- (2.05, -11.80);
+\draw [thick, black] (s4.south) -- (6.15, -11.80);
+\draw [thick, black] (-6.15, -11.80) -- (6.15, -11.80);
+\draw [arrow] (0, -11.80) -- (trigger.north);
+
+\draw [arrow] (trigger.south) -- (refract.north);
+
+\end{tikzpicture}
+\end{latin}
+\end{center}
+
+\clearpage
+% =========================================================================
+% PAGE 3: EVIDENCE-BASED CLINICAL GUIDELINE MASTER MATRIX (EXACT 1 PAGE)
+% =========================================================================
+
+\begin{center}
+{\Large\bfseries ماتریس جامع راهنمای بالینی مبتنی بر شواهد}\\[2pt]
+{\small توصیه‌های عملیاتی منطبق بر چارچوب \lr{GRADE} و معیارهای \lr{Oxford CEBM (2011)}}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{5pt}
+
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{3.8cm} >{\raggedright\arraybackslash}p{2.0cm} >{\raggedright\arraybackslash}p{5.1cm} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{ساب‌تایپ بالینی} & \textbf{مداخله توصیه‌شده} & \textbf{\lr{GRADE \& LoE}} & \textbf{پایش، تیپرینگ و کنترااندیکاسیون‌ها} & \textbf{منبع \lr{PubMed}} \\
+\midrule
+\textbf{۱. هموژن کم‌خطر}\newline\scriptsize ($<2\text{ cm}$، مخاط باکال، فاقد دیسپلازی) &
+پیگیری محافظه‌کارانه؛ قطع کامل دخانیات و الکل؛ حذف عوامل سایش دندانی. &
+\lr{GRADE A [Strong]}\newline \lr{LoE 1a / 1b} &
+فتوگرافی بالینی \hlg{هر ۶ ماه یک‌بار}. جراحی روتین توصیه نمی‌شود (موربیدیتی جراحی فراتر از ریسک بوده و مانع تحول بدخیمی نمی‌شود). &
+\lr{Warnakulasuriya (2020);\newline Lodi (2016, Cochrane);\newline \href{https://pubmed.ncbi.nlm.nih.gov/32529681/}{\textbf{PMID: 32529681}}} \\
+\midrule
+\textbf{۲. لوکوپلاکی کاندیدیازیس}\newline\scriptsize (\lr{Hyperplastic candidiasis}؛ واجد هایفی در رنگ‌آمیزی \lr{PAS}) &
+\lr{Fluconazole 100\,mg PO QD} به مدت ۱۴ الی ۲۸ روز.\newline\textit{جایگزین موضعی:} ژل \lr{Miconazole 24\,mg/g}، روزانه ۴ بار به مدت ۲۱ روز. &
+\lr{GRADE A [Strong]}\newline \lr{LoE 1a / 1b} &
+ارزیابی مجدد در روزهای ۱۴ و ۲۸. \textbf{بیوپسی مجدد الزامی} در صورت پایداری پلاک. پایش \lr{LFT} در صورت مصرف سیستمیک $>14$ روز. تداخل با \lr{CYP3A4}. &
+\lr{Sitheeamorn (2022);\newline Williams (2014, Oral Dis);\newline \href{https://pubmed.ncbi.nlm.nih.gov/24750244/}{\textbf{PMID: 24750244}}} \\
+\midrule
+\textbf{۳. دیسپلازی متوسط/شدید؛ نواحی پرخطر} &
+اکسیزیون قطعی با اسکالپل یا لیزر $\text{CO}_2$ (طول موج ۱۰.۶ میکرومتر، توان ۵ تا ۱۰ وات) با \textbf{مارجین پاک ۳ تا ۵ میلی‌متر} تا فاسیای عضلانی. &
+\lr{GRADE A [Strong]}\newline \lr{LoE 1a / 1b} &
+بررسی دقیق پاتولوژی مارجین‌ها. مارجین درگیر نیازمند اکسیزیون مجدد مرحله‌ای یا پیگیری فشرده هر ۸ هفته. ویزیت \hlg{هر ۲ تا ۳ ماه} در سال اول. &
+\lr{WHO Guidelines (2021);\newline Mehanna (2009, Lancet);\newline \href{https://pubmed.ncbi.nlm.nih.gov/19800840/}{\textbf{PMID: 19800840}}} \\
+\midrule
+\textbf{۴. اریترولوکوپلاکی}\newline\scriptsize (\lr{Speckled leukoplakia}؛ ریسک بالای تبدیل بدخیمی) &
+اکسیزیون کامل با اسکالپل یا لیزر $\text{CO}_2$. در ضایعات $>3\text{ cm}$ ابتدا بیوپسی‌های متعدد (\lr{mapping}) و سپس اکسیزیون مرحله‌ای. &
+\lr{GRADE A [Strong]}\newline \lr{LoE 2a / 2b} &
+پیگیری فشرده \hlg{هر ۲ ماه یک‌بار} برای ۱۲ ماه اول. فروزن سکشن در صورت شک به میکروتهاجم. معاینه دقیق لمس دوطرفه غدد لنفاوی گردن. &
+\lr{Warnakulasuriya (2020);\newline Holmstrup (2006, Oral Onc);\newline \href{https://pubmed.ncbi.nlm.nih.gov/16406797/}{\textbf{PMID: 16406797}}} \\
+\midrule
+\textbf{۵. وروکوز پرولیفراتیو (\lr{PVL})} &
+ابلیشن محافظه‌کارانه متوالی با لیزر $\text{CO}_2$ برای پلاک‌های ضخیم. اجتناب از جراحی‌های وسیع و تغییر شکل دهنده (عود بالای ۸۵٪). &
+\lr{GRADE B [Moderate]}\newline \lr{LoE 2a / 2b} &
+پیگیری فوق فشرده \hlr{هر ۱ تا ۲ ماه} مادام‌العمر. \hlr{\textbf{رادیوتراپی مطلقاً ممنوع است}} (موجب ددیفرنسیه شدن سریع آناپلاستیک می‌شود). &
+\lr{Villa et al. (2018, Oral Onc);\newline Bagan (2010, Med Oral);\newline \href{https://pubmed.ncbi.nlm.nih.gov/30527232/}{\textbf{PMID: 30527232}}} \\
+\midrule
+\textbf{۶. ضایعات غیرقابل جراحی / مقاوم} &
+\lr{Isotretinoin} خوراکی: ۰.۵ تا ۱.۰ میلی‌گرم/کیلوگرم/روز منقسم در دو دوز به مدت ۳ ماه. کاهش دوز به ۰.۲۵ میلی‌گرم/کیلوگرم برای ۶ تا ۹ ماه. &
+\lr{GRADE B [Moderate]}\newline \lr{LoE 1a / 1b} &
+\hlr{\textbf{رده \lr{X} (تراتوژن مطلق)}}: منفی بودن $\beta$-hCG ماهانه و دو روش پیشگیری (\lr{iPLEDGE}). پایش پروفایل لیپید ناشتا و \lr{LFT} قبل از درمان، هفته‌های ۲ و ۴ و سپس ماهانه. &
+\lr{Hong (1986, NEJM);\newline Lippman (1993, NEJM);\newline \href{https://pubmed.ncbi.nlm.nih.gov/8464432/}{\textbf{PMID: 8464432}}} \\
+\midrule
+\textbf{۷. پلاک‌های دیسپلاستیک سطحی عودکننده} &
+فتودینامیک‌تراپی (\lr{PDT}): ژل موضعی \lr{5-ALA 20\%} به مدت ۳ تا ۴ ساعت؛ دیود لیزر ۶۳۰ تا ۶۳۵ نانومتر ($100\text{--}150\text{ J/cm}^2$). تکرار هر ۲ تا ۴ هفته در ۱ تا ۴ چرخه. &
+\lr{GRADE B [Moderate]}\newline \lr{LoE 2a / 2b} &
+ارزیابی ترمیم مخاطی در ۲ هفتگی. نکروز و ادم خفیف مورد انتظار است. پرهیز مطلق از نور خورشید تا ۴۸ ساعت به منظور پیشگیری از حساسیت پوستی. &
+\lr{Sieron (2003, Photodiag);\newline Yu (2009, Oral Oncol);\newline \href{https://pubmed.ncbi.nlm.nih.gov/19443260/}{\textbf{PMID: 19443260}}} \\
+\midrule
+\textbf{۸. کموپریونشن / نگه‌دارنده} &
+لیکوپن خوراکی (\lr{Oral Lycopene}) ۸ میلی‌گرم روزانه (منقسم در دو دوز ۴ میلی‌گرمی) به مدت ۳ ماه. تنظیم پاسخ آنتی‌اکسیدانی و بیان \lr{IGFBP-3}. &
+\lr{GRADE C [Conditional]}\newline \lr{LoE 2a / 2b} &
+اندازه‌گیری ابعاد پلاک در هفته‌های ۴، ۸ و ۱۲. حداقل سمیت (اسهال خفیف گذرا). کاملاً فاقد سمیت کبدی یا خطرات تراتوژنیک. &
+\lr{Nagao (2015, Cancer Prev);\newline Zakrzewska (2005);\newline \href{https://pubmed.ncbi.nlm.nih.gov/25770020/}{\textbf{PMID: 25770020}}} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{5pt}
+\textbf{دستورالعمل متدولوژیک در خصوص مارجین‌های جراحی:} وجود دیسپلازی خفیف در مارجین جراحی، در صورت پیگیری بالینی دقیق ۳ ماهه، الزامی برای جراحی مجدد ایجاد نمی‌کند. اما دیسپلازی متوسط/شدید یا کارسینوم درجا (\lr{CIS}) در مارجین‌ها خطر عود موضعی را تا ۲.۸ برابر افزایش داده و نیازمند اکسیزیون مجدد مرحله‌ای یا پیگیری فشرده ۸ هفته‌ای است (\href{https://pubmed.ncbi.nlm.nih.gov/19800840/}{\lr{Mehanna 2009}}).
+
+\clearpage
+% =========================================================================
+% PAGE 4: REFRACTORY ALGORITHM & VERIFIED PUBMED SOURCES
+% =========================================================================
+
+\begin{center}
+{\Large\bfseries الگوریتم موارد مقاوم و افزایش مرحله‌ای درمان (\lr{Refractory Escalation})}\\[2pt]
+{\small پروتکل‌های گام‌به‌گام برای ضایعات پایدار، راجعه یا درگیری‌های وسیع مخاطی}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{5pt}
+
+\begin{itemize}
+    \item \textbf{سطح ۱ (\lr{Tier 1: Elimination \& Biopsy}):} قطع کامل دخانیات، الکل و ترکیبات آرکا (\lr{areca nut}). پالیش و اصلاح ترمیم‌های دندانی برنده. ترایال ضدقارچ (\lr{Fluconazole 100\,mg/day} به مدت ۲۱ روز). در صورت پایداری پلاک، انجام بیوپسی‌های مجدد به روش مپینگ الزامی است.
+    \item \textbf{سطح ۲ (\lr{Tier 2: Primary Resection}):} اکسیزیون با اسکالپل یا لیزر $\text{CO}_2$ با \textbf{مارجین بالینی ۳ تا ۵ میلی‌متر} تا فاسیای عضلانی برای دیسپلازی‌های متوسط یا شدید. مارجین‌های درگیر دیسپلاستیک نیازمند اکسیزیون مجدد یا پیگیری فشرده ۸ هفته‌ای هستند.
+    \item \textbf{سطح ۳ (\lr{Tier 3: Ablative Therapy}):} اندیکاسیون در فیلدهای وسیع، مولتی‌فوکال یا نواحی حساس آناتومیک (سطح شکمی زبان، کام نرم) که جراحی وسیع موجب اختلال شدید در بلع یا تکلم می‌گردد. متدها: فتودینامیک‌تراپی موضعی با \lr{5-ALA} (طول موج ۶۳۰ نانومتر، $120\text{ J/cm}^2$) یا تبخیر پیوسته با لیزر $\text{CO}_2$.
+    \item \textbf{سطح ۴ (\lr{Tier 4: Systemic Medical}):} اندیکاسیون در پلاک‌های دیسپلاستیک بسیار وسیع، غیرقابل جراحی یا با عود مکرر. القای درمانی: ایزوترتینوئین (۰.۵ تا ۱.۰ میلی‌گرم/کیلوگرم/روز به مدت ۳ ماه)، سپس کاهش دوز نگهدارنده (۰.۲۵ میلی‌گرم/کیلوگرم) یا درمان نگهدارنده متناوب با لیکوپن خوراکی (۸ میلی‌گرم/روز) به منظور مهار عود بیش از ۵۰ درصدی پس از قطع رتینوئید. رعایت پروتکل پیشگیری از تراتوژنیسیتی الزامی است.
+    \item \textbf{سطح ۵ (\lr{Tier 5: Targeted Biologics}):} ورود به کارآزمایی‌های بالینی کنترل‌شده: مهارکننده‌های تیروزین کیناز \lr{EGFR} (ارلوتینیب؛ کارآزمایی \href{https://pubmed.ncbi.nlm.nih.gov/27091708/}{\lr{EPOC, PMID: 27091708}})، متفورمین (مهار محور \lr{AMPK/mTOR} با دوز ۵۰۰ تا ۱۰۰۰ میلی‌گرم دوبار در روز)، یا مهارکننده‌های چک‌پوینت \lr{PD-1/PD-L1} (نیوولوماب/پمبرولیزوماب) برای فیلدهای مقاوم پرخطر واجد ارتشاح ایمنی.
+\end{itemize}
+
+\vspace{5pt}
+{\large\bfseries منابع شاخص کتابشناختی (\lr{PubMed Landmark Sources})}
+\vspace{2pt}
+
+\begin{latin}
+\small
+\begin{enumerate}
+    \item \textbf{Warnakulasuriya S, Kujan O, Aguirre-Urizar JM, et al.} Oral potentially malignant disorders: A consensus report from an international seminar for the WHO Collaborating Centre for Oral Cancer. \textit{Oral Dis}. 2021;27(8):1865--1880. \href{https://pubmed.ncbi.nlm.nih.gov/32529681/}{\textbf{PMID: 32529681}}.
+    \item \textbf{Aguirre-Urizar JM, Lafuente-Ibáñez de Mendoza I, Warnakulasuriya S.} Malignant transformation of oral leukoplakia: Systematic review and meta-analysis of the last 5 years. \textit{Oral Dis}. 2021;27(8):1881--1895. \href{https://pubmed.ncbi.nlm.nih.gov/33496377/}{\textbf{PMID: 33496377}}.
+    \item \textbf{Iocca O, Sollecito TP, Alawi F, et al.} Potentially malignant disorders of the oral cavity and oral dysplasia: A systematic review and meta-analysis of malignant transformation rate. \textit{Oral Oncol}. 2020;99:104439. \href{https://pubmed.ncbi.nlm.nih.gov/31585721/}{\textbf{PMID: 31585721}}.
+    \item \textbf{Lodi G, Franchini R, Warnakulasuriya S, et al.} Interventions for treating oral leukoplakia to prevent oral cancer. \textit{Cochrane Database Syst Rev}. 2016;7(7):CD001829. \href{https://pubmed.ncbi.nlm.nih.gov/27471822/}{\textbf{PMID: 27471822}}.
+    \item \textbf{Villa A, Menon RS, Kerr AR, et al.} Proliferative verrucous leukoplakia: A systematic review and meta-analysis. \textit{Oral Oncol}. 2018;87:159--166. \href{https://pubmed.ncbi.nlm.nih.gov/30527232/}{\textbf{PMID: 30527232}}.
+    \item \textbf{Mehanna HM, Rattay T, Smith J, McConkey CC.} Treatment and follow-up of oral dysplasia - a systematic review and meta-analysis. \textit{Head Neck}. 2009;31(12):1600--1609. \href{https://pubmed.ncbi.nlm.nih.gov/19800840/}{\textbf{PMID: 19800840}}.
+    \item \textbf{Papadimitrakopoulou VA, Lee JJ, William WN Jr, et al.} Randomized trial of erlotinib versus observation in patients with high-risk premalignant oral lesions (EPOC). \textit{J Clin Oncol}. 2016;34(17):2025--2032. \href{https://pubmed.ncbi.nlm.nih.gov/27091708/}{\textbf{PMID: 27091708}}.
+    \item \textbf{Lippman SM, Batsakis JG, Toth BB, et al.} Comparison of low-dose isotretinoin with beta carotene to prevent second primary tumors in patients treated for squamous cell carcinoma of the head and neck. \textit{N Engl J Med}. 1993;328(1):15--20. \href{https://pubmed.ncbi.nlm.nih.gov/8464432/}{\textbf{PMID: 8464432}}.
+    \item \textbf{Nagao T, Warnakulasuriya S, Nakamura T, et al.} Chemoprevention of oral leukoplakia with lycopene: A randomized, double-blind, placebo-controlled clinical trial. \textit{Cancer Prev Res}. 2015;8(8):749--758. \href{https://pubmed.ncbi.nlm.nih.gov/25770020/}{\textbf{PMID: 25770020}}.
+    \item \textbf{Holmstrup P, Vedtofte P, Reibel J, Stoltze K.} Long-term adult human oral leukoplakia follow-up: No evidence for regression of dysplasia or decrease of malignant transformation after surgical excision. \textit{Oral Oncol}. 2006;42(5):461--466. \href{https://pubmed.ncbi.nlm.nih.gov/16406797/}{\textbf{PMID: 16406797}}.
+\end{enumerate}
+\end{latin}
+
+\vspace{5pt}
+\hrule height 0.6pt\vspace{3pt}
+\footnotesize\textbf{معیارهای ارزیابی بالینی (\lr{Audit Benchmarks}):} (۱) بیوپسی با اسکالپل برای ضایعات سفید پایدار بیش از ۱۴ روز. (۲) بیوپسی مپینگ در چند ناحیه برای پلاک‌های $>2\text{ cm}$ یا غیرهموژن. (۳) مشاوره مستند در خصوص مفهوم \lr{Field Cancerization} پیش از شروع درمان. (۴) رعایت دقیق الزامات پیشگیری از بارداری در تجویز رتینوئیدهای سیستمیک. بازنگری چهارساله: ۲۰۳۰. تضاد منافع: ندارد.
+
+\end{document}

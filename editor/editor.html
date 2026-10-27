@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fa" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TikZ Interactive Flowchart Studio</title>
+<style>
+  :root {
+    --bg-dark: #0f172a;
+    --panel-bg: #1e293b;
+    --border-color: #334155;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --success: #10b981;
+    --danger: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { display: flex; flex-direction: column; height: 100vh; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg-dark); color: var(--text-main); }
+  
+  /* Top App Bar */
+  header {
+    height: 48px; background: #0b1120; border-bottom: 1px solid var(--border-color);
+    display: flex; align-items: center; justify-content: space-between; padding: 0 12px; z-index: 50; flex-shrink: 0;
+  }
+  .app-title { font-size: 13.5px; font-weight: 700; display: flex; align-items: center; gap: 8px; color: #e2e8f0; }
+  .app-title span { background: #1e293b; color: #38bdf8; font-size: 10px; padding: 2px 6px; border-radius: 4px; border: 1px solid #0284c7; }
+  .actions { display: flex; align-items: center; gap: 6px; }
+  .btn {
+    padding: 6px 12px; font-size: 12px; font-weight: 600; border-radius: 6px; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 5px; transition: all 0.15s ease;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-success { background: var(--success); color: white; }
+  .btn-success:hover { background: #059669; }
+  .btn-secondary { background: #334155; color: #e2e8f0; }
+  .btn-secondary:hover { background: #475569; }
+  .status-pill { font-size: 11px; padding: 3px 8px; border-radius: 12px; background: #334155; color: #cbd5e1; font-weight: 500; }
+  .status-pill.ok { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+  .status-pill.err { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+
+  /* Mobile Tabs Switcher */
+  .mobile-tabs { display: none; background: #1e293b; border-bottom: 1px solid var(--border-color); }
+  .tab-btn { flex: 1; padding: 8px; font-size: 12px; font-weight: 600; background: none; border: none; color: var(--text-muted); cursor: pointer; text-align: center; }
+  .tab-btn.active { color: #38bdf8; border-bottom: 2px solid #38bdf8; background: rgba(56, 189, 248, 0.05); }
+
+  /* Main Panes Layout */
+  #mainWorkspace { flex: 1; display: flex; position: relative; overflow: hidden; width: 100%; height: calc(100vh - 48px); }
+  .pane { height: 100%; position: relative; display: flex; flex-direction: column; overflow: hidden; background: var(--panel-bg); }
+  #paneCode { width: 30%; border-right: 1px solid var(--border-color); }
+  #paneCanvas { flex: 1; background: #f8fafc; }
+  #panePreview { width: 33%; border-left: 1px solid var(--border-color); background: #1e293b; }
+
+  /* Draggable Splitters */
+  .resizer {
+    width: 6px; height: 100%; cursor: col-resize; background: transparent; position: relative; z-index: 40; flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .resizer:hover, .resizer.dragging { background: var(--accent); }
+
+  /* Code Pane */
+  .pane-header {
+    height: 32px; background: #0f172a; border-bottom: 1px solid var(--border-color);
+    display: flex; align-items: center; justify-content: space-between; padding: 0 10px; font-size: 11px; font-weight: 600; color: #94a3b8;
+  }
+  #texEditor {
+    flex: 1; width: 100%; background: #090d16; color: #e2e8f0; border: none; padding: 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 11.5px; line-height: 1.5; resize: none; outline: none; white-space: pre;
+  }
+
+  /* Node Graph Canvas */
+  #canvasViewport {
+    flex: 1; width: 100%; height: 100%; position: relative; overflow: hidden; cursor: grab;
+    background-color: #f1f5f9; background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px); background-size: 20px 20px;
+    touch-action: none;
+  }
+  #canvasViewport:active { cursor: grabbing; }
+  #canvasTransform { position: absolute; top: 0; left: 0; transform-origin: 0 0; width: 3000px; height: 3500px; }
+  
+  svg#svgEdgesLayer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+
+  /* Interactive Visual Nodes */
+  .v-node {
+    position: absolute; background: white; border: 1.6px solid #0f172a; border-radius: 4px;
+    padding: 8px 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08); color: #0f172a;
+    font-size: 11.5px; direction: rtl; text-align: center; line-height: 1.45; z-index: 2;
+    cursor: move; user-select: none; transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .v-node.selected { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3); z-index: 10; }
+  .v-node-id {
+    position: absolute; top: -16px; left: 0; background: #334155; color: white;
+    font-size: 9px; padding: 1px 5px; border-radius: 2px; direction: ltr; font-family: monospace; font-weight: 700;
+  }
+  .v-node-body { outline: none; cursor: text; min-height: 14px; }
+  
+  /* Diamond Decision Nodes */
+  .v-node.decision-node {
+    border: none; background: transparent; box-shadow: none; display: flex; align-items: center; justify-content: center;
+  }
+  .v-node.decision-node .v-node-body {
+    position: relative; z-index: 2; padding: 12px 18px; max-width: 170px;
+  }
+  .diamond-shape {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;
+  }
+
+  /* Semantic Highlighting Badges (Fixed BiDi & Zero Syntax Bug) */
+  .ui-badge { display: inline-block; padding: 1px 5px; border-radius: 3px; font-weight: 700; font-size: 10.5px; vertical-align: middle; margin: 1px 2px; }
+  .ui-badge.hlred { background: #fee2e2; color: #991b1b; }
+  .ui-badge.hlyellow { background: #fef08a; color: #854d0e; }
+  .ui-badge.hlgray { background: #e2e8f0; color: #1e293b; }
+  .ui-badge.bidi-ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+
+  /* Live Preview Pane */
+  .preview-container { flex: 1; overflow: auto; position: relative; display: flex; justify-content: center; align-items: flex-start; padding: 14px; background: #0b1120; }
+  #pdfPreviewImage { max-width: 100%; height: auto; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5); border-radius: 4px; background: white; }
+  #pdfFrame { width: 100%; height: 100%; border: none; background: white; border-radius: 4px; }
+  
+  /* Console Error Box */
+  #errorDrawer {
+    position: absolute; bottom: 0; left: 0; right: 0; max-height: 160px; background: #1e1e24; border-top: 2px solid var(--danger);
+    color: #fca5a5; font-family: monospace; font-size: 11px; padding: 8px 12px; overflow-y: auto; display: none; z-index: 100;
+  }
+
+  /* Responsive Rules */
+  @media (max-width: 900px) {
+    .mobile-tabs { display: flex; }
+    .resizer { display: none; }
+    #paneCode, #paneCanvas, #panePreview { width: 100% !important; display: none; }
+    #paneCode.active, #paneCanvas.active, #panePreview.active { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="app-title">
+    TikZ Studio <span>XeLaTeX Mac</span>
+  </div>
+  <div class="actions">
+    <button class="btn btn-secondary" onclick="resetCanvasView()" title="Fit View">🔍 Reset</button>
+    <button class="btn btn-primary" onclick="syncTexToCanvas()" title="Rebuild Nodes">↻ Parse</button>
+    <button class="btn btn-success" onclick="compileXeLaTeX()" id="btnCompile">▶ Compile</button>
+    <div id="statusPill" class="status-pill">Ready</div>
+  </div>
+</header>
+
+<div class="mobile-tabs">
+  <button class="tab-btn active" onclick="switchMobileTab('paneCanvas')">Canvas</button>
+  <button class="tab-btn" onclick="switchMobileTab('paneCode')">LaTeX Code</button>
+  <button class="tab-btn" onclick="switchMobileTab('panePreview')">PDF Preview</button>
+</div>
+
+<div id="mainWorkspace">
+  <!-- 1. Code Editor Pane -->
+  <div id="paneCode" class="pane">
+    <div class="pane-header">
+      <span>DOCUMENT.TEX</span>
+      <button class="btn btn-secondary" style="padding: 2px 6px; font-size: 10px;" onclick="copyTexCode()">Copy</button>
+    </div>
+    <textarea id="texEditor" spellcheck="false" placeholder="LaTeX code goes here..."></textarea>
+  </div>
+
+  <div class="resizer" id="resizer1"></div>
+
+  <!-- 2. Node Graph Canvas Pane -->
+  <div id="paneCanvas" class="pane active">
+    <div id="canvasViewport">
+      <div id="canvasTransform">
+        <svg id="svgEdgesLayer">
+          <defs>
+            <marker id="arrowHead" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0f172a"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="resizer" id="resizer2"></div>
+
+  <!-- 3. Preview Pane -->
+  <div id="panePreview" class="pane">
+    <div class="pane-header">
+      <span>COMPILED OUTPUT</span>
+      <div style="display:flex; gap:6px;">
+        <button class="btn btn-secondary" style="padding: 2px 6px; font-size: 10px;" onclick="togglePreviewMode()">Toggle PDF/PNG</button>
+        <a id="btnDownloadPdf" href="#" target="_blank" class="btn btn-secondary" style="padding: 2px 6px; font-size: 10px; text-decoration:none;">Open PDF</a>
+      </div>
+    </div>
+    <div class="preview-container" id="previewContainer">
+      <img id="pdfPreviewImage" alt="XeLaTeX Output" style="display:none;" />
+      <iframe id="pdfFrame" src="about:blank"></iframe>
+    </div>
+    <div id="errorDrawer"></div>
+  </div>
+</div>
+
+<script>
+// مقادیر پایه مقیاس TikZ به پیکسل Canvas
+const TIKZ_SCALE = 52;
+const ORIGIN_X = 640;
+const ORIGIN_Y = 110;
+
+let panX = 0, panY = 0, zoom = 1.0;
+let isPanning = false, panStartX = 0, panStartY = 0;
+let nodesMap = new Map();
+let edgesList = [];
+let usePngPreview = true;
+
+// 1. پاک‌کننده هوشمند ماکروهای لاتک (حل قطعی باگ‌های $•$ و \colordarkred و درصدها)
+function sanitizeLatexToHtml(rawText) {
+  if (!rawText) return "";
+  let s = rawText;
+
+  // حل هایلایت‌ها بدون شکستن متن درونی و با استایل تمیز
+  s = s.replace(/\\colorbox\{([a-zA-Z0-9]+)\}\s*\{((?:[^{}]*|\{[^{}]*\})*)\}/g, (match, cname, content) => {
+    let clean = content
+      .replace(/\\strut\b/g, '')
+      .replace(/\\color\{[a-zA-Z0-9]+\}/g, '')
+      .replace(/\\(lr|rl)\{([^}]*)\}/g, '$2')
+      .replace(/\\%/g, '%')
+      .replace(/--/g, '–')
+      .trim();
+    let badgeClass = (cname === 'hlred') ? 'hlred' : (cname === 'hlyellow') ? 'hlyellow' : 'hlgray';
+    return `<span class="ui-badge ${badgeClass} bidi-ltr">${clean}</span>`;
+  });
+
+  // حل بولت‌ها
+  s = s.replace(/\$\s*\\bullet\s*\$|\\bullet|\$bullet\$/g, ' • ');
+
+  // حذف ماکروهای جهتی و ساختاری
+  s = s.replace(/\\(textbf|textit|rl|lr|text)\{((?:[^{}]*|\{[^{}]*\})*)\}/g, '$2');
+  s = s.replace(/\\(scriptsize|footnotesize|normalsize|Large|large|bfseries|itshape|strut)\b/g, '');
+  
+  // شکست خطوط
+  s = s.replace(/\\\\(?:\[[^\]]*\])?/g, '<br>');
+  s = s.replace(/\\%/g, '%');
+  s = s.replace(/--/g, '–');
+  s = s.replace(/[{}]/g, '');
+
+  return s.trim();
+}
+
+// 2. پارس متن TeX به نودها و اتصالات گراف
+function syncTexToCanvas() {
+  const code = document.getElementById("texEditor").value;
+  const canvas = document.getElementById("canvasTransform");
+  
+  // حذف نودهای قدیمی
+  document.querySelectorAll(".v-node").forEach(n => n.remove());
+  nodesMap.clear();
+  edgesList = [];
+
+  // پارس \node (id) [...] at (x, y) {content};
+  const nodeRegex = /\\node\s*\(([\w_-]+)\)\s*(\[[^\]]*\])?\s*at\s*\(([^,]+),\s*([^)]+)\)\s*\{([\s\S]*?)\};/g;
+  let m;
+  while ((m = nodeRegex.exec(code)) !== null) {
+    const id = m[1].trim();
+    const opts = m[2] || "";
+    const tx = parseFloat(m[3]);
+    const ty = parseFloat(m[4]);
+    const rawBody = m[5];
+
+    let w = 210;
+    const wMatch = opts.match(/text width=([0-9.]+)cm/);
+    if (wMatch) w = parseFloat(wMatch[1]) * TIKZ_SCALE;
+
+    const isDecision = opts.includes("decision");
+    if (isDecision) w = 150;
+
+    const node = { id, opts, tx, ty, w, isDecision, rawBody, html: sanitizeLatexToHtml(rawBody) };
+    nodesMap.set(id, node);
+    createDomNode(node);
+  }
+
+  // پارس اتصالات و فلش‌ها \draw [arrow] (n1) -- (n2);
+  const drawRegex = /\\draw\s*[arrow]\s*\(([\w._-]+)\)\s*--\s*(?:node\[[^\]]*\]\s*\{([\s\S]*?)\}\s*)?\(([\w._-]+)\);/g;
+  while ((m = drawRegex.exec(code)) !== null) {
+    const fromFull = m[1].trim();
+    const label = m[2] ? sanitizeLatexToHtml(m[2]) : "";
+    const toFull = m[3].trim();
+
+    const fromId = fromFull.split('.')[0];
+    const toId = toFull.split('.')[0];
+    const fromAnchor = fromFull.includes('.') ? fromFull.split('.')[1] : 'south';
+    const toAnchor = toFull.includes('.') ? toFull.split('.')[1] : 'north';
+
+    edgesList.push({ fromId, toId, fromAnchor, toAnchor, label });
+  }
+
+  redrawAllEdges();
+  setStatus(`${nodesMap.size} Nodes Loaded`, "ok");
+}
+
+function createDomNode(node) {
+  const canvas = document.getElementById("canvasTransform");
+  const el = document.createElement("div");
+  el.className = `v-node ${node.isDecision ? 'decision-node' : ''}`;
+  el.id = `vnode-${node.id}`;
+
+  const left = ORIGIN_X + (node.tx * TIKZ_SCALE) - (node.w / 2);
+  const top = ORIGIN_Y - (node.ty * TIKZ_SCALE);
+
+  el.style.left = `${left}px`;
+  el.style.top = `${top}px`;
+  el.style.width = `${node.w}px`;
+
+  if (node.isDecision) {
+    el.innerHTML = `
+      <svg class="diamond-shape" viewBox="0 0 100 60" preserveAspectRatio="none">
+        <polygon points="50,1 99,30 50,59 1,30" fill="white" stroke="#0f172a" stroke-width="1.8"/>
+      </svg>
+      <div class="v-node-body" contenteditable="true">${node.html}</div>
+    `;
+  } else {
+    el.innerHTML = `
+      <span class="v-node-id">${node.id}</span>
+      <div class="v-node-body" contenteditable="true">${node.html}</div>
+    `;
+  }
+
+  // ویرایش زنده متن داخل باکس
+  const bodyEl = el.querySelector(".v-node-body");
+  bodyEl.addEventListener("input", () => {
+    updateTexNodeContent(node.id, bodyEl.innerText);
+  });
+
+  makeDraggable(el, node);
+  canvas.appendChild(el);
+}
+
+function makeDraggable(el, node) {
+  let isDragging = false;
+  let startX = 0, startY = 0, origLeft = 0, origTop = 0;
+
+  el.addEventListener("pointerdown", (e) => {
+    if (e.target.classList.contains("v-node-body")) return; // اگر روی متن کلیک کرده، درگ نشود
+    document.querySelectorAll(".v-node").forEach(n => n.classList.remove("selected"));
+    el.classList.add("selected");
+
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    origLeft = parseFloat(el.style.left);
+    origTop = parseFloat(el.style.top);
+    el.setPointerCapture(e.pointerId);
+    e.stopPropagation();
+  });
+
+  el.addEventListener("pointermove", (e) => {
+    if (!isDragging) return;
+    const dx = (e.clientX - startX) / zoom;
+    const dy = (e.clientY - startY) / zoom;
+
+    const newLeft = origLeft + dx;
+    const newTop = origTop + dy;
+
+    el.style.left = `${newLeft}px`;
+    el.style.top = `${newTop}px`;
+
+    // به‌روزرسانی مختصات TikZ (بر حسب سانتیمتر)
+    node.tx = parseFloat(((newLeft + (node.w / 2) - ORIGIN_X) / TIKZ_SCALE).toFixed(2));
+    node.ty = parseFloat((-(newTop - ORIGIN_Y) / TIKZ_SCALE).toFixed(2));
+
+    updateTexNodeCoordinates(node.id, node.tx, node.ty);
+    redrawAllEdges();
+  });
+
+  const stopDrag = (e) => {
+    if (isDragging) {
+      isDragging = false;
+      try { el.releasePointerCapture(e.pointerId); } catch(err){}
+    }
+  };
+  el.addEventListener("pointerup", stopDrag);
+  el.addEventListener("pointercancel", stopDrag);
+}
+
+// 3. محاسبه دقیق انکرها و ترسیم یال‌های برداری SVG
+function getNodeAnchor(nodeId, anchor) {
+  const el = document.getElementById(`vnode-${nodeId}`);
+  if (!el) return { x: 0, y: 0 };
+  const left = parseFloat(el.style.left);
+  const top = parseFloat(el.style.top);
+  const w = el.offsetWidth;
+  const h = el.offsetHeight;
+
+  switch (anchor) {
+    case 'north': return { x: left + w / 2, y: top };
+    case 'south': return { x: left + w / 2, y: top + h };
+    case 'east':  return { x: left + w, y: top + h / 2 };
+    case 'west':  return { x: left, y: top + h / 2 };
+    default:      return { x: left + w / 2, y: top + h / 2 };
+  }
+}
+
+function redrawAllEdges() {
+  const svg = document.getElementById("svgEdgesLayer");
+  svg.querySelectorAll(".connection-path, .edge-label").forEach(e => e.remove());
+
+  edgesList.forEach(edge => {
+    const p1 = getNodeAnchor(edge.fromId, edge.fromAnchor);
+    const p2 = getNodeAnchor(edge.toId, edge.toAnchor);
+
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("class", "connection-path");
+    path.setAttribute("stroke", "#0f172a");
+    path.setAttribute("stroke-width", "1.7");
+    path.setAttribute("fill", "none");
+    path.setAttribute("marker-end", "url(#arrowHead)");
+
+    let d = "";
+    if (Math.abs(p1.x - p2.x) < 4) {
+      d = `M ${p1.x} ${p1.y} L ${p2.x} ${p2.y}`;
+    } else if (edge.fromAnchor === 'east' && edge.toAnchor === 'west') {
+      d = `M ${p1.x} ${p1.y} L ${p2.x} ${p2.y}`;
+    } else {
+      const midY = (p1.y + p2.y) / 2;
+      d = `M ${p1.x} ${p1.y} L ${p1.x} ${midY} L ${p2.x} ${midY} L ${p2.x} ${p2.y}`;
+    }
+
+    path.setAttribute("d", d);
+    svg.appendChild(path);
+
+    // افزودن متن روی خط اتصال (مثل بله / خیر)
+    if (edge.label) {
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("class", "edge-label");
+      text.setAttribute("x", (p1.x + p2.x) / 2 + 10);
+      text.setAttribute("y", (p1.y + p2.y) / 2 - 4);
+      text.setAttribute("font-size", "10px");
+      text.setAttribute("font-weight", "bold");
+      text.setAttribute("fill", "#0f172a");
+      text.textContent = edge.label;
+      svg.appendChild(text);
+    }
+  });
+}
+
+// 4. به‌روزرسانی کد لاتک بدون دستکاری ساختار اطراف
+function updateTexNodeCoordinates(id, newX, newY) {
+  let tex = document.getElementById("texEditor").value;
+  const regex = new RegExp(`(\\\\node\\s*\\(${id}\\)[^)]*?at\\s*\\()([^,]+),\\s*([^)]+)(\\))`);
+  if (regex.test(tex)) {
+    tex = tex.replace(regex, `$1${newX}, ${newY}$4`);
+    document.getElementById("texEditor").value = tex;
+  }
+}
+
+function updateTexNodeContent(id, plainText) {
+  let tex = document.getElementById("texEditor").value;
+  const lines = plainText.split('\n').filter(l => l.trim() !== "");
+  let formatted = lines.map((line, idx) => {
+    return idx === 0 ? `\\textbf{\\rl{${line}}}` : `\\scriptsize \\rl{${line}}`;
+  }).join('\\\\\n    ');
+
+  const regex = new RegExp(`(\\\\node\\s*\\(${id}\\)[\\s\\S]*?\\{)([\\s\\S]*?)(\\};)`);
+  if (regex.test(tex)) {
+    tex = tex.replace(regex, `$1\n    ${formatted}\n$3`);
+    document.getElementById("texEditor").value = tex;
+  }
+}
+
+// 5. کنترل Pan & Zoom روی بوم (لمسی و ماوسی)
+const viewport = document.getElementById("canvasViewport");
+viewport.addEventListener("pointerdown", (e) => {
+  if (e.target.closest(".v-node")) return;
+  isPanning = true;
+  panStartX = e.clientX - panX;
+  panStartY = e.clientY - panY;
+  viewport.setPointerCapture(e.pointerId);
+});
+
+viewport.addEventListener("pointermove", (e) => {
+  if (!isPanning) return;
+  panX = e.clientX - panStartX;
+  panY = e.clientY - panStartY;
+  updateCanvasTransform();
+});
+
+const endPan = (e) => {
+  if (isPanning) {
+    isPanning = false;
+    try { viewport.releasePointerCapture(e.pointerId); } catch(err){}
+  }
+};
+viewport.addEventListener("pointerup", endPan);
+viewport.addEventListener("pointercancel", endPan);
+
+viewport.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const zoomFactor = e.deltaY < 0 ? 1.08 : 0.92;
+  zoom = Math.min(Math.max(zoom * zoomFactor, 0.4), 2.5);
+  updateCanvasTransform();
+}, { passive: false });
+
+function updateCanvasTransform() {
+  document.getElementById("canvasTransform").style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
+}
+
+function resetCanvasView() {
+  panX = 20; panY = 20; zoom = 0.85;
+  updateCanvasTransform();
+}
+
+// 6. کامپایل با XeLaTeX از طریق پل لوکال پایتون
+async function compileXeLaTeX() {
+  const code = document.getElementById("texEditor").value;
+  const btn = document.getElementById("btnCompile");
+  const errorDrawer = document.getElementById("errorDrawer");
+  errorDrawer.style.display = "none";
+  setStatus("Compiling...", "");
+  btn.disabled = true;
+
+  try {
+    const res = await fetch("http://127.0.0.1:8765/api/compile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tex: code, filename: "flowchart.tex" })
+    });
+    const data = await res.json();
+    btn.disabled = false;
+
+    if (data.success) {
+      setStatus(`OK (${data.elapsed}s)`, "ok");
+      document.getElementById("btnDownloadPdf").href = data.pdf_url;
+      
+      if (data.images && data.images.length > 0) {
+        document.getElementById("pdfPreviewImage").src = data.images[0];
+        if (usePngPreview) showPngMode();
+      } else {
+        document.getElementById("pdfFrame").src = data.pdf_url;
+        showPdfMode();
+      }
+    } else {
+      setStatus("Compile Error", "err");
+      errorDrawer.style.display = "block";
+      errorDrawer.innerHTML = `<strong>XeLaTeX Compilation Error:</strong><br>${data.errors.join("<br>") || data.log}`;
+    }
+  } catch (err) {
+    btn.disabled = false;
+    setStatus("Server Offline", "err");
+    alert("سرور محلی پایتون (server.py) اجرا نیست! در ترمینال دستور python3 server.py را اجرا کنید.");
+  }
+}
+
+function setStatus(text, type) {
+  const p = document.getElementById("statusPill");
+  p.textContent = text;
+  p.className = `status-pill ${type}`;
+}
+
+function showPngMode() {
+  document.getElementById("pdfPreviewImage").style.display = "block";
+  document.getElementById("pdfFrame").style.display = "none";
+}
+function showPdfMode() {
+  document.getElementById("pdfPreviewImage").style.display = "none";
+  document.getElementById("pdfFrame").style.display = "block";
+}
+function togglePreviewMode() {
+  usePngPreview = !usePngPreview;
+  if (usePngPreview) showPngMode(); else showPdfMode();
+}
+
+// 7. ریسایز کردن پنل‌ها با ماوس و تاچ
+function setupSplitter(resizerId, prevPaneId) {
+  const resizer = document.getElementById(resizerId);
+  const pane = document.getElementById(prevPaneId);
+  let isResizing = false;
+
+  resizer.addEventListener("pointerdown", (e) => {
+    isResizing = true;
+    resizer.classList.add("dragging");
+    resizer.setPointerCapture(e.pointerId);
+  });
+  window.addEventListener("pointermove", (e) => {
+    if (!isResizing) return;
+    const newWidth = e.clientX - pane.getBoundingClientRect().left;
+    if (newWidth > 180 && newWidth < window.innerWidth - 300) {
+      pane.style.width = `${newWidth}px`;
+    }
+  });
+  window.addEventListener("pointerup", (e) => {
+    if (isResizing) {
+      isResizing = false;
+      resizer.classList.remove("dragging");
+    }
+  });
+}
+setupSplitter("resizer1", "paneCode");
+setupSplitter("resizer2", "paneCanvas");
+
+// تب‌های مخصوص تبلت و موبایل
+function switchMobileTab(paneId) {
+  document.querySelectorAll(".pane").forEach(p => p.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById(paneId).classList.add("active");
+  event.target.classList.add("active");
+}
+
+function copyTexCode() {
+  navigator.clipboard.writeText(document.getElementById("texEditor").value);
+  setStatus("Copied to Clipboard", "ok");
+}
+
+// مقداردهی اولیه با کد لاتک فلوچارت فعلی شما
+window.addEventListener("DOMContentLoaded", () => {
+  resetCanvasView();
+  // پیست خودکار کد فلوچارت بدون باگ
+  const initialTex = `\\documentclass[a4paper]{article}
+\\usepackage[margin=1.15cm,footskip=0pt,headsep=0pt]{geometry}
+\\usepackage{amsmath,amssymb}
+\\usepackage{xcolor}
+\\usepackage{tikz}
+\\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\\usepackage{hyperref}
+\\usepackage{fontspec}
+
+\\makeatletter
+\\newcommand{\\MathCollectFalse}{}
+\\newcommand{\\MathCollectTrue}{}
+\\let\\@kernel@tabular@init\\relax
+\\makeatother
+
+\\usepackage{xepersian}
+
+\\settextfont[
+  Path = Peyda/,
+  BoldFont = Peyda-Bold.ttf,
+  ItalicFont = Peyda-Medium.ttf,
+  BoldItalicFont = Peyda-Bold.ttf
+]{Peyda-Regular.ttf}
+
+\\setlatintextfont{Times New Roman}
+
+\\linespread{1.10}
+\\pagestyle{empty}
+\\thispagestyle{empty}
+
+\\raggedbottom
+\\setlength{\\parindent}{0pt}
+\\setlength{\\parskip}{0pt}
+
+\\definecolor{hlgray}{HTML}{E2E8F0}
+\\definecolor{hlyellow}{HTML}{FEF08A}
+\\definecolor{hlred}{HTML}{FEE2E2}
+\\definecolor{darkred}{HTML}{991B1B}
+\\definecolor{navy}{HTML}{0A2540}
+
+\\begin{document}
+
+\\begin{center}
+{\\Large\\bfseries فلوچارت تصمیم‌گیری بالینی: تومورهای ادنتوژنیک فکین}\\\\[2pt]
+{\\small\\itshape تریاژ رادیوگرافیک، استراتژی بیوپسی، پروتکل‌های رزکسیون بر اساس مارجین و فالوآپ}
+\\end{center}
+\\vspace{-4pt}
+\\hrule height 0.8pt
+\\vspace{6pt}
+
+\\begin{center}
+\\begin{latin}
+\\linespread{0.95}\\selectfont
+\\begin{tikzpicture}[
+    every node/.style={font=\\sffamily\\footnotesize, align=center},
+    stepbox/.style={rectangle, draw=black, fill=white, line width=0.7pt, inner sep=4.5pt},
+    decision/.style={diamond, aspect=2.4, draw=black, fill=white, line width=0.7pt, inner sep=2pt, font=\\sffamily\\scriptsize\\bfseries},
+    arrow/.style={-{Stealth[scale=0.9]}, thick, black}
+]
+
+% 1. Initial Presentation
+\\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+    \\textbf{\\rl{تظاهر بالینی و رادیوگرافیک: اتساع فک و لوسنسی کورتیکه‌دار (\\lr{Jaw Expansion})}}\\\\
+    \\scriptsize \\rl{اکسپنشن باکال/لینگوال $\\bullet$ لوسنسی تک یا چندحفره‌ای (\\lr{Soap-bubble / Honeycomb}) $\\bullet$ تحلیل ریشه}
+};
+
+% 2. Diagnostic Workup & Aspiration
+\\node (n2) [stepbox, text width=14.2cm] at (0, -1.60) {
+    \\textbf{\\colorbox{hlyellow}{\\strut \\rl{مرحله ۱ الزامی: تصویربرداری سه‌بعدی با \\lr{CBCT} و آسپیراسیون سوزنی (\\lr{FNA})}}}\\\\
+    \\scriptsize \\rl{بررسی پرفوراسیون کورتکس $\\bullet$ رد مالفورماسیون عروقی و کیست‌ها با آسپیراسیون خشک (\\lr{Solid Mass})}
+};
+
+% 3. Mixed / Radiopacity Decision
+\\node (d1) [decision] at (0, -3.30) {\\rl{موتواک/اپک؟}\\\\[-1pt]\\scriptsize \\lr{Mixed / Opacity?}};
+\\node (r_mixed) [stepbox, text width=3.8cm] at (5.8, -3.30) {
+    \\textbf{\\rl{تومور پین‌بورگ (\\lr{CEOT})}}\\\\
+    \\scriptsize \\rl{کلسیفیکاسیون با ماده آمیلوئیدی؛}\\\\
+    \\rl{انوکلئیشن با مارجین یا رزکسیون محدود}
+};
+
+% 4. Mandatory Incisional Biopsy
+\\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.20) {
+    \\textbf{\\colorbox{hlyellow}{\\strut \\rl{بیوپسی برشی ترانس‌اورال الزامی (\\lr{Incisional Biopsy}) در حاشیه بافت سالم/ضایعه}}}\\\\
+    \\scriptsize \\rl{پرهیز از انوکلئیشن زودرس کورکورانه بدون تشخیص پاتولوژی قطعی (\\lr{WHO 5th Ed})}
+};
+
+% 5. Histopathology Subtype Decision
+\\node (d2) [decision] at (0, -6.90) {\\rl{تشخیص پاتولوژی}\\\\[-1pt]\\scriptsize \\lr{Histotype?}};
+
+% 6. 4 Main Columns
+\\node (h1) [stepbox, text width=3.6cm] at (-6.15, -9.00) {
+    \\textbf{\\rl{تومور آدنوماتوئید (\\lr{AOT})}}\\\\
+    \\scriptsize \\rl{قدام ماگزیلا، دور تاج نهفته}\\\\\\rl{کپسولار و خوش‌خیم؛ عود: \\colorbox{hlgray}{\\strut\\lr{\\textbf{$<1\\%$}}}}
+};
+\\node (h2) [stepbox, text width=3.6cm] at (-2.05, -9.00) {
+    \\textbf{\\rl{آملوبلاستوما تک‌کیستی}}\\\\
+    \\scriptsize \\lr{Unicystic Ameloblastoma}\\\\\\rl{لومینال یا اینترالومینال}\\\\\\rl{عود با کورتاژ: \\textbf{\\lr{10\\% -- 25\\%}}}
+};
+\\node (h3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -9.00) {
+    \\textbf{\\rl{آملوبلاستوما سالید/مولتی}}\\\\
+    \\scriptsize \\lr{Solid / Multicystic}\\\\\\rl{نفوذ به مغز استخوان}\\\\\\rl{عود با کورتاژ: \\colorbox{hlred}{\\strut\\color{darkred}\\lr{\\textbf{50\\% -- 90\\%}}}}
+};
+\\node (h4) [stepbox, line width=1.0pt, text width=3.6cm] at (6.15, -9.00) {
+    \\textbf{\\rl{میکسـومای ادنتوژنیک}}\\\\
+    \\scriptsize \\lr{Odontogenic Myxoma}\\\\\\rl{استرومای میگزوئید فاقد کپسول}\\\\\\rl{عود با انوکلئیشن: \\colorbox{hlred}{\\strut\\color{darkred}\\lr{\\textbf{25\\% -- 43\\%}}}}
+};
+
+% Connections
+\\draw [arrow] (n1) -- (n2);
+\\draw [arrow] (n2) -- (d1);
+\\draw [arrow] (d1.east) -- node[above, font=\\scriptsize\\bfseries] {\\rl{بله (ترکیبی)}} (r_mixed.west);
+\\draw [arrow] (d1.south) -- node[right=6pt, font=\\scriptsize\\bfseries] {\\rl{خیر (لوسنت)}} (n3.north);
+\\draw [arrow] (n3.south) -- (d2.north);
+
+\\end{tikzpicture}
+\\end{latin}
+\\end{center}
+
+\\end{document}`;
+
+  document.getElementById("texEditor").value = initialTex;
+  syncTexToCanvas();
+});
+</script>
+</body>
+</html>

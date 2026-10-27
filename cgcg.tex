@@ -1,0 +1,214 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1.15cm,footskip=0pt,headsep=0pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\newcommand{\MathCollectFalse}{}
+\newcommand{\MathCollectTrue}{}
+\let\@kernel@tabular@init\relax
+\makeatother
+
+\usepackage{xepersian}
+
+\settextfont[
+  Path = Peyda/,
+  BoldFont = Peyda-Bold.ttf,
+  ItalicFont = Peyda-Medium.ttf,
+  BoldItalicFont = Peyda-Bold.ttf
+]{Peyda-Regular.ttf}
+
+\setlatintextfont{Times New Roman}
+
+\IfFileExists{Peyda/Symbola.ttf}{%
+  \newfontfamily\symb[Path=Peyda/]{Symbola.ttf}%
+}{%
+  \IfFileExists{editor/Peyda/Symbola.ttf}{%
+    \newfontfamily\symb[Path=editor/Peyda/]{Symbola.ttf}%
+  }{%
+    \newfontfamily\symb{Symbola}%
+  }%
+}
+\newcommand{\emoji}[1]{{\symb #1}}
+
+\linespread{1.12}
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\definecolor{hlgray}{HTML}{E2E8F0}
+\definecolor{hlyellow}{HTML}{FEF08A}
+\definecolor{hlred}{HTML}{FEE2E2}
+\definecolor{darkred}{HTML}{991B1B}
+\definecolor{navy}{HTML}{0A2540}
+\definecolor{teal}{HTML}{0D9488}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries فلوچارت تصمیم‌گیری بالینی: گرانولوم سلول غول‌آسای مرکزی (\lr{CGCG})}\\[2pt]
+{\small\itshape تریاژ اندوکرین، تفکیک تومور براون، طبقه‌بندی بیولوژیک بر اساس تهاجم، درمان‌های دارویی و بازسازی فک}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{6pt}
+
+\begin{center}
+\begin{latin}
+\linespread{0.95}\selectfont
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily\footnotesize, align=center},
+    stepbox/.style={rectangle, draw=black, fill=white, line width=0.7pt, inner sep=4.5pt},
+    decision/.style={diamond, aspect=2.0, draw=black, fill=white, line width=0.7pt, inner sep=2.5pt, font=\sffamily\scriptsize\bfseries},
+    arrow/.style={-{Stealth[scale=0.88]}, thick, black}
+]
+
+% 1. Initial Presentation
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+    \rl{\textbf{تظاهر بالینی: رادیولوسنسی اکسپنسیل فکین (\lr{Jaw Radiolucency})}}\\[2pt]
+    \scriptsize \rl{ضایعه استئولیتیک تک‌حفره‌ای یا چندحفره‌ای $\bullet$ تورم مندیبل/ماگزیلا $\bullet$ آسپیراسیون تشخیصی}
+};
+
+% 2. Mandatory Endocrine Screen
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.85) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: تریاژ آزمایشگاهی اندوکرین (رد تومور براون هیپرپاراتیروئیدیسم)}}}\\[2pt]
+    \scriptsize \rl{کلسیم سرم $\bullet$ فسفر غیرآلی $\bullet$ آلکالین فسفاتاز $\bullet$ هورمون پاراتیروئید دست‌نخورده (\lr{iPTH})}
+};
+
+% 3. Hyperparathyroidism Decision
+\node (d1) [decision] at (0, -3.85) {\rl{افزایش}\\[-1pt]\scriptsize \lr{PTH / Ca?}};
+\node (r_brown) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.85) {
+    \rl{\textbf{تومور براون (\lr{HPT}) \emoji{⚖}}}\\[2pt]
+    \scriptsize \rl{ارجاع به جراحی اندوکرین؛}\\
+    \rl{ترمیم خودبه‌خودی استخوان فک}
+};
+
+% 4. Mandatory Incisional Biopsy
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.15) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی الزامی (\lr{Incisional / Core Biopsy}) و مپینگ سه‌بعدی با \lr{CBCT}}}}\\[2pt]
+    \scriptsize \rl{پاتولوژی: سلول‌های غول‌آسا چند‌هسته‌ای در استرومای فیبروبلاستی $\bullet$ بررسی پرفوراسیون کورتکس و تحلیل ریشه}
+};
+
+% 5. Biological Phenotype Decision
+\node (d2) [decision] at (0, -8.35) {\rl{فنوتیپ ضایعه}\\[-1pt]\scriptsize \lr{Phenotype?}};
+
+% 6. 4 Main Clinical Presentation Columns
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -10.65) {
+    \rl{\textbf{غیرتهاجمی (\lr{Non-Aggr})}}\\[2pt]
+    \scriptsize \rl{رشد آهسته، کوچکتر از ۲ سانتی‌متر}\\\rl{کورتکس سالم؛ بدون پرفوراسیون}\\\rl{عود سالیانه: \colorbox{hlgray}{\strut\textbf{۲٫۴٪}}}
+};
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -10.65) {
+    \rl{\textbf{اطفال / حفظ جوانه دندان}}\\[2pt]
+    \scriptsize \rl{دندان‌های مختلط، مجاور جوانه‌ها}\\\rl{هدف: حفظ دندان و پیشگیری از نقص فک}\\\rl{اولویت: \textbf{درمان دارویی محافظه‌کارانه}}
+};
+\node (h3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -10.65) {
+    \rl{\textbf{تهاجمی / پرفوره (\lr{Aggr})}}\\[2pt]
+    \scriptsize \rl{رشد سریع، بزرگتر از ۳ سانتی‌متر، درد}\\\rl{تحلیل ریشه و پرفوراسیون کورتکس}\\\rl{عود با کورتاژ: \colorbox{hlred}{\strut\color{darkred}\textbf{۴۹٪ تا ۷۲٪}}}
+};
+\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -10.65) {
+    \rl{\textbf{غیرقابل جراحی / راجعه}}\\[2pt]
+    \scriptsize \rl{قاعده جمجمه، عبور از خط وسط}\\\rl{رزکسیون وسیع با دفورمیتی شدید همراه است}\\\rl{اندیکاسیون: \colorbox{hlred}{\strut\color{darkred}\textbf{درمان بیولوژیک}}}
+};
+
+% 7. Primary Interventions
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.15) {
+    \rl{\textbf{کورتاژ + استکتومی محیطی}}\\[2pt]
+    \scriptsize \rl{کورتاژ کامل همراه با ۱ تا ۲ میلی‌متر}\\\rl{استکتومی محیطی با فرز چرخشی}
+};
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -13.15) {
+    \rl{\textbf{کورتیکواستروئید داخل ضایعه}}\\[2pt]
+    \scriptsize \lr{Triamcinolone 10\,mg/mL + Lido 2\%}\\\rl{تزریق هفتگی به مدت ۶ هفته}
+};
+\node (i3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -13.15) {
+    \rl{\textbf{رزکسیون یا کلسیتونین}}\\[2pt]
+    \scriptsize \rl{رزکسیون با \textbf{مارجین ۵ میلی‌متر}}\\\rl{یا کلسیتونین زیرجلدی به مدت ۱۲ ماه}
+};
+\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.15) {
+    \rl{\textbf{دنوزوماب نئوادجوانت \emoji{🎯}}}\\[2pt]
+    \scriptsize \lr{Denosumab 120\,mg q4w $\times$ 6--12m}\\\colorbox{hlred}{\strut\color{darkred}\textbf{\rl{خطر: هیپرکلسمی ریباند}}}
+};
+
+% 8. Recall Schedules
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -15.65) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه یکبار}}}\\[2pt]
+    \scriptsize \rl{رادیوگرافی پایه \lr{CBCT} و پانورامیک}
+};
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -15.65) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۳ تا ۴ ماه}}}\\[2pt]
+    \scriptsize \rl{پایش رمینرالیزاسیون و تکامل ریشه}
+};
+\node (s3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -15.65) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۳ تا ۴ ماه}}}\\[2pt]
+    \scriptsize \rl{پایش در بازه اوج خطر عود (سال ۱ و ۲)}
+};
+\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -15.65) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{پایش ماهانه آزمایشگاه}}}\\[2pt]
+    \scriptsize \rl{سنجش کلسیم و فسفر تا ۶ ماه پس از قطع}
+};
+
+% 9. Trigger Box
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -18.35) {
+    \centerline{\rl{\textbf{اندیکاسیون‌های الزامی برای تصویربرداری مجدد و مداخله درمانی فوری:}}}\par\vspace{3pt}
+    \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{انجام فوری \lr{CBCT} و مداخله درمانی اجباری است در:}} (۱) تورم مجدد کورتکس یا لوسنسی جدید در محل جراحی $\bullet$ (۲) درد یا حساسیت پایدار و فزاینده استخوان $\bullet$ (۳) لقی ثانویه یا انحراف ریشه دندان‌های مجاور $\bullet$ (۴) پرفوراسیون پیشرونده کورتکس استخوانی $\bullet$ (۵) بحران هیپرکلسمی بازگشتی (\lr{Rebound}) بعد از قطع دنوزوماب.}
+};
+
+% 10. Refractory Box
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -20.85) {
+    \centerline{\rl{\textbf{پروتکل افزایش گام‌به‌گام درمان برای موارد مقاوم / راجعه / غیرقابل جراحی:}}}\par\vspace{3pt}
+    \scriptsize \rl{\textbf{سطح ۳ (ضد استئوکلاست):} کلسیتونین سالمون زیرجلدی (\lr{100 IU/day}) روزانه به مدت ۱۲ تا ۱۸ ماه (موجب پرشدن ماتریکس استخوانی می‌شود).}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۴ (مهار \lr{RANKL}):} دنوزوماب زیرجلدی (روزهای ۱، ۸، ۱۵، ۲۹، سپس هر ۴ هفته؛ \colorbox{hlred}{\strut\color{darkred}\textbf{پایش دقیق کلسیم و تیپرینگ تدریجی}}).}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۵ (هدفمند / سالواژ جراحی):} مهارکننده‌های \lr{MEK} (ترامترینیب برای جهش‌های \lr{TRPV4/KRAS}) یا رزکسیون سگمنتال جراحی همراه با بازسازی فلپ آزاد فیبولا.}
+};
+
+% Connections
+\draw [arrow] (n1) -- (n2);
+\draw [arrow] (n2) -- (d1);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{بله (افزایش)}} (r_brown.west);
+\draw [arrow] (d1.south) -- node[right=4pt, font=\scriptsize\bfseries] {\rl{خیر (نرمال)}} (n3.north);
+\draw [arrow] (n3.south) -- (d2.north);
+
+% Bus-Bar from Decision 2 to 4 Histology columns
+\draw [thick, black] (d2.south) -- (0, -9.45);
+\draw [thick, black] (-6.15, -9.45) -- (6.15, -9.45);
+\draw [arrow] (-6.15, -9.45) -- (h1.north);
+\draw [arrow] (-2.05, -9.45) -- (h2.north);
+\draw [arrow] (2.05, -9.45) -- (h3.north);
+\draw [arrow] (6.15, -9.45) -- (h4.north);
+
+% Column Downward Arrows
+\draw [arrow] (h1.south) -- (i1.north);
+\draw [arrow] (h2.south) -- (i2.north);
+\draw [arrow] (h3.south) -- (i3.north);
+\draw [arrow] (h4.south) -- (i4.north);
+
+\draw [arrow] (i1.south) -- (s1.north);
+\draw [arrow] (i2.south) -- (s2.north);
+\draw [arrow] (i3.south) -- (s3.north);
+\draw [arrow] (i4.south) -- (s4.north);
+
+% Collector Bus into Trigger Box
+\draw [thick, black] (s1.south) -- (-6.15, -16.95);
+\draw [thick, black] (s2.south) -- (-2.05, -16.95);
+\draw [thick, black] (s3.south) -- (2.05, -16.95);
+\draw [thick, black] (s4.south) -- (6.15, -16.95);
+\draw [thick, black] (-6.15, -16.95) -- (6.15, -16.95);
+\draw [arrow] (0, -16.95) -- (trigger.north);
+
+\draw [arrow] (trigger.south) -- (refract.north);
+
+\end{tikzpicture}
+\end{latin}
+\end{center}
+
+\end{document}

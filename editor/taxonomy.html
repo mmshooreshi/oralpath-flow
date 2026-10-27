@@ -1,0 +1,2452 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>استودیو پیشرفته طبقه‌بندی بالینی</title>
+
+    <!-- Typography & SortableJS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
+    <style>
+        :root {
+            /* Bright Tactile Palette */
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --border-subtle: #e2e8f0;
+            --border-strong: #cbd5e1;
+            --border-tactile: #94a3b8;
+
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --text-subtle: #94a3b8;
+
+            /* Natural Level Backgrounds */
+            --lvl-bg-1: #ffffff;
+            --lvl-bg-2: #f1f5f9;
+            --lvl-bg-3: #e2e8f0;
+            --lvl-bg-4: #d8e2ec;
+
+            --primary: #2563eb;
+            --primary-shadow: #1e40af;
+            --success: #16a34a;
+            --success-shadow: #166534;
+            --danger: #ef4444;
+            --danger-shadow: #991b1b;
+            --warning: #f59e0b;
+            --warning-shadow: #d97706;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+
+            --ease-tactile: cubic-bezier(0.2, 0.8, 0.25, 1);
+            --ease-spring: cubic-bezier(0.34, 1.35, 0.64, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            padding: 8px 8px 9px 8px;
+            direction: rtl;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow: hidden;
+        }
+
+        .studio-frame {
+            width: 100%;
+            max-width: 880px;
+            background: var(--surface);
+            border: 2px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 10px 28px -4px rgba(15, 23, 42, 0.07);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* ==========================================================================
+       Unified Header
+       ========================================================================== */
+        .top-toolbar {
+            background: #ffffff;
+            border-bottom: 2px solid var(--border-subtle);
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px 14px;
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            flex-wrap: wrap;
+        }
+
+        .brand-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .brand-icon-wrap {
+            width: 32px;
+            height: 32px;
+            background: #eff6ff;
+            border: 1.5px solid #bfdbfe;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .brand-title-wrap h1 {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .badge-draft {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 6px;
+            background: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fcd34d;
+            display: none;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .badge-draft.is-visible {
+            display: inline-flex;
+        }
+
+        .draft-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #d97706;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+        }
+
+        .actions-strip {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
+        .btn-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 9px;
+            border: 1.5px solid var(--border-strong);
+            border-bottom: 2.5px solid var(--border-tactile);
+            background: #ffffff;
+            color: var(--text-main);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.12s ease;
+            flex-shrink: 0;
+        }
+
+        .btn-icon:hover:not(:disabled) {
+            background: #f8fafc;
+            transform: translateY(-1px);
+        }
+
+        .btn-icon:active:not(:disabled) {
+            transform: translateY(2px);
+            border-bottom-width: 1.5px;
+            background: #f1f5f9;
+        }
+
+        .btn-icon:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+            border-bottom-width: 1.5px;
+            transform: none !important;
+        }
+
+        .btn-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2.2;
+        }
+
+        .btn-icon.btn-save {
+            background: #16a34a;
+            color: #ffffff;
+            border-color: #15803d;
+            border-bottom: 2.5px solid var(--success-shadow);
+        }
+
+        .btn-icon.btn-save:hover:not(:disabled) {
+            background: #15803d;
+        }
+
+        .btn-icon.btn-save:active:not(:disabled) {
+            background: #166534;
+            transform: translateY(2px);
+        }
+
+        .btn-icon.btn-accent {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: #1d4ed8;
+            border-bottom: 2.5px solid var(--primary-shadow);
+        }
+
+        .btn-icon.btn-accent:hover:not(:disabled) {
+            background: #1d4ed8;
+        }
+
+        .btn-icon.btn-accent:active:not(:disabled) {
+            background: #1e40af;
+            transform: translateY(2px);
+        }
+
+        .divider-v {
+            width: 1.5px;
+            height: 22px;
+            background: var(--border-subtle);
+            margin: 0 2px;
+        }
+
+        /* Tooltips */
+        [data-tip] {
+            position: relative;
+        }
+
+        [data-tip]::after {
+            content: attr(data-tip);
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-3px);
+            background: #0f172a;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.15s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+            z-index: 99999;
+        }
+
+        [data-tip]:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (hover: none) {
+            [data-tip]::after {
+                display: none !important;
+            }
+        }
+
+        /* ==========================================================================
+       Tree Viewport & Clean Architecture
+       ========================================================================== */
+        .tree-viewport {
+            padding: 14px 10px 9px 10px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-height: calc(100vh - 90px);
+            background: #fbfcfd;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        }
+
+        ul.tree-group {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        ul.tree-children {
+            margin-right: 10px;
+            padding-right: 7px;
+            border-right: 2px solid var(--border-strong);
+            margin-top: 5px;
+            position: relative;
+        }
+
+        ul.tree-children:empty {
+            display: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .tree-collapsible-wrapper {
+            display: grid;
+            grid-template-rows: 1fr;
+            transition: grid-template-rows 0.24s var(--ease-tactile), opacity 0.2s ease;
+        }
+
+        .tree-collapsible-inner {
+            overflow: hidden;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .is-collapsed>.tree-collapsible-wrapper {
+            grid-template-rows: 0fr;
+            opacity: 0;
+        }
+
+        li.tree-node:not(.has-children):not(.is-active)>.tree-collapsible-wrapper {
+            display: none !important;
+        }
+
+        li.tree-node {
+            list-style: none;
+            position: relative;
+        }
+
+        /* Card Row */
+        /* اصلاح ضخامت پایه و فاصله ایمن از لبه چپ/راست */
+        .node-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 42px;
+            height: 42px;
+            padding: 4px 8px;
+            margin: 0 3px;
+            /* جلوگیری از بریده شدن کادر و سایه در کناره‌ها */
+            border-radius: var(--radius-md);
+            border: 1.5px solid var(--border-strong);
+            border-bottom: 2.5px solid var(--border-tactile);
+            gap: 6px;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+            position: relative;
+            touch-action: pan-y;
+            cursor: pointer;
+            transition: border-color 0.2s, border-bottom-color 0.2s, box-shadow 0.2s, background 0.15s;
+        }
+
+
+
+        .node-row:hover {
+            border-color: #94a3b8;
+        }
+
+        li[data-level="1"]>.node-row {
+            background: var(--lvl-bg-1);
+        }
+
+        li[data-level="2"]>.node-row {
+            background: var(--lvl-bg-2);
+        }
+
+        li[data-level="3"]>.node-row {
+            background: var(--lvl-bg-3);
+        }
+
+        li[data-level="4"]>.node-row {
+            background: var(--lvl-bg-4);
+        }
+
+        .tree-node.is-active>.node-row {
+            border: 2px solid var(--primary) !important;
+            /* ضخامت کاملاً یکسان در هر ۴ جهت */
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.18) !important;
+        }
+
+        .tree-node.is-dirty>.node-row {
+            border-color: var(--warning) !important;
+            border-bottom-color: var(--warning-shadow) !important;
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.22) !important;
+        }
+
+        .tree-node.is-saving>.node-row {
+            border-color: var(--success) !important;
+            border-bottom-color: var(--success-shadow) !important;
+            box-shadow: 0 0 0 2.5px rgba(22, 163, 74, 0.28) !important;
+        }
+
+        /* Right Section: Drag Handle + Text */
+        .node-start {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .drag-handle {
+            width: 16px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: grab;
+            color: var(--text-subtle);
+            border-radius: 4px;
+            flex-shrink: 0;
+            transition: all 0.1s;
+        }
+
+        .drag-handle:hover {
+            background: rgba(15, 23, 42, 0.08);
+            color: var(--text-main);
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        .drag-handle svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .node-title-wrap {
+            flex: 1 1 auto;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .node-text {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.35;
+            color: var(--text-main);
+            cursor: text;
+            padding: 2px 4px;
+            border-radius: 4px;
+            border: 1.5px solid transparent;
+            outline: none;
+            user-select: text;
+            -webkit-user-select: text;
+            display: inline-block;
+            width: 100%;
+            word-break: normal;
+            overflow-wrap: break-word;
+            transition: background 0.12s, border-color 0.12s;
+        }
+
+        .node-text:focus {
+            background: #ffffff;
+            border-color: var(--primary);
+            cursor: text;
+        }
+
+        /* Left Section: Subtle History Button, Counter, Chevron */
+        .node-end {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+            margin-left: 2px;
+        }
+
+        /* Subtle History Button: Only exists when modifications exist */
+        .btn-node-history {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.65;
+            transition: opacity 0.15s, background 0.12s;
+            flex-shrink: 0;
+        }
+
+        .btn-node-history:hover {
+            opacity: 1;
+            background: #f1f5f9;
+            color: var(--primary);
+        }
+
+        .btn-node-history svg {
+            width: 11px;
+            height: 11px;
+        }
+
+        .child-count-badge {
+            font-size: 9px;
+            font-weight: 800;
+            min-width: 15px;
+            height: 15px;
+            padding: 0 3px;
+            border-radius: 4px;
+            background: rgba(15, 23, 42, 0.06);
+            color: var(--text-muted);
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .btn-toggle {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.2s var(--ease-spring), background 0.12s;
+        }
+
+        .btn-toggle:hover {
+            background: #f1f5f9;
+            color: var(--text-main);
+        }
+
+        .btn-toggle svg {
+            width: 10px;
+            height: 10px;
+            stroke-width: 2.5;
+            transition: transform 0.2s var(--ease-spring);
+        }
+
+        .is-collapsed>.node-row .btn-toggle svg {
+            transform: rotate(90deg);
+        }
+
+        /* ==========================================================================
+       Dotted Placeholders
+       ========================================================================== */
+        .tree-add-placeholder {
+            max-height: 0;
+            opacity: 0;
+            margin: 0;
+            padding: 0;
+            border: 1.5px dashed transparent;
+            border-radius: var(--radius-md);
+            background: rgba(248, 250, 252, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            overflow: hidden;
+            pointer-events: none;
+            transition: max-height 0.22s var(--ease-tactile),
+                opacity 0.18s ease,
+                margin 0.18s ease,
+                padding 0.18s ease,
+                border-color 0.18s ease;
+            touch-action: manipulation;
+        }
+
+        .tree-node.is-active>.tree-collapsible-wrapper>.tree-collapsible-inner>.tree-add-placeholder {
+            max-height: 38px;
+            opacity: 1;
+            margin-top: 5px;
+            padding: 5px 10px;
+            border-color: var(--border-strong);
+            pointer-events: auto;
+        }
+
+        .tree-add-placeholder:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #eff6ff;
+            border-style: solid;
+        }
+
+        .tree-add-placeholder svg {
+            width: 13px;
+            height: 13px;
+            stroke-width: 2.5;
+        }
+
+        .root-placeholder {
+            max-height: 42px;
+            opacity: 1;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 7px 12px;
+            border: 1.5px dashed var(--border-strong);
+            background: #ffffff;
+            pointer-events: auto;
+            font-size: 12px;
+        }
+
+        .root-placeholder:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #eff6ff;
+            border-style: solid;
+        }
+
+        /* ==========================================================================
+       SortableJS Ghost: Exact 1-Row Height Matching
+       ========================================================================== */
+        .sortable-ghost {
+            opacity: 0.25 !important;
+            background: #e0f2fe !important;
+            border: 1.5px dashed #0284c7 !important;
+            border-radius: var(--radius-md) !important;
+            height: 42px !important;
+            min-height: 42px !important;
+            max-height: 42px !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .sortable-ghost * {
+            display: none !important;
+        }
+
+        .sortable-chosen {
+            background: transparent !important;
+        }
+
+        .sortable-fallback {
+            opacity: 1 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        .sortable-fallback .node-row {
+            background: #ffffff !important;
+            border: 2px solid var(--primary) !important;
+            box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.22) !important;
+            transform: scale(1.02);
+            border-radius: var(--radius-md) !important;
+        }
+
+        /* ==========================================================================
+       Bright Bottom Action Bar
+       ========================================================================== */
+        .bottom-action-bar {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%) translateY(90px);
+            background: #ffffff;
+            color: var(--text-main);
+            border: 1.5px solid var(--border-strong);
+            border-bottom: 3.5px solid var(--border-tactile);
+            box-shadow: 0 14px 34px -4px rgba(15, 23, 42, 0.16);
+            padding: 5px 8px 5px 12px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.24s var(--ease-spring), opacity 0.18s ease;
+            max-width: 94vw;
+        }
+
+        .bottom-action-bar.is-visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .bar-node-label {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 140px;
+        }
+
+        .bar-actions {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .bar-btn {
+            height: 30px;
+            padding: 0 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: none;
+            transition: all 0.1s;
+            white-space: nowrap;
+        }
+
+        .bar-btn-add {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        .bar-btn-add:hover {
+            background: #1d4ed8;
+        }
+
+        .bar-btn-add:active {
+            transform: scale(0.96);
+        }
+
+        .bar-btn-delete {
+            background: #ef4444;
+            color: #ffffff;
+        }
+
+        .bar-btn-delete:hover {
+            background: #dc2626;
+        }
+
+        .bar-btn-delete:active {
+            transform: scale(0.96);
+        }
+
+        .bar-btn-close {
+            background: #f1f5f9;
+            color: var(--text-muted);
+            width: 26px;
+            height: 26px;
+            padding: 0;
+            justify-content: center;
+        }
+
+        .bar-btn-close:hover {
+            background: #e2e8f0;
+            color: var(--text-main);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 200000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.18s var(--ease-tactile);
+        }
+
+        .modal-overlay.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            border: 2px solid var(--border-subtle);
+            border-bottom: 4px solid var(--border-strong);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 24px 48px -10px rgba(15, 23, 42, 0.25);
+            padding: 20px;
+            transform: scale(0.95) translateY(10px);
+            transition: transform 0.2s var(--ease-spring);
+        }
+
+        .modal-overlay.is-active .modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .modal-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .modal-icon.icon-danger {
+            background: #fee2e2;
+            color: var(--danger);
+            border: 1.5px solid #fecaca;
+        }
+
+        .modal-icon.icon-primary {
+            background: #dbeafe;
+            color: var(--primary);
+            border: 1.5px solid #bfdbfe;
+        }
+
+        .modal-icon.icon-success {
+            background: #dcfce7;
+            color: var(--success);
+            border: 1.5px solid #bbf7d0;
+        }
+
+        .modal-header h3 {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .modal-body {
+            color: var(--text-muted);
+            font-size: 12.5px;
+            line-height: 1.55;
+            margin-bottom: 16px;
+        }
+
+        .modal-input {
+            width: 100%;
+            height: 38px;
+            border: 1.5px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            padding: 0 10px;
+            font-size: 12.5px;
+            outline: none;
+            margin-top: 8px;
+        }
+
+        .modal-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .modal-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .btn-dialog {
+            height: 34px;
+            padding: 0 14px;
+            border-radius: var(--radius-sm);
+            font-size: 11.5px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid transparent;
+            transition: all 0.1s ease;
+        }
+
+        .btn-dialog-ghost {
+            background: #f1f5f9;
+            color: var(--text-main);
+            border-color: var(--border-subtle);
+        }
+
+        .btn-dialog-ghost:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-dialog-danger {
+            background: var(--danger);
+            color: #ffffff;
+            border-bottom: 3px solid var(--danger-shadow);
+        }
+
+        .btn-dialog-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-dialog-danger:active {
+            transform: translateY(1.5px);
+        }
+
+        .btn-dialog-primary {
+            background: var(--primary);
+            color: #ffffff;
+            border-bottom: 3px solid var(--primary-shadow);
+        }
+
+        .btn-dialog-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-dialog-primary:active {
+            transform: translateY(1.5px);
+        }
+
+        .version-list {
+            max-height: 200px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .version-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            background: #f8fafc;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            gap: 8px;
+        }
+
+        @media (max-width: 680px) {
+            body {
+                padding: 4px 4px 8px 4px;
+            }
+
+            .studio-frame {
+                border-radius: var(--radius-md);
+            }
+
+            .top-toolbar {
+                padding: 8px 10px;
+            }
+
+            .btn-icon {
+                width: 33px;
+                height: 33px;
+            }
+
+            .tree-viewport {
+                padding: 8px 4px 8px 4px;
+            }
+
+            ul.tree-children {
+                margin-right: 6px;
+                padding-right: 4px;
+                border-right-width: 1.5px;
+            }
+
+            .node-row {
+                min-height: 38px;
+                height: 38px;
+                padding: 3px 6px;
+                gap: 4px;
+            }
+
+            .sortable-ghost {
+                height: 38px !important;
+                min-height: 38px !important;
+                max-height: 38px !important;
+            }
+
+            .node-text {
+                font-size: 11.5px;
+                line-height: 1.3;
+            }
+        }
+    
+        .node-flowchart-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            box-shadow: 0 1px 2px rgba(29, 78, 216, 0.08);
+            margin-inline-start: 6px;
+            flex-shrink: 0;
+        }
+        .node-flowchart-link:hover {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(37, 99, 235, 0.2);
+        }
+        .node-flowchart-link:active {
+            transform: translateY(1px);
+            background: #1d4ed8;
+        }
+
+
+        /* Flowchart Status & Action Badges in Taxonomy Rows */
+        .node-chart-badge {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 4px !important;
+            padding: 2px 7px !important;
+            border-radius: 5px !important;
+            font-size: 10px !important;
+            font-weight: 700 !important;
+            text-decoration: none !important;
+            line-height: 1 !important;
+            height: 20px !important;
+            max-height: 20px !important;
+            flex-shrink: 0 !important;
+            transition: all 0.12s ease !important;
+            vertical-align: middle !important;
+        }
+        .node-chart-badge svg {
+            width: 11px !important;
+            height: 11px !important;
+            min-width: 11px !important;
+            min-height: 11px !important;
+            max-width: 11px !important;
+            max-height: 11px !important;
+            stroke-width: 2.2 !important;
+            flex-shrink: 0 !important;
+            display: inline-block !important;
+        }
+        .node-chart-badge.has-chart {
+            background: #eff6ff !important;
+            color: #1d4ed8 !important;
+            border: 1px solid #bfdbfe !important;
+        }
+        .node-chart-badge.has-chart:hover {
+            background: #dbeafe !important;
+            border-color: #93c5fd !important;
+            transform: translateY(-1px) !important;
+        }
+        .node-chart-badge.no-chart {
+            background: #f0fdf4 !important;
+            color: #15803d !important;
+            border: 1px dashed #86efac !important;
+        }
+        .node-chart-badge.no-chart:hover {
+            background: #dcfce7 !important;
+            border-color: #4ade80 !important;
+            border-style: solid !important;
+            transform: translateY(-1px) !important;
+        }
+
+    /* Taxonomy Mobile Toolbar Fix */
+
+        @media (max-width: 768px) {
+            .top-toolbar {
+                height: auto !important;
+                padding: 6px 10px !important;
+                gap: 6px !important;
+                flex-wrap: wrap !important;
+                overflow: hidden !important;
+            }
+            .brand-zone {
+                width: 100% !important;
+                justify-content: space-between !important;
+            }
+            .actions-strip {
+                width: 100% !important;
+                justify-content: space-between !important;
+                gap: 3px !important;
+                flex-wrap: wrap !important;
+            }
+            .btn-icon {
+                width: 30px !important;
+                height: 30px !important;
+                border-radius: 7px !important;
+            }
+            .divider-v {
+                height: 18px !important;
+                margin: 0 1px !important;
+            }
+        }
+
+</style>
+</head>
+
+<body>
+
+    <div class="studio-frame">
+        <!-- Header -->
+        <header class="top-toolbar">
+            <div class="brand-meta">
+                <div class="brand-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" style="width:17px; height:17px; stroke-width:2.2;">
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                    </svg>
+                </div>
+                <div class="brand-title-wrap">
+                    <h1>طبقه‌بندی بالینی</h1>
+                </div>
+                <span class="badge-draft" id="draftBadge">
+                    <span class="draft-dot"></span>
+                    پیش‌نویس ذخیره‌نشده
+                </span>
+            </div>
+
+            <div class="actions-strip">
+
+                <!-- بازگرد (آیکون رو به چپ) -->
+                <button class="btn-icon" id="btnRedo" onclick="Taxonomy.redo()" data-tip="redo (Ctrl+Y)" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="15 14 20 9 15 4"></polyline>
+                        <path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>
+                    </svg>
+
+                </button>
+
+                <!-- واگرد (آیکون رو به راست) -->
+                <button class="btn-icon" id="btnUndo" onclick="Taxonomy.undo()" data-tip="undo (Ctrl+Z)" disabled>
+
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="9 14 4 9 9 4"></polyline>
+                        <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                    </svg>
+                </button>
+
+
+                <div class="divider-v"></div>
+
+                <!-- باز کردن همه (پیکان رو به پایین) -->
+                <button class="btn-icon" onclick="Taxonomy.toggleAll(true)" data-tip="باز کردن همه">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="7 6 12 11 17 6"></polyline>
+                        <polyline points="7 13 12 18 17 13"></polyline>
+                    </svg>
+                </button>
+
+                <!-- بستن همه (پیکان رو به بالا) -->
+                <button class="btn-icon" onclick="Taxonomy.toggleAll(false)" data-tip="بستن همه">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="7 11 12 6 17 11"></polyline>
+                        <polyline points="7 18 12 13 17 18"></polyline>
+                    </svg>
+                </button>
+
+                <div class="divider-v"></div>
+
+                <button class="btn-icon btn-save" onclick="Taxonomy.openSaveModal()" data-tip="ذخیره نسخه (Ctrl+S)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                    </svg>
+                </button>
+                <button class="btn-icon" onclick="Taxonomy.openVersionsModal()" data-tip="تاریخچه نسخه‌ها">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </button>
+                <button class="btn-icon" onclick="Taxonomy.confirmResetBase()" data-tip="بازنشانی اولیه">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                        <path d="M3 3v5h5"></path>
+                    </svg>
+                </button>
+
+                <div class="divider-v"></div>
+
+                <a href="/" class="btn-icon" data-tip="بازگشت به فلوچارت" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </a>
+
+                <div class="divider-v"></div>
+
+                <button class="btn-icon btn-accent" onclick="Taxonomy.addRootNode()" data-tip="شاخه اصلی جدید">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Canvas Viewport -->
+        <main class="tree-viewport">
+            <ul id="rootTree" class="tree-group"></ul>
+
+            <div class="tree-add-placeholder root-placeholder" onclick="Taxonomy.addRootNode()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>افزودن شاخه اصلی جدید...</span>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bright Bottom Action Bar for Selected Node -->
+    <div class="bottom-action-bar" id="bottomActionBar">
+        <span class="bar-node-label" id="barNodeTitle">شاخه انتخاب‌شده</span>
+        <div class="bar-actions">
+            <button class="bar-btn bar-btn-add" id="barBtnAddChild" onclick="Taxonomy.addChildToActive()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" style="width:13px;height:13px;">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>زیرشاخه جدید</span>
+            </button>
+            <button class="bar-btn bar-btn-delete" onclick="Taxonomy.deleteActiveNode()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" style="width:13px;height:13px;">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                <span>حذف</span>
+            </button>
+            <button class="bar-btn bar-btn-close" onclick="Taxonomy.deselectNode()">✕</button>
+        </div>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="appModalOverlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-icon" id="modalIconContainer"></div>
+                <h3 id="modalTitle">عنوان پیام</h3>
+            </div>
+            <div class="modal-body" id="modalBody">متن توضیحات</div>
+            <div class="modal-actions" id="modalActions"></div>
+        </div>
+    </div>
+
+    <script>
+        const Taxonomy = (() => {
+            const BASE_TREE = [
+            {
+                        "id": "cat_fibro_osseous",
+                        "title": "ضایعات Fibro-Osseous",
+                        "children": [
+                                    {
+                                                "id": "item_fibrous_dysplasia",
+                                                "title": "فیبروز دیسپلازی (Fibrous Dysplasia)",
+                                                "doc": "fibrous_dysplasia",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_juvenile_ossifying_fibroma",
+                                                "title": "Juvenile Ossifying Fibroma (JOF)",
+                                                "doc": "juvenile_ossifying_fibroma",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_ossifying_fibroma",
+                                                "title": "Ossifying Fibroma (OF)",
+                                                "doc": "ossifying_fibroma",
+                                                "children": []
+                                    }
+                        ]
+            },
+            {
+                        "id": "cat_inflammatory",
+                        "title": "ضایعات التهابی",
+                        "children": [
+                                    {
+                                                "id": "item_osteonecrosis_mandible",
+                                                "title": "استئونکروز مندیبل (MRONJ / Osteonecrosis)",
+                                                "doc": "osteonecrosis_mandible",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_pyogenic_granuloma",
+                                                "title": "پایوژنیک گرانولوما (Pyogenic Granuloma)",
+                                                "doc": "pyogenic_granuloma",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_radicular_cyst",
+                                                "title": "رادیکولار سیست (Radicular Cyst)",
+                                                "doc": "radicular_cyst",
+                                                "children": []
+                                    }
+                        ]
+            },
+            {
+                        "id": "cat_benign_mesenchymal",
+                        "title": "تومورهای خوش‌خیم مزانشیمی",
+                        "children": [
+                                    {
+                                                "id": "item_capillary_hemangioma",
+                                                "title": "Capillary Hemangioma",
+                                                "doc": "capillary_hemangioma",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_lymphangioma",
+                                                "title": "لنفانژیوم (Lymphangioma)",
+                                                "doc": "lymphangioma",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_lipomatous_tumor",
+                                                "title": "لیپوماتوز تومور (Lipoma / Lipomatous)",
+                                                "doc": "lipomatous_tumor",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_plexiform_neurofibroma",
+                                                "title": "پلکسی‌فرم نوروفیبروما (Plexiform Neurofibroma)",
+                                                "doc": "plexiform_neurofibroma",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_fibro_fatty_tissue",
+                                                "title": "Fibro-fatty Tissue (ضایعه فیبروفتی)",
+                                                "doc": "fibro_fatty_tissue",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_fibromatosis",
+                                                "title": "فیبروماتوزیس (Desmoid / Fibromatosis)",
+                                                "doc": "fibromatosis",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_inflammatory_myofibroblastic_tumor",
+                                                "title": "Inflammatory Myofibroblastic Tumor (IMT)",
+                                                "doc": "inflammatory_myofibroblastic_tumor",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_desmoplastic_fibroma",
+                                                "title": "دسموپلاستیک فیبروما (با منشأ استخوانی)",
+                                                "doc": "desmoplastic_fibroma",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_osteoma",
+                                                "title": "استئوما (Osteoma با منشأ استخوانی)",
+                                                "doc": "osteoma",
+                                                "children": []
+                                    }
+                        ]
+            },
+            {
+                        "id": "cat_odontogenic_tumors",
+                        "title": "تومورهای ادنتوژنیک",
+                        "children": [
+                                    {
+                                                "id": "item_ameloblastoma",
+                                                "title": "آملوبلاستوما (Ameloblastoma)",
+                                                "doc": "odontogenic_tumors",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_odontogenic_fibroma",
+                                                "title": "ادنتوژنیک فیبروما (Odontogenic Fibroma)",
+                                                "doc": "odontogenic_fibroma",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_odontogenic_myxoma",
+                                                "title": "ادنتوژنیک میگزوما (Odontogenic Myxoma)",
+                                                "doc": "odontogenic_tumors",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_cementoblastoma",
+                                                "title": "سمنتوبلاستوما (Cementoblastoma)",
+                                                "doc": "cementoblastoma",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_odontoma",
+                                                "title": "ادنتوما (Odontoma کمپلکس و کامپوند)",
+                                                "doc": "odontoma",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_ameloblastic_fibroma",
+                                                "title": "املوبلاستیک فیبروما (Ameloblastic Fibroma)",
+                                                "doc": "ameloblastic_fibroma",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_ameloblastic_fibro_odontoma",
+                                                "title": "املوبلاستیک فیبروادنتوم (AFO)",
+                                                "doc": "ameloblastic_fibro_odontoma",
+                                                "children": []
+                                    }
+                        ]
+            },
+            {
+                        "id": "cat_odontogenic_cysts",
+                        "title": "ضایعات کیستیک ادنتوژنیک",
+                        "children": [
+                                    {
+                                                "id": "item_dentigerous_cyst",
+                                                "title": "دنتیژروس (Dentigerous Cyst)",
+                                                "doc": "dentigerous_cyst",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_inflammatory_dentigerous_cyst",
+                                                "title": "دنتیژروس سیست التهابی",
+                                                "doc": "inflammatory_dentigerous_cyst",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_odontogenic_keratocyst",
+                                                "title": "ادنتوژنیک کراتوسیست (OKC)",
+                                                "doc": "odontogenic_keratocyst",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_eruption_cyst",
+                                                "title": "Eruption Cyst (کیست رویشی)",
+                                                "doc": "eruption_cyst",
+                                                "children": []
+                                    }
+                        ]
+            },
+            {
+                        "id": "cat_developmental",
+                        "title": "ضایعات تکاملی",
+                        "children": [
+                                    {
+                                                "id": "item_cgcg",
+                                                "title": "CGCG (گرانولوم سلول غول‌آسای مرکزی)",
+                                                "doc": "cgcg",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_reparative_cgcg",
+                                                "title": "Reparative CGCG",
+                                                "doc": "reparative_cgcg",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_aneurysmal_bone_cyst",
+                                                "title": "Abc (Aneurysmal Bone Cyst)",
+                                                "doc": "aneurysmal_bone_cyst",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_brown_tumor",
+                                                "title": "Brown Tumor (تومور قهوه‌ای پاراتیروئید)",
+                                                "doc": "brown_tumor",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_cherubism",
+                                                "title": "چرابیسم (Cherubism)",
+                                                "doc": "cherubism",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_giant_cell_neoplasm",
+                                                "title": "نئوپلاسم سلول جاینت (Giant Cell Tumor)",
+                                                "doc": "giant_cell_neoplasm",
+                                                "children": []
+                                    }
+                        ]
+            },
+            {
+                        "id": "cat_benign_epithelial",
+                        "title": "تومورهای خوش‌خیم اپیتلیالی",
+                        "children": [
+                                    {
+                                                "id": "item_squamous_papilloma",
+                                                "title": "اسکواموس پاپیلوما (Squamous Papilloma)",
+                                                "doc": "squamous_papilloma",
+                                                "children": []
+                                    }
+                        ]
+            },
+            {
+                        "id": "cat_non_odontogenic_cysts",
+                        "title": "ضایعات کیستیک غیر ادنتوژنیک",
+                        "children": [
+                                    {
+                                                "id": "item_dermoid_cyst",
+                                                "title": "کیست درموئید (Dermoid Cyst)",
+                                                "doc": "dermoid_cyst",
+                                                "children": []
+                                    }
+                        ]
+            },
+            {
+                        "id": "cat_malignancy",
+                        "title": "بدخیمی",
+                        "children": [
+                                    {
+                                                "id": "item_spindle_cell_tumor",
+                                                "title": "Spindle Cell Tumor (کارسینوم/سارکوم سلول دوکی)",
+                                                "doc": "spindle_cell_tumor",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_ewing_sarcoma",
+                                                "title": "Ewing Sarcoma (سارکوم یوئینگ فکین)",
+                                                "doc": "ewing_sarcoma",
+                                                "children": []
+                                    }
+                        ]
+            },
+            {
+                        "id": "cat_traumatic",
+                        "title": "تروما",
+                        "children": [
+                                    {
+                                                "id": "item_mucocele",
+                                                "title": "موکوسل (Mucocele / Extravasation)",
+                                                "doc": "mucocele",
+                                                "children": []
+                                    },
+                                    {
+                                                "id": "item_ranula",
+                                                "title": "رانولا (Ranula / کیست بزاقی زیرزبان)",
+                                                "doc": "ranula",
+                                                "children": []
+                                    }
+                        ]
+            }
+];
+
+            let currentTree = JSON.parse(JSON.stringify(BASE_TREE));
+            let savedTreeBaseline = JSON.parse(JSON.stringify(BASE_TREE));
+            let lastSavedSignature = JSON.stringify(BASE_TREE);
+            let isDraft = false;
+
+            const collapsedIds = new Set();
+            const nodeHistoryMap = new Map(); // id -> [ { timestamp, title } ]
+            const history = [];
+            let historyStep = -1;
+            const MAX_DEPTH = 4;
+            const STORAGE_KEY = "clinical_taxonomy_snapshots_v4";
+
+            let activeNodeId = null;
+
+            const toFaNum = (n) => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+
+            const Icons = {
+                drag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg>`,
+                chevron: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`,
+                plus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>`,
+                trash: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`,
+                clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
+                chart: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>`
+            };
+
+            const AVAILABLE_FLOWCHARTS = new Set(['fibrous_dysplasia', 'cgcg', 'odontogenic_tumors', 'oral_leukoplakia']);
+
+            function isFlowchartAvailable(docId) {
+                if (!docId) return false;
+                if (AVAILABLE_FLOWCHARTS.has(docId)) return true;
+                try {
+                    if (localStorage.getItem('tikz_doc_' + docId)) return true;
+                } catch (e) {}
+                return false;
+            }
+
+            const Modal = {
+                overlay: null,
+                titleEl: null,
+                bodyEl: null,
+                actionsEl: null,
+                iconEl: null,
+
+                init() {
+                    this.overlay = document.getElementById('appModalOverlay');
+                    this.titleEl = document.getElementById('modalTitle');
+                    this.bodyEl = document.getElementById('modalBody');
+                    this.actionsEl = document.getElementById('modalActions');
+                    this.iconEl = document.getElementById('modalIconContainer');
+
+                    this.overlay.addEventListener('click', (e) => {
+                        if (e.target === this.overlay) Modal.close();
+                    });
+                },
+
+                show({ title, bodyHTML, iconClass, iconSVG, buttons }) {
+                    this.titleEl.textContent = title;
+                    this.bodyEl.innerHTML = bodyHTML;
+                    this.iconEl.className = `modal-icon ${iconClass}`;
+                    this.iconEl.innerHTML = iconSVG;
+                    this.actionsEl.innerHTML = '';
+
+                    buttons.forEach(btn => {
+                        const b = document.createElement('button');
+                        b.className = `btn-dialog ${btn.class}`;
+                        b.textContent = btn.label;
+                        b.onclick = () => {
+                            if (btn.action) btn.action();
+                            Modal.close();
+                        };
+                        this.actionsEl.appendChild(b);
+                    });
+
+                    this.overlay.classList.add('is-active');
+                },
+
+                close() {
+                    if (this.overlay) this.overlay.classList.remove('is-active');
+                }
+            };
+
+            // Accurate Dynamic Dirty-Checking
+            function calculateDirtyNodeIds() {
+                const dirtySet = new Set();
+                const savedMap = new Map();
+
+                function mapSaved(nodes) {
+                    nodes.forEach(n => {
+                        savedMap.set(n.id, {
+                            title: n.title,
+                            childIds: (n.children || []).map(c => c.id).join('|')
+                        });
+                        if (n.children) mapSaved(n.children);
+                    });
+                }
+                mapSaved(savedTreeBaseline);
+
+                function checkCurrent(nodes) {
+                    nodes.forEach(n => {
+                        const saved = savedMap.get(n.id);
+                        if (!saved) {
+                            dirtySet.add(n.id); // New node
+                        } else {
+                            const curChildIds = (n.children || []).map(c => c.id).join('|');
+                            if (saved.title !== n.title || saved.childIds !== curChildIds) {
+                                dirtySet.add(n.id);
+                            }
+                        }
+                        if (n.children) checkCurrent(n.children);
+                    });
+                }
+                checkCurrent(currentTree);
+                return dirtySet;
+            }
+
+            function updateDirtyClasses() {
+                const dirtySet = calculateDirtyNodeIds();
+                document.querySelectorAll('.tree-node').forEach(li => {
+                    li.classList.toggle('is-dirty', dirtySet.has(li.dataset.id));
+                });
+            }
+
+            function recordHistory() {
+                if (historyStep < history.length - 1) {
+                    history.splice(historyStep + 1);
+                }
+                const stateStr = JSON.stringify(currentTree);
+                history.push(stateStr);
+                historyStep++;
+
+                isDraft = (stateStr !== lastSavedSignature);
+                updateUIState();
+                updateDirtyClasses();
+            }
+
+            function updateUIState() {
+                document.getElementById('btnUndo').disabled = historyStep <= 0;
+                document.getElementById('btnRedo').disabled = historyStep >= history.length - 1;
+
+                const draftBadge = document.getElementById('draftBadge');
+                if (isDraft) draftBadge.classList.add('is-visible');
+                else draftBadge.classList.remove('is-visible');
+            }
+
+            function bindSortable(el) {
+                new Sortable(el, {
+                    group: 'clinical-tree-taxonomy',
+                    animation: 200,
+                    easing: "cubic-bezier(0.2, 0, 0, 1)",
+                    handle: '.drag-handle',
+                    ghostClass: 'sortable-ghost',
+                    chosenClass: 'sortable-chosen',
+                    dragClass: 'sortable-drag',
+                    fallbackClass: 'sortable-fallback',
+                    forceFallback: true,
+                    fallbackOnBody: true,
+                    swapThreshold: 0.65,
+                    touchStartThreshold: 3,
+                    onStart: () => {
+                        if (navigator.vibrate) navigator.vibrate(10);
+                        Taxonomy.deselectNode();
+                    },
+                    onEnd: () => {
+                        syncDOMToData();
+                        refreshDOMStructure();
+                        recordHistory();
+                    }
+                });
+            }
+
+            function refreshDOMStructure() {
+                function scan(ul, level) {
+                    Array.from(ul.children).forEach(li => {
+                        li.dataset.level = level;
+
+                        const childUl = li.querySelector(':scope > .tree-collapsible-wrapper ul.tree-children');
+                        const hasKids = childUl && childUl.children.length > 0;
+                        const count = hasKids ? childUl.children.length : 0;
+                        const nodeId = li.dataset.id;
+
+                        li.classList.toggle('has-children', hasKids);
+
+                        const nodeEnd = li.querySelector(':scope > .node-row .node-end');
+                        if (nodeEnd) {
+                            const hasHistory = nodeHistoryMap.has(nodeId) && nodeHistoryMap.get(nodeId).length > 0;
+                            nodeEnd.innerHTML = `
+                ${node.doc ? `<a href="/?doc=${encodeURIComponent(node.doc)}" class="node-flowchart-link" onclick="event.stopPropagation()" title="مشاهده و ویرایش فلوچارت">فلوچارت ↗</a>` : ''}
+                ${hasHistory ? `<button type="button" class="btn-node-history" onclick="Taxonomy.openNodeHistory(event, '${nodeId}')" title="مشاهده تغییرات گذشته">${Icons.clock}</button>` : ''}
+                ${hasKids ? `<span class="child-count-badge">${toFaNum(count)}</span>` : ''}
+                ${hasKids ? `<button type="button" class="btn-toggle" onclick="event.stopPropagation(); Taxonomy.toggleCollapse('${nodeId}')">${Icons.chevron}</button>` : ''}
+              `;
+                        }
+
+                        const placeholder = li.querySelector(':scope > .tree-collapsible-wrapper .tree-add-placeholder');
+                        if (placeholder) {
+                            placeholder.style.display = (level >= MAX_DEPTH) ? 'none' : 'flex';
+                        }
+
+                        if (hasKids) scan(childUl, level + 1);
+                    });
+                }
+                const root = document.getElementById('rootTree');
+                scan(root, 1);
+            }
+
+            function renderBranch(nodes, container, level = 1) {
+                container.innerHTML = '';
+                nodes.forEach(node => {
+                    const li = document.createElement('li');
+                    li.className = 'tree-node';
+                    li.dataset.id = node.id;
+                    li.dataset.level = level;
+
+                    if (collapsedIds.has(node.id)) li.classList.add('is-collapsed');
+
+                    const hasKids = node.children && node.children.length > 0;
+                    if (hasKids) li.classList.add('has-children');
+
+                    const hasHistory = nodeHistoryMap.has(node.id) && nodeHistoryMap.get(node.id).length > 0;
+
+                    li.innerHTML = `
+            <div class="node-row" onclick="Taxonomy.handleRowClick(event, '${node.id}')">
+              <div class="node-start">
+                <span class="drag-handle" title="جابجایی">${Icons.drag}</span>
+                <div class="node-title-wrap">
+                  <span class="node-text" contenteditable="true" spellcheck="false" 
+                        onfocus="Taxonomy.selectNode(event, '${node.id}')" onblur="Taxonomy.updateTitle('${node.id}', this.innerText)">${node.title}</span>
+                </div>
+              </div>
+              <div class="node-end">
+                ${(() => {
+                  const docId = node.doc || (node.id ? node.id.replace(/^(cat|item)_/, '') : '');
+                  const hasChart = isFlowchartAvailable(docId);
+                  return hasChart ? `
+                    <a href="/?doc=${encodeURIComponent(docId)}" target="_blank" class="node-chart-badge has-chart" onclick="event.stopPropagation()" title="مشاهده و ویرایش فلوچارت">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                      <span>فلوچارت ↗</span>
+                    </a>
+                  ` : `
+                    <a href="/?doc=${encodeURIComponent(docId)}&new=1&title=${encodeURIComponent(node.title)}" target="_blank" class="node-chart-badge no-chart" onclick="event.stopPropagation()" title="ایجاد فلوچارت ${node.title}">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </a>
+                  `;
+                })()}
+                ${hasHistory ? `<button type="button" class="btn-node-history" onclick="Taxonomy.openNodeHistory(event, '${node.id}')" title="مشاهده تغییرات گذشته">${Icons.clock}</button>` : ''}
+                ${hasKids ? `<span class="child-count-badge">${toFaNum(node.children.length)}</span>` : ''}
+                ${hasKids ? `<button type="button" class="btn-toggle" onclick="event.stopPropagation(); Taxonomy.toggleCollapse('${node.id}')">${Icons.chevron}</button>` : ''}
+              </div>
+            </div>
+            <div class="tree-collapsible-wrapper">
+              <div class="tree-collapsible-inner">
+                <ul class="tree-group tree-children"></ul>
+                ${level < MAX_DEPTH ? `
+                  <div class="tree-add-placeholder" onclick="Taxonomy.addChild('${node.id}')">
+                    ${Icons.plus}
+                    <span>افزودن زیرشاخه...</span>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          `;
+
+                    const childUl = li.querySelector('ul.tree-children');
+                    if (hasKids) {
+                        renderBranch(node.children, childUl, level + 1);
+                    }
+
+                    container.appendChild(li);
+                });
+
+                bindSortable(container);
+            }
+
+            function render() {
+                const root = document.getElementById('rootTree');
+                renderBranch(currentTree, root, 1);
+                updateUIState();
+                updateDirtyClasses();
+            }
+
+            function parseLi(li) {
+                const id = li.dataset.id;
+                const title = li.querySelector('.node-text').innerText.trim();
+                const childUl = li.querySelector(':scope > .tree-collapsible-wrapper ul.tree-children');
+                const children = [];
+
+                if (childUl && childUl.children.length > 0) {
+                    Array.from(childUl.children).forEach(childLi => {
+                        children.push(parseLi(childLi));
+                    });
+                }
+
+                return { id, title, children };
+            }
+
+            function syncDOMToData() {
+                const root = document.getElementById('rootTree');
+                currentTree = Array.from(root.children).map(parseLi);
+            }
+
+            function getSavedSnapshots() {
+                try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); }
+                catch { return []; }
+            }
+
+            function setSavedSnapshots(list) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+            }
+
+            return {
+                async init() {
+                    Modal.init();
+                    try {
+                        const res = await fetch('/api/taxonomy');
+                        if (res.ok) {
+                            const payload = await res.json();
+                            if (payload.tree && Array.isArray(payload.tree) && payload.tree.length > 0) {
+                                currentTree = payload.tree;
+                                savedTreeBaseline = JSON.parse(JSON.stringify(payload.tree));
+                                lastSavedSignature = JSON.stringify(payload.tree);
+                            }
+                        }
+                    } catch (err) {
+                        console.warn('Backend taxonomy not reachable, using offline tree:', err);
+                    }
+                    recordHistory();
+                    render();
+
+                    window.addEventListener('keydown', (e) => {
+                        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z') {
+                            e.preventDefault();
+                            if (e.shiftKey) Taxonomy.redo();
+                            else Taxonomy.undo();
+                        }
+                        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'y') {
+                            e.preventDefault();
+                            Taxonomy.redo();
+                        }
+                        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') {
+                            e.preventDefault();
+                            Taxonomy.openSaveModal();
+                        }
+                    });
+
+                    document.addEventListener('click', (e) => {
+                        if (!e.target.closest('.node-row') && !e.target.closest('.bottom-action-bar') && !e.target.closest('.tree-add-placeholder') && !e.target.closest('.modal-card')) {
+                            Taxonomy.deselectNode();
+                        }
+                    });
+
+                    window.addEventListener('beforeunload', (e) => {
+                        if (isDraft) {
+                            e.preventDefault();
+                            e.returnValue = '';
+                        }
+                    });
+                },
+
+                // Row tap: selects AND toggles expand/collapse if kids exist
+                handleRowClick(e, id) {
+          if (e.target.closest('.btn-node-history') || e.target.closest('.drag-handle')) {
+            return;
+          }
+          Taxonomy.selectNode(e, id);
+          if (!e.target.closest('.node-text')) {
+            Taxonomy.toggleCollapse(id);
+          }
+        },
+
+                selectNode(e, id) {
+                    document.querySelectorAll('.tree-node.is-active').forEach(n => n.classList.remove('is-active'));
+                    activeNodeId = id;
+
+                    const li = document.querySelector(`li[data-id="${id}"]`);
+                    if (li) {
+                        li.classList.add('is-active');
+                        const title = li.querySelector('.node-text').innerText.trim();
+                        const level = parseInt(li.dataset.level, 10);
+
+                        document.getElementById('barNodeTitle').textContent = title || 'شاخه انتخاب‌شده';
+
+                        const addBtn = document.getElementById('barBtnAddChild');
+                        if (addBtn) addBtn.style.display = (level >= MAX_DEPTH) ? 'none' : 'inline-flex';
+
+                        document.getElementById('bottomActionBar').classList.add('is-visible');
+                    }
+                },
+
+                deselectNode() {
+                    document.querySelectorAll('.tree-node.is-active').forEach(n => n.classList.remove('is-active'));
+                    activeNodeId = null;
+                    document.getElementById('bottomActionBar').classList.remove('is-visible');
+                },
+
+                addChildToActive() {
+                    if (activeNodeId) Taxonomy.addChild(activeNodeId);
+                },
+
+                deleteActiveNode() {
+                    if (activeNodeId) Taxonomy.confirmDeleteNode(activeNodeId);
+                },
+
+                updateTitle(id, newTitle) {
+                    function recurse(arr) {
+                        for (let n of arr) {
+                            if (n.id === id) {
+                                if (n.title !== newTitle) {
+                                    // Log timestamped past title
+                                    if (!nodeHistoryMap.has(id)) nodeHistoryMap.set(id, []);
+                                    nodeHistoryMap.get(id).unshift({
+                                        timestamp: new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+                                        title: n.title
+                                    });
+
+                                    n.title = newTitle;
+                                    recordHistory();
+                                    refreshDOMStructure();
+                                }
+                                return true;
+                            }
+                            if (n.children && recurse(n.children)) return true;
+                        }
+                        return false;
+                    }
+                    recurse(currentTree);
+                },
+
+                openNodeHistory(e, id) {
+                    e.stopPropagation();
+                    const logs = nodeHistoryMap.get(id) || [];
+                    let listHTML = '';
+
+                    if (logs.length === 0) {
+                        listHTML = `<p style="padding:14px 0; text-align:center; color:var(--text-muted);">هیچ عنوان پیشینی برای این شاخه ثبت نشده است.</p>`;
+                    } else {
+                        listHTML = `<div class="version-list">`;
+                        logs.forEach((item, index) => {
+                            listHTML += `
+                <div class="version-item">
+                  <div style="flex:1; min-width:0;">
+                    <div style="font-size:12px; font-weight:700; color:var(--text-main); word-break:break-word;">${item.title}</div>
+                    <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">ثبت‌شده در: ${item.timestamp}</div>
+                  </div>
+                  <button class="btn-dialog btn-dialog-primary" style="height:26px; font-size:10.5px; padding:0 8px;"
+                          onclick="Taxonomy.restoreNodeTitle('${id}', ${index})">بازگردانی</button>
+                </div>
+              `;
+                        });
+                        listHTML += `</div>`;
+                    }
+
+                    Modal.show({
+                        title: 'سوابق عنوان این شاخه',
+                        bodyHTML: listHTML,
+                        iconClass: 'icon-primary',
+                        iconSVG: Icons.clock,
+                        buttons: [{ label: 'بستن', class: 'btn-dialog-ghost' }]
+                    });
+                },
+
+                restoreNodeTitle(id, index) {
+                    const logs = nodeHistoryMap.get(id);
+                    if (logs && logs[index]) {
+                        const restoredTitle = logs[index].title;
+                        const li = document.querySelector(`li[data-id="${id}"]`);
+                        if (li) {
+                            const textEl = li.querySelector('.node-text');
+                            if (textEl) textEl.innerText = restoredTitle;
+                        }
+                        Taxonomy.updateTitle(id, restoredTitle);
+                        Modal.close();
+                    }
+                },
+
+                addRootNode() {
+                    const newId = 'node_' + Date.now();
+                    currentTree.push({
+                        id: newId,
+                        title: 'شاخه اصلی تشخیصی جدید',
+                        children: []
+                    });
+                    recordHistory();
+                    render();
+
+                    setTimeout(() => {
+                        const el = document.querySelector(`li[data-id="${newId}"] .node-text`);
+                        if (el) el.focus();
+                    }, 60);
+                },
+
+                addChild(parentId) {
+                    function recurse(arr) {
+                        for (let n of arr) {
+                            if (n.id === parentId) {
+                                if (!n.children) n.children = [];
+                                const childId = 'node_' + Date.now();
+                                n.children.push({
+                                    id: childId,
+                                    title: 'زیرشاخه تشخیصی جدید',
+                                    children: []
+                                });
+                                return childId;
+                            }
+                            if (n.children) {
+                                const res = recurse(n.children);
+                                if (res) return res;
+                            }
+                        }
+                        return null;
+                    }
+
+                    const createdId = recurse(currentTree);
+                    if (createdId) {
+                        collapsedIds.delete(parentId);
+                        recordHistory();
+                        render();
+
+                        setTimeout(() => {
+                            const el = document.querySelector(`li[data-id="${createdId}"] .node-text`);
+                            if (el) el.focus();
+                        }, 60);
+                    }
+                },
+
+                confirmDeleteNode(id) {
+                    Modal.show({
+                        title: 'حذف شاخه بالینی',
+                        bodyHTML: 'آیا از حذف این شاخه و تمامی پروتکل‌های زیرمجموعه آن اطمینان دارید؟',
+                        iconClass: 'icon-danger',
+                        iconSVG: Icons.trash,
+                        buttons: [
+                            { label: 'انصراف', class: 'btn-dialog-ghost' },
+                            {
+                                label: 'بله، حذف شود',
+                                class: 'btn-dialog-danger',
+                                action: () => Taxonomy.deleteNode(id)
+                            }
+                        ]
+                    });
+                },
+
+                deleteNode(id) {
+                    function recurse(arr) {
+                        const idx = arr.findIndex(n => n.id === id);
+                        if (idx !== -1) {
+                            arr.splice(idx, 1);
+                            return true;
+                        }
+                        for (let n of arr) {
+                            if (n.children && recurse(n.children)) return true;
+                        }
+                        return false;
+                    }
+                    collapsedIds.delete(id);
+                    recurse(currentTree);
+                    Taxonomy.deselectNode();
+                    recordHistory();
+                    render();
+                },
+
+                toggleCollapse(id) {
+                    const hasKids = (() => {
+                        function check(arr) {
+                            for (let n of arr) {
+                                if (n.id === id) return n.children && n.children.length > 0;
+                                if (n.children && check(n.children)) return true;
+                            }
+                            return false;
+                        }
+                        return check(currentTree);
+                    })();
+
+                    if (!hasKids) return;
+
+                    if (collapsedIds.has(id)) collapsedIds.delete(id);
+                    else collapsedIds.add(id);
+
+                    const li = document.querySelector(`li[data-id="${id}"]`);
+                    if (li) li.classList.toggle('is-collapsed', collapsedIds.has(id));
+                },
+
+                toggleAll(expand) {
+                    if (expand) {
+                        collapsedIds.clear();
+                        document.querySelectorAll('.tree-node').forEach(node => node.classList.remove('is-collapsed'));
+                    } else {
+                        function collect(arr) {
+                            arr.forEach(n => {
+                                if (n.children && n.children.length > 0) {
+                                    collapsedIds.add(n.id);
+                                    collect(n.children);
+                                }
+                            });
+                        }
+                        collect(currentTree);
+                        document.querySelectorAll('.tree-node.has-children').forEach(node => node.classList.add('is-collapsed'));
+                    }
+                },
+
+                undo() {
+                    if (historyStep > 0) {
+                        historyStep--;
+                        currentTree = JSON.parse(history[historyStep]);
+                        isDraft = (history[historyStep] !== lastSavedSignature);
+                        updateUIState();
+                        render();
+                    }
+                },
+
+                redo() {
+                    if (historyStep < history.length - 1) {
+                        historyStep++;
+                        currentTree = JSON.parse(history[historyStep]);
+                        isDraft = (history[historyStep] !== lastSavedSignature);
+                        updateUIState();
+                        render();
+                    }
+                },
+
+                openSaveModal() {
+                    const defaultName = `نسخه بالینی ${new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' })}`;
+                    Modal.show({
+                        title: 'ذخیره نسخه پایدار',
+                        bodyHTML: `
+              عنوان نسخه را برای بایگانی وارد نمایید:
+              <input type="text" id="snapshotNameInput" class="modal-input" value="${defaultName}" />
+            `,
+                        iconClass: 'icon-success',
+                        iconSVG: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline></svg>`,
+                        buttons: [
+                            { label: 'انصراف', class: 'btn-dialog-ghost' },
+                            {
+                                label: 'ذخیره نسخه',
+                                class: 'btn-dialog-primary',
+                                action: () => {
+                                    const input = document.getElementById('snapshotNameInput');
+                                    const name = input ? input.value.trim() : defaultName;
+                                    Taxonomy.saveSnapshot(name || defaultName);
+                                }
+                            }
+                        ]
+                    });
+                },
+
+                async saveSnapshot(name) {
+                    const localSnap = {
+                        id: 'snap_' + Date.now(),
+                        name: name,
+                        timestamp: new Date().toLocaleString('fa-IR'),
+                        data: currentTree
+                    };
+                    const snapshots = getSavedSnapshots();
+                    snapshots.unshift(localSnap);
+                    setSavedSnapshots(snapshots);
+
+                    // Sync to backend
+                    try {
+                        await fetch('/api/taxonomy/versions', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ name, data: currentTree })
+                        });
+                    } catch (err) {
+                        console.warn('Could not persist snapshot to backend:', err);
+                    }
+
+                    savedTreeBaseline = JSON.parse(JSON.stringify(currentTree));
+                    lastSavedSignature = JSON.stringify(currentTree);
+                    isDraft = false;
+
+                    const dirtyEls = document.querySelectorAll('.tree-node.is-dirty');
+                    dirtyEls.forEach(el => {
+                        el.classList.remove('is-dirty');
+                        el.classList.add('is-saving');
+                    });
+
+                    updateUIState();
+
+                    setTimeout(() => {
+                        dirtyEls.forEach(el => el.classList.remove('is-saving'));
+                    }, 700);
+                },
+
+                async openVersionsModal() {
+                    let snapshots = getSavedSnapshots();
+                    try {
+                        const res = await fetch('/api/taxonomy/versions');
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (data.versions && Array.isArray(data.versions) && data.versions.length > 0) {
+                                snapshots = data.versions;
+                                setSavedSnapshots(snapshots);
+                            }
+                        }
+                    } catch (err) {
+                        console.warn('Using local snapshots:', err);
+                    }
+
+                    let listHTML = '';
+
+                    if (snapshots.length === 0) {
+                        listHTML = `<p style="padding:14px 0; text-align:center; color:var(--text-muted);">هیچ نسخه ذخیره‌شده‌ای یافت نشد.</p>`;
+                    } else {
+                        listHTML = `<div class="version-list">`;
+                        snapshots.forEach(s => {
+                            listHTML += `
+                <div class="version-item">
+                  <div style="flex:1; min-width:0;">
+                    <div style="font-size:12.5px; font-weight:700;">${s.name}</div>
+                    <div style="font-size:10.5px; color:var(--text-muted);">${s.timestamp}</div>
+                  </div>
+                  <button class="btn-dialog btn-dialog-primary" style="height:28px; font-size:11px; padding:0 8px;" 
+                          onclick="Taxonomy.rollbackSnapshot('${s.id}')">بازیابی</button>
+                </div>
+              `;
+                        });
+                        listHTML += `</div>`;
+                    }
+
+                    Modal.show({
+                        title: 'تاریخچه نسخه‌ها',
+                        bodyHTML: listHTML,
+                        iconClass: 'icon-primary',
+                        iconSVG: Icons.clock,
+                        buttons: [
+                            { label: 'بستن', class: 'btn-dialog-ghost' }
+                        ]
+                    });
+                },
+
+                async rollbackSnapshot(id) {
+                    try {
+                        const res = await fetch('/api/taxonomy/rollback', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ id })
+                        });
+                        if (res.ok) {
+                            const result = await res.json();
+                            if (result.data) {
+                                currentTree = JSON.parse(JSON.stringify(result.data));
+                                savedTreeBaseline = JSON.parse(JSON.stringify(result.data));
+                                lastSavedSignature = JSON.stringify(currentTree);
+                                isDraft = false;
+                                recordHistory();
+                                render();
+                                Modal.close();
+                                return;
+                            }
+                        }
+                    } catch (err) {
+                        console.warn('Backend rollback failed, falling back to local storage:', err);
+                    }
+
+                    const snapshots = getSavedSnapshots();
+                    const snap = snapshots.find(s => s.id === id);
+                    if (snap) {
+                        currentTree = JSON.parse(JSON.stringify(snap.data));
+                        savedTreeBaseline = JSON.parse(JSON.stringify(snap.data));
+                        lastSavedSignature = JSON.stringify(currentTree);
+                        isDraft = false;
+                        recordHistory();
+                        render();
+                        Modal.close();
+                    }
+                },
+
+                confirmResetBase() {
+                    Modal.show({
+                        title: 'بازنشانی به حالت کارخانه',
+                        bodyHTML: 'آیا مایلید کلیه تغییرات لغو شده و ساختار به نسخه استاندارد اولیه بازگردد؟',
+                        iconClass: 'icon-danger',
+                        iconSVG: Icons.trash,
+                        buttons: [
+                            { label: 'انصراف', class: 'btn-dialog-ghost' },
+                            {
+                                label: 'بازنشانی',
+                                class: 'btn-dialog-danger',
+                                action: () => {
+                                    currentTree = JSON.parse(JSON.stringify(BASE_TREE));
+                                    savedTreeBaseline = JSON.parse(JSON.stringify(BASE_TREE));
+                                    collapsedIds.clear();
+                                    nodeHistoryMap.clear();
+                                    recordHistory();
+                                    render();
+                                }
+                            }
+                        ]
+                    });
+                }
+            };
+        })();
+
+        document.addEventListener('DOMContentLoaded', Taxonomy.init);
+    </script>
+<script>
+  // ==========================================================================
+  // Mobile Fast Long-Tap Tooltip Engine (320ms, haptic feedback)
+  // ==========================================================================
+  (function initMobileTooltip() {
+    let timer = null;
+    let startX = 0, startY = 0;
+    let tooltipEl = null;
+
+    function getTooltipTarget(target) {
+      if (!target || target === document.body) return null;
+      const el = target.closest('[title], [data-tip], [aria-label]');
+      if (!el) return null;
+      const txt = el.getAttribute('data-tip') || el.getAttribute('title') || el.getAttribute('aria-label');
+      return txt ? { el, text: txt.trim() } : null;
+    }
+
+    function showTooltip(text, x, y) {
+      if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'mobileQuickTooltip';
+        tooltipEl.className = 'mobile-quick-tooltip';
+        document.body.appendChild(tooltipEl);
+      }
+      tooltipEl.textContent = text;
+      tooltipEl.style.display = 'block';
+      const rect = tooltipEl.getBoundingClientRect();
+      let left = x - rect.width / 2;
+      let top = y - rect.height - 14;
+      if (left < 10) left = 10;
+      if (left + rect.width > window.innerWidth - 10) left = window.innerWidth - rect.width - 10;
+      if (top < 10) top = y + 24;
+      tooltipEl.style.left = `${left}px`;
+      tooltipEl.style.top = `${top}px`;
+      tooltipEl.classList.add('visible');
+      if (navigator.vibrate) try { navigator.vibrate(20); } catch(e){}
+    }
+
+    function hideTooltip() {
+      if (timer) { clearTimeout(timer); timer = null; }
+      if (tooltipEl) {
+        tooltipEl.classList.remove('visible');
+        setTimeout(() => {
+          if (tooltipEl && !tooltipEl.classList.contains('visible')) {
+            tooltipEl.style.display = 'none';
+          }
+        }, 150);
+      }
+    }
+
+    document.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) { hideTooltip(); return; }
+      const touch = e.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+      const match = getTooltipTarget(e.target);
+      if (!match) return;
+
+      timer = setTimeout(() => {
+        showTooltip(match.text, startX, startY);
+      }, 320);
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+      if (!timer && !tooltipEl?.classList.contains('visible')) return;
+      const touch = e.touches[0];
+      if (Math.hypot(touch.clientX - startX, touch.clientY - startY) > 8) {
+        hideTooltip();
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchend', hideTooltip, { passive: true });
+    document.addEventListener('touchcancel', hideTooltip, { passive: true });
+  })();
+</script>
+</body>
+
+</html>

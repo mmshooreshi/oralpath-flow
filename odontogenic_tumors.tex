@@ -1,0 +1,214 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1.15cm,footskip=0pt,headsep=0pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\newcommand{\MathCollectFalse}{}
+\newcommand{\MathCollectTrue}{}
+\let\@kernel@tabular@init\relax
+\makeatother
+
+\usepackage{xepersian}
+
+\settextfont[
+  Path = Peyda/,
+  BoldFont = Peyda-Bold.ttf,
+  ItalicFont = Peyda-Medium.ttf,
+  BoldItalicFont = Peyda-Bold.ttf
+]{Peyda-Regular.ttf}
+
+\setlatintextfont{Times New Roman}
+
+\IfFileExists{Peyda/Symbola.ttf}{%
+  \newfontfamily\symb[Path=Peyda/]{Symbola.ttf}%
+}{%
+  \IfFileExists{editor/Peyda/Symbola.ttf}{%
+    \newfontfamily\symb[Path=editor/Peyda/]{Symbola.ttf}%
+  }{%
+    \newfontfamily\symb{Symbola}%
+  }%
+}
+\newcommand{\emoji}[1]{{\symb #1}}
+
+\linespread{1.10}
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\definecolor{hlgray}{HTML}{E2E8F0}
+\definecolor{hlyellow}{HTML}{FEF08A}
+\definecolor{hlred}{HTML}{FEE2E2}
+\definecolor{darkred}{HTML}{991B1B}
+\definecolor{navy}{HTML}{0A2540}
+\definecolor{teal}{HTML}{0D9488}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries فلوچارت تصمیم‌گیری بالینی: تومورهای ادنتوژنیک فکین}\\[2pt]
+{\small\itshape تریاژ رادیوگرافیک، استراتژی بیوپسی، پروتکل‌های رزکسیون بر اساس مارجین و فالوآپ}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{6pt}
+
+\begin{center}
+\begin{latin}
+\linespread{0.95}\selectfont
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily\footnotesize, align=center},
+    stepbox/.style={rectangle, draw=black, fill=white, line width=0.7pt, inner sep=4.5pt},
+    decision/.style={diamond, aspect=2.4, draw=black, fill=white, line width=0.7pt, inner sep=2pt, font=\sffamily\scriptsize\bfseries},
+    arrow/.style={-{Stealth[scale=0.9]}, thick, black}
+]
+
+% 1. Initial Presentation
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+    \rl{\textbf{تظاهر بالینی و رادیوگرافیک: اتساع فک و لوسنسی کورتیکه‌دار (\lr{Jaw Expansion})}}\\[2pt]
+    \scriptsize \rl{اکسپنشن باکال/لینگوال $\bullet$ لوسنسی تک یا چندحفره‌ای (\lr{Soap-bubble / Honeycomb}) $\bullet$ تحلیل ریشه}
+};
+
+% 2. Diagnostic Workup & Aspiration
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.90) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: تصویربرداری سه‌بعدی با \lr{CBCT} و آسپیراسیون سوزنی (\lr{FNA})}}}\\[2pt]
+    \scriptsize \rl{بررسی پرفوراسیون کورتکس $\bullet$ رد مالفورماسیون عروقی و کیست‌ها با آسپیراسیون خشک (\lr{Solid Mass})}
+};
+
+% 3. Mixed / Radiopacity Decision
+\node (d1) [decision] at (0, -4.00) {\rl{میکسد / اپک؟}\\[-1pt]\scriptsize \lr{Mixed / Opacity?}};
+\node (r_mixed) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -4.00) {
+    \rl{\textbf{تومور پین‌بورگ (\lr{CEOT})}}\\[2pt]
+    \scriptsize \rl{کلسیفیکاسیون با ماده آمیلوئیدی؛}\\
+    \rl{انوکلئیشن با مارجین یا رزکسیون محدود}
+};
+
+% 4. Mandatory Incisional Biopsy
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.40) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی برشی ترانس‌اورال الزامی (\lr{Incisional Biopsy}) در حاشیه بافت سالم/ضایعه \emoji{🗝}}}}\\[2pt]
+    \scriptsize \rl{پرهیز از انوکلئیشن زودرس کورکورانه بدون تشخیص پاتولوژی قطعی (\lr{WHO 5th Ed})}
+};
+
+% 5. Histopathology Subtype Decision
+\node (d2) [decision] at (0, -8.70) {\rl{تشخیص پاتولوژی}\\[-1pt]\scriptsize \lr{Histotype?}};
+
+% 6. 4 Main Columns
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -11.00) {
+    \rl{\textbf{تومور آدنوماتوئید (\lr{AOT})}}\\[2pt]
+    \scriptsize \rl{قدام ماگزیلا، دور تاج نهفته}\\\rl{کپسولار و خوش‌خیم؛ عود: \colorbox{hlgray}{\strut\textbf{کمتر از ۱٪}}}
+};
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -11.00) {
+    \rl{\textbf{آملوبلاستوما تک‌کیستی}}\\[2pt]
+    \scriptsize \lr{Unicystic Ameloblastoma}\\\rl{لومینال یا اینترالومینال}\\\rl{عود با کورتاژ: \textbf{۱۰٪ تا ۲۵٪}}
+};
+\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.00) {
+    \rl{\textbf{آملوبلاستوما سالید/مولتی \emoji{⚡}}}\\[2pt]
+    \scriptsize \lr{Solid / Multicystic}\\\rl{نفوذ تهاجمی به مغز استخوان}\\\rl{عود با کورتاژ: \colorbox{hlred}{\strut\color{darkred}\textbf{۵۰٪ تا ۹۰٪}}}
+};
+\node (h4) [stepbox, draw=orange!80!black, line width=1.0pt, text width=3.6cm] at (6.15, -11.00) {
+    \rl{\textbf{میکسـومای ادنتوژنیک}}\\[2pt]
+    \scriptsize \lr{Odontogenic Myxoma}\\\rl{استرومای میگزوئید فاقد کپسول}\\\rl{عود با انوکلئیشن: \colorbox{hlred}{\strut\color{darkred}\textbf{۲۵٪ تا ۴۳٪}}}
+};
+
+% 7. Primary Surgical Interventions
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.50) {
+    \rl{\textbf{انوکلئیشن + کورتاژ ظریف}}\\[2pt]
+    \scriptsize \rl{خارج‌سازی با دندان درگیر}\\\rl{جداسازی تمیز کپسول از استخوان}
+};
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -13.50) {
+    \rl{\textbf{انوکلئیشن + ادجوانت}}\\[2pt]
+    \scriptsize \rl{استکتومی محیطی ۱ تا ۲ میلی‌متر}\\\rl{یا کاربرد محلول کارنوی (\lr{Carnoy})}
+};
+\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -13.50) {
+    \rl{\textbf{رزکسیون قطعی استخوانی}}\\[2pt]
+    \scriptsize \rl{رزکسیون مارجینال/سگمنتال}\\\textbf{\rl{مارجین استخوان ۱۰ تا ۱۵ میلی‌متر}}\\\rl{همراه با یک لایه بافت نرم سالم}
+};
+\node (i4) [stepbox, draw=orange!80!black, line width=1.0pt, text width=3.6cm] at (6.15, -13.50) {
+    \rl{\textbf{رزکسیون مارجینال/سگمنتال}}\\[2pt]
+    \scriptsize \textbf{\rl{مارجین استخوانی ۱۰ میلی‌متر}}\\\rl{حذف حاشیه وسیع به علت نفوذ ژلاتینی}
+};
+
+% 8. Recall Schedules
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{سالیانه تا ۲ سال}}}\\[2pt]
+    \scriptsize \rl{معاینه کلینیکی و رادیوگرافی}
+};
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه تا ۵ سال}}}\\[2pt]
+    \scriptsize \rl{سپس سالیانه تا ۱۰ سال}
+};
+\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۶ ماه تا ۵ سال}}}\\[2pt]
+    \scriptsize \rl{سپس سالیانه به صورت مادام‌العمر}
+};
+\node (s4) [stepbox, draw=orange!80!black, line width=1.0pt, text width=3.6cm] at (6.15, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۶ ماه تا ۵ سال}}}\\[2pt]
+    \scriptsize \rl{پایش دقیق عود لوسنت تا ۱۰ سال}
+};
+
+% 9. Trigger Box
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -18.70) {
+    \centerline{\rl{\textbf{هشدارهای تشخیصی و معیارهای کلیدی انحراف درمان (\lr{Diagnostic Red Flags}):}}}\par\vspace{3pt}
+    \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{ملاحظات حیاتی:}} (۱) اگر پاتولوژی آملوبلاستوم تک‌کیستی، نفوذ مورال (\lr{Mural}) نشان دهد، درمان بلافاصله به رزکسیون ارتقا می‌یابد $\bullet$ (۲) کورتاژ ساده در تومور سالید اکیداً ممنوع است $\bullet$ (۳) جهش \lr{BRAF V600E} در بیش از ۸۰٪ آملوبلاستوماهای مندیبل وجود دارد.}
+};
+
+% 10. Refractory Box
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -21.20) {
+    \centerline{\rl{\textbf{پروتکل افزایش گام‌به‌گام درمان (\lr{Escalation}) برای موارد عودکننده / پرفوراسیون کورتکس:}}}\par\vspace{3pt}
+    \scriptsize \rl{\textbf{سطح ۳ (پرفوراسیون کورتکس):} اکسیزیون پریوست و مخاط روی استخوان همراه با رزکسیون سگمنتال مندیبل.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۴ (عود مکرر جراحی):} رزکسیون قطعی با مارجین بافت نرم سالم ۵ تا ۱۰ میلی‌متر و بازسازی همزمان با فلپ آزاد فیبولا (\lr{Free Fibula Flap}).}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۵ (غیرقابل جراحی / قاعده جمجمه):} مهارکننده‌های هدفمند \lr{BRAF} (دابرافنیب + ترامتینیب) جهت کاهش حجم ضایعه.}
+};
+
+% Connections
+\draw [arrow] (n1) -- (n2);
+\draw [arrow] (n2) -- (d1);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{بله (ترکیبی)}} (r_mixed.west);
+\draw [arrow] (d1.south) -- node[right=6pt, font=\scriptsize\bfseries] {\rl{خیر (لوسنت)}} (n3.north);
+\draw [arrow] (n3.south) -- (d2.north);
+
+% Bus-Bar from Decision 2 to 4 Histology columns
+\draw [thick, black] (d2.south) -- (0, -9.80);
+\draw [thick, black] (-6.15, -9.80) -- (6.15, -9.80);
+\draw [arrow] (-6.15, -9.80) -- (h1.north);
+\draw [arrow] (-2.05, -9.80) -- (h2.north);
+\draw [arrow] (2.05, -9.80) -- (h3.north);
+\draw [arrow] (6.15, -9.80) -- (h4.north);
+
+% Column Downward Arrows
+\draw [arrow] (h1.south) -- (i1.north);
+\draw [arrow] (h2.south) -- (i2.north);
+\draw [arrow] (h3.south) -- (i3.north);
+\draw [arrow] (h4.south) -- (i4.north);
+
+\draw [arrow] (i1.south) -- (s1.north);
+\draw [arrow] (i2.south) -- (s2.north);
+\draw [arrow] (i3.south) -- (s3.north);
+\draw [arrow] (i4.south) -- (s4.north);
+
+% Collector Bus into Trigger Box
+\draw [thick, black] (s1.south) -- (-6.15, -17.30);
+\draw [thick, black] (s2.south) -- (-2.05, -17.30);
+\draw [thick, black] (s3.south) -- (2.05, -17.30);
+\draw [thick, black] (s4.south) -- (6.15, -17.30);
+\draw [thick, black] (-6.15, -17.30) -- (6.15, -17.30);
+\draw [arrow] (0, -17.30) -- (trigger.north);
+
+\draw [arrow] (trigger.south) -- (refract.north);
+
+\end{tikzpicture}
+\end{latin}
+\end{center}
+
+\end{document}

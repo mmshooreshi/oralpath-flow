@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>استودیو فلوچارت تعاملی TikZ — نسخه موبایل و دسکتاپ</title>
+  <link rel="stylesheet" href="canvas.css?v=3.1.0">
+  <script>
+    // Early resilient stub to prevent Uncaught ReferenceError before canvas.js executes
+    window.CanvasApp = window.CanvasApp || {
+      toggleCombobox: function(e) {
+        if (window.CanvasApp._real) return window.CanvasApp._real.toggleCombobox(e);
+        const p = document.getElementById('docComboboxPopover');
+        const b = document.getElementById('comboboxBackdrop');
+        if (p && b) {
+          const isOpen = p.classList.toggle('show');
+          b.style.display = isOpen ? 'block' : 'none';
+        }
+      },
+      closeCombobox: function() {
+        const p = document.getElementById('docComboboxPopover');
+        const b = document.getElementById('comboboxBackdrop');
+        if (p) p.classList.remove('show');
+        if (b) b.style.display = 'none';
+      }
+    };
+  </script>
+</head>
+<body>
+  <div id="appRoot">
+    <!-- Top Header Bar -->
+    <header id="headerToolbar">
+      <!-- Brand Section -->
+      <div class="brand-section">
+        <div class="brand-badge">TikZ</div>
+        <span class="brand-title">بوم بالینی</span>
+      </div>
+
+      <!-- Right Action Controls (Row 1) -->
+      <div class="header-action-group" style="margin-right: auto;">
+        <!-- Sound FX Toggle Button -->
+        <button id="btnToggleSound" class="tactile-btn btn-sm btn-tactile-dark" onclick="CanvasApp.toggleSound()" title="صدا: روشن (کلیک برای قطع)">
+          <span class="sound-icon-box">
+            <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          </span>
+          <span class="sound-label">صدا</span>
+        </button>
+
+        <!-- Compile PDF Button -->
+        <button id="btnCompile" class="tactile-btn btn-sm btn-tactile-green" onclick="CanvasApp.compileXeLaTeX()" title="کامپایل سند به PDF با XeLaTeX">
+          <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>کامپایل PDF</span>
+        </button>
+
+        <!-- Versions & Checkpoints -->
+        <button id="btnCheckpoints" class="tactile-btn btn-sm btn-tactile-dark" onclick="CanvasApp.openCheckpointsModal()" title="مدیریت نسخه‌ها و تاریخچه (Checkpoints)">
+          <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>نسخه‌ها</span>
+          <span class="badge-count" id="checkpointsCountBadge">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Row 2: Modes & View Switchers in One Dedicated Line -->
+    <div id="modesBar">
+      <!-- Tool Switcher (Select, Move, Highlight) -->
+      <div class="segmented-pill tool-segmented-control" title="ابزار کار بر روی بوم">
+        <button id="btnToolSelect" class="seg-btn active" onclick="CanvasApp.setToolMode('select')" title="انتخاب گره / ویرایش">
+          <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+          <span>انتخاب</span>
+        </button>
+        <button id="btnToolMove" class="seg-btn" onclick="CanvasApp.setToolMode('move')" title="جابجایی آزاد گره‌ها">
+          <svg class="svg-icon" viewBox="0 0 24 24"><polyline points="5 9 2 12 5 15"></polyline><polyline points="9 5 12 2 15 5"></polyline><polyline points="15 19 12 22 9 19"></polyline><polyline points="19 9 22 12 19 15"></polyline><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line></svg>
+          <span>جابجایی</span>
+        </button>
+        <button id="btnToolHighlight" class="seg-btn" onclick="CanvasApp.setToolMode('highlight')" title="قلم هایلایت کلمات">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          <span>هایلایت</span>
+        </button>
+      </div>
+
+      <!-- View Switcher (Canvas, PDF, TeX) -->
+      <div class="segmented-pill view-segmented-control" title="حالت نمایش">
+        <button id="btnViewCanvas" class="seg-btn active" onclick="CanvasApp.setViewMode('canvas')" title="نمایش بوم تعاملی">
+          <svg class="svg-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          <span>بوم</span>
+        </button>
+        <button id="btnViewPdf" class="seg-btn" onclick="CanvasApp.setViewMode('pdf')" title="پیش‌نمایش زنده PDF">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          <span>PDF</span>
+        </button>
+        <button id="btnViewTex" class="seg-btn" onclick="CanvasApp.setViewMode('tex')" title="سورس کد TeX">
+          <svg class="svg-icon" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          <span>کد TeX</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Document Selector Popover / Mobile Bottom Sheet Backdrop -->
+    <div id="comboboxBackdrop" class="sheet-backdrop" onclick="CanvasApp.closeCombobox()"></div>
+
+    <!-- Document Selector Popover / Studio Library Modal -->
+    <div class="combobox-popover" id="docComboboxPopover">
+      <div class="sheet-drag-handle"></div>
+      
+      <!-- Modal Header -->
+      <div class="lib-modal-header">
+        <div class="lib-modal-title-col">
+          <div class="lib-modal-title-row">
+            <svg class="svg-icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke-width:2.2;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span class="lib-modal-title">پروتکل‌های بالینی و فلوچارت‌های پاتولوژی</span>
+          </div>
+          <span class="lib-modal-subtitle">۱۰ دسته تخصصی • ۳۸ ضایعه بالینی فک و دهان • منطبق بر پایان‌نامه و فلوچارت‌های تشخیصی</span>
+        </div>
+        <div class="lib-modal-header-actions">
+          <button class="tactile-btn btn-sm btn-tactile-dark" type="button" onclick="CanvasApp.toggleAllDocCategories()" id="toggleAllCatsBtn" title="باز یا بسته کردن تمام دسته‌ها">
+            <span id="toggleAllCatsLabel">باز کردن همه</span>
+          </button>
+          <button class="sheet-close-btn" type="button" onclick="CanvasApp.closeCombobox()" title="بستن (Esc)">✕</button>
+        </div>
+      </div>
+
+      <!-- Search & Filters Toolbar -->
+      <div class="lib-toolbar-row">
+        <div class="combobox-search-box">
+          <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="comboboxSearchInput" placeholder="جستجوی سریع در نام ضایعه، انگلیسی، دسته یا توضیحات..." oninput="CanvasApp.filterDocuments(this.value)">
+          <button type="button" class="search-clear-btn" onclick="document.getElementById('comboboxSearchInput').value=''; CanvasApp.filterDocuments('');" title="پاک کردن جستجو">✕</button>
+        </div>
+
+        <div class="lib-filter-tabs">
+          <button class="lib-tab active" data-filter="all" onclick="CanvasApp.setDocFilter('all')">همه (۴۸)</button>
+          <button class="lib-tab" data-filter="has_chart" onclick="CanvasApp.setDocFilter('has_chart')">
+            <span class="tab-dot ready"></span> دارای فلوچارت (<span id="hasChartCount">۴</span>)
+          </button>
+          <button class="lib-tab" data-filter="no_chart" onclick="CanvasApp.setDocFilter('no_chart')">
+            <span class="tab-dot empty"></span> بدون فلوچارت (<span id="noChartCount">۴۴</span>)
+          </button>
+        </div>
+      </div>
+
+      <!-- Categories & Lesions List Container (Rendered dynamically by CanvasApp) -->
+      <div class="combobox-list" id="comboboxList"></div>
+    </div>
+
+    <!-- Row 3: Spacing Micro Toggles & Search Bar (Clean & Mobile-Friendly) -->
+    <div id="topSubBar">
+      <!-- Highlight Mode Palette (shown when highlight tool active) -->
+      <div id="subBarHighlight" class="subbar-section" style="display: none;">
+        <div class="highlight-chips-group">
+          <button class="perm-chip chip-yellow active" id="chipYellow" onclick="CanvasApp.setActiveHighlightColor('yellow')" title="هایلایت زرد"></button>
+          <button class="perm-chip chip-red" id="chipRed" onclick="CanvasApp.setActiveHighlightColor('red')" title="هایلایت قرمز"></button>
+          <button class="perm-chip chip-gray" id="chipGray" onclick="CanvasApp.setActiveHighlightColor('gray')" title="هایلایت خاکستری"></button>
+          <button class="perm-btn btn-perm-clear btn-icon-clear" id="chipClear" onclick="CanvasApp.setActiveHighlightColor('clear')" title="پاک‌کن هایلایت">
+            <svg class="svg-icon icon-eraser" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"></path>
+              <path d="M22 21H7"></path>
+              <path d="m5 11 9 9"></path>
+            </svg>
+          </button>
+        </div>
+        <span class="subbar-hint">روی کلمات ضربه بزنید یا بکشید...</span>
+      </div>
+
+      <!-- Normal Mode Row 3 Controls: Sleek Spacing Icon Bars & Quick Search -->
+      <div id="subBarNormal" class="subbar-section" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+        <!-- Compact Search (Never Trimmed) -->
+        <button class="tactile-btn btn-sm btn-tactile-dark" onclick="CanvasApp.openQuickSearch()" title="جستجوی سریع گره‌ها (Cmd+K)">
+          <svg class="svg-icon" viewBox="0 0 24 24" style="width: 14px; height: 14px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>جستجو</span>
+          <kbd class="cmd-k-chip" style="margin-right: 4px;">⌘K</kbd>
+        </button>
+
+        <!-- Micro Spacing Icon Toggles with Interactive Sliders -->
+        <div style="display: flex; align-items: center; gap: 8px; position: relative;">
+          <!-- Vertical Spacing Toggle -->
+          <div style="position: relative;">
+            <button class="spacing-icon-toggle" id="btnToggleVSpacing" onclick="CanvasApp.toggleSpacingSlider('v')" title="فاصله عمودی سطرها">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v18m0-18l-4 4m4-4l4 4m-4 14l-4-4m4 4l4-4"/></svg>
+              <span id="vSpacingBadge">۱۰۰٪</span>
+            </button>
+            <div id="sliderPopoverV" class="spacing-slider-popover">
+              <input type="range" class="spacing-range-input" id="rangeVSpacing" min="50" max="200" step="5" value="100" oninput="CanvasApp.setSpacingDirect('y', this.value)">
+            </div>
+          </div>
+
+          <!-- Horizontal Spacing Toggle -->
+          <div style="position: relative;">
+            <button class="spacing-icon-toggle" id="btnToggleHSpacing" onclick="CanvasApp.toggleSpacingSlider('h')" title="فاصله افقی ستون‌ها">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12h18m-18 0l4-4m-4 4l4 4m14-4l-4-4m4 4l-4 4"/></svg>
+              <span id="hSpacingBadge">۱۰۰٪</span>
+            </button>
+            <div id="sliderPopoverH" class="spacing-slider-popover">
+              <input type="range" class="spacing-range-input" id="rangeHSpacing" min="50" max="200" step="5" value="100" oninput="CanvasApp.setSpacingDirect('x', this.value)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Centered Sub-Header Bar (Directly Under Top Toolbars: Combobox in Center, Taxonomy Tree to its Left) -->
+    <div id="centerSubHeader" class="center-subheader-bar">
+      <!-- Custom Tactile Combobox Trigger (Centered) -->
+      <div class="custom-combobox-wrapper" id="docComboboxWrapper">
+        <button class="custom-combobox-trigger" id="docComboboxTrigger" type="button" onclick="CanvasApp.toggleCombobox(event)">
+          <span class="cb-label" id="docComboboxLabel">Oral Leukoplakia (سند سوم)</span>
+          <svg class="svg-icon cb-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+      </div>
+
+      <!-- Taxonomy Tree Link Button (Directly to the Left of Combobox) -->
+      <a href="/taxonomy.html" class="tactile-btn btn-sm btn-tactile-dark taxonomy-tree-btn" style="text-decoration: none;" title="درخت طبقه‌بندی و دسته‌بندی ضایعات">
+        <svg class="svg-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v6m0 0H6a2 2 0 0 0-2 2v2m8-4h6a2 2 0 0 1 2 2v2M4 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm8 4a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8-4a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"></path>
+          <circle cx="12" cy="4" r="2"></circle>
+        </svg>
+        <span>درخت طبقه‌بندی</span>
+      </a>
+    </div>
+
+    <!-- Main Multi-Pane Views Container -->
+    <div id="mainViewsContainer">
+      <!-- Pane 1: Interactive Canvas View -->
+      <div class="app-pane active" id="paneCanvas">
+        <div id="viewportContainer">
+          <div id="viewport" class="mode-select">
+            <div id="viewportDebugBorder" class="viewport-debug-border"></div>
+
+            <!-- World Transformation Layer -->
+            <div id="world">
+              <!-- Magnetic Alignment Guides -->
+              <div id="alignmentGuideX" class="alignment-guide-line guide-x" style="display: none;"></div>
+              <div id="alignmentGuideY" class="alignment-guide-line guide-y" style="display: none;"></div>
+
+              <!-- Flowchart Title & Subtitle Banner (PDF Parity & Inline Editable) -->
+              <div id="flowchartHeaderBanner" class="flowchart-header-banner">
+                <div class="fch-title-wrap">
+                  <h1 class="fch-title" id="fchTitle" contenteditable="true" spellcheck="false" title="برای ویرایش عنوان کلیک کنید">عنوان فلوچارت</h1>
+                </div>
+                <div class="fch-subtitle-wrap">
+                  <p class="fch-subtitle" id="fchSubtitle" contenteditable="true" spellcheck="false" title="برای ویرایش زیرعنوان کلیک کنید">زیرعنوان و توضیحات بالینی فلوچارت</p>
+                </div>
+                <div class="fch-divider"></div>
+              </div>
+
+              <svg id="svgLayer" width="10000" height="10000">
+                <defs>
+                  <!-- Small & Roundy Stealth Arrowheads -->
+                  <marker id="stealth-arrow" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto">
+                    <path d="M 1.5 2 Q 4.5 5 1.5 8 Q 5.5 5.5 8.5 5 Q 5.5 4.5 1.5 2 Z" fill="#0f172a" stroke="#0f172a" stroke-width="0.6" stroke-linejoin="round" stroke-linecap="round" />
+                  </marker>
+                  <marker id="stealth-arrow-selected" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto">
+                    <path d="M 1.5 2 Q 4.5 5 1.5 8 Q 5.5 5.5 8.5 5 Q 5.5 4.5 1.5 2 Z" fill="#1cb0f6" stroke="#1cb0f6" stroke-width="0.6" stroke-linejoin="round" stroke-linecap="round" />
+                  </marker>
+                </defs>
+                <g id="svgEdgeGroup"></g>
+              </svg>
+              <div id="nodesContainer"></div>
+            </div>
+
+            <!-- Highlight Context Popover (Anchors to Active Highlight Span) -->
+            <div id="highlightPopover" style="display: none;">
+              <span class="pop-label">رنگ:</span>
+              <button class="pop-chip chip-yellow" onclick="CanvasApp.changeActiveHighlightColor('yellow')" title="زرد"></button>
+              <button class="pop-chip chip-red" onclick="CanvasApp.changeActiveHighlightColor('red')" title="قرمز"></button>
+              <button class="pop-chip chip-gray" onclick="CanvasApp.changeActiveHighlightColor('gray')" title="خاکستری"></button>
+              <button class="pop-btn-del" onclick="CanvasApp.removeActiveHighlight()" title="پاک کردن هایلایت">حذف ✕</button>
+            </div>
+
+            <!-- Node Action Sheet (Smooth Non-Flickering Toolbar & Mobile Nudge Drawer) -->
+            <div id="nodeActionSheet">
+              <div class="sheet-info-col">
+                <span class="sheet-title" id="sheetNodeTitle">گره</span>
+                <span class="sheet-coords" id="sheetNodeCoords">X: 0, Y: 0</span>
+              </div>
+              <div class="sheet-actions-row">
+                <!-- Precision Nudge Buttons -->
+                <div class="nudge-control-group" title="تنظیم موقعیت گره">
+                  <button class="tactile-btn btn-icon-xs" type="button" onclick="CanvasApp.nudgeSelectedNode(0, 0.25)" title="انتقال به بالا">▲</button>
+                  <button class="tactile-btn btn-icon-xs" type="button" onclick="CanvasApp.nudgeSelectedNode(0, -0.25)" title="انتقال به پایین">▼</button>
+                  <button class="tactile-btn btn-icon-xs" type="button" onclick="CanvasApp.nudgeSelectedNode(-0.25, 0)" title="انتقال به چپ">◀</button>
+                  <button class="tactile-btn btn-icon-xs" type="button" onclick="CanvasApp.nudgeSelectedNode(0.25, 0)" title="انتقال به راست">▶</button>
+                </div>
+                <button class="tactile-btn btn-sm btn-tactile-green" onclick="CanvasApp.focusSelectedNode()">تمرکز نرم</button>
+                <button class="tactile-btn btn-sm btn-tactile-cream" onclick="CanvasApp.editSelectedNodeDirectly()">ویرایش متن</button>
+                <button class="tactile-btn btn-sm btn-tactile-dark" onclick="CanvasApp.deselectAll()">بستن</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pane 2: Dedicated Native PDF Preview -->
+      <div class="app-pane" id="panePdf">
+        <div class="pane-toolbar">
+          <div class="pane-toolbar-title">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </div>
+          <div class="pane-toolbar-actions">
+            <button class="tactile-btn btn-sm btn-tactile-green" onclick="CanvasApp.compileXeLaTeX()" title="کامپایل مجدد فایل">
+              <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              <span>کامپایل مجدد</span>
+            </button>
+            <button class="tactile-btn btn-sm btn-tactile-dark" onclick="CanvasApp.openPdfNewTab()" title="باز کردن در تب مستقل">
+              <svg class="svg-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              <span>تب جدا</span>
+            </button>
+            <button class="tactile-btn btn-sm btn-tactile-dark" onclick="CanvasApp.downloadPdf()" title="دانلود فایل PDF">
+              <svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>دانلود</span>
+            </button>
+          </div>
+        </div>
+        <div id="pdfBox">
+          <iframe id="pdfFrame" title="پیش‌نمایش PDF" src=""></iframe>
+          <div id="pdfEmptyState">
+            <svg class="pdf-empty-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            <div class="pdf-empty-title">پیش‌نمایش PDF هنوز کامپایل نشده است</div>
+            <div class="pdf-empty-desc">برای ایجاد خروجی استاندارد با موتور XeLaTeX و فونت فارسی Peyda، روی دکمه کامپایل زیر کلیک کنید.</div>
+            <button class="tactile-btn btn-tactile-green" onclick="CanvasApp.compileXeLaTeX()" style="margin-top: 8px;">
+              <span>کامپایل نخستین بار PDF</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pane 3: Full TeX Code Editor -->
+      <div class="app-pane" id="paneTex">
+        <div class="pane-toolbar">
+          <div class="pane-toolbar-title">
+            <svg class="svg-icon" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>سورس کد کامل XeLaTeX / TikZ (همگام‌سازی دوطرفه با بوم)</span>
+          </div>
+          <div class="pane-toolbar-actions">
+            <button class="tactile-btn btn-sm btn-tactile-green" onclick="CanvasApp.compileXeLaTeX()" title="کامپایل به PDF">کامپایل PDF</button>
+            <button class="tactile-btn btn-sm btn-tactile-blue" onclick="CanvasApp.applyTexFromDrawer()" title="اعمال تغییرات متنی به بوم">اعمال به بوم</button>
+            <button class="tactile-btn btn-sm btn-tactile-dark" onclick="CanvasApp.copyTexCode()" title="کپی کردن کل کد">کپی کد</button>
+          </div>
+        </div>
+        <textarea id="texCodeEditor" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <!-- Version Checkpoints & Code Diff Modal -->
+    <div id="checkpointsModal" style="display: none;">
+      <div class="checkpoints-modal-backdrop" onclick="CanvasApp.closeCheckpointsModal()"></div>
+      <div class="checkpoints-modal-card">
+        <div class="checkpoints-modal-header">
+          <span class="checkpoints-modal-title">
+            <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            مدیریت نسخه‌ها و چک‌پوینت‌ها
+          </span>
+          <button class="sheet-close-btn" onclick="CanvasApp.closeCheckpointsModal()" title="بستن (Esc)">✕</button>
+        </div>
+        <div class="checkpoints-modal-body">
+          <!-- Create Checkpoint -->
+          <div class="checkpoint-create-bar">
+            <input type="text" id="newCheckpointName" placeholder="نام نسخه جدید...">
+            <button class="tactile-btn btn-sm btn-tactile-green" onclick="CanvasApp.createCheckpoint()" title="ثبت چک‌پوینت جدید">
+              <svg class="svg-icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+            <button class="tactile-btn btn-sm btn-tactile-blue" onclick="CanvasApp.saveToServer()" title="ذخیره روی سرور">
+              <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline></svg>
+            </button>
+          </div>
+
+          <!-- Select Checkpoint -->
+          <div class="checkpoint-selector-bar">
+            <select id="checkpointSelect" onchange="CanvasApp.compareWithCheckpoint(this.value)"></select>
+            <button class="tactile-btn btn-sm btn-tactile-cream" onclick="CanvasApp.restoreSelectedCheckpoint()" title="بازگردانی این نسخه">
+              <svg class="svg-icon" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            </button>
+            <button class="tactile-btn btn-sm btn-tactile-dark" onclick="CanvasApp.deleteSelectedCheckpoint()" title="حذف این چک‌پوینت">
+              <svg class="svg-icon" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            </button>
+          </div>
+
+          <!-- Diff Viewer -->
+          <div style="font-size: 11px; font-weight: 800; color: #94a3b8;">تفاوت کد نسبت به نسخه انتخابی:</div>
+          <pre id="diffViewer">نسخه‌ای انتخاب نشده است.</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Node Finder Modal (Cmd+K / Ctrl+K) -->
+    <div id="quickSearchModal" style="display: none;">
+      <div class="search-modal-backdrop" onclick="CanvasApp.closeQuickSearch()"></div>
+      <div class="search-modal-card">
+        <div class="search-modal-header">
+          <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="quickSearchInput" placeholder="جستجوی سریع گره بر اساس نام یا متد (Cmd+K)..." oninput="CanvasApp.filterQuickSearchNodes(this.value)">
+          <kbd class="cmd-k-chip">ESC</kbd>
+        </div>
+        <div class="search-results-list" id="quickSearchResultsList"></div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    
+    <!-- Floating Bottom Dock: Undo, Redo, Zoom & Revert -->
+    <div id="floatingBottomDock" class="floating-bottom-dock">
+      <button id="dockBtnUndo" class="dock-btn" onclick="CanvasApp.undo()" title="بازگرداندن (Undo / Cmd+Z)" disabled>
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 7v6h6"></path><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path></svg>
+        <span class="dock-badge" id="dockUndoBadge">0</span>
+      </button>
+      <button id="dockBtnRedo" class="dock-btn" onclick="CanvasApp.redo()" title="تکرار (Redo / Cmd+Y)" disabled>
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 7v6h-6"></path><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"></path></svg>
+        <span class="dock-badge" id="dockRedoBadge">0</span>
+      </button>
+      <div class="dock-divider"></div>
+      <button class="dock-btn dock-btn-icon" onclick="CanvasApp.fitAll(true)" title="تنظیم کامل کادر دید (Fit All)">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+      </button>
+      <button class="dock-btn dock-btn-text" onclick="CanvasApp.resetZoom()" title="مقیاس ۱:۱">1:1</button>
+      <button id="btnRevertDraft" class="dock-btn dock-btn-revert" onclick="CanvasApp.revertDraft()" title="بازنشانی تغییرات پیش‌نویس به نسخه اصلی" style="display: none;">
+        <span>بازنشانی</span>
+      </button>
+    </div>
+
+    <div id="toastNotification">اعلان</div>
+
+    <!-- Global Drag & Drop Overlay -->
+    <div id="globalDropOverlay" class="global-drop-overlay">
+      <div class="drop-overlay-card">
+        <div class="drop-icon-pulse">
+          <svg class="svg-icon" style="width: 32px; height: 32px;" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+        </div>
+        <div class="drop-title">فلوچارت XeLaTeX را رها کنید</div>
+        <div class="drop-subtitle">بارگذاری بلادرنگ روی بوم و تطبیق هوشمند خودکار با طبقه‌بندی ضایعات دهان و فک</div>
+        <div class="drop-hint">
+          <kbd style="background: rgba(255,255,255,0.15); padding: 2px 6px; border-radius: 4px;">Ctrl+V</kbd> یا <kbd style="background: rgba(255,255,255,0.15); padding: 2px 6px; border-radius: 4px;">Cmd+V</kbd>
+          جای‌گذاری مستقیم متن کد TeX در هر نقطه از صفحه نیز پشتیبانی می‌شود
+        </div>
+      </div>
+    </div>
+
+    <!-- Taxonomy Matching & Assignment Modal -->
+    <div id="taxonomyMatchModal" class="tax-match-backdrop" style="display: none;">
+      <div class="tax-match-card">
+        <div class="tax-match-header">
+          <div class="tax-match-title-row">
+            <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <span>تعیین جایگاه فلوچارت در طبقه‌بندی پاتولوژی دهان</span>
+          </div>
+          <button class="sheet-close-btn" onclick="CanvasApp.closeTaxonomyMatchModal()" title="بستن (Esc)">✕</button>
+        </div>
+        <div class="tax-match-body">
+          <div class="tax-match-detected-box">
+            <span class="detected-label">عنوان استخراج‌شده از سورس سند:</span>
+            <span class="detected-val" id="taxMatchDetectedTitle">در حال بررسی...</span>
+          </div>
+          <p class="tax-match-instruction">
+            عنوان ضایعه به صورت ۱۰۰٪ قطعی تطبیق نیافت. لطفاً ضایعه هدف را از فهرست زیر انتخاب کنید، یا آن را به عنوان یک فلوچارت مستقل ذخیره نمایید:
+          </p>
+          <input type="text" id="taxMatchSearchInput" class="tax-match-search-input" placeholder="جستجوی سریع ضایعه (انگلیسی، فارسی، یا کد اختصاری مانند OKC)..." oninput="CanvasApp.filterTaxMatchList(this.value)">
+          <div class="tax-match-list" id="taxMatchList"></div>
+          <div class="tax-match-footer">
+            <button class="tactile-btn btn-sm btn-tactile-dark" onclick="CanvasApp.loadAsCustomDocument()">
+              بارگذاری به عنوان فلوچارت آزاد / جدید
+            </button>
+            <button class="tactile-btn btn-sm btn-tactile-cream" onclick="CanvasApp.closeTaxonomyMatchModal()">
+              انصراف
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="canvas.js?v=3.2.0"></script>
+</body>
+</html>

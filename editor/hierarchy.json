@@ -1,0 +1,300 @@
+[
+  {
+    "id": "fibro_osseous",
+    "title": "ضایعات Fibro-Osseous",
+    "badge": "۳ ضایعه بالینی",
+    "items": [
+      {
+        "id": "fibrous_dysplasia",
+        "title": "فیبروز دیسپلازی (Fibrous Dysplasia)",
+        "desc": "نمای شیشه مات در سی‌تی، موتاسیون GNAS، شیو کردن کانتور استخوان و منع پرتوتابی",
+        "doc": "fibrous_dysplasia"
+      },
+      {
+        "id": "juvenile_ossifying_fibroma",
+        "title": "Juvenile Ossifying Fibroma (JOF)",
+        "desc": "رفتار تهاجمی سریع در سنین پایین، تیپ ترابکولار یا پساموماتوئید، انوکلئاسیون وسیع با مارجین",
+        "doc": "juvenile_ossifying_fibroma"
+      },
+      {
+        "id": "ossifying_fibroma",
+        "title": "Ossifying Fibroma (OF)",
+        "desc": "نئوپلاسم حقیقی با کپسول مجزا و اتساع کورتکس، انوکلئاسیون و کورتاژ محافظه‌کارانه",
+        "doc": "ossifying_fibroma"
+      }
+    ]
+  },
+  {
+    "id": "inflammatory",
+    "title": "ضایعات التهابی",
+    "badge": "۳ ضایعه بالینی",
+    "items": [
+      {
+        "id": "osteonecrosis_mandible",
+        "title": "استئونکروز مندیبل (MRONJ / Osteonecrosis)",
+        "desc": "استخوان اکسپوز بیش از ۸ هفته با سابقه آنتی‌رزورپتیو یا رادیوتراپی، دبریدمان جراحی و آنتی‌بیوتیک",
+        "doc": "osteonecrosis_mandible"
+      },
+      {
+        "id": "pyogenic_granuloma",
+        "title": "پایوژنیک گرانولوما (Pyogenic Granuloma)",
+        "desc": "واکنش هایپرپلاستیک عروقی به جرم و محرک موضعی، اکسیزیون جراحی کامل تا پریوست",
+        "doc": "pyogenic_granuloma"
+      },
+      {
+        "id": "radicular_cyst",
+        "title": "رادیکولار سیست (Radicular Cyst)",
+        "desc": "شایع‌ترین کیست فک با منشأ اپی‌تلیوم مالاسز در آپکس دندان نکروز، درمان ریشه یا انوکلئاسیون",
+        "doc": "radicular_cyst"
+      }
+    ]
+  },
+  {
+    "id": "benign_mesenchymal",
+    "title": "تومورهای خوش‌خیم مزانشیمی",
+    "badge": "۹ ضایعه بالینی",
+    "items": [
+      {
+        "id": "capillary_hemangioma",
+        "title": "Capillary Hemangioma",
+        "desc": "پرولیفراسیون عروق مویرگی، اسکلروتراپی یا لیزر اگزیرزیس، رد مالفورماسیون عروقی",
+        "doc": "capillary_hemangioma"
+      },
+      {
+        "id": "lymphangioma",
+        "title": "لنفانژیوم (Lymphangioma)",
+        "desc": "نمای دانه‌های وزیکولار تخم قورباغه‌ای در زبان، اکسیزیون محافظه‌کارانه با توجه به پیش‌آگهی عود",
+        "doc": "lymphangioma"
+      },
+      {
+        "id": "lipomatous_tumor",
+        "title": "لیپوماتوز تومور (Lipoma / Lipomatous)",
+        "desc": "توده نرم زرد رنگ با بافت آدیپوز بالغ و شناوری در فرمالین، اکسیزیون ساده",
+        "doc": "lipomatous_tumor"
+      },
+      {
+        "id": "plexiform_neurofibroma",
+        "title": "پلکسی‌فرم نوروفیبروما (Plexiform Neurofibroma)",
+        "desc": "پاتوگنومونیک نوروفیبروماتوز نوع ۱ (NF-1)، نمای کیسه کرم در لمس و ریسک بدخیمی MPNST",
+        "doc": "plexiform_neurofibroma"
+      },
+      {
+        "id": "fibro_fatty_tissue",
+        "title": "Fibro-fatty Tissue (ضایعه فیبروفتی)",
+        "desc": "بافت واکنشی فیبروز همراه با نفوذ چربی در استخوان اسفنجی فک، ارزیابی بیوپسی جهت رد استئیت",
+        "doc": "fibro_fatty_tissue"
+      },
+      {
+        "id": "fibromatosis",
+        "title": "فیبروماتوزیس (Desmoid / Fibromatosis)",
+        "desc": "نئوپلاسم فیبروبلاستیک با تهاجم موضعی و عدم متاستاز، رزکسیون وسیع با مارجین پاک",
+        "doc": "fibromatosis"
+      },
+      {
+        "id": "inflammatory_myofibroblastic_tumor",
+        "title": "Inflammatory Myofibroblastic Tumor (IMT)",
+        "desc": "پرولیفراسیون میوفیبروبلاست‌ها با استرومای التهابی و بازآرایی ALK، رزکسیون جراحی با مانیتورینگ",
+        "doc": "inflammatory_myofibroblastic_tumor"
+      },
+      {
+        "id": "desmoplastic_fibroma",
+        "title": "دسموپلاستیک فیبروما (با منشأ استخوانی)",
+        "desc": "تومور مهاجم استخوان با ساختار کلاژنی متراکم، رزکسیون فک به علت نرخ عود بالای کورتاژ",
+        "doc": "desmoplastic_fibroma"
+      },
+      {
+        "id": "osteoma",
+        "title": "استئوما (Osteoma با منشأ استخوانی)",
+        "desc": "توده متراکم کورتیکال/کنسلوس، غربالگری پولیپ‌های روده و سندرم گاردنر (Gardner)",
+        "doc": "osteoma"
+      }
+    ]
+  },
+  {
+    "id": "odontogenic_tumors",
+    "title": "تومورهای ادنتوژنیک",
+    "badge": "۷ ضایعه بالینی",
+    "items": [
+      {
+        "id": "ameloblastoma",
+        "title": "آملوبلاستوما (Ameloblastoma)",
+        "desc": "نئوپلاسم اپی‌تلیال مهاجم، نمای صابونی در رادیوگرافی، رزکسیون با مارجین ۱ الی ۱.۵ سانتی‌متر",
+        "doc": "odontogenic_tumors"
+      },
+      {
+        "id": "odontogenic_fibroma",
+        "title": "ادنتوژنیک فیبروما (Odontogenic Fibroma)",
+        "desc": "مزانشیمی خوش‌خیم سنترال یا محیطی، انوکلئاسیون و کورتاژ بدون تمایل شدید به عود",
+        "doc": "odontogenic_fibroma"
+      },
+      {
+        "id": "odontogenic_myxoma",
+        "title": "ادنتوژنیک میگزوما (Odontogenic Myxoma)",
+        "desc": "مزانشیمی ژلاتینی فاقد کپسول با تحلیل ترابکولار، رزکسیون وسیع با مارجین سالم",
+        "doc": "odontogenic_tumors"
+      },
+      {
+        "id": "cementoblastoma",
+        "title": "سمنتوبلاستوما (Cementoblastoma)",
+        "desc": "توده اوپک متصل به ریشه دندان با هاله شفاف محیطی، خارج کردن دندان همراه با ضایعه",
+        "doc": "cementoblastoma"
+      },
+      {
+        "id": "odontoma",
+        "title": "ادنتوما (Odontoma کمپلکس و کامپوند)",
+        "desc": "هامارتومای کلسسیفیه با بافت مینا و عاج، انوکلئاسیون ساده با پیش‌آگهی قطعی",
+        "doc": "odontoma"
+      },
+      {
+        "id": "ameloblastic_fibroma",
+        "title": "املوبلاستیک فیبروما (Ameloblastic Fibroma)",
+        "desc": "تومور مخلوط اپی‌تلیال-مزانشیمی در کودکان، انوکلئاسیون اولیه و بررسی عود به سارکوما",
+        "doc": "ameloblastic_fibroma"
+      },
+      {
+        "id": "ameloblastic_fibro_odontoma",
+        "title": "املوبلاستیک فیبروادنتوم (AFO)",
+        "desc": "ضایعه مخلوط با حضور مواد سخت دندانی در سنین رویش دندان، انوکلئاسیون و حفظ دندان دائم",
+        "doc": "ameloblastic_fibro_odontoma"
+      }
+    ]
+  },
+  {
+    "id": "odontogenic_cysts",
+    "title": "ضایعات کیستیک ادنتوژنیک",
+    "badge": "۴ ضایعه بالینی",
+    "items": [
+      {
+        "id": "dentigerous_cyst",
+        "title": "دنتیژروس (Dentigerous Cyst)",
+        "desc": "کیست متصل به طوق دندان نهفته، انوکلئاسیون همراه با خارج کردن یا هدایت ارتودنسی دندان",
+        "doc": "dentigerous_cyst"
+      },
+      {
+        "id": "inflammatory_dentigerous_cyst",
+        "title": "دنتیژروس سیست التهابی",
+        "desc": "کیست فولیکولار با التهاب ثانویه و تغییرات پاتولوژیک جدار، انوکلئاسیون کامل",
+        "doc": "inflammatory_dentigerous_cyst"
+      },
+      {
+        "id": "odontogenic_keratocyst",
+        "title": "ادنتوژنیک کراتوسیست (OKC)",
+        "desc": "جدار کراتینیزه ۶ تا ۸ لایه، تمایل به عود بالا، انوکلئاسیون با محلول کارنوی یا کرایوتراپی",
+        "doc": "odontogenic_keratocyst"
+      },
+      {
+        "id": "eruption_cyst",
+        "title": "Eruption Cyst (کیست رویشی)",
+        "desc": "تجمع مایع بر روی تاج دندان در حال رویش، اکسیزیون سقف کیست جهت تسهیل رویش",
+        "doc": "eruption_cyst"
+      }
+    ]
+  },
+  {
+    "id": "developmental",
+    "title": "ضایعات تکاملی",
+    "badge": "۶ ضایعه بالینی",
+    "items": [
+      {
+        "id": "cgcg",
+        "title": "CGCG (گرانولوم سلول غول‌آسای مرکزی)",
+        "desc": "فرم تهاجمی و غیرتهاجمی، غربالگری هیپرپاراتیروئیدی، کورتاژ، کورتیکواستروئید یا دنوزوماب",
+        "doc": "cgcg"
+      },
+      {
+        "id": "reparative_cgcg",
+        "title": "Reparative CGCG",
+        "desc": "ضایعه ترمیمی غیرتهاجمی با فیبروز بیشتر و سلول‌های غول‌آسای پراکنده، کورتاژ ساده",
+        "doc": "reparative_cgcg"
+      },
+      {
+        "id": "aneurysmal_bone_cyst",
+        "title": "Abc (Aneurysmal Bone Cyst)",
+        "desc": "فضاهای پر از خون کاذب با دیواره فیبروز، کورتاژ با کرایوسرجری به علت عودهای مکرر",
+        "doc": "aneurysmal_bone_cyst"
+      },
+      {
+        "id": "brown_tumor",
+        "title": "Brown Tumor (تومور قهوه‌ای پاراتیروئید)",
+        "desc": "تظاهر استخوانی هایپرپاراتیروئیدیسم اولیه/ثانویه، کنترل آدنوم پاراتیروئید و پسرفت خودبه‌خودی",
+        "doc": "brown_tumor"
+      },
+      {
+        "id": "cherubism",
+        "title": "چرابیسم (Cherubism)",
+        "desc": "ضایعه دوطرفه فکین وابسته به ژن SH3BP2 با رخساره فرشته‌مانند، سیر پس‌رونده پس از بلوغ",
+        "doc": "cherubism"
+      },
+      {
+        "id": "giant_cell_neoplasm",
+        "title": "نئوپلاسم سلول جاینت (Giant Cell Tumor)",
+        "desc": "تومور ژانت سل واقعی فک با پتانسیل عود بالا، رزکسیون موضعی وسیع",
+        "doc": "giant_cell_neoplasm"
+      }
+    ]
+  },
+  {
+    "id": "benign_epithelial",
+    "title": "تومورهای خوش‌خیم اپیتلیالی",
+    "badge": "۱ ضایعه بالینی",
+    "items": [
+      {
+        "id": "squamous_papilloma",
+        "title": "اسکواموس پاپیلوما (Squamous Papilloma)",
+        "desc": "ضایعه گل‌کلمی با افکنش‌های انگشتی ناشی از HPV 6/11، بیوپسی اکسیزیونال از پایه ساقه",
+        "doc": "squamous_papilloma"
+      }
+    ]
+  },
+  {
+    "id": "non_odontogenic_cysts",
+    "title": "ضایعات کیستیک غیر ادنتوژنیک",
+    "badge": "۱ ضایعه بالینی",
+    "items": [
+      {
+        "id": "dermoid_cyst",
+        "title": "کیست درموئید (Dermoid Cyst)",
+        "desc": "کیست تکاملی کف دهان با ضمائم پوستی، انوکلئاسیون جراحی داخل دهانی یا خارج دهانی",
+        "doc": "dermoid_cyst"
+      }
+    ]
+  },
+  {
+    "id": "malignancy",
+    "title": "بدخیمی",
+    "badge": "۲ ضایعه بالینی",
+    "items": [
+      {
+        "id": "spindle_cell_tumor",
+        "title": "Spindle Cell Tumor (کارسینوم/سارکوم سلول دوکی)",
+        "desc": "تومور بسیار بدخیم فک با ایمونوهیستوشیمی تهاجمی، رزکسیون رادیکال و رادیوشیمی‌تراپی",
+        "doc": "spindle_cell_tumor"
+      },
+      {
+        "id": "ewing_sarcoma",
+        "title": "Ewing Sarcoma (سارکوم یوئینگ فکین)",
+        "desc": "نمای پوست پیازی (Onion-skin) با سلول‌های کوچک گرد آبی، شیمی‌درمانی نئوادجوانت و جراحی",
+        "doc": "ewing_sarcoma"
+      }
+    ]
+  },
+  {
+    "id": "traumatic",
+    "title": "تروما",
+    "badge": "۲ ضایعه بالینی",
+    "items": [
+      {
+        "id": "mucocele",
+        "title": "موکوسل (Mucocele / Extravasation)",
+        "desc": "پارگی مجرای بزاقی فرعی با تجمع موسین، اکسیزیون کامل همراه با غدد بزاقی فرعی درگیر",
+        "doc": "mucocele"
+      },
+      {
+        "id": "ranula",
+        "title": "رانولا (Ranula / کیست بزاقی زیرزبان)",
+        "desc": "موکوسل بزرگ در غده زیرزبانی، مارسوپیالیزاسیون یا برداشت کامل غده ساب‌لینگوال",
+        "doc": "ranula"
+      }
+    ]
+  }
+]

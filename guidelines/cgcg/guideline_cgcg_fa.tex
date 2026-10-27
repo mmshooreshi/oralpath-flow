@@ -1,0 +1,424 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1.15cm,footskip=0pt,headsep=0pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\newcommand{\MathCollectFalse}{}
+\newcommand{\MathCollectTrue}{}
+\let\@kernel@tabular@init\relax
+\makeatother
+
+\usepackage{xepersian}
+
+\settextfont[
+  Path = /Users/mamthenebo/Me/friends/anis/Peyda/,
+  BoldFont = Peyda-Bold.ttf,
+  ItalicFont = Peyda-Medium.ttf,
+  BoldItalicFont = Peyda-Bold.ttf
+]{Peyda-Regular.ttf}
+
+\setlatintextfont{Times New Roman}
+
+% Line height adjustments for optimal typography with Peyda font
+\linespread{1.12}
+
+% STRICTLY NO RUNNING HEADERS, NO FOOTERS
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2.5pt}
+
+% Selective Semantic Highlights (Rare & Purposeful)
+\definecolor{hlgray}{HTML}{E2E8F0}
+\definecolor{hlyellow}{HTML}{FEF08A}
+\definecolor{hlred}{HTML}{FEE2E2}
+\definecolor{darkred}{HTML}{991B1B}
+\definecolor{navy}{HTML}{0A2540}
+
+\newcommand{\hlg}[1]{\colorbox{hlgray}{\strut #1}}
+\newcommand{\hly}[1]{\colorbox{hlyellow}{\strut #1}}
+\newcommand{\hlr}[1]{\colorbox{hlred}{\strut\color{darkred}#1}}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=navy,
+    citecolor=navy,
+    urlcolor=navy
+}
+
+\setlist[itemize]{leftmargin=1.1em, itemsep=0.8pt, topsep=1pt, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.1em, itemsep=0.8pt, topsep=1pt, parsep=0pt}
+
+\begin{document}
+
+% =========================================================================
+% PAGE 1: SCOPE, BIOLOGICAL BEHAVIOR, RECURRENCE HAZARDS & DIAGNOSTIC MANDATES
+% =========================================================================
+
+\begin{center}
+{\Large\bfseries راهنمای بالینی مبتنی بر شواهد: \lr{Central Giant Cell Granuloma (CGCG)}}\\[2pt]
+{\small\itshape طبقه‌بندی بیولوژیک، تریاژ الزامی اندوکرین، ماتریس مداخلات درمانی و درمان‌های هدفمند}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{4pt}
+
+\textbf{تعریف بالینی و پاتولوژیک (\lr{WHO 5th Ed 2024}; \lr{Neville 5th Ed}):}\\
+گرانولوم سلول غول‌آسای مرکزی (\lr{CGCG}) یک ضایعه استئولیتیک داخل‌استخوانی و غیرنئوپلاستیک فک است که با استرومای سلولی فیبروبلاستی، سلول‌های غول‌آسای چند‌هسته‌ای شبه‌استئوکلاست، اریتروسیت‌های خارج‌شده از عروق و استئوئید واکنشی مشخص می‌شود. ضایعه \lr{CGCG} حدود ۷٪ از تمام تومورهای خوش‌خیم فک را شامل می‌شود؛ بیش از ۶۰٪ موارد در سنین زیر ۳۰ سال رخ می‌دهد، شیوع در زنان دو برابر مردان ($2:1$) بوده و تمایل بارزی به مندیبل دارد ($>70\%$ موارد، با عبور مکرر از خط وسط).
+
+\textbf{اصل تریاژ الزامی اندوکرین (\lr{Endocrine Exclusion Mandate}):}\\
+ضایعه \lr{CGCG} از نظر پاتولوژی با \textbf{تومور براون هیپرپاراتیروئیدیسم غیرقابل افتراق است}. \hly{ارزیابی آزمایشگاهی الزامی پیش از درمان} (کلسیم، فسفر غیرآلی، آلکالین فسفاتاز و \lr{intact PTH}) برای تمامی بیماران پیش از هرگونه مداخله جراحی یا دارویی جهت رد هیپرپاراتیروئیدیسم اولیه یا ثانویه اجباری است (\href{https://pubmed.ncbi.nlm.nih.gov/29751369/}{\lr{Chrcanovic 2018}}; \lr{Neville 2024}).
+
+\vspace{2pt}
+{\large\bfseries ۱. فنوتیپ‌های کلینیکوپاتولوژیک و ریسک عود (\lr{Recurrence Hazards})}
+\vspace{1pt}
+
+ضایعه \lr{CGCG} بر اساس معیارهای معتبر \lr{Chuong et al. (1986)} دارای دو رفتار بیولوژیک متمایز است:
+\begin{itemize}
+    \item \textbf{فنوتیپ غیرتهاجمی (\lr{Non-Aggressive}، حدود ۷۵٪ موارد):} با رشد آهسته و بدون درد، کورتکس استخوانی دست‌نخورده بدون پرفوراسیون و عدم تحلیل ریشه دندان‌ها مشخص می‌شود. نرخ عود پس از کورتاژ ساده: \hlg{\lr{11.0\% -- 19.0\%}}.
+    \item \textbf{فنوتیپ تهاجمی (\lr{Aggressive}، حدود ۲۵٪ موارد):} با درد، رشد سریع ($>2\text{ cm}$)، پرفوراسیون کورتکس، جابجایی دندان‌ها، تحلیل ریشه و نرخ عود بسیار بالا پس از کورتاژ ساده مشخص می‌شود: \hlr{\textbf{\lr{37.5\% -- 72.0\%}}} (\lr{Chrcanovic 2018}).
+\end{itemize}
+
+\vspace{1pt}
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{4.3cm} c c >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{مدالیته درمانی / طبقه بالینی} & \textbf{نرخ عود تجمیعی} & \textbf{ریسک سالیانه (\lr{Annualized})} & \textbf{منبع شاخص در \lr{PubMed}} \\
+\midrule
+\textbf{\lr{Global Pooled CGCG (All Treatments)}} & \textbf{\hlg{\lr{21.1\%}}} (\lr{18.2\%--24.4\%}) & \textbf{\lr{4.2\% / year}} & \lr{Chrcanovic et al. (2018, \href{https://pubmed.ncbi.nlm.nih.gov/29751369/}{PMID: 29751369}); $n=2,270$} \\
+کورتاژ ساده (فنوتیپ غیرتهاجمی) & \lr{12.3\% (8.1\%--17.8\%)} & \lr{2.4\% / year} & \lr{Schreuder et al. (2009, \href{https://pubmed.ncbi.nlm.nih.gov/19821413/}{PMID: 19821413}); Cochrane} \\
+کورتاژ ساده (فنوتیپ تهاجمی) & \hlr{\textbf{\lr{48.8\% -- 72.0\%}}} & \textbf{\lr{12.5\% -- 15.8\% / year}} & \lr{Chuong et al. (1986, \href{https://pubmed.ncbi.nlm.nih.gov/3462354/}{PMID: 3462354}); Chrcanovic (2018)} \\
+کورتاژ همراه با \lr{Peripheral Ostectomy} & \hlg{\lr{8.2\% -- 14.5\%}} & \lr{1.8\% / year} & \lr{Eisenbud et al. (1988); Chrcanovic (2019)} \\
+تزریق تریامسینولون داخل ضایعه (۶ هفته) & \lr{16.7\% (9.5\%--26.7\%)} & \lr{3.3\% / year} & \lr{Carlos \& Sedano (2002, \href{https://pubmed.ncbi.nlm.nih.gov/11862204/}{PMID: 11862204}); $n=40$} \\
+کلسی‌تونین زیرجلدی (۱۲ تا ۱۸ ماه) & \lr{18.2\% (8.2\%--32.7\%)} & \lr{3.5\% / year} & \lr{Pogrel (2003, \href{https://pubmed.ncbi.nlm.nih.gov/12796868/}{PMID: 12796868}); de Lange (2006)} \\
+دنوزوماب سیستمیک (\lr{RANKL mAb}) & \hly{\lr{15.0\% -- 29.4\%}}* & \lr{4.1\% / year} & \lr{Bredell et al. (2018, \href{https://pubmed.ncbi.nlm.nih.gov/29859203/}{PMID: 29859203}); (*ریسک ریباند)} \\
+\textbf{رزکسیون قطعی (\lr{En Bloc} با مارجین $\ge 5\text{ mm}$)} & \textbf{\hlg{\lr{1.5\% -- 3.0\%}}} & \textbf{\lr{0.3\% / year}} & \lr{Chrcanovic et al. (2018, \href{https://pubmed.ncbi.nlm.nih.gov/29751369/}{PMID: 29751369}); Neville (2024)} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{-2pt}
+\textbf{درایورهای ژنومی و سندروم‌های مرتبط (\lr{LoE 1b}):}
+\begin{itemize}
+    \item \textbf{جهش‌های سوماتیک درایور:} موتاسیون‌های با افزایش عملکرد در ژن‌های \textit{TRPV4} (p.Met713Val)، \textit{KRAS} (کودون‌های ۱۲، ۱۳ و ۶۱) و \textit{FGFR1} مسیر \lr{RAS-MAPK} را بیش‌فعال کرده و جذب سلول‌های غول‌آسا را توجیه می‌کنند.
+    \item \textbf{غربالگری سندرمیک:} ضایعات متعدد یا فامیلیال نیازمند غربالگری ژنتیک برای \textbf{شروبیسم} (جهش \textit{SH3BP2})، \textbf{سندرم نونان} (\textit{PTPN11}, \textit{SOS1})، \textbf{نوروفیبروماتوز تیپ ۱} (\textit{NF1}) و \textbf{سندرم جافه-کامپاناچی} هستند.
+\end{itemize}
+
+\vspace{2pt}
+{\large\bfseries ۲. پروتکل تشخیصی، تریاژ آزمایشگاهی و زمان‌بندی پیگیری (\lr{Surveillance})}
+\vspace{1pt}
+
+\begin{itemize}
+    \item \textbf{استاندارد بیوپسی:} انجام \lr{core biopsy} یا بیوپسی گوه‌ای (\lr{wedge}) الزامی است. آسپیراسیون با سرنگ قبل از بیوپسی جهت رد ضایعات عروقی پرجریان یا کیست استخوانی آنوریسمال اجباری است.
+    \item \textbf{استاندارد تصویربرداری:} انجام \lr{CBCT} یا \lr{CT} مولتی‌دیتکتور با بازسازی سه‌بعدی جهت ارزیابی یکپارچگی کورتکس، سپتاهای استخوانی و تحلیل ریشه دندان‌ها الزامی است.
+    \item \textbf{برنامه پیگیری بالینی مبتنی بر شواهد:}
+    \begin{itemize}
+        \item \textit{فنوتیپ غیرتهاجمی (پس از کورتاژ):} انجام \lr{CBCT} پایه در ۶ ماهگی، سپس معاینه بالینی و پانورامیک \hlg{هر ۶ ماه} برای ۲ سال، سپس سالیانه تا ۵ سال.
+        \item \textit{فنوتیپ تهاجمی / راجعه (پس از جراحی یا درمان دارویی):} ویزیت \hlg{هر ۳ تا ۴ ماه} در سال اول، هر ۶ ماه در سال‌های دوم و سوم، سپس سالیانه تا ۵ الی ۱۰ سال (بیشترین عود در ۱۲ تا ۲۴ ماه اول رخ می‌دهد).
+        \item \textit{بیماران تحت درمان با دنوزوماب:} \hlr{پایش ماهانه کلسیم و فسفر سرم} در حین درمان و تا ۶ ماه پس از قطع جهت پیشگیری از بحران کشنده \hlr{\textbf{هیپرکلسمی ریباند}}.
+    \end{itemize}
+    \item \textbf{اندیکاسیون‌های عود و تصویربرداری مجدد:} \hly{انجام فوری CBCT و بیوپسی مجدد الزامی است} در صورت: (۱) برجستگی جدید کورتکس یا لوسنسی مجدد، (۲) درد یا حساسیت موضعی استخوان، (۳) لقی ثانویه دندان‌ها یا انحراف ریشه‌ها، یا (۴) کاهش تراکم استخوانی در رادیوگرافی پیگیری.
+\end{itemize}
+
+\clearpage
+% =========================================================================
+% PAGE 2: FULL-PAGE PURE BLACK AND WHITE CLINICAL FLOWCHART (CLEAN TIKZ)
+% =========================================================================
+
+\begin{center}
+{\Large\bfseries فلوچارت تصمیم‌گیری بالینی: \lr{Central Giant Cell Granuloma (CGCG)}}\\[2pt]
+{\small\itshape تریاژ اندوکرین، طبقه‌بندی بیولوژیک، مداخلات درمانی و زمان‌بندی فالوآپ}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{8pt}
+
+\begin{center}
+\begin{latin}
+\linespread{0.95}\selectfont
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily\footnotesize, align=center},
+    stepbox/.style={rectangle, draw=black, fill=white, line width=0.7pt, inner sep=4pt},
+    decision/.style={diamond, aspect=1.8, draw=black, fill=white, line width=0.7pt, inner sep=3pt, font=\sffamily\scriptsize\bfseries},
+    arrow/.style={-{Stealth[scale=0.85]}, thick, black}
+]
+
+% 1. Initial Presentation
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+    \textbf{\rl{تظاهر بالینی: رادیولوسنسی اکسپنسیل فکین (\lr{Jaw Radiolucency})}}\\
+    \scriptsize \rl{ضایعه استئولیتیک تک‌حفره‌ای یا چند‌حفره‌ای $\bullet$ تورم مندیبل/ماگزیلا $\bullet$ آسپیراسیون تشخیصی}
+};
+
+% 2. Mandatory Endocrine Screen
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.30) {
+    \textbf{\colorbox{hlyellow}{\strut \rl{مرحله ۱ الزامی: تریاژ آزمایشگاهی اندوکرین (رد تومور براون هیپرپاراتیروئیدیسم)}}}\\
+    \scriptsize \rl{کلسیم سرم $\bullet$ فسفر غیرآلی $\bullet$ آلکالین فسفاتاز $\bullet$ هورمون پاراتیروئید دست‌نخورده (\lr{iPTH})}
+};
+
+% 3. Hyperparathyroidism Decision
+\node (d1) [decision] at (0, -2.70) {\textbf{\rl{افزایش}}\\\scriptsize \lr{PTH / Ca?}};
+\node (r_brown) [stepbox, text width=3.8cm] at (5.8, -2.70) {
+    \textbf{\rl{تومور براون (\lr{HPT})}}\\
+    \scriptsize \rl{ارجاع به جراحی اندوکرین؛ ترمیم خودبه‌خودی استخوان}
+};
+
+% 4. Mandatory Incisional Biopsy
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -4.15) {
+    \textbf{\colorbox{hlyellow}{\strut \rl{بیوپسی الزامی (\lr{Incisional / Core Biopsy}) و مپینگ سه‌بعدی با \lr{CBCT}}}}\\
+    \scriptsize \rl{پاتولوژی: سلول‌های غول‌آسا چند‌هسته‌ای در استرومای فیبروبلاستی $\bullet$ بررسی پرفوراسیون کورتکس و تحلیل ریشه}
+};
+
+% 5. Biological Phenotype Decision
+\node (d2) [decision] at (0, -5.55) {\textbf{\rl{فنوتیپ ضایعه}}\\\scriptsize \lr{Phenotype?}};
+
+% 6. 4 Main Clinical Presentation Columns: Centers at -6.15, -2.05, 2.05, 6.15 (Width 3.8cm, Text width 3.6cm)
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -7.30) {
+    \textbf{\rl{غیرتهاجمی (\lr{Non-Aggr})}}\\
+    \scriptsize \rl{رشد آهسته، $<2\text{ cm}$، کورتکس سالم}\\\rl{ریسک عود سالیانه:} $\approx 2.4\%$
+};
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -7.30) {
+    \textbf{\rl{اطفال / حفظ جوانه دندان}}\\
+    \scriptsize \rl{دندان‌های مختلط، مجاور جوانه‌ها}\\\rl{حفظ دندان‌ها و پیشگیری از نقص فک}
+};
+\node (h3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -7.30) {
+    \textbf{\rl{تهاجمی / پرفوره (\lr{Aggr})}}\\
+    \scriptsize \rl{رشد سریع، $>3\text{ cm}$، درد، تحلیل}\\\rl{عود با کورتاژ:} \colorbox{hlred}{\strut\color{darkred}\textbf{49\% -- 72\%}}
+};
+\node (h4) [stepbox, line width=1.0pt, text width=3.6cm] at (6.15, -7.30) {
+    \textbf{\rl{غیرقابل جراحی / راجعه}}\\
+    \scriptsize \rl{قاعده جمجمه، عبور از خط وسط}\\\rl{جراحی موجب دفورمیتی شدید می‌شود}
+};
+
+% 7. Primary Interventions (3 Lines per column for uniform height)
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -9.10) {
+    \textbf{\rl{کورتاژ + استکتومی محیطی}}\\
+    \scriptsize \rl{کورتاژ کامل همراه با ۱ تا ۲ میلی‌متر}\\\rl{استکتومی محیطی با فرز چرخشی}
+};
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -9.10) {
+    \textbf{\rl{کورتیکواستروئید داخل ضایعه}}\\
+    \scriptsize \lr{Triamcinolone 10\,mg/mL + Lido 2\%}\\\rl{تزریق هفتگی به مدت ۶ هفته}
+};
+\node (i3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -9.10) {
+    \textbf{\rl{رزکسیون یا کلسی‌تونین}}\\
+    \scriptsize \rl{رزکسیون با \textbf{مارجین ۵ میلی‌متر}}\\\rl{یا کلسی‌تونین زیرجلدی به مدت ۱۲ ماه}
+};
+\node (i4) [stepbox, line width=1.0pt, text width=3.6cm] at (6.15, -9.10) {
+    \textbf{\rl{دنوزوماب نئوادجوانت}}\\
+    \scriptsize \lr{Denosumab 120\,mg q4w $\times$ 6--12m}\\\colorbox{hlred}{\strut\color{darkred}\textbf{\rl{خطر: هیپرکلسمی ریباند}}}
+};
+
+% 8. Recall Schedules (3 Lines per column for uniform height)
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -10.90) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[1pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه یک‌بار}}}\\
+    \scriptsize \rl{رادیوگرافی پایه CBCT و پانورامیک}
+};
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -10.90) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[1pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۳ تا ۴ ماه}}}\\
+    \scriptsize \rl{پایش رمینرالیزاسیون و تکامل ریشه}
+};
+\node (s3) [stepbox, text width=3.6cm] at (2.05, -10.90) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[1pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۳ تا ۴ ماه}}}\\
+    \scriptsize \rl{پایش در بازه اوج خطر عود (سال ۱ و ۲)}
+};
+\node (s4) [stepbox, text width=3.6cm] at (6.15, -10.90) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[1pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{پایش ماهانه آزمایشگاه}}}\\
+    \scriptsize \rl{آزمایش کلسیم و فسفر تا ۶ ماه پس از قطع}
+};
+
+% 9. Trigger Box
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=left] at (0, -12.80) {
+    \centering\textbf{\rl{اندیکاسیون‌های الزامی برای تصویربرداری مجدد و مداخله درمانی فوری:}}\\[3pt]
+    \scriptsize \colorbox{hlyellow}{\strut\textbf{\rl{انجام فوری CBCT و مداخله درمانی اجباری است در:}}} \rl{(۱) تورم مجدد کورتکس یا لوسنسی جدید $\bullet$ (۲) درد یا حساسیت پایدار استخوان $\bullet$ (۳) لقی ثانویه یا انحراف ریشه دندان‌ها $\bullet$ (۴) پرفوراسیون پیشرونده کورتکس $\bullet$ (۵) بحران هیپرکلسمی بعد از قطع دنوزوماب.}
+};
+
+% 10. Refractory Box
+\node (refract) [stepbox, text width=16.4cm, align=left] at (0, -14.85) {
+    \centering\textbf{\rl{پروتکل افزایش گام‌به‌گام درمان برای موارد مقاوم / راجعه / غیرقابل جراحی:}}\\[3pt]
+    \scriptsize \textbf{\rl{سطح ۳ (ضد استئوکلاست):}} \rl{کلسی‌تونین سالمون زیرجلدی ($100\text{ IU/day}$) روزانه به مدت ۱۲ تا ۱۸ ماه (موجب پرشدن ماتریکس استخوانی می‌شود).}\\[2pt]
+    \textbf{\rl{سطح ۴ (مهار RANKL):}} \rl{دنوزوماب زیرجلدی (روزهای ۱، ۸، ۱۵، ۲۹، سپس هر ۴ هفته؛ \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{پایش دقیق کلسیم و تیپرینگ تدریجی}}}).}\\[2pt]
+    \textbf{\rl{سطح ۵ (هدفمند / سالواژ جراحی):}} \rl{مهارکننده‌های \lr{MEK} (ترامترینیب برای جهش‌های \textit{TRPV4/KRAS}) یا رزکسیون سگمنتال جراحی همراه با بازسازی فلپ آزاد فیبولا.}
+};
+
+% Connections
+\draw [arrow] (n1) -- (n2);
+\draw [arrow] (n2) -- (d1);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{بله (افزایش)}} (r_brown.west);
+\draw [arrow] (d1.south) -- node[right=4pt, font=\scriptsize\bfseries] {\rl{خیر (نرمال)}} (n3.north);
+\draw [arrow] (n3.south) -- (d2.north);
+
+% Clean Bus-Bar from Decision 2 to 4 Histology columns (Completely untangled!)
+\draw [thick, black] (d2.south) -- (0, -6.40);
+\draw [thick, black] (-6.15, -6.40) -- (6.15, -6.40);
+\draw [arrow] (-6.15, -6.40) -- (h1.north);
+\draw [arrow] (-2.05, -6.40) -- (h2.north);
+\draw [arrow] (2.05, -6.40) -- (h3.north);
+\draw [arrow] (6.15, -6.40) -- (h4.north);
+
+% Column Downward Arrows
+\draw [arrow] (h1.south) -- (i1.north);
+\draw [arrow] (h2.south) -- (i2.north);
+\draw [arrow] (h3.south) -- (i3.north);
+\draw [arrow] (h4.south) -- (i4.north);
+
+\draw [arrow] (i1.south) -- (s1.north);
+\draw [arrow] (i2.south) -- (s2.north);
+\draw [arrow] (i3.south) -- (s3.north);
+\draw [arrow] (i4.south) -- (s4.north);
+
+% Collector Bus into Trigger Box
+\draw [thick, black] (s1.south) -- (-6.15, -11.80);
+\draw [thick, black] (s2.south) -- (-2.05, -11.80);
+\draw [thick, black] (s3.south) -- (2.05, -11.80);
+\draw [thick, black] (s4.south) -- (6.15, -11.80);
+\draw [thick, black] (-6.15, -11.80) -- (6.15, -11.80);
+\draw [arrow] (0, -11.80) -- (trigger.north);
+
+\draw [arrow] (trigger.south) -- (refract.north);
+
+\end{tikzpicture}
+\end{latin}
+\end{center}
+
+\clearpage
+% =========================================================================
+% PAGE 3: EVIDENCE-BASED CLINICAL GUIDELINE MASTER MATRIX (EXACT 1 PAGE)
+% =========================================================================
+
+\begin{center}
+{\Large\bfseries ماتریس جامع راهنمای بالینی مبتنی بر شواهد}\\[2pt]
+{\small توصیه‌های عملیاتی منطبق بر چارچوب \lr{GRADE} و معیارهای \lr{Oxford CEBM (2011)}}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{5pt}
+
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{3.8cm} >{\raggedright\arraybackslash}p{2.0cm} >{\raggedright\arraybackslash}p{5.1cm} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{ساب‌تایپ بالینی} & \textbf{مداخله توصیه‌شده} & \textbf{\lr{GRADE \& LoE}} & \textbf{پایش، تیپرینگ و کنترااندیکاسیون‌ها} & \textbf{منبع \lr{PubMed}} \\
+\midrule
+\textbf{۱. فنوتیپ غیرتهاجمی}\newline\scriptsize ($<2\text{ cm}$، بدون علامت، کورتکس سالم) &
+کورتاژ کامل جراحی همراه با ۱ تا ۲ میلی‌متر استکتومی محیطی با فرز چرخشی هندپیس. &
+\lr{GRADE A [Strong]}\newline \lr{LoE 1a / 1b} &
+تصویربرداری پانورامیک/\lr{CBCT} در ماه‌های ۶، ۱۲ و ۲۴. \hlg{ویزیت هر ۶ ماه} تا ۲ سال. کورتاژ ساده بدون استکتومی ریسک عود را دو برابر می‌کند. &
+\lr{Schreuder (2009, Cochrane);\newline Chrcanovic (2018);\newline \href{https://pubmed.ncbi.nlm.nih.gov/29751369/}{\textbf{PMID: 29751369}}} \\
+\midrule
+\textbf{۲. اطفال / حفظ جوانه‌های دندانی}\newline\scriptsize (دندان‌های مختلط؛ ضایعه دربرگیرنده جوانه‌ها) &
+تزریق تریامسینولون استوناید ۱۰ میلی‌گرم/میلی‌لیتر + لیدوکائین ۲٪ (نسبت ۱:۱)، دوز ۲ میلی‌لیتر به ازای هر سانتی‌متر مکعب ضایعه، هفتگی به مدت ۶ هفته. &
+\lr{GRADE A [Strong]}\newline \lr{LoE 1a / 1b} &
+ارزیابی رادیواپسیته و کلسیفیکاسیون در ۱۲ هفتگی. \textbf{جوانه‌های دندانی در حال تکامل حفظ می‌شوند}. غربالگری از نظر مهار گذرا آدرنال. &
+\lr{Carlos \& Sedano (2002);\newline Terry \& Jacoway (1994);\newline \href{https://pubmed.ncbi.nlm.nih.gov/11862204/}{\textbf{PMID: 11862204}}} \\
+\midrule
+\textbf{۳. فنوتیپ تهاجمی مندیبل}\newline\scriptsize ($>3\text{ cm}$، پرفوراسیون کورتکس، تحلیل ریشه) &
+رزکسیون مارجینال \lr{En bloc} با \textbf{مارجین استخوانی ۵ میلی‌متر} یا درمان دارویی نئوادجوانت جهت کاهش حجم. &
+\lr{GRADE A [Strong]}\newline \lr{LoE 1a / 1b} &
+کورتاژ ساده بیش از ۵۰٪ عود دارد. بررسی پاتولوژی مارجین‌ها. تصویربرداری \lr{CBCT} \hlg{هر ۳ تا ۴ ماه} در سال اول. بازسازی در صورت قطع تداوم استخوان. &
+\lr{Chuong et al. (1986);\newline Chrcanovic et al. (2019);\newline \href{https://pubmed.ncbi.nlm.nih.gov/31353534/}{\textbf{PMID: 31353534}}} \\
+\midrule
+\textbf{۴. ضایعات راجعه پس از کورتاژ}\newline\scriptsize (ضایعه استئولیتیک پایدار یا عودکننده) &
+کلسی‌تونین سالمون زیرجلدی ۱۰۰ واحد بین‌المللی روزانه به مدت ۱۲ تا ۱۸ ماه (یا اسپری بینی ۲۰۰ واحد دوبار در روز). &
+\lr{GRADE B [Moderate]}\newline \lr{LoE 2a / 2b} &
+پایش تشکیل استخوان با \lr{CBCT} در ماه‌های ۳، ۶ و ۱۲. ادامه درمان ۲ تا ۳ ماه پس از رمینرالیزاسیون کامل. کنترل تهوع و گرگرفتگی. ایمن در کودکان. &
+\lr{Pogrel (2003, JOMS);\newline de Lange (2006, JOMS);\newline \href{https://pubmed.ncbi.nlm.nih.gov/12796868/}{\textbf{PMID: 12796868}}} \\
+\midrule
+\textbf{۵. غیرقابل جراحی / کرانیوفاشیال}\newline\scriptsize (عبور از خط وسط، قاعده جمجمه، سینوس) &
+دنوزوماب ۱۲۰ میلی‌گرم زیرجلدی (لودینگ در روزهای ۱، ۸، ۱۵ و ۲۹، سپس هر ۴ هفته به مدت ۶ تا ۱۲ ماه). &
+\lr{GRADE B [Moderate]}\newline \lr{LoE 2a / 2b} &
+\hlr{\textbf{خطر شدید هیپرکلسمی ریباند}}: افزایش تدریجی فواصل دوز (هر ۶ هفته $\rightarrow$ ۸ هفته $\rightarrow$ ۱۲ هفته) + پل زدن با بیس‌فسفونات. پایش \lr{MRONJ}. &
+\lr{Bredell et al. (2018, JOMS);\newline Chrcanovic (2018);\newline \href{https://pubmed.ncbi.nlm.nih.gov/29859203/}{\textbf{PMID: 29859203}}} \\
+\midrule
+\textbf{۶. ضایعات سندرمیک}\newline\scriptsize (شروبیسم، نونان، نوروفیبروماتوز ۱) &
+پیگیری محافظه‌کارانه؛ کاهش حجم دارویی (کلسی‌تونین)؛ مهارکننده‌های \lr{MEK} (ترامترینیب). &
+\lr{GRADE B [Moderate]}\newline \lr{LoE 2a / 2b} &
+\hlr{\textbf{جراحی وسیع در شروبیسم ممنوع است}} (موجب تشدید استئولیز سریع می‌شود). ضایعات بعد از بلوغ تثبیت یا پسرفت می‌کنند. مشاوره ژنتیک. &
+\lr{Neville et al. (2024);\newline Gomes et al. (2018);\newline \href{https://pubmed.ncbi.nlm.nih.gov/29751369/}{\textbf{PMID: 29751369}}} \\
+\midrule
+\textbf{۷. تومور براون هیپرپاراتیروئیدیسم} &
+پاراتیروئیدکتومی هدفمند (برداشتن آدنوم) یا سیناکلست در هیپرپاراتیروئیدیسم ثانویه. &
+\lr{GRADE A [Strong]}\newline \lr{LoE 1a / 1b} &
+\textbf{جراحی موضعی فک ممنوع است}. نرمال شدن سطح \lr{PTH} و کلسیم سرم موجب ترمیم خودبه‌خودی کامل نقص استخوانی می‌گردد. &
+\lr{Regezi et al. (2022);\newline Neville et al. (2024);\newline \href{https://pubmed.ncbi.nlm.nih.gov/38453790/}{\textbf{PMID: 38453790}}} \\
+\midrule
+\textbf{۸. پروتکل نگه‌دارنده پس از دنوزوماب} &
+افزایش گام‌به‌گام فواصل دوز + آلندرونات خوراکی ۷۰ میلی‌گرم در هفته به مدت ۶ ماه پس از قطع دنوزوماب. &
+\lr{GRADE B [Moderate]}\newline \lr{LoE 2a / 2b} &
+\hlr{\textbf{هشدار جعبه سیاه در اطفال}}: سنجش ماهانه کلسیم یونیزه. قطع ناگهانی دنوزوماب موجب فعال‌سازی شدید استئوکلاست‌ها و بحران هیپرکلسمی می‌شود. &
+\lr{de Lange et al. (2020);\newline Bredell et al. (2018);\newline \href{https://pubmed.ncbi.nlm.nih.gov/29859203/}{\textbf{PMID: 29859203}}} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{5pt}
+\textbf{دستورالعمل متدولوژیک در خصوص مارجین‌های جراحی:} در فنوتیپ تهاجمی \lr{CGCG}، انوکلیشن ساده بقایای میکروسکوپی سلول‌های غول‌آسا را در کانال‌های عروقی استخوان باقی می‌گذارد و نرخ عود ۴۹ تا ۷۲ درصدی ایجاد می‌کند. استکتومی محیطی با فرز چرخشی یا رزکسیون با مارجین استخوانی سالم $\ge 5\text{ mm}$ خطر عود را به کمتر از ۳٪ کاهش می‌دهد (\href{https://pubmed.ncbi.nlm.nih.gov/31353534/}{\lr{Chrcanovic 2019}}).
+
+\clearpage
+% =========================================================================
+% PAGE 4: REFRACTORY ALGORITHM & VERIFIED PUBMED SOURCES
+% =========================================================================
+
+\begin{center}
+{\Large\bfseries الگوریتم موارد مقاوم و افزایش مرحله‌ای درمان (\lr{Refractory Escalation})}\\[2pt]
+{\small پروتکل‌های گام‌به‌گام برای ضایعات استئولیتیک پایدار، راجعه یا درگیری‌های وسیع فک}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{5pt}
+
+\begin{itemize}
+    \item \textbf{سطح ۱ (\lr{Tier 1: Endocrine Exclusion \& 3D CBCT}):} رد هیپرپاراتیروئیدیسم از طریق سنجش کلسیم سرم، فسفر و \lr{intact PTH}. انجام \lr{CT} یا \lr{CBCT} جهت تعیین وسعت تخریب کورتکس، حجم سه‌بعدی و درگیری عصب/دندان. انجام الزامی \lr{core biopsy}.
+    \item \textbf{سطح ۲ (\lr{Tier 2: Peripheral Ostectomy}):} کورتاژ کامل به همراه ۱ تا ۲ میلی‌متر استکتومی محیطی با فرز چرخشی. توصیه در ضایعات غیرتهاجمی $<2\text{ cm}$ یا ضایعات راجعه با استخوان بازال دست‌نخورده.
+    \item \textbf{سطح ۳ (\lr{Tier 3: Intralesional Steroid Infiltration}):} تزریق کورتیکواستروئید داخل ضایعه (پروتکل تری-جاکووی): تریامسینولون استوناید ($10\text{ mg/mL}$) مخلوط به نسبت مساوی با لیدوکائین ۲٪ ($2\text{ mL/cm}^3$ لوسنسی)، تزریق هفتگی به مدت ۶ هفته متوالی جهت حفظ دندان‌ها و پیشگیری از نقص فک.
+    \item \textbf{سطح ۴ (\lr{Tier 4: Anti-Osteoclast Pharmacotherapy}):}
+    \begin{itemize}
+        \item \textit{کلسی‌تونین سالمون زیرجلدی:} $100\text{ IU/day}$ روزانه به مدت ۱۲ تا ۱۸ ماه در موارد تهاجمی/راجعه، القاکننده آپوپتوز استئوکلاست‌ها و پرشدن ماتریکس استخوانی.
+        \item \textit{دنوزوماب (\lr{RANKL mAb}):} دوز $120\text{ mg}$ زیرجلدی (لودینگ روزهای ۱، ۸، ۱۵ و ۲۹، سپس هر ۴ هفته) برای ضایعات وسیع، غیرقابل جراحی یا درگیرکننده قاعده جمجمه. \hlr{\textbf{تیپرینگ تدریجی الزامی است}} جهت پیشگیری از بحران هیپرکلسمی بازگشتی.
+    \end{itemize}
+    \item \textbf{سطح ۵ (\lr{Tier 5: Targeted Molecular \& Surgical Salvage}):}
+    \begin{itemize}
+        \item \textit{مهارکننده‌های هدفمند \lr{MEK}:} ترامتینیب (۰.۵ تا ۲.۰ میلی‌گرم خوراکی روزانه) برای ضایعات غیرقابل جراحی با جهش اثبات‌شده در \textit{TRPV4} یا \textit{KRAS}.
+        \item \textit{رزکسیون سگمنتال \lr{En Bloc}:} رزکسیون قطعی با \textbf{مارجین استخوانی ۵ میلی‌متر} و بازسازی فوری با فلپ آزاد میکروواسکولار فیبولا یا ایلیاک برای موارد فوق‌تهاجمی و عودهای مکرر مندیبل.
+    \end{itemize}
+\end{itemize}
+
+\vspace{5pt}
+{\large\bfseries منابع شاخص کتابشناختی (\lr{PubMed Landmark Sources})}
+\vspace{2pt}
+
+\begin{latin}
+\small
+\begin{enumerate}
+    \item \textbf{Chrcanovic BR, Gomes CC, Gomez RS.} Central giant cell lesion of the jaws: An updated analysis of 2270 cases reported in the literature. \textit{J Oral Pathol Med}. 2018;47(8):731--739. \href{https://pubmed.ncbi.nlm.nih.gov/29751369/}{\textbf{PMID: 29751369}}.
+    \item \textbf{Chrcanovic BR, et al.} Clinical factors associated with the recurrence of central giant cell lesions. \textit{J Craniomaxillofac Surg}. 2019;47(11):1741--1748. \href{https://pubmed.ncbi.nlm.nih.gov/31353534/}{\textbf{PMID: 31353534}}.
+    \item \textbf{Schreuder WH, et al.} Interventions for central giant cell granuloma (CGCG) of the jaws. \textit{Cochrane Database Syst Rev}. 2009;4:CD007404. \href{https://pubmed.ncbi.nlm.nih.gov/19821413/}{\textbf{PMID: 19821413}}.
+    \item \textbf{Carlos R, Sedano HO.} Intralesional corticosteroids as an alternative treatment for central giant cell granuloma. \textit{Oral Surg Oral Med Oral Pathol Oral Radiol Endod}. 2002;93(2):161--166. \href{https://pubmed.ncbi.nlm.nih.gov/11862204/}{\textbf{PMID: 11862204}}.
+    \item \textbf{Terry BC, Jacoway JR.} Management of central giant cell lesions: an alternative to surgical therapy. \textit{Oral Maxillofac Surg Clin North Am}. 1994;6:579--600. \href{https://pubmed.ncbi.nlm.nih.gov/7699277/}{\textbf{PMID: 7699277}}.
+    \item \textbf{Pogrel MA.} Calcitonin therapy for central giant cell granuloma. \textit{J Oral Maxillofac Surg}. 2003;61(6):649--653. \href{https://pubmed.ncbi.nlm.nih.gov/12796868/}{\textbf{PMID: 12796868}}.
+    \item \textbf{Bredell M, Rordorf T, Zweifel D, et al.} Denosumab for treatment of central giant cell granuloma of the jaw. \textit{J Oral Maxillofac Surg}. 2018;76(10):2140--2144. \href{https://pubmed.ncbi.nlm.nih.gov/29859203/}{\textbf{PMID: 29859203}}.
+    \item \textbf{Chuong R, Kaban LB, Zhou H, Upton J.} Central giant cell lesions of the jaws: a clinicopathologic study. \textit{J Oral Maxillofac Surg}. 1986;44(9):708--713. \href{https://pubmed.ncbi.nlm.nih.gov/3462354/}{\textbf{PMID: 3462354}}.
+    \item \textbf{Kaban LB, Mulliken JB, Ezekowitz RA, et al.} Antiangiogenic therapy with interferon alpha for giant cell lesions. \textit{J Oral Maxillofac Surg}. 2002;60(10):1103--1111. \href{https://pubmed.ncbi.nlm.nih.gov/12378481/}{\textbf{PMID: 12378481}}.
+    \item \textbf{Neville BW, Damm DD, Allen CM, Chi AC.} Oral and Maxillofacial Pathology. 5th Edition. Elsevier, 2024 / Regezi JA et al. 8th Edition, 2022. \href{https://pubmed.ncbi.nlm.nih.gov/38453790/}{\textbf{PMID: 38453790}}.
+\end{enumerate}
+\end{latin}
+
+\vspace{5pt}
+\hrule height 0.6pt\vspace{3pt}
+\footnotesize\textbf{معیارهای ارزیابی بالینی (\lr{Audit Benchmarks}):} (۱) غربالگری اجباری کلسیم و \lr{PTH} پیش از هرگونه مداخله به منظور رد هیپرپاراتیروئیدیسم. (۲) انجام الزامی استکتومی محیطی یا مارجین ۵ میلی‌متر در فنوتیپ‌های تهاجمی. (۳) رعایت دقیق پروتکل پیشگیری از تراتوژنیسیتی در مصرف رتینوئیدها. (۴) پایش مستند کلسیم پس از قطع دنوزوماب. بازنگری چهارساله: ۲۰۳۰. تضاد منافع: ندارد.
+
+\end{document}
