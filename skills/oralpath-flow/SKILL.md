@@ -182,6 +182,45 @@ Canonical compiling reference flowcharts are stored in `examples/` of this skill
 ## 6. Output Delivery Standard
 
 When synthesizing a flowchart for Anis:
-1. Provide a concise, 2-3 sentence clinicopathologic executive summary of the evidence base (WHO 5th Ed & key trials).
+1. Provide a concise clinicopathologic executive summary citing WHO 5th Ed, Neville 5th Ed, and key systematic reviews / trials with their PMIDs/DOIs.
 2. Deliver the **complete, fully compilable XeLaTeX source code** in a single clean code block (````latex ... ````).
-3. Ensure all coordinates strictly match the A4 single-page matrix.
+3. Ensure all coordinates strictly match the A4 single-page matrix with zero overflow.
+4. Include the `% === CLINICAL EVIDENCE LEDGER & PMIDS ===` comment block at the top of the TeX source code.
+
+---
+
+## 7. Super-Scientific Evidence Protocol: Beast Mode Literature Synthesis
+
+To guarantee unimpeachable clinical validity and prevent any unverified or speculative claims, the architect must execute real-time literature retrieval and citation enforcement for every generated flowchart:
+
+### A. Triangulated Evidence Sources
+Every clinical cutoff, molecular biomarker, drug regimen, surgical margin, and recurrence rate must be verified across three tiers:
+1. **Gold-Standard Ontologies:** WHO Classification of Head and Neck Tumours (5th Ed, 2024) and Neville's Oral and Maxillofacial Pathology (5th Ed).
+2. **Real-Time PubMed / NCBI Synthesis:** Query the live NCBI Entrez API via `pubmed-search` (`scripts/pubmed_query.py`) targeting Level 1 & 2 evidence (Cochrane Reviews, Network Meta-Analyses [NMAs], PRISMA-compliant systematic reviews, and prospective multicenter clinical trials from 2022–2026).
+3. **Surgical & Oncologic Consensus Guidelines:** Recommendations from the American Association of Oral and Maxillofacial Surgeons (AAOMS), International Association of Oral and Maxillofacial Surgeons (IAOMS), NCCN, and British Association of Oral and Maxillofacial Surgeons (BAOMS).
+
+### B. In-Node Micro-Citation Standard
+All statistical figures, drug concentrations, incubation times, and controversial decision branches within the TikZ nodes must carry embedded, compact Latin citation tags:
+- Format: `\lr{[\textbf{PMID: XXXXXXXX} - Author Year, Study Type]}`
+- Examples:
+  - Recurrence with enucleation vs resection: `\lr{[PMID: 36150944 - Al-Moraissi 2023 NMA]}`
+  - Alternative chemical adjuncts: `\lr{[PMID: 40269316 - Aarthi 2025 SR / PMID: 42528791 - Shelke 2026 RCT]}`
+  - Targeted therapy / Hedgehog pathway: `\lr{[PMID: 35476304 - Oginni 2023]}`
+
+### C. TeX Clinical Evidence Ledger
+Every generated `.tex` file must include an explicit structured comment ledger in its preamble listing:
+```latex
+% =========================================================================
+% CLINICAL EVIDENCE LEDGER & PMIDS (WHO 5th Ed 2024 / Landmark Trials)
+% =========================================================================
+% 1. WHO Classification of Head and Neck Tumours, 5th Ed (2024).
+% 2. Neville BW et al. Oral and Maxillofacial Pathology, 5th Ed (2024).
+% 3. PMID: 36150944 - Al-Moraissi EA et al. (Int J Oral Maxillofac Surg 2023) Network Meta-Analysis.
+% 4. PMID: 40269316 - Aarthi S et al. (Evid Based Dent 2025) Systematic Review & Meta-Analysis.
+% 5. PMID: 42528791 - Shelke H et al. (J Maxillofac Oral Surg 2026) Randomized Clinical Trial.
+% =========================================================================
+```
+
+### D. Zero-Uncited Metric Policy
+No numerical claim (percentages, millimeters, months, dosages) is permitted without a primary peer-reviewed citation. If conflicting evidence exists between trials (e.g. 5-FU vs Carnoy's solution vs cryotherapy), both modalities must be reflected with their respective comparative statistics and trial references.
+
