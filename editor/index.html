@@ -260,11 +260,16 @@
 
             <!-- Highlight Context Popover (Anchors to Active Highlight Span) -->
             <div id="highlightPopover" style="display: none;">
-              <span class="pop-label">رنگ:</span>
               <button class="pop-chip chip-yellow" onclick="CanvasApp.changeActiveHighlightColor('yellow')" title="زرد"></button>
               <button class="pop-chip chip-red" onclick="CanvasApp.changeActiveHighlightColor('red')" title="قرمز"></button>
               <button class="pop-chip chip-gray" onclick="CanvasApp.changeActiveHighlightColor('gray')" title="خاکستری"></button>
-              <button class="pop-btn-del" onclick="CanvasApp.removeActiveHighlight()" title="پاک کردن هایلایت">حذف ✕</button>
+              <button class="pop-btn-del" onclick="CanvasApp.removeActiveHighlight()" title="پاک کردن هایلایت">
+                <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; display: block;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"></path>
+                  <path d="M22 21H7"></path>
+                  <path d="m5 11 9 9"></path>
+                </svg>
+              </button>
             </div>
 
             <!-- Node Action Sheet (Smooth Non-Flickering Toolbar & Mobile Nudge Drawer) -->

@@ -1502,8 +1502,14 @@
       top = spanRect.bottom - vpRect.top;
     }
 
-    const popWidth = 190;
+    const popWidth = 110;
     left = Math.max(popWidth / 2 + 10, Math.min(vpRect.width - popWidth / 2 - 10, left));
+
+    if (!popover._stopBound) {
+      popover._stopBound = true;
+      popover.addEventListener('pointerdown', (e) => e.stopPropagation());
+      popover.addEventListener('click', (e) => e.stopPropagation());
+    }
 
     popover.style.left = `${left}px`;
     popover.style.top = `${top}px`;
@@ -1633,6 +1639,7 @@
   let isHighlightDragging = false;
   let highlightDragStartWord = null;
   let highlightDragNode = null;
+  let highlightDragPointerStart = null;
 
   function selectNode(id) {
     deselectAll();
@@ -1794,18 +1801,22 @@
           }
         }
       } else if (isHighlightDragging && highlightDragNode === n && highlightDragStartWord) {
-        const curEl = document.elementFromPoint(e.clientX, e.clientY);
-        const curW = (curEl && curEl.closest('.w')) || findClosestWord(body, e.clientX, e.clientY);
-        if (curW) {
-          clearLivePreviews();
-          const allW = Array.from(body.querySelectorAll('.w'));
-          const i1 = allW.indexOf(highlightDragStartWord);
-          const i2 = allW.indexOf(curW);
-          if (i1 !== -1 && i2 !== -1) {
-            const minI = Math.min(i1, i2);
-            const maxI = Math.max(i1, i2);
-            for (let idx = minI; idx <= maxI; idx++) {
-              allW[idx].classList.add('hl-preview-' + State.activeHighlightColor);
+        const dist = highlightDragPointerStart ? Math.hypot(e.clientX - highlightDragPointerStart.x, e.clientY - highlightDragPointerStart.y) : 10;
+        if (dist > 5) {
+          hideHighlightPopover();
+          const curEl = document.elementFromPoint(e.clientX, e.clientY);
+          const curW = (curEl && curEl.closest('.w')) || findClosestWord(body, e.clientX, e.clientY);
+          if (curW) {
+            clearLivePreviews();
+            const allW = Array.from(body.querySelectorAll('.w'));
+            const i1 = allW.indexOf(highlightDragStartWord);
+            const i2 = allW.indexOf(curW);
+            if (i1 !== -1 && i2 !== -1) {
+              const minI = Math.min(i1, i2);
+              const maxI = Math.max(i1, i2);
+              for (let idx = minI; idx <= maxI; idx++) {
+                allW[idx].classList.add('hl-preview-' + State.activeHighlightColor);
+              }
             }
           }
         }
@@ -1822,23 +1833,28 @@
     el.addEventListener('pointerdown', (e) => {
       if (body.isContentEditable || (State.isEditingText && State.activeEditingNode === n)) return;
 
-      // 1. HIGHLIGHT MODE HANDLED FIRST AND EXCLUSIVELY!
+      const existingHl = e.target.closest('.hl-yellow, .hl-red, .hl-gray');
+
+      // 1. HIGHLIGHT MODE:
       if (State.toolMode === 'highlight') {
-        const wTarget = e.target.closest('.w') || e.target.closest('.hl-yellow, .hl-red, .hl-gray') || findClosestWord(body, e.clientX, e.clientY);
+        const wTarget = e.target.closest('.w') || existingHl || findClosestWord(body, e.clientX, e.clientY);
         if (wTarget) {
           e.stopPropagation();
           isHighlightDragging = true;
           highlightDragNode = n;
           highlightDragStartWord = wTarget.classList.contains('w') ? wTarget : (wTarget.querySelector('.w') || wTarget);
+          highlightDragPointerStart = {
+            x: e.clientX,
+            y: e.clientY,
+            targetHl: existingHl,
+            time: performance.now()
+          };
           try {
             body.setPointerCapture(e.pointerId);
           } catch (err) {}
 
           clearLivePreviews();
-          const existingHl = wTarget.closest('.hl-yellow, .hl-red, .hl-gray');
-          if (existingHl) {
-            existingHl.classList.add('hl-preview-' + State.activeHighlightColor);
-          } else if (highlightDragStartWord) {
+          if (!existingHl && highlightDragStartWord) {
             highlightDragStartWord.classList.add('hl-preview-' + State.activeHighlightColor);
           }
           return;
@@ -1846,7 +1862,6 @@
       }
 
       // 2. Click an existing highlight in Select Mode -> Show Popover!
-      const existingHl = e.target.closest('.hl-yellow, .hl-red, .hl-gray');
       if (existingHl && State.toolMode === 'select') {
         e.stopPropagation();
         selectNode(n.id);
@@ -1904,6 +1919,22 @@
         }
         isHighlightDragging = false;
         clearLivePreviews();
+
+        const dist = highlightDragPointerStart ? Math.hypot(e.clientX - highlightDragPointerStart.x, e.clientY - highlightDragPointerStart.y) : 999;
+        const targetHl = highlightDragPointerStart && highlightDragPointerStart.targetHl;
+
+        // If user tapped/clicked on an existing highlight span without dragging:
+        if (targetHl && dist < 6) {
+          e.stopPropagation();
+          selectNode(n.id);
+          showHighlightPopover(targetHl, n);
+          highlightDragStartWord = null;
+          highlightDragNode = null;
+          highlightDragPointerStart = null;
+          return;
+        }
+
+        highlightDragPointerStart = null;
 
         const curEl = document.elementFromPoint(e.clientX, e.clientY);
         const curW = (curEl && curEl.closest('.w')) || findClosestWord(body, e.clientX, e.clientY) || highlightDragStartWord;
