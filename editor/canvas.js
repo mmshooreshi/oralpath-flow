@@ -1121,13 +1121,60 @@
     });
   }
 
-  function layoutEdges() {
+  function layoutEdges(fullRebuild = false) {
     if (!svgEdgeGroup) return;
-    svgEdgeGroup.innerHTML = '';
-    $$('.edge-label-pill').forEach(pill => pill.remove());
 
-    updateNodeDimensions();
+    const needsFullRebuild = fullRebuild || !State._edgesInitialized || !svgEdgeGroup.hasChildNodes();
 
+    if (needsFullRebuild) {
+      svgEdgeGroup.innerHTML = '';
+      $$('.edge-label-pill').forEach(pill => pill.remove());
+      updateNodeDimensions();
+      State._edgesInitialized = true;
+
+      State.edges.forEach((edge, index) => {
+        edge._paths = [];
+        edge._pills = [];
+        const pts = edge.points;
+        if (!pts || pts.length < 2) return;
+
+        for (let k = 0; k < pts.length - 1; k++) {
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('class', `tikz-edge-path ${edge.isBus ? 'bus-line' : ''}`);
+          path.dataset.edgeIndex = index;
+          if (!edge.isBus) {
+            path.setAttribute('marker-end', 'url(#stealth-arrow)');
+          }
+          path.addEventListener('click', (e) => {
+            e.stopPropagation();
+            inspectConnectorEdge(edge, path);
+          });
+          svgEdgeGroup.appendChild(path);
+          edge._paths.push(path);
+        }
+
+        edge.labels.forEach(lbl => {
+          const pill = document.createElement('div');
+          pill.className = 'edge-label-pill';
+          pill.innerHTML = texToHtml(lbl.text);
+          pill.title = 'دوبار کلیک برای ویرایش متن مسیر ارتباطی';
+          pill.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!pill.isContentEditable) {
+              inspectConnectorEdge(edge, null);
+            }
+          });
+          pill.addEventListener('dblclick', (e) => {
+            e.stopPropagation();
+            startEditingEdgeLabel(edge, lbl, pill);
+          });
+          world.appendChild(pill);
+          edge._pills.push(pill);
+        });
+      });
+    }
+
+    // High-performance in-place vector coordinate update (Zero DOM destruction, Zero layout thrashing)
     State.edges.forEach((edge, index) => {
       const pts = edge.points;
       if (!pts || pts.length < 2) return;
@@ -1164,39 +1211,24 @@
 
         segmentCoords.push({ start: startPt, end: endPt });
 
-        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        const op = edge.ops[k] || '--';
-
-        let d = '';
-        if (op === '-|') {
-          d = `M ${startPt.x} ${startPt.y} L ${endPt.x} ${startPt.y} L ${endPt.x} ${endPt.y}`;
-        } else if (op === '|-') {
-          d = `M ${startPt.x} ${startPt.y} L ${startPt.x} ${endPt.y} L ${endPt.x} ${endPt.y}`;
-        } else {
-          d = `M ${startPt.x} ${startPt.y} L ${endPt.x} ${endPt.y}`;
+        const path = edge._paths && edge._paths[k];
+        if (path) {
+          const op = edge.ops[k] || '--';
+          let d = '';
+          if (op === '-|') {
+            d = `M ${startPt.x} ${startPt.y} L ${endPt.x} ${startPt.y} L ${endPt.x} ${endPt.y}`;
+          } else if (op === '|-') {
+            d = `M ${startPt.x} ${startPt.y} L ${startPt.x} ${endPt.y} L ${endPt.x} ${endPt.y}`;
+          } else {
+            d = `M ${startPt.x} ${startPt.y} L ${endPt.x} ${endPt.y}`;
+          }
+          path.setAttribute('d', d);
         }
-
-        path.setAttribute('d', d);
-        path.setAttribute('class', `tikz-edge-path ${edge.isBus ? 'bus-line' : ''}`);
-        path.dataset.edgeIndex = index;
-        if (!edge.isBus) {
-          path.setAttribute('marker-end', 'url(#stealth-arrow)');
-        }
-
-        path.addEventListener('click', (e) => {
-          e.stopPropagation();
-          inspectConnectorEdge(edge, path);
-        });
-
-        svgEdgeGroup.appendChild(path);
       }
 
-      // Edge Labels (Double click to edit directly)
-      edge.labels.forEach(lbl => {
-        const pill = document.createElement('div');
-        pill.className = 'edge-label-pill';
-        pill.innerHTML = texToHtml(lbl.text);
-        pill.title = 'دوبار کلیک برای ویرایش متن مسیر ارتباطی';
+      edge.labels.forEach((lbl, lblIdx) => {
+        const pill = edge._pills && edge._pills[lblIdx];
+        if (!pill) return;
 
         const segIdx = Math.min(lbl.segmentIndex !== undefined ? lbl.segmentIndex : 0, segmentCoords.length - 1);
         const seg = segmentCoords[segIdx] || segmentCoords[0];
@@ -1214,22 +1246,6 @@
 
         pill.style.left = `${lx}px`;
         pill.style.top = `${ly}px`;
-
-        // Click inspects connected nodes
-        pill.addEventListener('click', (e) => {
-          e.stopPropagation();
-          if (!pill.isContentEditable) {
-            inspectConnectorEdge(edge, null);
-          }
-        });
-
-        // Double click makes it editable inline
-        pill.addEventListener('dblclick', (e) => {
-          e.stopPropagation();
-          startEditingEdgeLabel(edge, lbl, pill);
-        });
-
-        world.appendChild(pill);
       });
     });
   }
@@ -1981,62 +1997,7 @@
       }
     });
 
-    el.addEventListener('pointermove', (e) => {
-      if (State.draggingNode !== n || State.toolMode !== 'move') return;
-
-      const dx = (e.clientX - State.dragNodeStartPointer.x) / State.zoom;
-      const dy = (e.clientY - State.dragNodeStartPointer.y) / State.zoom;
-
-      if (!State.hasDragMoved && Math.hypot(dx, dy) < 3) return;
-      State.hasDragMoved = true;
-
-      let targetCx = State.dragNodeStartPos.cx + dx;
-      let targetCy = State.dragNodeStartPos.cy + dy;
-
-      const snapResult = checkMagneticAlignment(n, targetCx, targetCy);
-      n.cx = snapResult.cx;
-      n.cy = snapResult.cy;
-
-      n.x = +(n.cx / SCALE).toFixed(2);
-      n.y = +(-n.cy / SCALE).toFixed(2);
-
-      el.style.left = `${n.cx}px`;
-      el.style.top = `${n.cy}px`;
-
-      layoutEdges();
-      updateTelemetryHud();
-    });
-
-    el.addEventListener('pointerup', (e) => {
-      if (State.draggingNode === n) {
-        if (el.hasPointerCapture && el.hasPointerCapture(e.pointerId)) {
-          el.releasePointerCapture(e.pointerId);
-        }
-        el.classList.remove('dragging');
-        el.classList.add('snap-feedback');
-        setTimeout(() => el.classList.remove('snap-feedback'), 250);
-
-        State.draggingNode = null;
-        hideAlignmentGuides();
-
-        if (State.hasDragMoved) {
-          const moved = (n.cx !== State.dragNodeStartPos.cx || n.cy !== State.dragNodeStartPos.cy);
-          if (moved && State.dragNodeStartSnapshot) {
-            State.historyStack.push(State.dragNodeStartSnapshot);
-            if (State.historyStack.length > State.maxHistory) State.historyStack.shift();
-            State.redoStack = [];
-            updateUndoRedoUI();
-            State.hasUserTransformed = true;
-            State.texSource = updateNodeCoord(State.texSource, n.id, n.x, n.y);
-            if (texCodeEditor) texCodeEditor.value = State.texSource;
-            saveDraft();
-            playSound('snap');
-            showToast(`موقعیت گره #${n.id} ذخیره شد`);
-          }
-        }
-      }
-    });
-
+    // Node dragging is handled globally by document pointermove/pointerup with rAF batching
     body.addEventListener('blur', () => {
       if (body.isContentEditable) {
         body.contentEditable = 'false';
@@ -2069,19 +2030,25 @@
   // ==========================================================================
 
   function checkMagneticAlignment(activeNode, cx, cy) {
-    const snapDistance = 14; // pixels in world units (responsive & feelable)
+    const snapDistance = 7; // pixels in world units (responsive & feelable, but subtle)
     let snapCx = cx;
     let snapCy = cy;
     let alignedX = null;
     let alignedY = null;
+    let minDiffX = snapDistance;
+    let minDiffY = snapDistance;
 
     State.nodes.forEach(other => {
       if (other.id === activeNode.id) return;
-      if (Math.abs(other.cx - cx) < snapDistance) {
+      const diffX = Math.abs(other.cx - cx);
+      if (diffX < minDiffX) {
+        minDiffX = diffX;
         snapCx = other.cx;
         alignedX = other.cx;
       }
-      if (Math.abs(other.cy - cy) < snapDistance) {
+      const diffY = Math.abs(other.cy - cy);
+      if (diffY < minDiffY) {
+        minDiffY = diffY;
         snapCy = other.cy;
         alignedY = other.cy;
       }
@@ -2772,35 +2739,49 @@
       }
     });
 
+    let nodeDragRaf = null;
+    let pendingPointerCoords = null;
+
+    function applyNodeDragMove() {
+      nodeDragRaf = null;
+      if (!State.draggingNode || State.toolMode !== 'move' || !pendingPointerCoords) return;
+
+      const n = State.draggingNode;
+      const { clientX, clientY } = pendingPointerCoords;
+      const dx = (clientX - State.dragNodeStartPointer.x) / State.zoom;
+      const dy = (clientY - State.dragNodeStartPointer.y) / State.zoom;
+
+      if (!State.hasDragMoved && Math.hypot(dx, dy) < 2) return;
+      State.hasDragMoved = true;
+
+      const targetCx = State.dragNodeStartPos.cx + dx;
+      const targetCy = State.dragNodeStartPos.cy + dy;
+
+      const snapResult = checkMagneticAlignment(n, targetCx, targetCy);
+      n.cx = snapResult.cx;
+      n.cy = snapResult.cy;
+
+      n.x = +(n.cx / SCALE).toFixed(2);
+      n.y = +(-n.cy / SCALE).toFixed(2);
+
+      if (n.el) {
+        n.el.style.left = `${n.cx}px`;
+        n.el.style.top = `${n.cy}px`;
+      }
+
+      layoutEdges(false);
+      updateTelemetryHud();
+    }
+
     document.addEventListener('pointermove', (e) => {
       updatePointerHud(e.clientX, e.clientY);
 
-      // Handle Node Dragging in Move Mode (Unstoppable tracking across entire screen)
+      // Handle Node Dragging in Move Mode (Unstoppable tracking across entire screen via rAF)
       if (State.draggingNode && State.toolMode === 'move') {
-        const n = State.draggingNode;
-        const dx = (e.clientX - State.dragNodeStartPointer.x) / State.zoom;
-        const dy = (e.clientY - State.dragNodeStartPointer.y) / State.zoom;
-
-        if (!State.hasDragMoved && Math.hypot(dx, dy) < 2) return;
-        State.hasDragMoved = true;
-
-        let targetCx = State.dragNodeStartPos.cx + dx;
-        let targetCy = State.dragNodeStartPos.cy + dy;
-
-        const snapResult = checkMagneticAlignment(n, targetCx, targetCy);
-        n.cx = snapResult.cx;
-        n.cy = snapResult.cy;
-
-        n.x = +(n.cx / SCALE).toFixed(2);
-        n.y = +(-n.cy / SCALE).toFixed(2);
-
-        if (n.el) {
-          n.el.style.left = `${n.cx}px`;
-          n.el.style.top = `${n.cy}px`;
+        pendingPointerCoords = { clientX: e.clientX, clientY: e.clientY };
+        if (!nodeDragRaf) {
+          nodeDragRaf = requestAnimationFrame(applyNodeDragMove);
         }
-
-        layoutEdges();
-        updateTelemetryHud();
         return;
       }
 
@@ -2813,6 +2794,15 @@
     });
 
     document.addEventListener('pointerup', (e) => {
+      if (nodeDragRaf) {
+        cancelAnimationFrame(nodeDragRaf);
+        nodeDragRaf = null;
+      }
+      if (State.draggingNode && pendingPointerCoords) {
+        applyNodeDragMove();
+        pendingPointerCoords = null;
+      }
+
       if (State.draggingNode) {
         const n = State.draggingNode;
         if (n.el) {
@@ -2840,7 +2830,7 @@
             if (texCodeEditor) texCodeEditor.value = State.texSource;
             saveDraft();
             playSound('drop');
-            showToast(`موقعیت گره #${n.id} ذخیره شد`);
+            showToast(`موقعیت گره #${toFaDigits(n.id)} ذخیره شد`);
           }
         }
         State.draggingNode = null;
