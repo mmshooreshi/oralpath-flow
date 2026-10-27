@@ -1,0 +1,227 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1.15cm,footskip=0pt,headsep=0pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\newcommand{\MathCollectFalse}{}
+\newcommand{\MathCollectTrue}{}
+\let\@kernel@tabular@init\relax
+\makeatother
+
+\usepackage{xepersian}
+
+\settextfont[
+  Path = Peyda/,
+  BoldFont = Peyda-Bold.ttf,
+  ItalicFont = Peyda-Medium.ttf,
+  BoldItalicFont = Peyda-Bold.ttf
+]{Peyda-Regular.ttf}
+
+\setlatintextfont{Times New Roman}
+
+\IfFileExists{Peyda/Symbola.ttf}{%
+  \newfontfamily\symb[Path=Peyda/]{Symbola.ttf}%
+}{%
+  \IfFileExists{editor/Peyda/Symbola.ttf}{%
+    \newfontfamily\symb[Path=editor/Peyda/]{Symbola.ttf}%
+  }{%
+    \newfontfamily\symb{Symbola}%
+  }%
+}
+\newcommand{\emoji}[1]{{\symb #1}}
+
+\linespread{1.10}
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\definecolor{hlgray}{HTML}{E2E8F0}
+\definecolor{hlyellow}{HTML}{FEF08A}
+\definecolor{hlred}{HTML}{FEE2E2}
+\definecolor{darkred}{HTML}{991B1B}
+\definecolor{navy}{HTML}{0A2540}
+\definecolor{teal}{HTML}{0D9488}
+
+% =========================================================================
+% CLINICAL EVIDENCE LEDGER & PMIDS (Super-Scientific Standard)
+% =========================================================================
+% 1. WHO Classification of Head and Neck Tumours, 5th Ed (2024) - OKC biological behavior & PTCH1/Hedgehog pathway.
+% 2. Neville BW, Damm DD, Allen CM, Chi AC. Oral and Maxillofacial Pathology, 5th Ed (2024) - OKC vs NBCCS & recurrence risk.
+% 3. PMID: 36150944 - Al-Moraissi EA et al. (Int J Oral Maxillofac Surg 2023) Network Meta-Analysis of 2,989 patients: E+5FU (98.1% SUCRA), Resection (83.5%), E+CS (63.8%).
+% 4. PMID: 40269316 - Aarthi S et al. (Evid Based Dent 2025) Systematic Review: Alternative chemical adjuncts to Carnoy's solution.
+% 5. PMID: 42528791 - Shelke H et al. (J Maxillofac Oral Surg 2026) Randomized Clinical Trial: 5% 5-FU vs Liquid Nitrogen Cryotherapy (recurrence 8.3%).
+% 6. PMID: 35314081 - Singh AK et al. (Br J Oral Maxillofac Surg 2022) Meta-analysis: 5-Fluorouracil efficacy post-enucleation.
+% 7. PMID: 38954313 - Gonçalves TOF et al. (Oral Maxillofac Surg 2024) Overview of Systematic Reviews: Marsupialization & recurrence factors.
+% 8. PMID: 35476304 - Oginni FO et al. (Oral Maxillofac Surg 2023) Evidence-based surgical algorithm & Vismodegib in Gorlin syndrome.
+% 9. PMID: 42317910 - El Fid K et al. (Cureus 2026) Clinical & syndromic surveillance criteria in Gorlin-Goltz syndrome.
+% =========================================================================
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries فلوچارت فوق‌تخصصی تصمیم‌گیری بالینی: کراتوسیست ادنتوژنیک (\lr{Odontogenic Keratocyst - OKC})}\\[2pt]
+{\small\itshape سنتز شواهد سطح ۱ (\lr{WHO 5th Ed 2024}، \lr{NMA} موریسی ۲۰۲۳، کارآزمایی شلکه ۲۰۲۶ و نویل ویرایش پنجم)}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{6pt}
+
+\begin{center}
+\begin{latin}
+\linespread{0.95}\selectfont
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily\footnotesize, align=center},
+    stepbox/.style={rectangle, draw=black, fill=white, line width=0.7pt, inner sep=4.5pt},
+    decision/.style={diamond, aspect=2.4, draw=black, fill=white, line width=0.7pt, inner sep=2pt, font=\sffamily\scriptsize\bfseries},
+    arrow/.style={-{Stealth[scale=0.9]}, thick, black}
+]
+
+% 1. Initial Presentation
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+    \textbf{\rl{تظاهر بالینی و سه‌گانه رادیوگرافیک پایه}} \lr{[\textbf{WHO 5th Ed 2024 / Neville 5th}]}\\[2pt]
+    \scriptsize \rl{ضایعه رادیولوسنت تک‌حجره‌ای یا چندحجره‌ای با بوردر کورتیکال دندانه‌دار $\bullet$ رشد غالب در راستای قدامی-خلفی مدولای فک مندیبل بدون اتساع زودهنگام کورتکس باکال $\bullet$ شیوع اوج در دهه‌های ۲ و ۳ زندگی}
+};
+
+% 2. Diagnostic Workup & Triage
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.90) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: تصویربرداری سه‌بعدی (\lr{CBCT}) و غربالگری سندرم گورلین-گولتز (\lr{NBCCS})}}}\\[2pt]
+    \scriptsize \rl{ارزیابی پرفوراسیون کورتیکال و کانال مندیبولار $\bullet$ غربالگری دنده‌های دوشاخه (\lr{Bifid Ribs})، کلسیفیکاسیون فالکس سلبری و پیت‌های کف دست/پا \lr{[\textbf{PMID: 42317910}]} $\bullet$ آزمایش ژنتیک موتاسیون \lr{PTCH1} (\lr{9q22.32})}
+};
+
+% 3. Decision 1 (Initial Stratification)
+\node (d1) [decision] at (0, -4.00) {\rl{وسعت و ریسک؟}\\[-1pt]\scriptsize \lr{Risk/Size?}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -4.00) {
+    \textbf{\rl{ضایعه منفرد کوچک \emoji{⚓}}}\\[2pt]
+    \scriptsize \rl{قطر کمتر از ۲ سانتی‌متر؛}\\\rl{کورتکس کاملاً سالم؛}\\\rl{انوکلیاسیون با استئوتومی سطحی}\\\lr{[PMID: 35476304 - Oginni]}
+};
+
+% 4. Mandatory Biopsy & Molecular Assessment
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.40) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی الزامی، پاتولوژی قطعی و سیتولوژی مایع کیست}} \lr{[\textbf{WHO 5th Ed 2024 / PMID: 38954313}]}}\\[2pt]
+    \scriptsize \rl{اپیتلیوم سنگفرشی ۶ تا ۸ ردیف سلولی با سطح مواج پاراکراتینیزه $\bullet$ لایه بازال با هسته‌های هایپرکروماتیک پالسیدی ستونی فاقد رته‌پگ $\bullet$ آسپیراسیون مایع غلیظ کراتینی و الکتروفورز پروتئین کمتر از ۴ گرم بر دسی‌لیتر (افتراق از آملوبلاستوما)}
+};
+
+% 5. Decision 2 (Subtype & Biologic Stratification)
+\node (d2) [decision] at (0, -8.70) {\rl{زیرگروه و رفتار}\\[-1pt]\scriptsize \lr{Subtype/Phenotype?}};
+
+% 6. 4 Main Columns
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -11.00) {
+    \textbf{\rl{منفرد با کورتکس سالم}}\\[2pt]
+    \scriptsize \lr{Solitary Intact Cortex}\\\rl{تک‌حجره‌ای بدون گسترش نسج نرم}\\\rl{عود با انوکلیاسیون تنها: \colorbox{hlgray}{\strut\textbf{۲۵٪ تا ۳۰٪}}}\\\lr{[PMID: 36150944 - Al-Moraissi]}
+};
+\node (h2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -11.00) {
+    \textbf{\rl{ضایعه وسیع تنه و راموس}}\\[2pt]
+    \scriptsize \lr{Extensive Ramus Lesion}\\\rl{مجاورت عصب آلوئولار تحتانی (\lr{IAN})}\\\rl{خطر شکستگی و آسیب حسی: \textbf{بالا}}\\\lr{[PMID: 38954313 - Gonçalves]}
+};
+\node (h3) [stepbox, line width=1.0pt, text width=3.6cm] at (2.05, -11.00) {
+    \textbf{\rl{عودکننده / پرفوره کورتکس}}\\[2pt]
+    \scriptsize \lr{Recurrent / Perforated}\\\rl{تهاجم میکروکیست دختر به پریوست}\\\rl{ریسک عود مجدد:}\ \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{بالای ۴۰٪}}}\\\lr{[PMID: 40269316 - Aarthi]}
+};
+\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -11.00) {
+    \textbf{\rl{سندرم گورلین (\lr{NBCCS})}}\\[2pt]
+    \scriptsize \lr{Syndromic (PTCH1 Germline)}\\\rl{کیست‌های چندگانه همگام و ناهمگام}\\\rl{ریسک عود تجمعی:}\ \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{بالاتر از ۵۰٪}}}\\\lr{[WHO 5th Ed / PMID: 42317910]}
+};
+
+% 7. Primary Interventions
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.50) {
+    \textbf{\rl{انوکلیاسیون + درمان کمکی}}\\[2pt]
+    \scriptsize \rl{انوکلیاسیون و استئوتومی ۱-۲ میلی‌متر}\\\rl{یا گاز ۵٪ \lr{5-FU} برای ۲۴ ساعت (عود ۸٫۳٪)}\\\lr{[PMID: 42528791 - Shelke 2026]}
+};
+\node (i2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -13.50) {
+    \textbf{\rl{دکمپرسیون ۲ مرحله‌ای}}\\[2pt]
+    \scriptsize \textbf{\rl{مارسوپیالیزاسیون ۶ تا ۱۸ ماه}}\\\rl{کاهش حجم بالای ۵۰٪ و حفظ عصب}\\\rl{سپس انوکلیاسیون ثانویه و درمان کمکی}\\\lr{[PMID: 36150944 - Al-Moraissi]}
+};
+\node (i3) [stepbox, line width=1.0pt, text width=3.6cm] at (2.05, -13.50) {
+    \textbf{\rl{اکسیزیون مخاطی + رزکسیون}}\\[2pt]
+    \scriptsize \rl{برداشت مخاط روی کورتکس پرفوره}\\\rl{کرایوتراپی نیتروژن مایع (۲ سیکل ۱ دقیقه‌ای)}\\\rl{یا رزکسیون مارژینال (عود کمتر از ۲٪)}\\\lr{[PMID: 36150944 / 42528791]}
+};
+\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.50) {
+    \textbf{\rl{مدیریت مرحله‌ای + هدفمند}}\\[2pt]
+    \scriptsize \textbf{\rl{انوکلیاسیون‌های مکرر و استئوتومی}}\\\rl{پایش درماتولوژی برای \lr{BCC}های پوستی}\\\rl{تارگت‌تراپی ویسمودگیب در موارد وسیع}\\\lr{[PMID: 35476304 - Oginni 2023]}
+};
+
+% 8. Recall Schedules
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -16.00) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{سالانه تا ۵ سال}}}\\[2pt]
+    \scriptsize \rl{پانورامیک سالانه جهت رصد کیست‌های اقماری}\\\lr{[PMID: 35476304 - Level 2a]}
+};
+\node (s2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -16.00) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۲ ماه فاز ۱، سپس سالانه}}}\\[2pt]
+    \scriptsize \rl{شستشوی روزانه لوله و سنجش حجم}\\\rl{سی‌تی اسکن در ماه ۶ و ۱۲}\\\lr{[PMID: 38954313]}
+};
+\node (s3) [stepbox, line width=1.0pt, text width=3.6cm] at (2.05, -16.00) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۶ ماه تا ۵ سال، سپس سالانه}}}\\[2pt]
+    \scriptsize \rl{تصویربرداری مقطعی \lr{CBCT} سالانه}\\\rl{لمس عمیق بافت نرم مجاور}\\\lr{[PMID: 40269316]}
+};
+\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -16.00) {
+    \textbf{\rl{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{حداقل هر ۶ تا ۱۲ ماه مادام‌العمر}}}\\[2pt]
+    \scriptsize \rl{پایش تا حداقل ۲۵ سال به علت عود دیرهنگام}\\\rl{غربالگری بدخیمی‌های پوستی و \lr{CNS}}\\\lr{[WHO 5th Ed 2024]}
+};
+
+% 9. Trigger Box
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -18.70) {
+    \centerline{\rl{\textbf{هشدارهای بالینی، علائم خطر (\lr{Red Flags}) و اندیکاسیون‌های تغییر پروتکل جراحی:}}}\par\vspace{3pt}
+    \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{مداخله فوری جراحی یا ارجاع انکولوژیک در:}} (۱) ظهور علامت وینسنت (\lr{Vincent's Sign}) و پارستزی پیشرونده لب پایین (هشدار تخریب مستقیم عصب یا دگرگونی نئوپلاستیک) $\bullet$ (۲) پرفوراسیون وسیع کورتکس باکال/لینگوال و توده قابل لمس در فضای پتریدومندیبولار یا کف دهان $\bullet$ (۳) عود مکرر (۲ بار یا بیشتر) به رغم استفاده از عوامل نکروزان کمکی موضعی \lr{[\textbf{PMID: 36150944}]} $\bullet$ (۴) بروز همزمان کارسینوم‌های سلول بازال پوستی متعدد (\lr{BCC}) در نواحی صورت و گردن $\bullet$ (۵) شکستگی پاتولوژیک فک ناشی از تخریب استخوان در تنه یا زاویه مندیبل.}
+};
+
+% 10. Refractory Box
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -21.20) {
+    \centerline{\rl{\textbf{پروتکل موارد مقاوم، تارگت‌تراپی مهارکننده \lr{Hedgehog} و پایش دگرگونی بدخیم (\lr{Surveillance}):}}}\par\vspace{3pt}
+    \scriptsize \rl{\textbf{سطح ۱ (رزکسیون سگمنتال با حاشیه امن استخوانی):} در صورت عود مکرر یا پرفوراسیون وسیع، رزکسیون مارژینال یا قطعه‌ای مندیبل با حاشیه پاک استخوانی ۱ سانتی‌متر و بازسازی همزمان استخوانی جهت کاهش نرخ عود به کمتر از ۲٪ \lr{[\textbf{PMID: 36150944 - NMA}]}.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۲ (مهار هدفمند مسیر سیگنالینگ \lr{Hedgehog / SMO}):} تجویز خوراکی مهارکننده \lr{SMO} نظیر ویسمودگیب (\lr{Vismodegib 150mg/d}) در بیماران مبتلا به سندرم گورلین-گولتز با کیست‌های متعدد غیرقابل جراحی، جهت سرکوب پرولیفراسیون و کاهش اندازه تومورال \lr{[\textbf{PMID: 35476304 / 25484370}]}.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۳ (پایش کارسینوم سلول سنگفرشی اولیه داخل استخوان \lr{PIOC}):} نمونه‌برداری بافتی فوری در موارد تغییر ماهیت سریع؛ اگرچه تغییر بدخیم نادر است (۰٫۱۲٪ تا ۱٪ موارد)، بروز دیسپلازی اپیتلیالی شدید یا تهاجم استرومال نیازمند جراحی رادیکال انکولوژیک و دیسکسیون گردن است \lr{[\textbf{WHO 5th Ed 2024 / Neville 5th}]}.}
+};
+
+% Connections
+\draw [arrow] (n1) -- (n2);
+\draw [arrow] (n2) -- (d1);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{کوچک / سالم}} (r_benign.west);
+\draw [arrow] (d1.south) -- node[right=6pt, font=\scriptsize\bfseries] {\rl{وسیع / تهاجمی}} (n3.north);
+\draw [arrow] (n3.south) -- (d2.north);
+
+% Bus-Bar from Decision 2 to 4 Subtype columns
+\draw [thick, black] (d2.south) -- (0, -9.80);
+\draw [thick, black] (-6.15, -9.80) -- (6.15, -9.80);
+\draw [arrow] (-6.15, -9.80) -- (h1.north);
+\draw [arrow] (-2.05, -9.80) -- (h2.north);
+\draw [arrow] (2.05, -9.80) -- (h3.north);
+\draw [arrow] (6.15, -9.80) -- (h4.north);
+
+% Column Downward Arrows
+\draw [arrow] (h1.south) -- (i1.north);
+\draw [arrow] (h2.south) -- (i2.north);
+\draw [arrow] (h3.south) -- (i3.north);
+\draw [arrow] (h4.south) -- (i4.north);
+
+\draw [arrow] (i1.south) -- (s1.north);
+\draw [arrow] (i2.south) -- (s2.north);
+\draw [arrow] (i3.south) -- (s3.north);
+\draw [arrow] (i4.south) -- (s4.north);
+
+% Collector Bus into Trigger Box
+\draw [thick, black] (s1.south) -- (-6.15, -17.30);
+\draw [thick, black] (s2.south) -- (-2.05, -17.30);
+\draw [thick, black] (s3.south) -- (2.05, -17.30);
+\draw [thick, black] (s4.south) -- (6.15, -17.30);
+\draw [thick, black] (-6.15, -17.30) -- (6.15, -17.30);
+\draw [arrow] (0, -17.30) -- (trigger.north);
+
+\draw [arrow] (trigger.south) -- (refract.north);
+
+\end{tikzpicture}
+\end{latin}
+\end{center}
+
+\end{document}
