@@ -3796,9 +3796,21 @@
 
   function extractTitleFromTex(tex, defaultName = 'فلوچارت بالینی') {
     if (!tex) return defaultName;
-    const m1 = tex.match(/\{\\Large\\bfseries\s*([^}\\]+)(?:\\[a-zA-Z]+)?\}/);
+    // 0. Explicit DOC_TITLE metadata comment tag
+    const mMeta = tex.match(/%\s*(?:DOC_TITLE|TITLE):\s*([^\r\n]+)/i);
+    if (mMeta && mMeta[1].trim()) {
+      return mMeta[1].trim();
+    }
+    // 1. Primary LaTeX title in center block (\Large\bfseries)
+    const m1 = tex.match(/\{\\Large\\bfseries\s*([\s\S]*?)\}(?:\s*\\\\|\s*\n)/);
     if (m1 && m1[1].trim()) {
-      return m1[1].replace(/\\lr\{/g, '').replace(/\\rl\{/g, '').replace(/[\{\}]/g, '').trim();
+      return m1[1]
+        .replace(/\\lr\{([^}]+)\}/g, '$1')
+        .replace(/\\rl\{([^}]+)\}/g, '$1')
+        .replace(/\\textbf\{([^}]+)\}/g, '$1')
+        .replace(/[\{\}\\]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
     }
     const m2 = tex.match(/\\title\{([^}]+)\}/);
     if (m2 && m2[1].trim()) {
@@ -3831,6 +3843,15 @@
     const cleanTitle = (extractedTitle || '').toLowerCase();
     const cleanDoc = item.doc.toLowerCase();
     const docUnderscore = cleanDoc.replace(/_/g, ' ');
+
+    // 0. Exact authoritative DOC_ID / DOC_SLUG metadata comment match
+    const docMetaMatch = tex.match(/%\s*(?:DOC_ID|DOC_SLUG|SLUG):\s*([a-zA-Z0-9_\-]+)/i);
+    if (docMetaMatch) {
+      const metaSlug = docMetaMatch[1].trim().toLowerCase();
+      if (metaSlug === cleanDoc || metaSlug === cleanDoc.replace(/_/g, '')) {
+        return 300; // Immediate 100% authoritative match!
+      }
+    }
 
     // Exact filename match
     if (cleanFn === cleanDoc || cleanFn === cleanDoc.replace(/_/g, '')) {

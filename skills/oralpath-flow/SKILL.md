@@ -224,3 +224,48 @@ Every generated `.tex` file must include an explicit structured comment ledger i
 ### D. Zero-Uncited Metric Policy
 No numerical claim (percentages, millimeters, months, dosages) is permitted without a primary peer-reviewed citation. If conflicting evidence exists between trials (e.g. 5-FU vs Carnoy's solution vs cryotherapy), both modalities must be reflected with their respective comparative statistics and trial references.
 
+---
+
+## 8. Dynamic Taxonomy Synchronization, Auto-Detection & Gap Analysis Engine
+
+To ensure seamless integration with the evolving pathology knowledge base and eliminate any auto-detection failures on [patho.dentnet.space](https://patho.dentnet.space):
+
+### A. Living Source of Truth (`taxonomy.json`)
+- The architect MUST never operate on an outdated or static classification. The authoritative definition of categories, lesion names, and document slugs resides dynamically in `taxonomy.json` at the root of the workspace.
+- Whenever generating, updating, or reviewing a flowchart, read or query `taxonomy.json` directly to synchronize with any newly added entities, reclassified lesions, or renamed slugs.
+
+### B. 100% Deterministic Auto-Detection Header Standard
+When users drag & drop a `.tex` file or paste code into [patho.dentnet.space](https://patho.dentnet.space), the platform's parser searches for explicit metadata to achieve immediate 100% confidence matching without opening the manual disambiguation modal. Every generated TeX document MUST include this routing block at the very top of its preamble:
+
+```latex
+% =========================================================================
+% PLATFORM TAXONOMY ROUTING (patho.dentnet.space)
+% =========================================================================
+% DOC_ID: <slug_matching_taxonomy_json>
+% DOC_SLUG: <slug_matching_taxonomy_json>
+% DOC_CATEGORY: <category_id_matching_taxonomy_json>
+% DOC_TITLE: <exact_persian_title_from_taxonomy_json>
+% DOC_ALIASES: <comma_separated_aliases_and_acronyms>
+% =========================================================================
+```
+
+Furthermore, the document title in `\begin{center}` must be rendered cleanly with the lesion name and English transliteration:
+```latex
+\begin{center}
+{\Large\bfseries فلوچارت تصمیم‌گیری بالینی: <نام ضایعه> (\lr{<English Name - Acronym>})}\\[2pt]
+...
+\end{center}
+```
+
+### C. Tri-State Workflow: Import vs Update vs New Synthesis
+When interacting with the user regarding any lesion, determine the action based on three states:
+1. **Existing Asset (Import / Review):** If `flowcharts/<slug>.tex` exists, parse the file, assess its compliance with WHO 5th Ed and current citations, and present targeted updates while preserving existing verified nodes.
+2. **Cataloged Gap (New Synthesis Needed):** If the lesion exists in `taxonomy.json` but lacks a file in `flowcharts/`, classify it as a missing asset. Execute PubMed literature search, synthesize the 5-tier architecture, and save it under `flowcharts/<slug>.tex`.
+3. **Novel / Unlisted Lesion:** If the requested condition is absent from `taxonomy.json`, map it to its closest major category, assign a standardized slug, synthesize the flowchart with full citations, and propose appending it to `taxonomy.json`.
+
+### D. Automated Gap Analysis Heuristic
+The architect can run an automated inventory audit on demand:
+- Compare `flowcharts/*.tex` against all `children[].doc` items in `taxonomy.json`.
+- Report completed vs missing clinical flowcharts sorted by clinical urgency (e.g., high-risk malignant lesions, recurrent odontogenic cysts, reactive vs neoplastic).
+
+
