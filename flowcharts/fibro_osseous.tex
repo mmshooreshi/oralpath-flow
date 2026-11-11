@@ -1,0 +1,234 @@
+% =========================================================================
+% PLATFORM TAXONOMY ROUTING (patho.dentnet.space)
+% =========================================================================
+% DOC_ID: fibro_osseous
+% DOC_SLUG: fibro_osseous
+% DOC_CATEGORY: cat_fibro_osseous
+% DOC_TITLE: الگوریتم جامع: ضایعات فیبرو-استخوانی فکین (تشخیص افتراقی)
+% DOC_ALIASES: fibro osseous, فیبرو استخوانی, فیبروز دیسپلازی, اسیفایینگ فیبروم, JOF, استئوما, گاردنر, GNAS
+% =========================================================================
+% === CLINICAL EVIDENCE LEDGER & PMIDS ===
+% 1. WHO Classification of Head and Neck Tumours (5th Ed, 2024) - Fibro-osseous and Bone-forming Lesions.
+% 2. Neville BW, Damm DD, Allen CM, Chi AC. Oral and Maxillofacial Pathology (5th Ed).
+% 3. PMID: 42361776 - Guimarães LM et al. (Semin Diagn Pathol 2026) Molecular Pathology of Fibro-osseous Lesions (GNAS, MDM2).
+% 4. PMID: 41733218 - Zhang AB et al. (J Dent Res 2026) Histologic Differentiation of FD vs COF vs COD.
+% 5. PMID: 42750839 - Spenrath B et al. (Case Rep Dent 2026) Aggressive Juvenile Trabecular Ossifying Fibroma Management.
+% 6. PMID: 41911949 - Moon JE et al. (J Craniofac Surg 2026) Diagnostic Protocols for Craniofacial Osteomas.
+% 7. PMID: 42867685 - Liu M, He S. (Skeletal Radiol 2026) Pediatric Gardner Syndrome & Osteoma Screening.
+% =========================================================================
+
+\documentclass[a4paper]{article}
+\usepackage[margin=1.15cm,footskip=0pt,headsep=0pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\newcommand{\MathCollectFalse}{}
+\newcommand{\MathCollectTrue}{}
+\let\@kernel@tabular@init\relax
+\makeatother
+
+\usepackage{xepersian}
+
+\settextfont[
+  Path = Peyda/,
+  BoldFont = Peyda-Bold.ttf,
+  ItalicFont = Peyda-Medium.ttf,
+  BoldItalicFont = Peyda-Bold.ttf
+]{Peyda-Regular.ttf}
+
+\setlatintextfont{Times New Roman}
+
+\IfFileExists{Peyda/Symbola.ttf}{%
+  \newfontfamily\symb[Path=Peyda/]{Symbola.ttf}%
+}{%
+  \IfFileExists{editor/Peyda/Symbola.ttf}{%
+    \newfontfamily\symb[Path=editor/Peyda/]{Symbola.ttf}%
+  }{%
+    \newfontfamily\symb{Symbola}%
+  }%
+}
+\newcommand{\emoji}[1]{{\symb #1}}
+
+\linespread{1.10}
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\definecolor{hlgray}{HTML}{E2E8F0}
+\definecolor{hlyellow}{HTML}{FEF08A}
+\definecolor{hlred}{HTML}{FEE2E2}
+\definecolor{darkred}{HTML}{991B1B}
+\definecolor{navy}{HTML}{0A2540}
+\definecolor{teal}{HTML}{0D9488}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries فلوچارت تصمیم‌گیری بالینی: ضایعات فیبرو-استخوانی فکین}\\[2pt]
+{\normalsize\bfseries\color{navy} \lr{Benign Fibro-Osseous Lesions of the Jaws (Differential Triage)}}\\[3pt]
+{\small\itshape تریاژ سی‌تی اسکن سه‌بعدی، سنجش موتاسیون \lr{GNAS} و \lr{MDM2}، تفکیک کپسولاسیون، کانتورینگ جراحی و پایش بدخیمی}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{6pt}
+
+\begin{center}
+\begin{latin}
+\linespread{0.95}\selectfont
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily\footnotesize, align=center},
+    stepbox/.style={rectangle, draw=black, fill=white, line width=0.7pt, inner sep=4.5pt},
+    decision/.style={diamond, aspect=2.4, draw=black, fill=white, line width=0.7pt, inner sep=2pt, font=\sffamily\scriptsize\bfseries},
+    arrow/.style={-{Stealth[scale=0.9]}, thick, black}
+]
+
+% 1. Initial Presentation
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+    \rl{\textbf{تظاهر بالینی و رادیوگرافیک: اتساع استخوان فک با نمای میکسد یا شیشه مات (\lr{Ground-Glass})}}\\[2pt]
+    \scriptsize \rl{اتساع بدون درد کورتکس باکال/لینگوال $\bullet$ محو شدن لامینا دورا $\bullet$ نمای پوست پرتقالی (\lr{Peau d'orange}) در سی‌تی اسکن}
+};
+
+% 2. Mandatory 3D-CT & Endocrine Triage
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.90) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: سی‌تی اسکن سه‌بعدی کرانیوفاشیال، غربالگری اندوکرین و پایش کانال اپتیک}}}\\[2pt]
+    \scriptsize \rl{ارزیابی حدود ضایعه (ادغام در استخوان سالم در برابر کپسولاسیون مشخص) $\bullet$ سنجش کلسیم، فسفر و \lr{ALP} $\bullet$ رد سندرم مک‌کون-آلبرایت}
+};
+
+% 3. Growth Phase Decision
+\node (d1) [decision] at (0, -4.00) {\rl{فاز رشد / سن؟}\\[-1pt]\scriptsize \lr{Dormant / Age?}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -4.00) {
+    \rl{\textbf{فیبروز دیسپلازی خاموش \emoji{⚓}}}\\[2pt]
+    \scriptsize \rl{ضایعه پایدار پس از بلوغ؛}\\\rl{فاقد نقص فانکشنال یا دیداری؛}\\\rl{پایش دوره‌ای سالانه بدون جراحی}
+};
+
+% 4. Mandatory Incisional Biopsy & Molecular Testing
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.40) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی برشی الزامی (\lr{Incisional Biopsy}) + سنجش مولکولی \lr{GNAS (Arg201)} و مارکر \lr{MDM2} \emoji{🔬}}}}\\[2pt]
+    \scriptsize \rl{تایید جهش \lr{GNAS} در فیبروز دیسپلازی $\bullet$ رد قطعی استئوسارکوم درجه پایین با منفی بودن \lr{MDM2} \lr{[\textbf{PMID: 42361776}]} $\bullet$ ارزیابی ریمینگ استئوبلاستی}
+};
+
+% 5. Subtype Decision
+\node (d2) [decision] at (0, -8.70) {\rl{نوع هیستوپاتولوژی}\\[-1pt]\scriptsize \lr{Histopathologic Subtype?}};
+
+% 6. 4 Main Columns
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -11.00) {
+    \rl{\textbf{فیبروز دیسپلازی (\lr{FD})}}\\[2pt]
+    \scriptsize \lr{Fibrous Dysplasia}\\\rl{استخوان نابالغ شبه‌حروف چینی}\\\rl{فاقد ریمینگ استئوبلاستی؛ جهش \lr{GNAS+}}\\\rl{عود پس از بلوغ: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۵٪}}}}
+};
+\node (h2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -11.00) {
+    \rl{\textbf{اسیفایینگ فیبروم (\lr{OF})}}\\[2pt]
+    \scriptsize \lr{Cemento-Ossifying Fibroma}\\\rl{ضایعه نئوپلاستیک کپسول‌دار مشخص}\\\rl{ترابکول استخوان + سمنتوم کروی}\\\rl{عود با خارج‌سازی کامل: \textbf{۸٪ تا ۱۰٪}}
+};
+\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.00) {
+    \rl{\textbf{اسیفایینگ فیبروم جوانی \emoji{⚡}}}\\[2pt]
+    \scriptsize \lr{Juvenile Ossifying Fibroma (JOF)}\\\rl{ساب‌تایپ ترابکولار یا پساموماتوئید}\\\rl{رشد سریع تخریبی در سنین اطفال}\\\rl{عود با کورتاژ: \colorbox{hlred}{\strut\color{darkred}\textbf{۳۰٪ تا ۵۸٪}}}
+};
+\node (h4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -11.00) {
+    \rl{\textbf{استئوما / سندرم گاردنر}}\\[2pt]
+    \scriptsize \lr{Osteoma / Gardner Syndrome}\\\rl{توده متراکم کورتیکال/ترابکولار}\\\rl{غربالگری پولیپوز روده الزامی}\\\rl{عود پس از اکسیزیون: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۱٪}}}}
+};
+
+% 7. Primary Interventions
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.50) {
+    \rl{\textbf{کانتورینگ جراحی (\lr{Shaving})}}\\[2pt]
+    \scriptsize \textbf{\rl{به تعویق انداختن تا پایان بلوغ}}\\\rl{تراش محافظه‌کارانه برای تقارن صورت}\\\rl{پرهیز اکید از رزکسیون‌های رادیکال}
+};
+\node (i2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -13.50) {
+    \rl{\textbf{انوکلئیشن ان‌بلوک}}\\[2pt]
+    \scriptsize \rl{جداسازی تمیز توده از بستر استخوانی}\\\rl{استفاده از خط انفصال کپسول}\\\rl{کورتاژ حاشیه‌ای برای پیشگیری از عود}
+};
+\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -13.50) {
+    \rl{\textbf{رزکسیون یا کورتاژ تهاجمی}}\\[2pt]
+    \scriptsize \textbf{\rl{اکسیزیون کامل با مارجین سالم استخوان}}\\\rl{\lr{[\textbf{PMID: 42750839}]}}\\\rl{رزکسیون سگمنتال در عودهای مهاجم}
+};
+\node (i4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -13.50) {
+    \rl{\textbf{اکسیزیون استخوانی ساده}}\\[2pt]
+    \scriptsize \rl{استئوتومی در قاعده ضایعه}\\\textbf{\rl{کولونوسکوپی غربالگری روده}}\\\rl{\lr{[\textbf{PMID: 42867685}]}}
+};
+
+% 8. Recall Schedules
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{سالانه تا پایان بلوغ}}}\\[2pt]
+    \scriptsize \rl{پایش بالینی و فتوگرافی کانتور صورت؛}\\\rl{سی‌تی اسکن کم‌دوز در صورت تغییر}
+};
+\node (s2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه تا ۲ سال}}}\\[2pt]
+    \scriptsize \rl{رادیوگرافی پانورامیک و \lr{CBCT}؛}\\\rl{پایش پرشدن بستر استخوانی}
+};
+\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۳ تا ۶ ماه (۵ سال)}}}\\[2pt]
+    \scriptsize \rl{سی‌تی اسکن دوره‌ای چندمقطعی؛}\\\rl{پایش پنجره اوج عود زودهنگام}
+};
+\node (s4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{سالانه تا ۳ سال}}}\\[2pt]
+    \scriptsize \rl{معاینه کلینیکی و تصویربرداری فک؛}\\\rl{پیگیری گوارشی دوره‌ای در گاردنر}
+};
+
+% 9. Trigger Box
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -18.70) {
+    \centerline{\rl{\textbf{هشدارهای بالینی و اندیکاسیون‌های ارجاع فوری یا مداخله جراحی اورژانسی (\lr{Clinical Red Flags}):}}}\par\vspace{3pt}
+    \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{مداخله فوری تشخیصی-درمانی در:}} (۱) اختلال حاد دید، افت حدت بینایی یا درگیری کانال اپتیک در اسفنوئید/قاعده جمجمه $\bullet$ (۲) رشد سریع غیرعادی یا بروز درد فزاینده خارج از جهش بلوغ $\bullet$ (۳) پیدایش لیتیک یا تخریب نامنظم استخوانی جدید در سی‌تی اسکن (مشکوک به بدخیمی) $\bullet$ (۴) بیرون‌زدگی کره چشم (\lr{Proptosis}) ناشی از اتساع به اربیت $\bullet$ (۵) شکستگی پاتولوژیک فک.}
+};
+
+% 10. Refractory Box
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -21.20) {
+    \centerline{\rl{\textbf{پروتکل موارد مقاوم، درمان‌های نوین ضد جذب و پایش دگرگونی سارکوماتوز (\lr{Malignancy Surveillance}):}}}\par\vspace{3pt}
+    \scriptsize \rl{\textbf{سطح ۱ (منع مطلق):} \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{پرتودرمانی} (\lr{Radiotherapy}) \rl{اکیداً ممنوع است}}} (افزایش خطر ترانسفورماسیون به استئوسارکوم ثانویه ناشی از پرتو تا ۴۰ برابر).}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۲ (مهار دردهای استخوانی مقاوم):} بیس‌فسفونات‌های وریدی (\lr{Pamidronate / Zoledronate}) یا آنتی‌بادی مونوکلونال ضد \lr{RANKL} (\lr{Denosumab}) با پایش دقیق کلسیم و ریسک \lr{MRONJ}.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۳ (پایش بدخیمی):} بیوپسی برشی عمیق فوری در صورت تغییرات سریع تصویری جهت رد استئوسارکوم، فیبروسارکوم یا کندروسارکوم ثانویه (میزان شیوع حدود ۰٫۴٪ تا ۱٪ در ضایعات مزمن باسابقه).}
+};
+
+% Connections
+\draw [arrow] (n1) -- (n2);
+\draw [arrow] (n2) -- (d1);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{خاموش (پایدار)}} (r_benign.west);
+\draw [arrow] (d1.south) -- node[right=5pt, font=\scriptsize\bfseries] {\rl{فعال / پیشرونده}} (n3.north);
+\draw [arrow] (n3.south) -- (d2.north);
+
+% Bus-Bar from Decision 2 to 4 Subtype columns
+\draw [thick, black] (d2.south) -- (0, -9.80);
+\draw [thick, black] (-6.15, -9.80) -- (6.15, -9.80);
+\draw [arrow] (-6.15, -9.80) -- (h1.north);
+\draw [arrow] (-2.05, -9.80) -- (h2.north);
+\draw [arrow] (2.05, -9.80) -- (h3.north);
+\draw [arrow] (6.15, -9.80) -- (h4.north);
+
+% Column Downward Arrows
+\draw [arrow] (h1.south) -- (i1.north);
+\draw [arrow] (h2.south) -- (i2.north);
+\draw [arrow] (h3.south) -- (i3.north);
+\draw [arrow] (h4.south) -- (i4.north);
+
+\draw [arrow] (i1.south) -- (s1.north);
+\draw [arrow] (i2.south) -- (s2.north);
+\draw [arrow] (i3.south) -- (s3.north);
+\draw [arrow] (i4.south) -- (s4.north);
+
+% Collector Bus into Trigger Box
+\draw [thick, black] (s1.south) -- (-6.15, -17.30);
+\draw [thick, black] (s2.south) -- (-2.05, -17.30);
+\draw [thick, black] (s3.south) -- (2.05, -17.30);
+\draw [thick, black] (s4.south) -- (6.15, -17.30);
+\draw [thick, black] (-6.15, -17.30) -- (6.15, -17.30);
+\draw [arrow] (0, -17.30) -- (trigger.north);
+
+% Final link to Refractory Box
+\draw [arrow] (trigger.south) -- (refract.north);
+
+\end{tikzpicture}
+\end{latin}
+\end{center}
+
+\end{document}
