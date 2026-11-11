@@ -28,7 +28,39 @@ When asked to generate or update a flowchart, locate the lesion within the stand
 
 ---
 
-## 2. The 5-Tier Algorithmic Architecture
+## 2. Dual-Track Clinical Architecture (Umbrella vs. Deep-Dive)
+
+To balance comprehensive syllabus coverage (around ۴۰ to ۴۲ oral and maxillofacial lesions) with maximum clinical utility and academic elegance, flowcharts are architected along two synergistic tracks:
+
+### Track A: Umbrella & Category-Wide Differential Decision Trees (فلوچارت‌های چتری، جامع و تشخیص افتراقی) — [PRIMARY EMPHASIS]
+* **Clinical Rationale:** In real-world maxillofacial and pathology clinics, patients never present with an established diagnostic label (e.g., "Lipoma" or "Schwannoma"); they present with a shared clinical/imaging triad (e.g., *Painless soft tissue mesenchymal swelling of the oral mucosa*, or *Corticated radiolucency of the posterior mandible*). The true clinical value of an algorithm lies in **differential diagnosis, staging, and side-by-side surgical comparison**.
+* **Structure:**
+  - **Tier 1 (`n1`):** Unified clinical presentation and radiographic triad for the entire disease category.
+  - **Tier 2 (`n2`):** Mandatory non-invasive workup, vascular ultrasound, contrast MRI, or CBCT.
+  - **Tier 3 (`d1` & `r_benign`):** Non-invasive triage bifurcation (e.g., High-flow vascular vs Solid, Mixed opacity vs Pure radiolucency, Low-risk observation).
+  - **Tier 4 (`n3`):** Mandatory Incisional Biopsy + Differential Immunohistochemistry (IHC) / Molecular Panel (e.g., S100, SMA, CD34, Desmin, Ki-67).
+  - **Tier 5 (`d2` & `h1`–`h4`):** The ۴ primary representative entities/subtypes within that category presented in parallel columns, leading directly to their distinct interventions (`i1`–`i4`) and surveillance schedules (`s1`–`s4`).
+  - **Collector & Surveillance (`trigger` & `refract`):** Shared red flags, rapid recurrence alerts, malignant transformation triggers (sarcoma, carcinoma), and multidisciplinary tumor board protocols.
+* **Core Umbrella Categories (۸ to ۹ Master Flowcharts):**
+  1. `benign_mesenchymal`: تومورهای خوش‌خیم مزانشیمی (Lipomatous, Vascular, Neural, Fibroblastic/Myofibroblastic)
+  2. `odontogenic_tumors`: تومورهای ادنتوژنیک فکین (Ameloblastoma, CEOT, AOT, Odontogenic Myxoma)
+  3. `fibro_osseous`: ضایعات فیبرو-استخوانی (Fibrous Dysplasia, Ossifying Fibroma, JOF)
+  4. `odontogenic_cysts`: کیست‌های ادنتوژنیک (OKC, Dentigerous, Radicular, Eruption)
+  5. `developmental_lesions`: ضایعات تکاملی و ژانت‌سل (CGCG, ABC, Brown Tumor, Cherubism)
+  6. `inflammatory_lesions`: ضایعات واکنشی و برآمدگی‌های ژنژیووال (Pyogenic Granuloma, PGCG, POF, Fibroma)
+  7. `benign_epithelial`: ضایعات سفید و قرمز پیش‌بدخیم مخاط (Leukoplakia, Erythroplakia, Lichen Planus)
+  8. `malignancy`: بدخیمی‌های استخوان و فک (Osteosarcoma, Chondrosarcoma, Ewing, Spindle Cell)
+  9. `traumatic_lesions`: ضایعات کیستیک و انسدادی بزاقی (Mucocele, Ranula, Salivary Neoplasms)
+
+### Track B: Lesion-Specific Algorithmic Deep Dives (فلوچارت‌های اختصاصی تک‌ضایعه‌ای) — [COMPANION DEEP-DIVES]
+* **Clinical Rationale:** Reserved for aggressive, controversial, high-recurrence, or multi-stage surgical lesions (such as `ameloblastoma`, `odontogenic_keratocyst`, `cgcg`, `fibrous_dysplasia`, `osteonecrosis_mandible`) where fine-grained surgical margin stratification (e.g., ۱۰mm vs ۱۵mm bony margins, Carnoy vs cryotherapy, intralesional corticosteroids vs denosumab, reconstruction timing) requires a dedicated single-page canvas.
+* **Architect Interaction Heuristic:**
+  - **Default to Track A:** When Anis asks for flowcharts for a category or asks about organizing her syllabus, formulate and deliver the **Track A Umbrella Flowchart** covering the differential diagnosis of that entire family.
+  - **Provide Track B upon Request:** When Anis specifically asks to drill down into a single complex lesion, synthesize the dedicated **Track B Deep-Dive Flowchart** while referencing its place within the umbrella framework.
+
+---
+
+## 3. The 5-Tier Algorithmic Architecture
 
 Every decision tree follows this rigorous clinical hierarchy:
 
@@ -68,7 +100,7 @@ Every decision tree follows this rigorous clinical hierarchy:
 
 ---
 
-## 3. Canonical Geometry & Coordinate System (Single A4 Page)
+## 4. Canonical Geometry & Coordinate System (Single A4 Page)
 
 To ensure the flowchart compiles cleanly onto **one single A4 page** with zero text overlapping, strict adherence to these exact dimensions and vertical coordinates is mandatory:
 
@@ -136,7 +168,7 @@ To ensure the flowchart compiles cleanly onto **one single A4 page** with zero t
 
 ---
 
-## 4. Typography, Colors & Bidi Rules
+## 5. Typography, Colors & Bidi Rules
 
 ### A. XePersian Bidi Isolation
 To avoid right-to-left inversion of coordinates or arrows in TikZ, the entire `tikzpicture` must be enclosed inside a `\begin{latin}` environment, with all Persian text wrapped in `\rl{...}` and Latin medical terms in `\lr{...}`:
@@ -169,7 +201,7 @@ All digits in Persian text must strictly be Persian numerals: `۰, ۱, ۲, ۳, �
 
 ---
 
-## 5. Complete Reference Examples
+## 6. Complete Reference Examples
 
 Canonical compiling reference flowcharts are stored in `examples/` of this skill:
 - `examples/fibrous_dysplasia.tex` (Complete Fibrous Dysplasia flowchart with GNAS codon Arg201, craniofacial triage, and bisphosphonate protocols)
@@ -179,7 +211,7 @@ Canonical compiling reference flowcharts are stored in `examples/` of this skill
 
 ---
 
-## 6. Output Delivery Standard
+## 7. Output Delivery Standard
 
 When synthesizing a flowchart for Anis:
 1. Provide a concise clinicopathologic executive summary citing WHO 5th Ed, Neville 5th Ed, and key systematic reviews / trials with their PMIDs/DOIs.
@@ -189,7 +221,7 @@ When synthesizing a flowchart for Anis:
 
 ---
 
-## 7. Super-Scientific Evidence Protocol: Beast Mode Literature Synthesis
+## 8. Super-Scientific Evidence Protocol: Beast Mode Literature Synthesis
 
 To guarantee unimpeachable clinical validity and prevent any unverified or speculative claims, the architect must execute real-time literature retrieval and citation enforcement for every generated flowchart:
 
@@ -226,7 +258,7 @@ No numerical claim (percentages, millimeters, months, dosages) is permitted with
 
 ---
 
-## 8. Dynamic Taxonomy Synchronization, Auto-Detection & Gap Analysis Engine
+## 9. Dynamic Taxonomy Synchronization, Auto-Detection & Gap Analysis Engine
 
 To ensure seamless integration with the evolving pathology knowledge base and eliminate any auto-detection failures on [patho.dentnet.space](https://patho.dentnet.space):
 

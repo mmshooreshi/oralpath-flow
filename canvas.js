@@ -2282,6 +2282,16 @@
 
   
   const LESION_SUBTITLES = {
+    fibro_osseous: "تریاژ رادیوگرافیک و هیستوپاتولوژی ضایعات فیبرو-استخوانی، تمایز افتراقی دیسپلازی فیبروز و تومورهای استخوان‌ساز، استراتژی‌های درمانی بر اساس سن و رفتار بیولوژیک",
+    inflammatory_lesions: "تریاژ بالینی، پایش عفونت و نکروز، اندیکاسیون‌های دبریدمان جراحی و حذف عوامل محرک موضعی",
+    benign_mesenchymal: "تریاژ بالینی و تصویربرداری توده‌های بافت نرم دهان، پنل افتراقی ایمونوهیستوشیمی (IHC)، استراتژی‌های اکسیزیون و مدیریت ضایعات لوکال اگرسیو",
+    odontogenic_tumors: "تریاژ رادیوگرافیک، استراتژی بیوپسی، پروتکل‌های رزکسیون بر اساس مارجین و فالوآپ",
+    odontogenic_cysts: "تفکیک کیست‌های تکاملی و التهابی، مارسوپیالیزاسیون در برابر انوکلئیشن، کاربرد ادجوانت کارنوی در کراتوسیست",
+    developmental_lesions: "تریاژ ضایعات ژانت‌سل و کیستیک، بررسی‌های اندوکرین و ژنتیک، درمان‌های سیستمیک کورتیکواستروئید و جراحی محافظه‌کارانه",
+    benign_epithelial: "ارزیابی دیسپلازی اپیتلیالی، تریاژ ضایعات سفید و پاپیلاری، اکسیزیون جراحی کامل و پروتکل‌های پیشگیری از بدخیمی",
+    non_odontogenic_cysts: "ارزیابی سونوگرافی و ام‌آرآی کیست‌های تکاملی خط وسط، تکنیک‌های انوکلئیشن کپسولار و حفظ آناتومی حیاتی کف دهان",
+    malignancy: "استیجینگ تومورهای بدخیم فک، پنل هیستوپاتولوژی تشخیصی، اصول رزکسیون رادیکال و مدیریت لنف‌نودهای گردنی",
+    traumatic_lesions: "تریاژ ضایعات کیستیک بزاقی و توده‌های واکنشی، تکنیک‌های اکسیزیون و خارج‌سازی غدد زیرزبانی و بزاقی فرعی",
     fibrous_dysplasia: "تریاژ رادیوگرافیک و سی‌تی، سنجش موتاسیون ژن GNAS، پایش درگیری جمجمه/اپتیک، کانتورینگ جراحی و استراتژی‌های ضد جذب استخوان",
     juvenile_ossifying_fibroma: "تریاژ سی‌تی سه‌بعدی، تفکیک ساب‌تایپ ترابکولار و پساموماتوئید، انوکلئیشن با کورتاژ تهاجمی و پایش عود",
     ossifying_fibroma: "ارزیابی کورتیکاسیون محیطی، تفکیک از فیبروز دیسپلازی، انوکلئیشن ان‌بلوک و بازسازی فانکشنال فک",
@@ -2454,8 +2464,43 @@
         });
       }
 
-      const showCat = catItems.length > 0 || (currentDocFilter === 'all' && !q) || (catHasChart && currentDocFilter === 'has_chart');
+      const isCatActive = State.activeDocId === cat.doc;
+      const umbrellaMatchesQuery = !q || cat.title.toLowerCase().includes(q) || cat.doc.toLowerCase().includes(q);
+      const showUmbrellaCard = umbrellaMatchesQuery && (
+        (currentDocFilter === 'all') || 
+        (currentDocFilter === 'has_chart' && catHasChart) || 
+        (currentDocFilter === 'no_chart' && !catHasChart)
+      );
+
+      const showCat = catItems.length > 0 || showUmbrellaCard;
       if (!showCat) return;
+
+      const umbrellaHtml = showUmbrellaCard ? `
+        <div class="cb-umbrella-card ${isCatActive ? 'is-active-doc' : ''}" data-doc-id="${cat.doc}">
+          <div class="cb-lesion-info">
+            <div class="cb-umbrella-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span>فلوچارت چتری و جامع (تریاژ و تشخیص افتراقی)</span>
+            </div>
+            <div class="cb-umbrella-title">الگوریتم جامع: ${cat.title}</div>
+            <div class="cb-lesion-meta" style="display:flex; align-items:center; gap:8px;">
+              ${catHasChart ? '<span class="cb-status-pill ready">● دارای فلوچارت فعال</span>' : '<span class="cb-status-pill empty" style="color:#94a3b8;font-size:10px;">فاقد فلوچارت (آماده ایجاد)</span>'}
+              <span class="cb-doc-key" style="margin-inline-start: 4px;">${cat.doc}</span>
+            </div>
+          </div>
+          <div class="cb-lesion-actions">
+            ${catHasChart ? `
+              <button type="button" class="cb-icon-btn btn-open-chart" onclick="CanvasApp.selectDocument('${cat.doc}', 'الگوریتم جامع: ${cat.title.replace(/'/g, "\\'")}')" title="مشاهده فلوچارت جامع ${cat.title}">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="6" rx="1.5"></rect><rect x="14" y="3" width="7" height="6" rx="1.5"></rect><rect x="8.5" y="15" width="7" height="6" rx="1.5"></rect><path d="M6.5 9v3h11V9M12 12v3"></path></svg>
+              </button>
+            ` : `
+              <button type="button" class="cb-icon-btn btn-add-chart" onclick="CanvasApp.createAndLoadFlowchart('${cat.doc}', 'الگوریتم جامع: ${cat.title.replace(/'/g, "\\'")}')" title="ایجاد فلوچارت جامع ${cat.title}">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              </button>
+            `}
+          </div>
+        </div>
+      ` : '';
 
       const itemsHtml = catItems.map(item => {
         const itemHasChart = hasDocFlowchart(item.doc);
@@ -2499,11 +2544,11 @@
             </div>
             <div class="cb-cat-actions" onclick="event.stopPropagation()">
               ${catHasChart ? `
-                <button type="button" class="cb-icon-btn btn-open-chart" onclick="CanvasApp.selectDocument('${cat.doc}', '${cat.title.replace(/'/g, "\'")}')" title="مشاهده فلوچارت دسته ${cat.title}">
+                <button type="button" class="cb-icon-btn btn-open-chart" onclick="CanvasApp.selectDocument('${cat.doc}', 'الگوریتم جامع: ${cat.title.replace(/'/g, "\'")}')" title="مشاهده فلوچارت دسته ${cat.title}">
                   <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="6" rx="1.5"></rect><rect x="14" y="3" width="7" height="6" rx="1.5"></rect><rect x="8.5" y="15" width="7" height="6" rx="1.5"></rect><path d="M6.5 9v3h11V9M12 12v3"></path></svg>
                 </button>
               ` : `
-                <button type="button" class="cb-icon-btn btn-add-chart" onclick="CanvasApp.createAndLoadFlowchart('${cat.doc}', '${cat.title.replace(/'/g, "\'")}')" title="ساخت فلوچارت دسته ${cat.title}">
+                <button type="button" class="cb-icon-btn btn-add-chart" onclick="CanvasApp.createAndLoadFlowchart('${cat.doc}', 'الگوریتم جامع: ${cat.title.replace(/'/g, "\'")}')" title="ساخت فلوچارت دسته ${cat.title}">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 </button>
               `}
@@ -2512,7 +2557,8 @@
           <div class="cb-category-body-wrapper">
             <div class="cb-category-body-inner">
               <div class="cb-category-items-grid">
-                ${itemsHtml || '<div style="padding:10px; color:#64748b; font-size:12px;">موردی در این فیلتر یافت نشد.</div>'}
+                ${umbrellaHtml}
+                ${itemsHtml || (!umbrellaHtml ? '<div style="padding:10px; color:#64748b; font-size:12px;">موردی در این فیلتر یافت نشد.</div>' : '')}
               </div>
             </div>
           </div>
@@ -3753,6 +3799,16 @@
   // ==========================================================================
 
   const TAXONOMY_ALIASES = {
+    'fibro_osseous': ['fibro osseous', 'fibro-osseous', 'فیبرو استخوانی', 'فیبرو-استخوانی', 'ضایعات فیبرو استخوانی', 'جامع فیبرو استخوانی'],
+    'inflammatory_lesions': ['inflammatory', 'التهابی', 'ضایعات التهابی', 'التهابی و واکنشی', 'جامع التهابی'],
+    'benign_mesenchymal': ['benign mesenchymal', 'mesenchymal', 'مزانشیمی', 'خوش‌خیم مزانشیمی', 'خوش خیم مزانشیمی', 'تومورهای خوش خیم مزانشیمی', 'جامع مزانشیمی'],
+    'odontogenic_tumors': ['odontogenic tumors', 'odontogenic tumor', 'تومورهای ادنتوژنیک', 'تومور ادنتوژنیک', 'جامع تومورهای ادنتوژنیک'],
+    'odontogenic_cysts': ['odontogenic cysts', 'odontogenic cyst', 'کیست‌های ادنتوژنیک', 'کیست ادنتوژنیک', 'ضایعات کیستیک ادنتوژنیک', 'جامع کیست ادنتوژنیک'],
+    'developmental_lesions': ['developmental', 'تکاملی', 'ضایعات تکاملی', 'سلول غول آسا', 'سلول غول‌آسا', 'جامع تکاملی'],
+    'benign_epithelial': ['benign epithelial', 'epithelial', 'اپیتلیالی', 'خوش خیم اپیتلیالی', 'خوش‌خیم اپیتلیالی', 'جامع اپیتلیالی'],
+    'non_odontogenic_cysts': ['non odontogenic', 'غیر ادنتوژنیک', 'کیست های غیرادنتوژنیک', 'جامع غیر ادنتوژنیک'],
+    'malignancy': ['malignancy', 'malignancies', 'بدخیمی', 'بدخیمی ها', 'بدخیمی‌های استخوانی', 'جامع بدخیمی'],
+    'traumatic_lesions': ['traumatic', 'تروما', 'ضایعات تروماتیک', 'بزاقی', 'جامع بزاقی', 'تروماتیک'],
     'fibrous_dysplasia': ['fibrous dysplasia', 'فیبروز دیسپلازی', 'دیسپلازی فیبرو', 'fd', 'mccune', 'albright'],
     'juvenile_ossifying_fibroma': ['juvenile ossifying fibroma', 'jof', 'جوانان', 'اسیفایینگ فیبروم جوانان', 'psammomatoid', 'trabecular'],
     'ossifying_fibroma': ['ossifying fibroma', 'اسیفایینگ فیبروما', 'of', 'سمنتواسیفایینگ'],
@@ -3826,6 +3882,15 @@
   function getAllTaxonomyItemsFlat() {
     const list = [];
     TAXONOMY_CATEGORIES.forEach(cat => {
+      // Umbrella / Categorical flowchart item
+      list.push({
+        id: cat.id + '_umbrella',
+        title: `الگوریتم جامع: ${cat.title}`,
+        doc: cat.doc,
+        catId: cat.id,
+        catTitle: cat.title,
+        isUmbrella: true
+      });
       cat.items.forEach(item => {
         list.push({
           ...item,

@@ -700,6 +700,54 @@ html, body {
   gap: 8px;
 }
 
+/* Prominent Umbrella / Categorical Flowchart Card */
+.cb-umbrella-card {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(14, 116, 144, 0.18), rgba(15, 23, 42, 0.85));
+  border: 1.5px solid rgba(56, 189, 248, 0.55);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.12);
+  margin-bottom: 4px;
+}
+.cb-umbrella-card:hover {
+  background: linear-gradient(135deg, rgba(14, 116, 144, 0.3), rgba(15, 23, 42, 0.95));
+  border-color: #38bdf8;
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.22);
+  transform: translateY(-1px);
+}
+.cb-umbrella-card.is-active-doc {
+  background: linear-gradient(135deg, rgba(14, 116, 144, 0.4), rgba(15, 23, 42, 0.95));
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px #38bdf8, 0 6px 20px rgba(56, 189, 248, 0.3);
+}
+.cb-umbrella-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 2px 7px;
+  border-radius: 5px;
+  margin-bottom: 4px;
+  letter-spacing: 0.2px;
+}
+.cb-umbrella-title {
+  font-size: 13.5px;
+  font-weight: 900;
+  color: #f8fafc;
+  line-height: 1.35;
+  margin-bottom: 2px;
+}
+
 /* Individual Lesion Cards */
 .cb-lesion-card {
   background: #181614;
