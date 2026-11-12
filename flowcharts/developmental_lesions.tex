@@ -1,0 +1,233 @@
+% =========================================================================
+% PLATFORM TAXONOMY ROUTING (patho.dentnet.space)
+% =========================================================================
+% DOC_ID: developmental_lesions
+% DOC_SLUG: developmental_lesions
+% DOC_CATEGORY: cat_developmental
+% DOC_TITLE: الگوریتم جامع: ضایعات تکاملی و سلول غول‌آسای فکین
+% DOC_ALIASES: developmental lesions, ضایعات تکاملی, جاینت سل, CGCG, کیست آنوریسمال, ABC, تومور براون, شروبیسم, SH3BP2
+% =========================================================================
+% === CLINICAL EVIDENCE LEDGER & PMIDS ===
+% 1. WHO Classification of Head and Neck Tumours (5th Ed, 2024) - Giant Cell Lesions and Bone Cysts.
+% 2. Neville BW, Damm DD, Allen CM, Chi AC. Oral and Maxillofacial Pathology (5th Ed).
+% 3. PMID: 42361776 - Guimarães LM et al. (Semin Diagn Pathol 2026) Molecular Pathology of Distinctive Giant Cell Lesions.
+% 4. PMID: 41456990 - Leonardi N et al. (Oral Surg Oral Med 2026) Bone Regeneration in Expansile Jaw Lesions.
+% 5. PMID: 35476304 - Oginni FO et al. (Oral Maxillofac Surg 2023) Targeted Biological Therapies in Jaw Giant Cell Lesions.
+% 6. PMID: 38814761 - Denosumab vs Intralesional Triamcinolone in Aggressive CGCG Meta-Analysis.
+% =========================================================================
+
+\documentclass[a4paper]{article}
+\usepackage[margin=1.15cm,footskip=0pt,headsep=0pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\newcommand{\MathCollectFalse}{}
+\newcommand{\MathCollectTrue}{}
+\let\@kernel@tabular@init\relax
+\makeatother
+
+\usepackage{xepersian}
+
+\settextfont[
+  Path = Peyda/,
+  BoldFont = Peyda-Bold.ttf,
+  ItalicFont = Peyda-Medium.ttf,
+  BoldItalicFont = Peyda-Bold.ttf
+]{Peyda-Regular.ttf}
+
+\setlatintextfont{Times New Roman}
+
+\IfFileExists{Peyda/Symbola.ttf}{%
+  \newfontfamily\symb[Path=Peyda/]{Symbola.ttf}%
+}{%
+  \IfFileExists{editor/Peyda/Symbola.ttf}{%
+    \newfontfamily\symb[Path=editor/Peyda/]{Symbola.ttf}%
+  }{%
+    \newfontfamily\symb{Symbola}%
+  }%
+}
+\newcommand{\emoji}[1]{{\symb #1}}
+
+\linespread{1.10}
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\definecolor{hlgray}{HTML}{E2E8F0}
+\definecolor{hlyellow}{HTML}{FEF08A}
+\definecolor{hlred}{HTML}{FEE2E2}
+\definecolor{darkred}{HTML}{991B1B}
+\definecolor{navy}{HTML}{0A2540}
+\definecolor{teal}{HTML}{0D9488}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries فلوچارت تصمیم‌گیری بالینی: ضایعات تکاملی و سلول غول‌آسای فکین}\\[2pt]
+{\normalsize\bfseries\color{navy} \lr{Developmental and Giant Cell Lesions of the Jaws (Differential Triage)}}\\[3pt]
+{\small\itshape تریاژ اندوکرین (\lr{PTH})، سنجش ژن‌های \lr{SH3BP2} و \lr{USP6}، تزریق استروئید داخل ضایعه و درمان‌های هدفمند بیولوژیک}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{6pt}
+
+\begin{center}
+\begin{latin}
+\linespread{0.95}\selectfont
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily\footnotesize, align=center},
+    stepbox/.style={rectangle, draw=black, fill=white, line width=0.7pt, inner sep=4.5pt},
+    decision/.style={diamond, aspect=2.4, draw=black, fill=white, line width=0.7pt, inner sep=2pt, font=\sffamily\scriptsize\bfseries},
+    arrow/.style={-{Stealth[scale=0.9]}, thick, black}
+]
+
+% 1. Initial Presentation
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+    \rl{\textbf{تظاهر بالینی و رادیوگرافیک: اتساع استخوان فک با رادیولوسنسی اکسپنسیل تک یا چندحفره‌ای}}\\[2pt]
+    \scriptsize \rl{اتساع مندیبل یا ماگزیلا $\bullet$ جابجایی یا تحلیل ریشه دندان‌ها $\bullet$ توده با قوام الاستیک یا نمای حباب صابونی}
+};
+
+% 2. Mandatory Endocrine Screening
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.90) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: تریاژ آزمایشگاهی اندوکرین (سنجش \lr{iPTH} و کلسیم سرم) و آسپیراسیون سوزنی}}}\\[2pt]
+    \scriptsize \rl{رد قطعی تومور براون هیپرپاراتیروئیدیسم $\bullet$ ارزیابی آسپیراسیون مایع خونی (مشکوک به کیست آنوریسمال یا مالفورماسیون عروقی)}
+};
+
+% 3. Hyperparathyroidism Decision
+\node (d1) [decision] at (0, -4.00) {\rl{افزایش}\\[-1pt]\scriptsize \lr{PTH / Ca?}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -4.00) {
+    \rl{\textbf{تومور براون (\lr{HPT}) \emoji{⚖}}}\\[2pt]
+    \scriptsize \rl{افزایش پاراتورمون و کلسیم سرم؛}\\\rl{ارجاع فوری به جراحی اندوکرین؛}\\\rl{ترمیم خودبه‌خودی استخوان فک}
+};
+
+% 4. Mandatory Biopsy & Molecular Assessment
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.40) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی برشی الزامی (\lr{Incisional Biopsy}) و سنجش ژنتیک \lr{USP6} و \lr{SH3BP2} و مپینگ سه‌بعدی \emoji{🔬}}}}\\[2pt]
+    \scriptsize \rl{تفکیک سلول‌های غول‌آسا چند‌هسته‌ای در استرومای فیبروبلاستی $\bullet$ بررسی بازآرایی \lr{USP6} در \lr{ABC} و موتاسیون \lr{SH3BP2} در شروبیسم \lr{[\textbf{PMID: 42361776}]}}
+};
+
+% 5. Subtype Decision
+\node (d2) [decision] at (0, -8.70) {\rl{فنوتیپ و پاتولوژی}\\[-1pt]\scriptsize \lr{Clinical Phenotype?}};
+
+% 6. 4 Main Columns
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -11.00) {
+    \rl{\textbf{\lr{CGCG} غیرتهاجمی}}\\[2pt]
+    \scriptsize \lr{Non-Aggressive CGCG}\\\rl{رشد آهسته، کوچکتر از ۲ سانتی‌متر}\\\rl{کورتکس سالم؛ بدون تحلیل ریشه}\\\rl{عود با کورتاژ: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۱۰٪}}}}
+};
+\node (h2) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-2.05, -11.00) {
+    \rl{\textbf{\lr{CGCG} تهاجمی \emoji{⚡}}}\\[2pt]
+    \scriptsize \lr{Aggressive CGCG}\\\rl{رشد سریع، درد و پرفوراسیون کورتکس}\\\rl{تحلیل ریشه و جابجایی دندان‌ها}\\\rl{عود با کورتاژ ساده: \colorbox{hlred}{\strut\color{darkred}\textbf{۴۰٪ تا ۷۰٪}}}
+};
+\node (h3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -11.00) {
+    \rl{\textbf{کیست آنوریسمال (\lr{ABC})}}\\[2pt]
+    \scriptsize \lr{Aneurysmal Bone Cyst}\\\rl{فضاهای عروقی پر از خون فاقد اندوتلیوم}\\\rl{بازآرایی ژن \lr{USP6} نئوپلاستیک}\\\rl{عود با کورتاژ ساده: \textbf{۲۰٪ تا ۳۰٪}}
+};
+\node (h4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -11.00) {
+    \rl{\textbf{شروبیسم فامیلیال}}\\[2pt]
+    \scriptsize \lr{Cherubism (SH3BP2)}\\\rl{اتساع دوطرفه قرینه زاویه فکین در اطفال}\\\rl{چهره فرشته‌گونه و نمای چشم به آسمان}\\\rl{پسرفت خودبه‌خودی: \colorbox{hlgray}{\strut\textbf{\rl{پس از بلوغ}}}}
+};
+
+% 7. Primary Interventions
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.50) {
+    \rl{\textbf{کورتاژ + استکتومی}}\\[2pt]
+    \scriptsize \rl{کورتاژ کامل بافت ضایعه}\\\rl{استکتومی محیطی ۱ تا ۲ میلی‌متر}\\\rl{حفظ دندان‌ها و استخوان فک}
+};
+\node (i2) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-2.05, -13.50) {
+    \rl{\textbf{تزریق استروئید یا دنوزوماب}}\\[2pt]
+    \scriptsize \textbf{\rl{تریامسینولون هفتگی داخل ضایعه}}\\\rl{به مدت ۶ هفته، یا رزکسیون مارجینال}\\\rl{دنوزوماب در موارد شدید \lr{[\textbf{PMID: 35476304}]}}
+};
+\node (i3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -13.50) {
+    \rl{\textbf{کورتاژ + کرایوتراپی}}\\[2pt]
+    \scriptsize \rl{تخلیه کامل حفرات عروقی}\\\rl{کاربرد ادجوانت کرایوتراپی یا فنل}\\\rl{اسکلروتراپی با داکسی‌سایکلین در موارد وسیع}
+};
+\node (i4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -13.50) {
+    \rl{\textbf{مشاهده و مدیریت انتظاری}}\\[2pt]
+    \scriptsize \textbf{\rl{پرهیز از جراحی در فاز فعال رشد}}\\\rl{کانتورینگ صورت فقط در صورت اختلال شدید}\\\rl{به تعویق انداختن مداخله تا پایان بلوغ}
+};
+
+% 8. Recall Schedules
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه تا ۲ سال}}}\\[2pt]
+    \scriptsize \rl{تصویربرداری پانورامیک دوره‌ای؛}\\\rl{تایید استخوان‌سازی بستر}
+};
+\node (s2) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-2.05, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۳ تا ۴ ماه (۲ سال)}}}\\[2pt]
+    \scriptsize \rl{پایش دقیق با \lr{CBCT}؛}\\\rl{بررسی پرفوراسیون و عود زودهنگام}
+};
+\node (s3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه تا ۳ سال}}}\\[2pt]
+    \scriptsize \rl{پایش پرشدن لومن عروقی با استخوان؛}\\\rl{تصویربرداری دوره‌ای فک}
+};
+\node (s4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{سالانه تا پایان بلوغ}}}\\[2pt]
+    \scriptsize \rl{فتوگرافی سالانه کانتور صورت؛}\\\rl{پایش مسیر رویش دندان‌ها و تنفس}
+};
+
+% 9. Trigger Box
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -18.70) {
+    \centerline{\rl{\textbf{هشدارهای بالینی و اندیکاسیون‌های ارجاع فوری یا مداخله جراحی مجدد (\lr{Clinical Red Flags}):}}}\par\vspace{3pt}
+    \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{مداخله فوری تشخیصی-درمانی در:}} (۱) رشد سریع غیرعادی یا پرفوراسیون کورتکس باکال/لینگوال $\bullet$ (۲) خونریزی ضربان‌دار حاد حین بیوپسی یا آسپیراسیون سوزنی (خطر مالفورماسیون عروقی با فلوی بالا) $\bullet$ (۳) اختلال تنفسی یا دیسفاژی ناشی از اتساع توده شروبیسم به راه هوایی یا کام $\bullet$ (۴) بروز بحران هیپرکلسمی بازگشتی (\lr{Rebound Hypercalcemia}) پس از قطع دنوزوماب $\bullet$ (۵) شکستگی پاتولوژیک فک ناشی از استئولیز وسیع.}
+};
+
+% 10. Refractory Box
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -21.20) {
+    \centerline{\rl{\textbf{پروتکل موارد مقاوم، درمان‌های نوین هدفمند و پایش تومور جاینت‌سل (\lr{Malignancy Surveillance}):}}}\par\vspace{3pt}
+    \scriptsize \rl{\textbf{سطح ۱ (مهار هدفمند \lr{RANKL}):} کاربرد دنوزوماب زیرجلدی (\lr{120\,mg}) در روزهای ۱، ۸، ۱۵، ۲۹ و سپس هر ۴ هفته در ضایعات راجعه و وسیع با پایش دقیق کلسیم و تیپرینگ تدریجی جهت پیشگیری از هیپرکلسمی بازگشتی.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۲ (مهار آنزیمی مولکولی):} مهارکننده مسیر \lr{MAPK} (\lr{Trametinib}) در بیماران مبتلا به جهش‌های \lr{TRPV4/KRAS} با ضایعات اگرسیو مقاوم به استروئید.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۳ (پایش بدخیمی):} بیوپسی برشی مجدد در صورت تغییر رفتار بیولوژیک جهت رد تومور ژانت سل بدخیم فک (\lr{Malignant Giant Cell Tumor}) یا استئوسارکوم غنی از ژانت سل.}
+};
+
+% Connections
+\draw [arrow] (n1) -- (n2);
+\draw [arrow] (n2) -- (d1);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{بله (افزایش)}} (r_benign.west);
+\draw [arrow] (d1.south) -- node[right=5pt, font=\scriptsize\bfseries] {\rl{خیر (نرمال)}} (n3.north);
+\draw [arrow] (n3.south) -- (d2.north);
+
+% Bus-Bar from Decision 2 to 4 Subtype columns
+\draw [thick, black] (d2.south) -- (0, -9.80);
+\draw [thick, black] (-6.15, -9.80) -- (6.15, -9.80);
+\draw [arrow] (-6.15, -9.80) -- (h1.north);
+\draw [arrow] (-2.05, -9.80) -- (h2.north);
+\draw [arrow] (2.05, -9.80) -- (h3.north);
+\draw [arrow] (6.15, -9.80) -- (h4.north);
+
+% Column Downward Arrows
+\draw [arrow] (h1.south) -- (i1.north);
+\draw [arrow] (h2.south) -- (i2.north);
+\draw [arrow] (h3.south) -- (i3.north);
+\draw [arrow] (h4.south) -- (i4.north);
+
+\draw [arrow] (i1.south) -- (s1.north);
+\draw [arrow] (i2.south) -- (s2.north);
+\draw [arrow] (i3.south) -- (s3.north);
+\draw [arrow] (i4.south) -- (s4.north);
+
+% Collector Bus into Trigger Box
+\draw [thick, black] (s1.south) -- (-6.15, -17.30);
+\draw [thick, black] (s2.south) -- (-2.05, -17.30);
+\draw [thick, black] (s3.south) -- (2.05, -17.30);
+\draw [thick, black] (s4.south) -- (6.15, -17.30);
+\draw [thick, black] (-6.15, -17.30) -- (6.15, -17.30);
+\draw [arrow] (0, -17.30) -- (trigger.north);
+
+% Final link to Refractory Box
+\draw [arrow] (trigger.south) -- (refract.north);
+
+\end{tikzpicture}
+\end{latin}
+\end{center}
+
+\end{document}
