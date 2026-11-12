@@ -1,0 +1,234 @@
+% =========================================================================
+% PLATFORM TAXONOMY ROUTING (patho.dentnet.space)
+% =========================================================================
+% DOC_ID: inflammatory_lesions
+% DOC_SLUG: inflammatory_lesions
+% DOC_CATEGORY: cat_inflammatory
+% DOC_TITLE: الگوریتم جامع: ضایعات التهابی و واکنشی فکین و مخاط دهان
+% DOC_ALIASES: inflammatory lesions, ضایعات التهابی, گرانولوم پیوژنیک, اپولیس, PGCG, استئونکروز, MRONJ, فیبروم واکنشی
+% =========================================================================
+% === CLINICAL EVIDENCE LEDGER & PMIDS ===
+% 1. WHO Classification of Head and Neck Tumours (5th Ed, 2024) - Reactive and Inflammatory Lesions.
+% 2. Neville BW, Damm DD, Allen CM, Chi AC. Oral and Maxillofacial Pathology (5th Ed).
+% 3. PMID: 41456990 - Leonardi N et al. (Oral Surg Oral Med Oral Pathol Oral Radiol 2026) MRONJ Stages I-II Surgical & PenTo Protocol.
+% 4. PMID: 41969602 - Taguchi A et al. (Osteoporos Sarcopenia 2026) Consensus Statement on Medication-Related ONJ.
+% 5. PMID: 42532523 - He Y. (Zhonghua Kou Qiang Yi Xue Za Zhi 2026) Precision Therapeutic Strategies in Jaw Osteonecrosis.
+% 6. PMID: 39340412 - Alsabbagh R et al. (Clin Adv Periodontics 2025) Peripheral Gingival Lesions Differential Diagnosis.
+% 7. AAOMS 2022/2024 Position Paper on Medication-Related Osteonecrosis of the Jaw (Staging & Margin Criteria).
+% =========================================================================
+
+\documentclass[a4paper]{article}
+\usepackage[margin=1.15cm,footskip=0pt,headsep=0pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\newcommand{\MathCollectFalse}{}
+\newcommand{\MathCollectTrue}{}
+\let\@kernel@tabular@init\relax
+\makeatother
+
+\usepackage{xepersian}
+
+\settextfont[
+  Path = Peyda/,
+  BoldFont = Peyda-Bold.ttf,
+  ItalicFont = Peyda-Medium.ttf,
+  BoldItalicFont = Peyda-Bold.ttf
+]{Peyda-Regular.ttf}
+
+\setlatintextfont{Times New Roman}
+
+\IfFileExists{Peyda/Symbola.ttf}{%
+  \newfontfamily\symb[Path=Peyda/]{Symbola.ttf}%
+}{%
+  \IfFileExists{editor/Peyda/Symbola.ttf}{%
+    \newfontfamily\symb[Path=editor/Peyda/]{Symbola.ttf}%
+  }{%
+    \newfontfamily\symb{Symbola}%
+  }%
+}
+\newcommand{\emoji}[1]{{\symb #1}}
+
+\linespread{1.10}
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\definecolor{hlgray}{HTML}{E2E8F0}
+\definecolor{hlyellow}{HTML}{FEF08A}
+\definecolor{hlred}{HTML}{FEE2E2}
+\definecolor{darkred}{HTML}{991B1B}
+\definecolor{navy}{HTML}{0A2540}
+\definecolor{teal}{HTML}{0D9488}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries فلوچارت تصمیم‌گیری بالینی: ضایعات التهابی و واکنشی فکین و مخاط}\\[2pt]
+{\normalsize\bfseries\color{navy} \lr{Inflammatory and Reactive Lesions of the Oral Cavity and Jaws}}\\[3pt]
+{\small\itshape تریاژ توده‌های ژنژیوال، پایش دارویی ضد جذب استخوان، کورتاژ پریوستال و پروتکل‌های دبریدمان \lr{MRONJ}}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{6pt}
+
+\begin{center}
+\begin{latin}
+\linespread{0.95}\selectfont
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily\footnotesize, align=center},
+    stepbox/.style={rectangle, draw=black, fill=white, line width=0.7pt, inner sep=4.5pt},
+    decision/.style={diamond, aspect=2.4, draw=black, fill=white, line width=0.7pt, inner sep=2pt, font=\sffamily\scriptsize\bfseries},
+    arrow/.style={-{Stealth[scale=0.9]}, thick, black}
+]
+
+% 1. Initial Presentation
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+    \rl{\textbf{تظاهر بالینی: توده اگروفیتیک ژنژیوال، تورم اریتماتوز یا استخوان اکسپوز نکروتیک}}\\[2pt]
+    \scriptsize \rl{ضایعه پدانکوله/سسیل لثه $\bullet$ توده خونریزی‌دهنده با لمس $\bullet$ استخوان برهنه فک با سابقه مصرف آنتی‌رزورپتیو}
+};
+
+% 2. Mandatory Triage & Drug History
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.90) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: ثبت دقیق سابقه دارویی (بیس‌فسفونات/دنوزوماب)، رادیوگرافی و حذف محرک موضعی}}}\\[2pt]
+    \scriptsize \rl{بررسی جرم و پلاک زیرلثه‌ای $\bullet$ تصویربرداری پری‌آپیکال و سی‌بی‌سی‌تی (بررسی تحلیل استخوان کاسه‌ای یا سکوئستر نکروتیک)}
+};
+
+% 3. Drug-Induced Necrosis Decision
+\node (d1) [decision] at (0, -4.00) {\rl{استخوان اکسپوز؟}\\[-1pt]\scriptsize \lr{Exposed Bone?}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -4.00) {
+    \rl{\textbf{فیبروم تحریکی سطحی \emoji{🔍}}}\\[2pt]
+    \scriptsize \rl{توده فیبروز بدون عروق زایی فزاینده؛}\\\rl{اکسیزیون ساده و رفع سایش دندانی؛}\\\rl{پیش‌آگهی قطعی و بدون عود}
+};
+
+% 4. Mandatory Biopsy & AAOMS Staging
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.40) {
+    \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی بافتی الزامی (\lr{Biopsy}) و استیجینگ بالینی استئونکروز (\rl{استیج‌های ۰ تا ۳} \lr{AAOMS}) \emoji{🔬}}}}\\[2pt]
+    \scriptsize \rl{ارزیابی ارتشاح عروقی، حضور سلول‌های ژانت چند‌هسته‌ای و گرانولاسیون $\bullet$ بررسی درگیری کورتکس در استئونکروز فک \lr{[\textbf{PMID: 41456990}]}}
+};
+
+% 5. Subtype Decision
+\node (d2) [decision] at (0, -8.70) {\rl{پاتولوژی و اتیولوژی}\\[-1pt]\scriptsize \lr{Histopathologic Subtype?}};
+
+% 6. 4 Main Columns
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -11.00) {
+    \rl{\textbf{گرانولوم پیوژنیک (\lr{PG})}}\\[2pt]
+    \scriptsize \lr{Pyogenic Granuloma}\\\rl{پرولیفراسیون عروقی با ارتشاح التهابی}\\\rl{همراهی با بارداری (\lr{Epulis Gravidarum})}\\\rl{عود با حذف محرک: \colorbox{hlgray}{\strut\textbf{\rl{۳٪ تا ۵٪}}}}
+};
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -11.00) {
+    \rl{\textbf{اپولیس فیبروماتوز}}\\[2pt]
+    \scriptsize \lr{Fibromatous Epulis}\\\rl{بافت همبند کلاژنی متراکم و هایپوسلولار}\\\rl{پاسخ واکنشی به ترومای مکانیکی مکرر}\\\rl{عود پس از جراحی: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۲٪}}}}
+};
+\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.00) {
+    \rl{\textbf{سلول غول‌آسای محیطی \emoji{⚡}}}\\[2pt]
+    \scriptsize \lr{Peripheral Giant Cell (PGCG)}\\\rl{سلول‌های ژانت چند‌هسته‌ای + هموسیدرین}\\\rl{تحلیل استخوان کاسه‌ای کورتکس (\lr{Cupping})}\\\rl{عود بدون کورتاژ عمقی: \colorbox{hlred}{\strut\color{darkred}\textbf{۱۰٪ تا ۱۵٪}}}
+};
+\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -11.00) {
+    \rl{\textbf{استئونکروز دارویی (\lr{MRONJ})}}\\[2pt]
+    \scriptsize \lr{Medication-Related ONJ}\\\rl{استخوان نکروتیک فاقد استئوسیت}\\\rl{استیج \lr{I} تا \lr{III} طبق \lr{AAOMS 2024}}\\\rl{پروتکل چندتخصصی \lr{[\textbf{PMID: 41969602}]}}
+};
+
+% 7. Primary Interventions
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.50) {
+    \rl{\textbf{اکسیزیون کامل + جرم‌گیری}}\\[2pt]
+    \scriptsize \rl{اکسیزیون تا سطح پریوست}\\\rl{جرم‌گیری کامل و روت پلنینگ دندان}\\\textbf{\rl{تعویق جراحی در بارداری تا زایمان}}
+};
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -13.50) {
+    \rl{\textbf{اکسیزیون جراحی ساده}}\\[2pt]
+    \scriptsize \rl{برداشتن کامل توده فیبروزه}\\\rl{اصلاح لبه تیز دندان یا ترمیم مجاور}\\\rl{ارسال کامل نمونه جهت تایید پاتولوژی}
+};
+\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -13.50) {
+    \rl{\textbf{اکسیزیون + کورتاژ پریوست}}\\[2pt]
+    \scriptsize \textbf{\rl{کورتاژ عمقی پریوست و بستر استخوان}}\\\rl{جرم‌گیری ریشه دندان مجاور}\\\rl{تراش سطحی استخوان برای جلوگیری از عود}
+};
+\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.50) {
+    \rl{\textbf{دبریدمان جراحی + \lr{PenTo}}}\\[2pt]
+    \scriptsize \textbf{\rl{پنتوکسی‌فیلین + توکوفرول (\lr{PenTo})}}\\\rl{سکوئسترکتومی محافظه‌کارانه + \lr{PRF}}\\\rl{پوشش کامل فلپ موکوزال \lr{[\textbf{PMID: 41456990}]}}
+};
+
+% 8. Recall Schedules
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه تا ۱ سال}}}\\[2pt]
+    \scriptsize \rl{بررسی بهداشت دهان؛}\\\rl{پایش عدم وجود جرم و محرک موضعی}
+};
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{سالانه تا ۲ سال}}}\\[2pt]
+    \scriptsize \rl{معاینه بالینی ساده لثه؛}\\\rl{اطمینان از سازگاری پروتز و دندان}
+};
+\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۳ تا ۶ ماه (۲ سال)}}}\\[2pt]
+    \scriptsize \rl{رادیوگرافی پری‌آپیکال دوره‌ای؛}\\\rl{پایش بازسازی استخوان حاشیه‌ای}
+};
+\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -16.00) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{ماهانه؛ سپس هر ۲ ماه}}}\\[2pt]
+    \scriptsize \rl{پایش بسته ماندن بافت نرم؛}\\\rl{بررسی علائم عفونت و ترشح فیستول}
+};
+
+% 9. Trigger Box
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -18.70) {
+    \centerline{\rl{\textbf{هشدارهای بالینی و اندیکاسیون‌های ارجاع فوری یا مداخله جراحی اورژانسی (\lr{Clinical Red Flags}):}}}\par\vspace{3pt}
+    \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{مداخله فوری تشخیصی-درمانی در:}} (۱) پیشرفت استخوان برهنه یا پیدایش فیستول چرکی خارج دهانی در فک $\bullet$ (۲) بی‌حسی لب تحتانی یا چانه \rl{علامت وینسنت} (\lr{Paresthesia}) ناشی از نکروز مجاور عصب منتال $\bullet$ (۳) پیدایش لیتیک وسیع نامنظم استخوانی با واکنش پریوستئال (مشکوک به استئومیلیت حاد یا کارسینوم استخوان) $\bullet$ (۴) عود مکرر و سریع توده لثه با رشد انفجاری $\bullet$ (۵) شکستگی پاتولوژیک فک تحتانی به دلیل استئونکروز گرید \lr{III}.}
+};
+
+% 10. Refractory Box
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -21.20) {
+    \centerline{\rl{\textbf{پروتکل موارد مقاوم، درمان‌های پیشرفته بازسازی و پایش دگرگونی بدخیم (\lr{Refractory Protocols}):}}}\par\vspace{3pt}
+    \scriptsize \rl{\textbf{سطح ۱ (سالواژ استئونکروز پیشرفته):} رزکسیون سگمنتال استخوان فک نکروتیک همراه با بازسازی فوری با فلپ آزاد فیبولا (\lr{Microvascular Fibula Free Flap}) در موارد استیج \lr{III} مقاوم به درمان‌های دارویی.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۲ (اکسیژن هایپرباریک ادجوانت):} کاربرد \lr{Hyperbaric Oxygen (HBO)} به عنوان درمان کمکی در استئورادیونکروز و موارد مقاوم به منظور تحریک آنژیوژنز و ترمیم بستر زخم.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۳ (پایش بدخیمی):} بیوپسی از بافت گرانولاسیون حاشیه استخوان نکروتیک در هر بیمار بدون سابقه مشخص دارویی/پرتودرمانی جهت رد کارسینوم سلول سنگفرشی لثه (\lr{Gingival SCC}) که می‌تواند نمای مشابه استئونکروز ایجاد کند.}
+};
+
+% Connections
+\draw [arrow] (n1) -- (n2);
+\draw [arrow] (n2) -- (d1);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{خیر (سطحی)}} (r_benign.west);
+\draw [arrow] (d1.south) -- node[right=5pt, font=\scriptsize\bfseries] {\rl{بله / توده لثه‌ای}} (n3.north);
+\draw [arrow] (n3.south) -- (d2.north);
+
+% Bus-Bar from Decision 2 to 4 Subtype columns
+\draw [thick, black] (d2.south) -- (0, -9.80);
+\draw [thick, black] (-6.15, -9.80) -- (6.15, -9.80);
+\draw [arrow] (-6.15, -9.80) -- (h1.north);
+\draw [arrow] (-2.05, -9.80) -- (h2.north);
+\draw [arrow] (2.05, -9.80) -- (h3.north);
+\draw [arrow] (6.15, -9.80) -- (h4.north);
+
+% Column Downward Arrows
+\draw [arrow] (h1.south) -- (i1.north);
+\draw [arrow] (h2.south) -- (i2.north);
+\draw [arrow] (h3.south) -- (i3.north);
+\draw [arrow] (h4.south) -- (i4.north);
+
+\draw [arrow] (i1.south) -- (s1.north);
+\draw [arrow] (i2.south) -- (s2.north);
+\draw [arrow] (i3.south) -- (s3.north);
+\draw [arrow] (i4.south) -- (s4.north);
+
+% Collector Bus into Trigger Box
+\draw [thick, black] (s1.south) -- (-6.15, -17.30);
+\draw [thick, black] (s2.south) -- (-2.05, -17.30);
+\draw [thick, black] (s3.south) -- (2.05, -17.30);
+\draw [thick, black] (s4.south) -- (6.15, -17.30);
+\draw [thick, black] (-6.15, -17.30) -- (6.15, -17.30);
+\draw [arrow] (0, -17.30) -- (trigger.north);
+
+% Final link to Refractory Box
+\draw [arrow] (trigger.south) -- (refract.north);
+
+\end{tikzpicture}
+\end{latin}
+\end{center}
+
+\end{document}
