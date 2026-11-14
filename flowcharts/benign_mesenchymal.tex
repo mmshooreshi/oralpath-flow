@@ -91,99 +91,99 @@
 ]
 
 % 1. Initial Presentation
-\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0.0) {
     \rl{\textbf{تظاهر بالینی: توده زیرمخاطی بدون درد و با رشد آهسته بافت نرم (\lr{Submucosal Mass})}}\\[2pt]
     \scriptsize \rl{تورم بافت نرم گونه (\lr{Buccal})، زبان، لب یا کف دهان $\bullet$ قوام متغیر: نرم، اسفنجی، لاستیکی یا سفت $\bullet$ رد تروما}
 };
 
 % 2. Non-invasive Workup & Vascular Screening
-\node (n2) [stepbox, text width=14.2cm] at (0, -1.55) {
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.60) {
     \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: سونوگرافی کالر داپلر، ام‌آرآی (\lr{MRI}) و آسپیراسیون سوزنی (\lr{FNA})}}}\\[2pt]
     \scriptsize \rl{سنجش فلوی عروقی (رد قطعی \lr{AVM} پرخطر قبل از هر بیوپسی) $\bullet$ بررسی کپسولاسیون و وسعت در فضاهای عمقی فاسیال}
 };
 
 % 3. Vascular / High-Flow Decision
-\node (d1) [decision] at (0, -3.35) {\rl{پرفلو / عروقی؟}\\[-1pt]\scriptsize \lr{High-Flow / AVM?}};
-\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.35) {
+\node (d1) [decision] at (0, -3.30) {\rl{پرفلو / عروقی؟}\\[-1pt]\scriptsize \lr{High-Flow / AVM?}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.30) {
     \rl{\textbf{مالفورماسیون عروقی پرفلو \emoji{⚡}}}\\[2pt]
     \scriptsize \rl{آنژیوگرافی مداخله‌ای الزامی؛}\\\rl{اسکلروتراپی ترانس‌کاتتر/آمبولیزاسیون؛}\\\rl{\textbf{پرهیز از بیوپسی باز بدون آمبولیزاسیون}}
 };
 
 % 4. Mandatory Incisional Biopsy & IHC Panel
-\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.20) {
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.00) {
     \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی برشی الزامی (\lr{Incisional / Core}) + پنل افتراقی ایمونوهیستوشیمی (\lr{IHC Panel}) \emoji{🔬}}}}\\[2pt]
     \scriptsize \rl{ارزیابی مارکرهای کلیدی: \lr{S100, CD34, SMA, Desmin, ALK, Nuclear $\beta$-catenin} $\bullet$ رد کامل سارکوم بافت نرم دهان}
 };
 
 % 5. Histogenetic Lineage Decision
-\node (d2) [decision] at (0, -7.00) {\rl{رده منشأ بافتی}\\[-1pt]\scriptsize \lr{Histogenetic Lineage?}};
+\node (d2) [decision] at (0, -6.60) {\rl{رده منشأ بافتی}\\[-1pt]\scriptsize \lr{Histogenetic Lineage?}};
 
 % 6. 4 Main Columns
-\node (h1) [stepbox, text width=3.6cm] at (-6.15, -9.10) {
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -9.00) {
     \rl{\textbf{تومورهای چربی (\lr{Lipoma})}}\\[2pt]
     \scriptsize \lr{Adipocytic Lineage}\\\rl{مارکر: \lr{S100(+), MDM2(-)}}\\\rl{لوبول‌های چربی بالغ کپسول‌دار}\\\rl{عود با اکسیزیون: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۲٪}}}}
 };
-\node (h2) [stepbox, text width=3.6cm] at (-2.05, -9.10) {
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -9.00) {
     \rl{\textbf{ضایعات عروقی / لنفاوی}}\\[2pt]
     \scriptsize \lr{Hemangioma / Lymphangioma}\\\rl{مارکر: \lr{CD31(+), CD34(+), D2-40(+)}}\\\rl{حفرات اندوتلیال با/بدون فلبولیت}\\\rl{ریسک خونریزی موضعی؛ عود: \textbf{۱۰٪ تا ۲۵٪}}
 };
-\node (h3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -9.10) {
+\node (h3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -9.00) {
     \rl{\textbf{تومور غلاف عصبی (\lr{PNST})}}\\[2pt]
     \scriptsize \lr{Schwannoma / Neurofibroma}\\\rl{مارکر: \lr{S100(+)} شدید، \lr{SOX10(+)}}\\\rl{آنتونی \lr{A/B} (شوآنوما)؛ غربالگری \lr{NF1}}\\\rl{عود شوآنوما: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۱٪}}}}
 };
-\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -9.10) {
+\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -9.00) {
     \rl{\textbf{فیبروماتوزیس / \lr{IMT} \emoji{⚠️}}}\\[2pt]
     \scriptsize \lr{Aggressive / Myofibroblastic}\\\rl{مارکر: \lr{$\beta$-catenin} هسته‌ای، \lr{ALK(+)}}\\\rl{نفوذ دسته‌جات سلول دوکی به عضله}\\\rl{عود با حاشیه مثبت: \colorbox{hlred}{\strut\color{darkred}\textbf{۴۰٪ تا ۶۵٪}}}
 };
 
 % 7. Primary Surgical Interventions
-\node (i1) [stepbox, text width=3.6cm] at (-6.15, -11.35) {
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -11.60) {
     \rl{\textbf{اکسیزیون محافظه‌کارانه}}\\[2pt]
     \scriptsize \rl{انوکلئیشن ساده با کپسول سالم}\\\rl{جداسازی تمیز از بافت نرم اطراف}\\\rl{حفظ رشته‌های عصبی محیطی}
 };
-\node (i2) [stepbox, text width=3.6cm] at (-2.05, -11.35) {
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -11.60) {
     \rl{\textbf{اسکلروتراپی $\pm$ اکسیزیون}}\\[2pt]
     \scriptsize \rl{تزریق بلئومایسین یا پلی‌دوکانول}\\\rl{کاهش حجم نئوادجوانت}\\\rl{اکسیزیون جراحی در صورت پایداری}
 };
-\node (i3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -11.35) {
+\node (i3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -11.60) {
     \rl{\textbf{انوکلئیشن محافظ عصب}}\\[2pt]
     \scriptsize \rl{اکسیزیون اینتراکپسولار در شوآنوما}\\\textbf{\rl{جداسازی از فاسیکل بدون قطع عصب}}\\\rl{اکسیزیون کامل توده‌های نوروفیبروما}
 };
-\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -11.35) {
+\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -11.60) {
     \rl{\textbf{رزکسیون وسیع با مارجین}}\\[2pt]
     \scriptsize \textbf{\rl{مارجین جراحی پاک حداقل ۱۰ میلی‌متر}}\\\rl{حذف یک لایه فاشیای سالم پیرامونی}\\\rl{تارگت‌تراپی کریزوتینیب در \lr{ALK+ IMT}}
 };
 
 % 8. Recall Schedules
-\node (s1) [stepbox, text width=3.6cm] at (-6.15, -13.60) {
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{سالانه تا ۲ سال}}}\\[2pt]
     \scriptsize \rl{معاینه بالینی ساده؛}\\\rl{بررسی قوام بافت نرم}
 };
-\node (s2) [stepbox, text width=3.6cm] at (-2.05, -13.60) {
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه تا ۲ سال}}}\\[2pt]
     \scriptsize \rl{سونوگرافی بافت نرم؛}\\\rl{پایش تحلیل تدریجی ضایعه}
 };
-\node (s3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -13.60) {
+\node (s3) [stepbox, line width=0.9pt, text width=3.6cm] at (2.05, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۶ ماه تا ۵ سال}}}\\[2pt]
     \scriptsize \rl{تست هدایت عصبی در صورت علامت؛}\\\rl{غربالگری ضایعات ثانویه در \lr{NF1}}
 };
-\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.60) {
+\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۳ تا ۶ ماه (۵ سال)}}}\\[2pt]
     \scriptsize \rl{ام‌آرآی دوره‌ای با کنتراست؛}\\\rl{پایش در اوج پنجره عود تهاجمی}
 };
 
 % 9. Trigger Box
-\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -16.15) {
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -17.40) {
     \centerline{\rl{\textbf{هشدارهای بالینی و اندیکاسیون‌های ارجاع فوری یا مداخله جراحی مجدد (\lr{Clinical Red Flags}):}}}\par\vspace{3pt}
     \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{اقدام فوری و بیوپسی عمیق مجدد در:}} (۱) رشد انفجاری سریع یا بروز درد فزاینده موضعی $\bullet$ (۲) چسبندگی و تثبیت توده به استخوان، عضله یا پوست پوشاننده $\bullet$ (۳) بروز اختلال حسی، پارستزی یا بی‌حسی در مسیر عصب منتال یا لینگوال $\bullet$ (۴) اولسراسیون سطحی خودبه‌خودی یا لنفادنوپاتی گردنی پیشرونده $\bullet$ (۵) ایجاد اختلال عملکردی در بلع، تنفس یا تکلم به علت اتساع در فضاهای عمقی فاسیال.}
 };
 
 % 10. Refractory Box
-\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -18.50) {
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -20.00) {
     \centerline{\rl{\textbf{پروتکل موارد مقاوم، تارگت‌تراپی‌های مولکولی و پایش دگرگونی بدخیم (\lr{Malignancy Surveillance}):}}}\par\vspace{3pt}
     \scriptsize \rl{\textbf{سطح ۱ (رد لیپوسارکوم):} انجام تست \lr{FISH} برای امپلیفیکاسیون ژن‌های \lr{MDM2/CDK4} در توده‌های چربی با آتیپی سیتولوژیک یا سایز بزرگتر از ۵ سانتی‌متر.}\par\vspace{2.5pt}
     \scriptsize \rl{\textbf{سطح ۲ (مهار هدفمند آنزیمی):} مهارکننده تیروزین کیناز (\lr{Crizotinib}) در موارد غیرقابل جراحی یا عودکننده تومور میوفیبروبلاستیک التهابی با بازآرایی ژن \lr{ALK}؛ مهارکننده \lr{MEK} (\lr{Selumetinib}) در نوروفیبرومای پلکسی‌فرم.}\par\vspace{2.5pt}
@@ -193,40 +193,39 @@
 % Connections
 \draw [arrow] (n1) -- (n2);
 \draw [arrow] (n2) -- (d1);
-\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{بله (پرفلو)}} (r_benign.west);
-\draw [arrow] (d1.south) -- node[right=5pt, font=\scriptsize\bfseries] {\rl{خیر (توده سالید)}} (n3.north);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{خاموش / خوش‌خیم}} (r_benign.west);
+\draw [arrow] (d1.south) -- node[right=5pt, font=\scriptsize\bfseries] {\rl{فعال / مشکوک}} (n3.north);
 \draw [arrow] (n3.south) -- (d2.north);
 
 % Bus-Bar from Decision 2 to 4 Subtype columns
-\draw [thick, black] (d2.south) -- (0, -7.90);
-\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
-\draw [arrow] (-6.15, -7.90) -- (h1.north);
-\draw [arrow] (-2.05, -7.90) -- (h2.north);
-\draw [arrow] (2.05, -7.90) -- (h3.north);
-\draw [arrow] (6.15, -7.90) -- (h4.north);
+\draw [thick, black] (d2.south) -- (0, -7.50);
+\draw [thick, black] (-6.15, -7.50) -- (6.15, -7.50);
+\draw [arrow] (-6.15, -7.50) -- (h1.north);
+\draw [arrow] (-2.05, -7.50) -- (h2.north);
+\draw [arrow] (2.05, -7.50) -- (h3.north);
+\draw [arrow, darkred] (6.15, -7.50) -- (h4.north);
 
 % Column Downward Arrows
 \draw [arrow] (h1.south) -- (i1.north);
 \draw [arrow] (h2.south) -- (i2.north);
 \draw [arrow] (h3.south) -- (i3.north);
-\draw [arrow] (h4.south) -- (i4.north);
+\draw [arrow, darkred] (h4.south) -- (i4.north);
 
 \draw [arrow] (i1.south) -- (s1.north);
 \draw [arrow] (i2.south) -- (s2.north);
 \draw [arrow] (i3.south) -- (s3.north);
-\draw [arrow] (i4.south) -- (s4.north);
+\draw [arrow, darkred] (i4.south) -- (s4.north);
 
 % Collector Bus into Trigger Box
-\draw [thick, black] (s1.south) -- (-6.15, -14.90);
-\draw [thick, black] (s2.south) -- (-2.05, -14.90);
-\draw [thick, black] (s3.south) -- (2.05, -14.90);
-\draw [thick, black] (s4.south) -- (6.15, -14.90);
-\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
-\draw [arrow] (0, -14.90) -- (trigger.north);
+\draw [thick, black] (s1.south) -- (-6.15, -15.80);
+\draw [thick, black] (s2.south) -- (-2.05, -15.80);
+\draw [thick, black] (s3.south) -- (2.05, -15.80);
+\draw [thick, darkred] (s4.south) -- (6.15, -15.80);
+\draw [thick, black] (-6.15, -15.80) -- (6.15, -15.80);
+\draw [arrow] (0, -15.80) -- (trigger.north);
 
 % Final link to Refractory Box
 \draw [arrow] (trigger.south) -- (refract.north);
-
 \end{tikzpicture}
 \end{latin}
 \end{center}

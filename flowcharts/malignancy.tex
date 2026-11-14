@@ -92,141 +92,141 @@
 ]
 
 % 1. Initial Presentation
-\node (n1) [stepbox, line width=1.0pt, text width=13.0cm] at (0, 0) {
+\node (n1) [stepbox, line width=1.0pt, text width=13.0cm] at (0, 0.0) {
     \rl{\textbf{تظاهر بالینی: زخم مزمن ایندوره، توده سفت فیکس، لقی دندان با تخریب پروانه‌ای استخوان}}\\[2pt]
     \scriptsize \rl{زخم مقاوم بالای ۲ هفته $\bullet$ پارستزی عصب منتال/آلوئولار تحتانی $\bullet$ نمای رادیوگرافیک شبیه پرتو خورشید یا تحلیل ریشه نوک‌تیز}
 };
 
 % 2. Mandatory Step 1
-\node (n2) [stepbox, text width=14.2cm] at (0, -1.55) {
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.60) {
     \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: استیجینگ کامل سر و گردن (\lr{CT/MRI}، \lr{PET}) و رد متاستاز دوردست}}}\\[2pt]
     \scriptsize \rl{بررسی وسعت عمقی درگیری فضاهای فاسیال و پایه جمجمه $\bullet$ سونوگرافی داپلر گردن و پایش لنف‌نودهای گردنی (\lr{Levels I-V})}
 };
 
 % 3. Solitary Benign Bone Sparing Decision
-\node (d1) [decision] at (0, -3.35) {\rl{ضایعه خوش‌خیم بدون تهاجم؟}\\[-1pt]\scriptsize \lr{Non-Malignant?}};
-\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.35) {
+\node (d1) [decision] at (0, -3.30) {\rl{ضایعه خوش‌خیم بدون تهاجم؟}\\[-1pt]\scriptsize \lr{Non-Malignant?}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.30) {
     \rl{\textbf{ضایعات واکنشی یا استئومیلیت \emoji{🔍}}}\\[2pt]
     \scriptsize \rl{رد بدخیمی با بیوپسی عمیق؛}\\\rl{درمان متناسب با پاتولوژی؛}\\\rl{پایش دوره‌ای تا ترمیم استخوان}
 };
 
 % 4. Mandatory Biopsy & Biomarker Assessment
-\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.20) {
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.00) {
     \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی برشی عمیق بافت تومور (\lr{Deep Incisional Biopsy}) و پنل ایمونوهیستوشیمی \emoji{🔬}}}}\\[2pt]
     \scriptsize \rl{سنجش مارکرهای انکولوژیک (\lr{p16/p53}، \lr{Ki-67}، \lr{CK}، \lr{SATB2} و بازآرایی \lr{MYB/MAML2}) طبق گایدلاین \lr{WHO 5th Ed 2024} \lr{[\textbf{PMID: 41025478}]}}
 };
 
 % 5. Subtype Decision
-\node (d2) [decision] at (0, -7.00) {\rl{نوع بافت‌شناسی}\\[-1pt]\scriptsize \lr{Histopathologic Subtype?}};
+\node (d2) [decision] at (0, -6.60) {\rl{نوع بافت‌شناسی}\\[-1pt]\scriptsize \lr{Histopathologic Subtype?}};
 
 % 6. 4 Main Columns
-\node (h1) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-6.15, -9.10) {
+\node (h1) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-6.15, -9.00) {
     \rl{\textbf{کارسینوم اسکواموس (\lr{OSCC}) \emoji{⚡}}}\\[2pt]
     \scriptsize \lr{Squamous Cell Carcinoma}\\\rl{تهاجم طناب‌های آتیپیک به استروما؛}\\\rl{سنجش عمق تهاجم تومور (\lr{DOI})؛}\\\rl{مارجین پاک جراحی: \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{حداقل ۵mm}}}}
 };
-\node (h2) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-2.05, -9.10) {
+\node (h2) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-2.05, -9.00) {
     \rl{\textbf{استئوسارکوم فک (\lr{OS}) \emoji{⚡}}}\\[2pt]
     \scriptsize \lr{Osteosarcoma of the Jaws}\\\rl{استئوئید بدخیم نئوپلاستیک؛}\\\rl{گسترش داخل مدولار فراتر از کورتکس؛}\\\rl{عود با حاشیه مثبت: \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{بیش از ۷۰٪}}}}
 };
-\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -9.10) {
+\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -9.00) {
     \rl{\textbf{آدنوئید کیستیک (\lr{AdCC}) \emoji{⚡}}}\\[2pt]
     \scriptsize \lr{Adenoid Cystic Carcinoma}\\\rl{نمای غربالی/سیلیندروماتوز؛}\\\rl{تهاجم عصب‌دوست شدید (\lr{PNI})؛}\\\rl{متاستاز دیرهنگام ریه: \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{تا ۴۰٪}}}}
 };
-\node (h4) [stepbox, text width=3.6cm] at (6.15, -9.10) {
+\node (h4) [stepbox, text width=3.6cm] at (6.15, -9.00) {
     \rl{\textbf{موکواپیدرموئید (\lr{MEC})}}\\[2pt]
     \scriptsize \lr{Mucoepidermoid Carcinoma}\\\rl{سلول‌های موکوس‌ساز و اپیدرموئید؛}\\\rl{گریدبندی طبق سیستم \lr{AFIP}؛}\\\rl{بقای ۵ ساله گرید پایین: \colorbox{hlgray}{\strut\textbf{\rl{بالای ۹۰٪}}}}
 };
 
 % 7. Primary Interventions
-\node (i1) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-6.15, -11.35) {
+\node (i1) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-6.15, -11.60) {
     \rl{\textbf{رزکسیون وسیع + \lr{END}}}\\[2pt]
     \scriptsize \textbf{\rl{رزکسیون با مارجین سه بعدی ۵mm؛}}\\\rl{دایسکسیون گردن انتخابی در \lr{DOI>4mm}؛}\\\rl{بازسازی با فلپ آزاد فیبولا/ساعد}\\\rl{\lr{[\textbf{PMID: 41910924}]}}
 };
-\node (i2) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-2.05, -11.35) {
+\node (i2) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-2.05, -11.60) {
     \rl{\textbf{کمو نئوادجوانت + رزکسیون}}\\[2pt]
     \scriptsize \textbf{\rl{کموتراپی القایی مپینگ‌محور؛}}\\\rl{رزکسیون سگمنتال با مارجین ۱٫۵ تا ۲cm؛}\\\rl{پرتودرمانی با یون پروتون در مارجین بسته}\\\rl{\lr{[\textbf{PMID: 41027777}]}}
 };
-\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.35) {
+\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.60) {
     \rl{\textbf{رزکسیون رادیکال + رادیوتراپی}}\\[2pt]
     \scriptsize \textbf{\rl{اکسیزیون وسیع با دنبال کردن اعصاب؛}}\\\rl{فروزن سکشن حین عمل از تنه عصب؛}\\\rl{پرتودرمانی ادجوانت پست‌اوپروتیک (\lr{PORT})}\\\rl{\lr{[\textbf{PMID: 42872286}]}}
 };
-\node (i4) [stepbox, text width=3.6cm] at (6.15, -11.35) {
+\node (i4) [stepbox, text width=3.6cm] at (6.15, -11.60) {
     \rl{\textbf{اکسیزیون مارجینال یا رادیکال}}\\[2pt]
     \scriptsize \rl{گرید پایین: اکسیزیون محافظه‌کارانه؛}\\\rl{گرید متوسط تا بالا: رزکسیون کامل استخوان}\\\rl{همراه با دایسکسیون گردن و رادیوتراپی}\\\rl{\lr{[\textbf{PMID: 42799523}]}}
 };
 
 % 8. Surveillance Regimens
-\node (s1) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-6.15, -13.60) {
+\node (s1) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-6.15, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{ماهانه تا هر ۳ ماه (۲ سال اول)}}}\\[2pt]
     \scriptsize \rl{سپس هر ۶ ماه تا ۵ سال؛}\\\rl{سونوگرافی و \lr{PET-CT} دوره‌ای گردن}
 };
-\node (s2) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-2.05, -13.60) {
+\node (s2) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (-2.05, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۳ ماه (۲ سال اول)؛ ۵ سال}}}\\[2pt]
     \scriptsize \rl{سی‌تی اسکن قفسه سینه جهت رد متاستاز ریه؛}\\\rl{\lr{MRI} صورت پایش بازسازی استخوان}
 };
-\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -13.60) {
+\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۴ ماه به مدت ۱۵ تا ۲۰ سال}}}\\[2pt]
     \scriptsize \rl{پایش مادام‌العمر بسیار طولانی؛}\\\rl{احتمال عود موضعی یا متاستاز دوردست}
 };
-\node (s4) [stepbox, text width=3.6cm] at (6.15, -13.60) {
+\node (s4) [stepbox, text width=3.6cm] at (6.15, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \rl{\textbf{هر ۶ ماه تا ۵ سال}}\\[2pt]
     \scriptsize \rl{معاینه کلینیکی و تصویربرداری بزاقی؛}\\\rl{در گرید بالا: پروتکل پیگیری سخت‌گیرانه مشابه \lr{OSCC}}
 };
 
 % 9. Clinical Red Flags
-\node (redflags) [stepbox, draw=darkred, line width=0.9pt, text width=15.8cm] at (0, -16.15) {
+\node (redflags) [stepbox, draw=darkred, line width=0.9pt, text width=15.8cm] at (0, -17.40) {
     \rl{\textbf{هشدارهای انکولوژیک و اندیکاسیون‌های ارجاع فوری به \lr{Tumor Board} (\lr{Clinical Red Flags}):}}\\[3pt]
     \scriptsize \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{مداخله فوری چندرشته‌ای در:}}} \rl{(۱) مارجین پاتولوژی مثبت یا کلوز (کمتر از ۵mm در بافت نرم، کمتر از ۱cm در استخوان) $\bullet$ (۲) تهاجم خارج کپسولی لنف‌نود گردنی (\lr{Extranodal Extension / ENE}) که نیازمند کمورادیوتراپی همزمان ادجوانت است $\bullet$ (۳) تهاجم عروقی، لنفاوی و عصبی گسترده (\lr{LVI / PNI}) $\bullet$ (۴) بروز پارستزی ناگهانی صورت ناشی از درگیری شاخه‌های زوج پنجم و هفتم.}
 };
 
 % 10. Refractory / Malignancy Protocols
-\node (refractory) [stepbox, line width=0.9pt, text width=15.8cm] at (0, -18.50) {
+\node (refractory) [stepbox, line width=0.9pt, text width=15.8cm] at (0, -20.00) {
     \rl{\textbf{پروتکل بیماری پیشرفته، عود موضعی و درمان‌های نوین تارگت (\lr{Advanced Oncology Protocols}):}}\\[3pt]
     \scriptsize \rl{\textbf{سطح ۱ (ایمونوتراپی و تارگت در \lr{OSCC} عودکننده/متاستاتیک):} ارزیابی بیان \lr{PD-L1} (امتیاز \lr{CPS}) و کاربرد مهارکننده‌های چک‌پوینت ایمنی نظیر پمبرولیزوماب (\lr{Pembrolizumab}) یا نیولوماب با یا بدون پلاتینیوم و فلورواوراسیل.}\\
     \scriptsize \rl{\textbf{سطح ۲ (پروتکل سالواژ در استئوسارکوم و سارکوم‌های راجعه):} جراحی سالواژ رادیکال در صورت امکان دستیابی به حاشیه منفی منجمد؛ کاربرد مهارکننده‌های کینازی چندگانه (\lr{Regorafenib/Lenvatinib}) در بیماری پیشرونده.}\\
     \scriptsize \rl{\textbf{سطح ۳ (آدنوئید کیستیک پیشرفته):} رادیوتراپی پیشرفته با یون سنگین کربن یا پروتون در تهاجم پایه جمجمه؛ سنجش بیومارکر \lr{NOTCH1} جهت درمان هدفمند.}
 };
 
-% Arrows & Routing
+% Connections
 \draw [arrow] (n1) -- (n2);
 \draw [arrow] (n2) -- (d1);
-\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{خوش‌خیم}} (r_benign.west);
-\draw [arrow] (d1.south) -- node[right=5pt, font=\scriptsize\bfseries] {\rl{تایید یا شک قوی به بدخیمی}} (n3.north);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{خاموش / خوش‌خیم}} (r_benign.west);
+\draw [arrow] (d1.south) -- node[right=5pt, font=\scriptsize\bfseries] {\rl{فعال / مشکوک}} (n3.north);
 \draw [arrow] (n3.south) -- (d2.north);
 
 % Bus-Bar from Decision 2 to 4 Subtype columns
-\draw [thick, black] (d2.south) -- (0, -7.90);
-\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
-\draw [arrow, darkred] (-6.15, -7.90) -- (h1.north);
-\draw [arrow, darkred] (-2.05, -7.90) -- (h2.north);
-\draw [arrow, darkred] (2.05, -7.90) -- (h3.north);
-\draw [arrow] (6.15, -7.90) -- (h4.north);
+\draw [thick, black] (d2.south) -- (0, -7.50);
+\draw [thick, black] (-6.15, -7.50) -- (6.15, -7.50);
+\draw [arrow] (-6.15, -7.50) -- (h1.north);
+\draw [arrow] (-2.05, -7.50) -- (h2.north);
+\draw [arrow] (2.05, -7.50) -- (h3.north);
+\draw [arrow] (6.15, -7.50) -- (h4.north);
 
 % Column Downward Arrows
-\draw [arrow, darkred] (h1.south) -- (i1.north);
-\draw [arrow, darkred] (h2.south) -- (i2.north);
-\draw [arrow, darkred] (h3.south) -- (i3.north);
+\draw [arrow] (h1.south) -- (i1.north);
+\draw [arrow] (h2.south) -- (i2.north);
+\draw [arrow] (h3.south) -- (i3.north);
 \draw [arrow] (h4.south) -- (i4.north);
 
-\draw [arrow, darkred] (i1.south) -- (s1.north);
-\draw [arrow, darkred] (i2.south) -- (s2.north);
-\draw [arrow, darkred] (i3.south) -- (s3.north);
+\draw [arrow] (i1.south) -- (s1.north);
+\draw [arrow] (i2.south) -- (s2.north);
+\draw [arrow] (i3.south) -- (s3.north);
 \draw [arrow] (i4.south) -- (s4.north);
 
-% Collector Bus into Red Flags Box
-\draw [thick, darkred] (s1.south) -- (-6.15, -14.90);
-\draw [thick, darkred] (s2.south) -- (-2.05, -14.90);
-\draw [thick, darkred] (s3.south) -- (2.05, -14.90);
-\draw [thick, black] (s4.south) -- (6.15, -14.90);
-\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
-\draw [arrow] (0, -14.90) -- (redflags.north);
+% Collector Bus into Trigger Box
+\draw [thick, black] (s1.south) -- (-6.15, -15.80);
+\draw [thick, black] (s2.south) -- (-2.05, -15.80);
+\draw [thick, black] (s3.south) -- (2.05, -15.80);
+\draw [thick, black] (s4.south) -- (6.15, -15.80);
+\draw [thick, black] (-6.15, -15.80) -- (6.15, -15.80);
+\draw [arrow] (0, -15.80) -- (redflags.north);
 
+% Final link to Refractory Box
 \draw [arrow] (redflags.south) -- (refractory.north);
-
 \end{tikzpicture}
 \end{latin}
 \end{center}

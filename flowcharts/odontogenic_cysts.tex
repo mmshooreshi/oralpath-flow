@@ -92,99 +92,99 @@
 ]
 
 % 1. Initial Presentation
-\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0.0) {
     \rl{\textbf{تظاهر بالینی و رادیوگرافیک: ضایعه رادیولوسنت کورتیکه‌دار فک (\lr{Jaw Radiolucency})}}\\[2pt]
     \scriptsize \rl{لوسنسی تک‌حفره‌ای یا چندحفره‌ای با مارجین مشخص $\bullet$ همراه با دندان نرویتال، نهفته یا بدون دندان $\bullet$ رد تروما و فیبروز}
 };
 
 % 2. Pulp Vitality & Aspiration Triage
-\node (n2) [stepbox, text width=14.2cm] at (0, -1.55) {
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.60) {
     \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: تست حیات پالپ دندان‌های مجاور، سی‌بی‌سی‌تی و آسپیراسیون سوزنی (\lr{FNA})}}}\\[2pt]
     \scriptsize \rl{سنجش حیات الکتریکی/حرارتی پالپ $\bullet$ رنگ مایع: کاهی (سروز)، چرکی، شیری/کرمی غلیظ (کراتین) $\bullet$ بررسی گسترش قدامی-خلفی}
 };
 
 % 3. Pulp Vitality Decision
-\node (d1) [decision] at (0, -3.35) {\rl{حیات پالپ؟}\\[-1pt]\scriptsize \lr{Pulp Vitality?}};
-\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.35) {
+\node (d1) [decision] at (0, -3.30) {\rl{حیات پالپ؟}\\[-1pt]\scriptsize \lr{Pulp Vitality?}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.30) {
     \rl{\textbf{ضایعه پری‌آپیکال دندانی \emoji{🔍}}}\\[2pt]
     \scriptsize \rl{دندان نرویتال با ضایعه کوچک؛}\\\rl{درمان ریشه (\lr{RCT}) خط اول؛}\\\rl{بهبودی در ۷۰٪ تا ۸۰٪ بدون جراحی}
 };
 
 % 4. Mandatory Incisional Biopsy & Keratin Analysis
-\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.20) {
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.00) {
     \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی برشی از دیواره کیست (\lr{Incisional Biopsy}) و ارزیابی کراتینیزاسیون و غربالگری سندرمیک \emoji{🔬}}}}\\[2pt]
     \scriptsize \rl{تفکیک پاراکراتینیزه در برابر ارتوکراتینیزه و غیرکراتینیزه $\bullet$ سنجش ضخامت اپیتلیوم دیواره $\bullet$ بررسی علائم بالینی سندرم گورلین (\lr{PTCH1})}
 };
 
 % 5. Subtype Decision
-\node (d2) [decision] at (0, -7.00) {\rl{پاتولوژی دیواره}\\[-1pt]\scriptsize \lr{Histopathologic Subtype?}};
+\node (d2) [decision] at (0, -6.60) {\rl{پاتولوژی دیواره}\\[-1pt]\scriptsize \lr{Histopathologic Subtype?}};
 
 % 6. 4 Main Columns
-\node (h1) [stepbox, text width=3.6cm] at (-6.15, -9.10) {
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -9.00) {
     \rl{\textbf{کیست رادیکولار مقاوم}}\\[2pt]
     \scriptsize \lr{Radicular / Inflammatory}\\\rl{اپیتلیوم مطبق غیرکراتینیزه}\\\rl{اجسام راشتون و ارتشاح التهابی}\\\rl{عود با جراحی کامل: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۲٪}}}}
 };
-\node (h2) [stepbox, text width=3.6cm] at (-2.05, -9.10) {
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -9.00) {
     \rl{\textbf{کیست دنتی‌ژروس تکاملی}}\\[2pt]
     \scriptsize \lr{Dentigerous Cyst}\\\rl{اتصال به طوق (\lr{CEJ}) دندان نهفته}\\\rl{اپیتلیوم نازک ۲ تا ۴ لایه‌ای}\\\rl{عود با انوکلئیشن: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۲٪}}}}
 };
-\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -9.10) {
+\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -9.00) {
     \rl{\textbf{کراتوسیست ادنتوژنیک (\lr{OKC}) \emoji{⚡}}}\\[2pt]
     \scriptsize \lr{Odontogenic Keratocyst}\\\rl{پاراکراتین چین‌دار؛ بازال پالیسادی}\\\rl{موتاسیون \lr{PTCH1} / سندرمیک}\\\rl{عود با کورتاژ ساده: \colorbox{hlred}{\strut\color{darkred}\textbf{۴۰٪ تا ۶۰٪}}}
 };
-\node (h4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -9.10) {
+\node (h4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -9.00) {
     \rl{\textbf{کیست ارتوکراتینیزه / رویشی}}\\[2pt]
     \scriptsize \lr{Orthokeratinized / Eruption}\\\rl{ارتوکراتین ضخیم + لایه گرانولار}\\\rl{فاقد تهاجم مدولار و جهش ژنتیکی}\\\rl{عود با انوکلئیشن: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۲٫۲٪}}}}
 };
 
 % 7. Primary Interventions
-\node (i1) [stepbox, text width=3.6cm] at (-6.15, -11.35) {
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -11.60) {
     \rl{\textbf{انوکلئیشن + آپیکواکتومی}}\\[2pt]
     \scriptsize \rl{خارج‌سازی کامل دیواره کیست}\\\rl{قطع ۳ میلی‌متر انتهای ریشه}\\\rl{سیل رتروگراد با بیوسرامیک (\lr{MTA})}
 };
-\node (i2) [stepbox, text width=3.6cm] at (-2.05, -11.35) {
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -11.60) {
     \rl{\textbf{مارسوپیالیزاسیون یا انوکلئیشن}}\\[2pt]
     \scriptsize \textbf{\rl{دکمپرسیون در اطفال برای حفظ دندان}}\\\rl{\lr{[\textbf{PMID: 39406309}]}}\\\rl{یا انوکلئیشن + خارج‌سازی دندان}
 };
-\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.35) {
+\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.60) {
     \rl{\textbf{انوکلئیشن + ادجوانت شیمیایی}}\\[2pt]
     \scriptsize \textbf{\rl{استکتومی محیطی + ۵-فلورواوراسیل}}\\\rl{گاز آغشته به \lr{5\% 5-FU} به مدت ۲۴ ساعت}\\\rl{کاهش عود به کمتر از ۸٪}\\\rl{\lr{[\textbf{PMID: 41454329}]}}
 };
-\node (i4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -11.35) {
+\node (i4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -11.60) {
     \rl{\textbf{انوکلئیشن محافظه‌کارانه}}\\[2pt]
     \scriptsize \rl{جداسازی تمیز کپسول از استخوان}\\\rl{پرهیز از کاربرد ادجوانت شیمیایی}\\\rl{اکسیزیون سقف در کیست رویشی}
 };
 
 % 8. Recall Schedules
-\node (s1) [stepbox, text width=3.6cm] at (-6.15, -13.60) {
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{سالانه تا ۲ سال}}}\\[2pt]
     \scriptsize \rl{پایش رادیوگرافیک پری‌آپیکال؛}\\\rl{تایید بازسازی استخوان کورتیکال}
 };
-\node (s2) [stepbox, text width=3.6cm] at (-2.05, -13.60) {
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه تا ۲ سال}}}\\[2pt]
     \scriptsize \rl{پایش مسیر رویش دندان دائم؛}\\\rl{انوکلئیشن تکمیلی در صورت نیاز}
 };
-\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -13.60) {
+\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۶ ماه (۵ سال)؛ سپس سالانه}}}\\[2pt]
     \scriptsize \rl{تصویربرداری \lr{CBCT} دوره‌ای؛}\\\rl{پایش کیست‌های اقماری ثانویه}
 };
-\node (s4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -13.60) {
+\node (s4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -14.20) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{سالانه تا ۲ سال}}}\\[2pt]
     \scriptsize \rl{معاینه بالینی و پانورامیک ساده؛}\\\rl{پیش‌آگهی عالی و بدون عود}
 };
 
 % 9. Trigger Box
-\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -16.15) {
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -17.40) {
     \centerline{\rl{\textbf{هشدارهای بالینی و اندیکاسیون‌های تغییر پروتکل جراحی یا بیوپسی مجدد (\lr{Clinical Red Flags}):}}}\par\vspace{3pt}
     \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{مداخله فوری و ارتقای جراحی در:}} (۱) پرفوراسیون کورتکس باکال/لینگوال یا اتصال به بافت نرم پیرامونی $\bullet$ (۲) بی‌حسی لب یا چانه (\lr{Parethesia}) ناشی از فشار بر کانال عصب دندانی تحتانی $\bullet$ (۳) عود سریع رادیولوسنسی در کمتر از ۱۲ ماه پس از جراحی $\bullet$ (۴) وجود ندول سالید داخل لومن کیستیک (مشکوک به آملوبلاستوما یا دگرگونی بدخیم) $\bullet$ (۵) بروز کیست‌های چندگانه در فکین در سنین نوجوانی (معیار ماژور سندرم گورلین-گولتز).}
 };
 
 % 10. Refractory Box
-\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -18.50) {
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -20.00) {
     \centerline{\rl{\textbf{پروتکل موارد مقاوم، درمان‌های مولکولی و پایش کارسینوم اولیه داخل استخوان (\lr{PIOC}):}}}\par\vspace{3pt}
     \scriptsize \rl{\textbf{سطح ۱ (سالواژ در عودهای مکرر OKC):} رزکسیون مارجینال استخوان فک با حفظ لبه تحتانی مندیبل یا رزکسیون سگمنتال همراه با بازسازی فوری فلپ استخوانی در صورت نفوذ تهاجمی به بافت نرم خارج کورتکس.}\par\vspace{2.5pt}
     \scriptsize \rl{\textbf{سطح ۲ (مهار هدفمند مسیر مولکولی):} کاربرد تارگت‌تراپی مهارکننده مسیر \lr{Hedgehog} (\lr{Vismodegib}) در بیماران مبتلا به سندرم گورلین با کیست‌های راجعه و وسیع غیرقابل جراحی.}\par\vspace{2.5pt}
@@ -194,17 +194,17 @@
 % Connections
 \draw [arrow] (n1) -- (n2);
 \draw [arrow] (n2) -- (d1);
-\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{نرویتال (پری‌آپیکال)}} (r_benign.west);
-\draw [arrow] (d1.south) -- node[right=5pt, font=\scriptsize\bfseries] {\rl{ویتال / کیست وسیع}} (n3.north);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{خاموش / خوش‌خیم}} (r_benign.west);
+\draw [arrow] (d1.south) -- node[right=5pt, font=\scriptsize\bfseries] {\rl{فعال / مشکوک}} (n3.north);
 \draw [arrow] (n3.south) -- (d2.north);
 
 % Bus-Bar from Decision 2 to 4 Subtype columns
-\draw [thick, black] (d2.south) -- (0, -7.90);
-\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
-\draw [arrow] (-6.15, -7.90) -- (h1.north);
-\draw [arrow] (-2.05, -7.90) -- (h2.north);
-\draw [arrow] (2.05, -7.90) -- (h3.north);
-\draw [arrow] (6.15, -7.90) -- (h4.north);
+\draw [thick, black] (d2.south) -- (0, -7.50);
+\draw [thick, black] (-6.15, -7.50) -- (6.15, -7.50);
+\draw [arrow] (-6.15, -7.50) -- (h1.north);
+\draw [arrow] (-2.05, -7.50) -- (h2.north);
+\draw [arrow] (2.05, -7.50) -- (h3.north);
+\draw [arrow] (6.15, -7.50) -- (h4.north);
 
 % Column Downward Arrows
 \draw [arrow] (h1.south) -- (i1.north);
@@ -218,16 +218,15 @@
 \draw [arrow] (i4.south) -- (s4.north);
 
 % Collector Bus into Trigger Box
-\draw [thick, black] (s1.south) -- (-6.15, -14.90);
-\draw [thick, black] (s2.south) -- (-2.05, -14.90);
-\draw [thick, black] (s3.south) -- (2.05, -14.90);
-\draw [thick, black] (s4.south) -- (6.15, -14.90);
-\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
-\draw [arrow] (0, -14.90) -- (trigger.north);
+\draw [thick, black] (s1.south) -- (-6.15, -15.80);
+\draw [thick, black] (s2.south) -- (-2.05, -15.80);
+\draw [thick, black] (s3.south) -- (2.05, -15.80);
+\draw [thick, black] (s4.south) -- (6.15, -15.80);
+\draw [thick, black] (-6.15, -15.80) -- (6.15, -15.80);
+\draw [arrow] (0, -15.80) -- (trigger.north);
 
 % Final link to Refractory Box
 \draw [arrow] (trigger.south) -- (refract.north);
-
 \end{tikzpicture}
 \end{latin}
 \end{center}
