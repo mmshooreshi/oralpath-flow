@@ -97,93 +97,93 @@
 };
 
 % 2. Mandatory Triage & Drug History
-\node (n2) [stepbox, text width=14.2cm] at (0, -1.90) {
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.55) {
     \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: ثبت دقیق سابقه دارویی (بیس‌فسفونات/دنوزوماب)، رادیوگرافی و حذف محرک موضعی}}}\\[2pt]
     \scriptsize \rl{بررسی جرم و پلاک زیرلثه‌ای $\bullet$ تصویربرداری پری‌آپیکال و سی‌بی‌سی‌تی (بررسی تحلیل استخوان کاسه‌ای یا سکوئستر نکروتیک)}
 };
 
 % 3. Drug-Induced Necrosis Decision
-\node (d1) [decision] at (0, -4.00) {\rl{استخوان اکسپوز؟}\\[-1pt]\scriptsize \lr{Exposed Bone?}};
-\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -4.00) {
+\node (d1) [decision] at (0, -3.35) {\rl{استخوان اکسپوز؟}\\[-1pt]\scriptsize \lr{Exposed Bone?}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.35) {
     \rl{\textbf{فیبروم تحریکی سطحی \emoji{🔍}}}\\[2pt]
     \scriptsize \rl{توده فیبروز بدون عروق زایی فزاینده؛}\\\rl{اکسیزیون ساده و رفع سایش دندانی؛}\\\rl{پیش‌آگهی قطعی و بدون عود}
 };
 
 % 4. Mandatory Biopsy & AAOMS Staging
-\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.40) {
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.20) {
     \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی بافتی الزامی (\lr{Biopsy}) و استیجینگ بالینی استئونکروز (\rl{استیج‌های ۰ تا ۳} \lr{AAOMS}) \emoji{🔬}}}}\\[2pt]
     \scriptsize \rl{ارزیابی ارتشاح عروقی، حضور سلول‌های ژانت چند‌هسته‌ای و گرانولاسیون $\bullet$ بررسی درگیری کورتکس در استئونکروز فک \lr{[\textbf{PMID: 41456990}]}}
 };
 
 % 5. Subtype Decision
-\node (d2) [decision] at (0, -8.70) {\rl{پاتولوژی و اتیولوژی}\\[-1pt]\scriptsize \lr{Histopathologic Subtype?}};
+\node (d2) [decision] at (0, -7.00) {\rl{پاتولوژی و اتیولوژی}\\[-1pt]\scriptsize \lr{Histopathologic Subtype?}};
 
 % 6. 4 Main Columns
-\node (h1) [stepbox, text width=3.6cm] at (-6.15, -11.00) {
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -9.10) {
     \rl{\textbf{گرانولوم پیوژنیک (\lr{PG})}}\\[2pt]
     \scriptsize \lr{Pyogenic Granuloma}\\\rl{پرولیفراسیون عروقی با ارتشاح التهابی}\\\rl{همراهی با بارداری (\lr{Epulis Gravidarum})}\\\rl{عود با حذف محرک: \colorbox{hlgray}{\strut\textbf{\rl{۳٪ تا ۵٪}}}}
 };
-\node (h2) [stepbox, text width=3.6cm] at (-2.05, -11.00) {
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -9.10) {
     \rl{\textbf{اپولیس فیبروماتوز}}\\[2pt]
     \scriptsize \lr{Fibromatous Epulis}\\\rl{بافت همبند کلاژنی متراکم و هایپوسلولار}\\\rl{پاسخ واکنشی به ترومای مکانیکی مکرر}\\\rl{عود پس از جراحی: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۲٪}}}}
 };
-\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.00) {
+\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -9.10) {
     \rl{\textbf{سلول غول‌آسای محیطی \emoji{⚡}}}\\[2pt]
     \scriptsize \lr{Peripheral Giant Cell (PGCG)}\\\rl{سلول‌های ژانت چند‌هسته‌ای + هموسیدرین}\\\rl{تحلیل استخوان کاسه‌ای کورتکس (\lr{Cupping})}\\\rl{عود بدون کورتاژ عمقی: \colorbox{hlred}{\strut\color{darkred}\textbf{۱۰٪ تا ۱۵٪}}}
 };
-\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -11.00) {
+\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -9.10) {
     \rl{\textbf{استئونکروز دارویی (\lr{MRONJ})}}\\[2pt]
     \scriptsize \lr{Medication-Related ONJ}\\\rl{استخوان نکروتیک فاقد استئوسیت}\\\rl{استیج \lr{I} تا \lr{III} طبق \lr{AAOMS 2024}}\\\rl{پروتکل چندتخصصی \lr{[\textbf{PMID: 41969602}]}}
 };
 
 % 7. Primary Interventions
-\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.50) {
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -11.35) {
     \rl{\textbf{اکسیزیون کامل + جرم‌گیری}}\\[2pt]
     \scriptsize \rl{اکسیزیون تا سطح پریوست}\\\rl{جرم‌گیری کامل و روت پلنینگ دندان}\\\textbf{\rl{تعویق جراحی در بارداری تا زایمان}}
 };
-\node (i2) [stepbox, text width=3.6cm] at (-2.05, -13.50) {
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -11.35) {
     \rl{\textbf{اکسیزیون جراحی ساده}}\\[2pt]
     \scriptsize \rl{برداشتن کامل توده فیبروزه}\\\rl{اصلاح لبه تیز دندان یا ترمیم مجاور}\\\rl{ارسال کامل نمونه جهت تایید پاتولوژی}
 };
-\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -13.50) {
+\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.35) {
     \rl{\textbf{اکسیزیون + کورتاژ پریوست}}\\[2pt]
     \scriptsize \textbf{\rl{کورتاژ عمقی پریوست و بستر استخوان}}\\\rl{جرم‌گیری ریشه دندان مجاور}\\\rl{تراش سطحی استخوان برای جلوگیری از عود}
 };
-\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.50) {
+\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -11.35) {
     \rl{\textbf{دبریدمان جراحی + \lr{PenTo}}}\\[2pt]
     \scriptsize \textbf{\rl{پنتوکسی‌فیلین + توکوفرول (\lr{PenTo})}}\\\rl{سکوئسترکتومی محافظه‌کارانه + \lr{PRF}}\\\rl{پوشش کامل فلپ موکوزال \lr{[\textbf{PMID: 41456990}]}}
 };
 
 % 8. Recall Schedules
-\node (s1) [stepbox, text width=3.6cm] at (-6.15, -16.00) {
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه تا ۱ سال}}}\\[2pt]
     \scriptsize \rl{بررسی بهداشت دهان؛}\\\rl{پایش عدم وجود جرم و محرک موضعی}
 };
-\node (s2) [stepbox, text width=3.6cm] at (-2.05, -16.00) {
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{سالانه تا ۲ سال}}}\\[2pt]
     \scriptsize \rl{معاینه بالینی ساده لثه؛}\\\rl{اطمینان از سازگاری پروتز و دندان}
 };
-\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -16.00) {
+\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۳ تا ۶ ماه (۲ سال)}}}\\[2pt]
     \scriptsize \rl{رادیوگرافی پری‌آپیکال دوره‌ای؛}\\\rl{پایش بازسازی استخوان حاشیه‌ای}
 };
-\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -16.00) {
+\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{ماهانه؛ سپس هر ۲ ماه}}}\\[2pt]
     \scriptsize \rl{پایش بسته ماندن بافت نرم؛}\\\rl{بررسی علائم عفونت و ترشح فیستول}
 };
 
 % 9. Trigger Box
-\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -18.70) {
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -16.15) {
     \centerline{\rl{\textbf{هشدارهای بالینی و اندیکاسیون‌های ارجاع فوری یا مداخله جراحی اورژانسی (\lr{Clinical Red Flags}):}}}\par\vspace{3pt}
     \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{مداخله فوری تشخیصی-درمانی در:}} (۱) پیشرفت استخوان برهنه یا پیدایش فیستول چرکی خارج دهانی در فک $\bullet$ (۲) بی‌حسی لب تحتانی یا چانه \rl{علامت وینسنت} (\lr{Paresthesia}) ناشی از نکروز مجاور عصب منتال $\bullet$ (۳) پیدایش لیتیک وسیع نامنظم استخوانی با واکنش پریوستئال (مشکوک به استئومیلیت حاد یا کارسینوم استخوان) $\bullet$ (۴) عود مکرر و سریع توده لثه با رشد انفجاری $\bullet$ (۵) شکستگی پاتولوژیک فک تحتانی به دلیل استئونکروز گرید \lr{III}.}
 };
 
 % 10. Refractory Box
-\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -21.20) {
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -18.50) {
     \centerline{\rl{\textbf{پروتکل موارد مقاوم، درمان‌های پیشرفته بازسازی و پایش دگرگونی بدخیم (\lr{Refractory Protocols}):}}}\par\vspace{3pt}
     \scriptsize \rl{\textbf{سطح ۱ (سالواژ استئونکروز پیشرفته):} رزکسیون سگمنتال استخوان فک نکروتیک همراه با بازسازی فوری با فلپ آزاد فیبولا (\lr{Microvascular Fibula Free Flap}) در موارد استیج \lr{III} مقاوم به درمان‌های دارویی.}\par\vspace{2.5pt}
     \scriptsize \rl{\textbf{سطح ۲ (اکسیژن هایپرباریک ادجوانت):} کاربرد \lr{Hyperbaric Oxygen (HBO)} به عنوان درمان کمکی در استئورادیونکروز و موارد مقاوم به منظور تحریک آنژیوژنز و ترمیم بستر زخم.}\par\vspace{2.5pt}
@@ -198,12 +198,12 @@
 \draw [arrow] (n3.south) -- (d2.north);
 
 % Bus-Bar from Decision 2 to 4 Subtype columns
-\draw [thick, black] (d2.south) -- (0, -9.80);
-\draw [thick, black] (-6.15, -9.80) -- (6.15, -9.80);
-\draw [arrow] (-6.15, -9.80) -- (h1.north);
-\draw [arrow] (-2.05, -9.80) -- (h2.north);
-\draw [arrow] (2.05, -9.80) -- (h3.north);
-\draw [arrow] (6.15, -9.80) -- (h4.north);
+\draw [thick, black] (d2.south) -- (0, -7.90);
+\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
+\draw [arrow] (-6.15, -7.90) -- (h1.north);
+\draw [arrow] (-2.05, -7.90) -- (h2.north);
+\draw [arrow] (2.05, -7.90) -- (h3.north);
+\draw [arrow] (6.15, -7.90) -- (h4.north);
 
 % Column Downward Arrows
 \draw [arrow] (h1.south) -- (i1.north);
@@ -217,12 +217,12 @@
 \draw [arrow] (i4.south) -- (s4.north);
 
 % Collector Bus into Trigger Box
-\draw [thick, black] (s1.south) -- (-6.15, -17.30);
-\draw [thick, black] (s2.south) -- (-2.05, -17.30);
-\draw [thick, black] (s3.south) -- (2.05, -17.30);
-\draw [thick, black] (s4.south) -- (6.15, -17.30);
-\draw [thick, black] (-6.15, -17.30) -- (6.15, -17.30);
-\draw [arrow] (0, -17.30) -- (trigger.north);
+\draw [thick, black] (s1.south) -- (-6.15, -14.90);
+\draw [thick, black] (s2.south) -- (-2.05, -14.90);
+\draw [thick, black] (s3.south) -- (2.05, -14.90);
+\draw [thick, black] (s4.south) -- (6.15, -14.90);
+\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
+\draw [arrow] (0, -14.90) -- (trigger.north);
 
 % Final link to Refractory Box
 \draw [arrow] (trigger.south) -- (refract.north);

@@ -98,93 +98,93 @@
 };
 
 % 2. Mandatory Step 1
-\node (n2) [stepbox, text width=14.2cm] at (0, -1.90) {
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.55) {
     \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: رد عوامل اتولوژی واکنشی (اصطکاک/دندان تیز) و ارزیابی فتوگرافی دیجیتال}}}\\[2pt]
     \scriptsize \rl{برطرف کردن لبه تیز دندان یا دنچر به مدت ۲ هفته؛ در صورت پایدار ماندن پلاک کراتوتیک $\rightarrow$ نیاز قطعی به ارزیابی بیوپسی}
 };
 
 % 3. Solitary Pedunculated Decision
-\node (d1) [decision] at (0, -4.00) {\rl{ضایعه منفرد، پدانکوله،}\\[-1pt]\scriptsize \lr{Pedunculated / Warty?}};
-\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -4.00) {
+\node (d1) [decision] at (0, -3.35) {\rl{ضایعه منفرد، پدانکوله،}\\[-1pt]\scriptsize \lr{Pedunculated / Warty?}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.35) {
     \rl{\textbf{پاپیلوما منفرد (\lr{HPV 6/11}) \emoji{🔍}}}\\[2pt]
     \scriptsize \rl{ضایعه خوش‌خیم بدون دیسپلازی؛}\\\rl{اکسیزیون ساده با شالوده پدانکول؛}\\\colorbox{hlgray}{\strut\rl{\textbf{پیش‌آگهی عالی؛ عود نادر}}}
 };
 
 % 4. Mandatory Biopsy & Dysplasia Grading
-\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.40) {
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.20) {
     \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی برشی (\lr{Incisional Biopsy}) در ضایعات وسیع یا نامنظم و گریدینگ دیسپلازی \emoji{🔬}}}}\\[2pt]
     \scriptsize \rl{نمونه‌برداری از بدنماترین ناحیه در اریترولکوپلاکیا $\bullet$ گریدینگ دیسپلازی اپی‌تلیال بر اساس معیارهای \lr{WHO 5th Ed 2024} \lr{[\textbf{PMID: 42690553}]}}
 };
 
 % 5. Subtype Decision
-\node (d2) [decision] at (0, -8.70) {\rl{پاتولوژی و دیسپلازی}\\[-1pt]\scriptsize \lr{Dysplasia Grade?}};
+\node (d2) [decision] at (0, -7.00) {\rl{پاتولوژی و دیسپلازی}\\[-1pt]\scriptsize \lr{Dysplasia Grade?}};
 
 % 6. 4 Main Columns
-\node (h1) [stepbox, text width=3.6cm] at (-6.15, -11.00) {
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -9.10) {
     \rl{\textbf{پاپیلوما اسکواموس}}\\[2pt]
     \scriptsize \lr{Squamous Papilloma}\\\rl{پدانکوله با زوائد انگشتی؛}\\\rl{فاقد اتیپی یا دیسپلازی اپی‌تلیال؛}\\\rl{عود با جراحی: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۱٪}}}}
 };
-\node (h2) [stepbox, text width=3.6cm] at (-2.05, -11.00) {
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -9.10) {
     \rl{\textbf{کوندیلوما / وروکا}}\\[2pt]
     \scriptsize \lr{Condyloma / Verruca}\\\rl{ضایعات سسیل پهن، مولتیپل؛}\\\rl{انتقال جنسی یا خودتلقیحی (\lr{HPV})؛}\\\rl{عود موضعی: \textbf{۱۰٪ تا ۲۰٪}}
 };
-\node (h3) [stepbox, text width=3.6cm] at (2.05, -11.00) {
+\node (h3) [stepbox, text width=3.6cm] at (2.05, -9.10) {
     \rl{\textbf{دیسپلازی خفیف}}\\[2pt]
     \scriptsize \lr{Mild Dysplasia (WHO Low)}\\\rl{دیسپلازی محدود به ۱/۳ قاعده اپی‌تلیوم؛}\\\rl{پلاک هموژن با هایپرکراتوز پایدار؛}\\\rl{ریسک بدخیمی: \textbf{۳٪ تا ۵٪}}
 };
-\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -11.00) {
+\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -9.10) {
     \rl{\textbf{دیسپلازی شدید / \lr{CIS} \emoji{⚡}}}\\[2pt]
     \scriptsize \lr{High-Grade Dysplasia / CIS}\\\rl{درگیری بیش از ۲/۳ تا تمام ضخامت؛}\\\rl{میتوز آتیپیک و پلئومورفیسم سلولی؛}\\\rl{ریسک بدخیمی:} \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{۱۵٪ تا ۳۵٪}}}
 };
 
 % 7. Primary Interventions
-\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.50) {
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -11.35) {
     \rl{\textbf{اکسیزیون کانوکشنال}}\\[2pt]
     \scriptsize \rl{برداشت جراحی با حاشیه سالم؛}\\\rl{شامل قاعده ساقه فیبروواسکولار؛}\\\rl{تایید پاتولوژی مارجین}\\\rl{\lr{[\textbf{PMID: 41050292}]}}
 };
-\node (i2) [stepbox, text width=3.6cm] at (-2.05, -13.50) {
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -11.35) {
     \rl{\textbf{اکسیزیون کامل $\pm$ کرایو}}\\[2pt]
     \scriptsize \rl{اکسیزیون با بیستوری یا لیزر \lr{CO2}؛}\\\rl{بررسی همزمان پارتنر جنسی؛}\\\rl{استفاده از مکش دود جراحی}\\\rl{(پیشگیری از انتقال ویروس با دود)}
 };
-\node (i3) [stepbox, text width=3.6cm] at (2.05, -13.50) {
+\node (i3) [stepbox, text width=3.6cm] at (2.05, -11.35) {
     \rl{\textbf{تبخیر لیزر یا اکسیزیون}}\\[2pt]
     \scriptsize \rl{اکسیزیون با مارجین ۳ میلی‌متر، یا}\\\rl{تبخیر سطحی با لیزر \lr{CO2}؛}\\\rl{حذف کامل دخانیات و الکل}\\\rl{\lr{[\textbf{PMID: 42969171}]}}
 };
-\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.50) {
+\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -11.35) {
     \rl{\textbf{رزکسیون با مارجین ۵mm}}\\[2pt]
     \scriptsize \textbf{\rl{اکسیزیون وسیع با حاشیه پاک ۵mm؛}}\\\rl{ارزیابی کامل مارجین بافتی؛}\\\rl{فتودینامیک‌تراپی ادجوانت (\lr{PDT})}\\\rl{\lr{[\textbf{PMID: 39290142}]}}
 };
 
 % 8. Surveillance Regimens
-\node (s1) [stepbox, text width=3.6cm] at (-6.15, -15.90) {
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \rl{\colorbox{hlgray}{\strut\textbf{سالانه در معاینات روتین}}}\\[2pt]
     \scriptsize \rl{پیش‌آگهی عالی؛}\\\rl{عدم نیاز به تصویربرداری دوره‌ای}
 };
-\node (s2) [stepbox, text width=3.6cm] at (-2.05, -15.90) {
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \rl{\textbf{هر ۶ ماه تا ۲ سال}}\\[2pt]
     \scriptsize \rl{پایش دقیق پیدایش}\\\rl{ضایعات اگزوفیتیک و پاپیلاری جدید}
 };
-\node (s3) [stepbox, text width=3.6cm] at (2.05, -15.90) {
+\node (s3) [stepbox, text width=3.6cm] at (2.05, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \rl{\textbf{هر ۶ ماه (مادام‌العمر)}}\\[2pt]
     \scriptsize \rl{معاینه کامل مخاط و عکاسی دیجیتال؛}\\\rl{بیوپسی مجدد در صورت تغییر بالینی}
 };
-\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -15.90) {
+\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۳ ماه (۲ سال اول)}}}\\[2pt]
     \scriptsize \rl{سپس هر ۶ ماه مادام‌العمر؛}\\\rl{غربالگری دقیق تحول به \lr{OSCC}}
 };
 
 % 9. Clinical Red Flags
-\node (redflags) [stepbox, draw=darkred, line width=0.9pt, text width=15.8cm] at (0, -18.25) {
+\node (redflags) [stepbox, draw=darkred, line width=0.9pt, text width=15.8cm] at (0, -16.15) {
     \rl{\textbf{هشدارهای بالینی و اندیکاسیون‌های ارجاع فوری یا بیوپسی مجدد (\lr{Clinical Red Flags}):}}\\[3pt]
     \scriptsize \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{مداخله فوری تشخیصی در:}}} \rl{(۱) پیدایش پلاک قرمز (\lr{Erythroplakia}) یا سفتی/زخم در بستر پلاک $\bullet$ (۲) درگیری نواحی پرخطر کف دهان و سطح ونترال/لترال زبان $\bullet$ (۳) لکوپلاکیای وروکوز پرولیفراتیو (\lr{PVL}) چندکانونی مقاوم با ریسک بدخیمی بالای ۶۰٪ $\bullet$ (۴) عدم پسرفت پلاک پس از ۳ تا ۴ هفته از حذف عامل مکانیکی $\bullet$ (۵) لمس لنفادنوپاتی گردنی.}
 };
 
 % 10. Refractory / Malignancy Protocols
-\node (refractory) [stepbox, line width=0.9pt, text width=15.8cm] at (0, -20.40) {
+\node (refractory) [stepbox, line width=0.9pt, text width=15.8cm] at (0, -18.50) {
     \rl{\textbf{پروتکل موارد راجعه، \lr{PVL} و پایش بدخیمی دیسپلازی (\lr{Malignancy Surveillance}):}}\\[3pt]
     \scriptsize \rl{\textbf{سطح ۱ (\lr{PVL} و ضایعات چندکانونی):} نقشه‌برداری بالینی مکرر و بیوپسی‌های اینسیزیونال پیاپی جهت کشف زودرس \lr{Microinvasive OSCC} یا وروکوز کارسینوما \lr{[\textbf{PMID: 40597151}]}.}\\
     \scriptsize \rl{\textbf{سطح ۲ (بررسی حاشیه با فلوئورسنس):} پایش حواشی جراحی با اتوفلوئورسنس نوری (\lr{VELscope}) یا رنگ‌آمیزی تولوییدین بلو جهت تشخیص دیسپلازی ساب‌کلینیکال.}\\
@@ -218,7 +218,7 @@
 \draw [arrow] (s3.south) -- ++(0,-0.35) coordinate (b3);
 \draw [arrow, darkred] (s4.south) -- ++(0,-0.35) coordinate (b4);
 \draw [thick, black] (b1) -- (b4);
-\draw [arrow] (0, -17.50) -- (redflags.north);
+\draw [arrow] (0, -14.90) -- (redflags.north);
 
 \draw [arrow] (redflags) -- (refractory);
 

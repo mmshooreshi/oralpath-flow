@@ -1,0 +1,237 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1.15cm,footskip=0pt,headsep=0pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\newcommand{\MathCollectFalse}{}
+\newcommand{\MathCollectTrue}{}
+\let\@kernel@tabular@init\relax
+\makeatother
+
+\usepackage{xepersian}
+
+\settextfont[
+  Path = Peyda/,
+  BoldFont = Peyda-Bold.ttf,
+  ItalicFont = Peyda-Medium.ttf,
+  BoldItalicFont = Peyda-Bold.ttf
+]{Peyda-Regular.ttf}
+
+\setlatintextfont{Times New Roman}
+
+\IfFileExists{Peyda/Symbola.ttf}{%
+  \newfontfamily\symb[Path=Peyda/]{Symbola.ttf}%
+}{%
+  \IfFileExists{editor/Peyda/Symbola.ttf}{%
+    \newfontfamily\symb[Path=editor/Peyda/]{Symbola.ttf}%
+  }{%
+    \newfontfamily\symb{Symbola}%
+  }%
+}
+\newcommand{\emoji}[1]{{\symb #1}}
+
+\linespread{1.12}
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\definecolor{hlgray}{HTML}{E2E8F0}
+\definecolor{hlyellow}{HTML}{FEF08A}
+\definecolor{hlred}{HTML}{FEE2E2}
+\definecolor{darkred}{HTML}{991B1B}
+\definecolor{navy}{HTML}{0A2540}
+\definecolor{teal}{HTML}{0D9488}
+
+% =========================================================================
+% PLATFORM TAXONOMY ROUTING (patho.dentnet.space)
+% =========================================================================
+% DOC_ID: capillary_hemangioma
+% DOC_SLUG: capillary_hemangioma
+% DOC_CATEGORY: cat_benign_mesenchymal
+% DOC_TITLE: همانژیوم کاپیلاری (Capillary Hemangioma)
+% DOC_ALIASES: Capillary Hemangioma, Infantile Hemangioma, Vascular Anomalies, همانژیوم کاپیلاری, تومورهای خوش‌خیم عروقی
+% =========================================================================
+
+% =========================================================================
+% CLINICAL EVIDENCE LEDGER & PMIDS (WHO 5th Ed 2024 / Landmark Trials)
+% =========================================================================
+% 1. WHO Classification of Head and Neck Tumours, 5th Ed (2024): Vascular Anomalies & Tumours.
+% 2. Neville BW et al. Oral and Maxillofacial Pathology, 5th Ed (2024): Soft Tissue Neoplasms.
+% 3. PMID: 25693013 - Léauté-Labrèze C et al. (N Engl J Med 2015) A randomized, controlled trial of oral propranolol in infantile hemangioma.
+% 4. PMID: 30584062 - Krowchuk DP et al. (Pediatrics 2019) Clinical Practice Guideline for the Management of Infantile Hemangiomas.
+% 5. PMID: 41446713 - Werpachowski N et al. (J Clin Aesthet Dermatol 2025) Topical Timolol in Infantile Hemangiomas: Systematic Review.
+% 6. PMID: 42414159 - da Silva LOP et al. (Oral Surg Oral Med Oral Pathol Oral Radiol 2026) Ultrasonographic Parameters & Sclerotherapy of Oral Vascular Anomalies.
+% 7. PMID: 35468033 - De Ravin E et al. (Pediatr Hematol Oncol 2022) International Clinical Practice Guidelines on Hemangioma: Systematic Review.
+% =========================================================================
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries فلوچارت تصمیم‌گیری بالینی: همانژیوم کاپیلاری دهان (\lr{Capillary Hemangioma})}\\[2pt]
+{\small\itshape تریاژ دیاسکوپی و همودینامیک، ایمونوهیستوشیمی \lr{GLUT-1}، پروتکل بتابلوکر سیستمیک/موضعی، اسکلروتراپی و کنترل خونریزی}
+\end{center}
+\vspace{-4pt}
+\hrule height 0.8pt
+\vspace{6pt}
+
+\begin{center}
+\begin{latin}
+\linespread{0.95}\selectfont
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily\footnotesize, align=center},
+    stepbox/.style={rectangle, draw=black, fill=white, line width=0.7pt, inner sep=4.5pt},
+    decision/.style={diamond, aspect=2.0, draw=black, fill=white, line width=0.7pt, inner sep=2.5pt, font=\sffamily\scriptsize\bfseries},
+    arrow/.style={-{Stealth[scale=0.88]}, thick, black}
+]
+
+% 1. Initial Presentation
+\node (n1) [stepbox, line width=1.0pt, text width=12.2cm] at (0, 0) {
+    \rl{\textbf{تظاهر بالینی: ندول/ماکول عروقی قرمز تا ارغوانی مخاط دهان (\lr{Oral Vascular Lesion})}}\\[2pt]
+    \scriptsize \rl{تست دیاسکوپی مثبت (رنگ‌پریدگی با فشار \lr{Blanching}) $\bullet$ زبان، لب، مخاط باکال یا لثه $\bullet$ رد تپش یا سوفل (\lr{Bruit/Thrill})}
+};
+
+% 2. Mandatory Hemodynamic Triage
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.55) {
+    \colorbox{hlyellow}{\strut\textbf{\rl{مرحله ۱ الزامی: تریاژ همودینامیک و داپلر (رد قطعی مالفورماسیون شریانی-وریدی پرجریان)}}}\\[2pt]
+    \scriptsize \rl{سونوگرافی کالر داپلر (\lr{CDUS}) جهت ارزیابی سرعت جریان $\bullet$ رادیوگرافی/\lr{CBCT} جهت رد درگیری داخل استخوانی فکین}
+};
+
+% 3. High-Flow / Intrabony Decision
+\node (d1) [decision] at (0, -3.35) {\rl{جریان بالا / استخوان؟}\\[-1pt]\scriptsize \lr{High-Flow / Bone?}};
+\node (r_exit) [stepbox, draw=darkred, line width=1.0pt, text width=3.8cm] at (5.8, -3.35) {
+    \rl{\textbf{مالفورماسیون پرجریان (\lr{AVM}) \emoji{⚠}}}\\[2pt]
+    \scriptsize \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{بیوپسی اکیداً ممنوع}}}\\[2pt]
+    \scriptsize \rl{ارجاع اورژانسی به آنژیوگرافی}\\
+    \rl{و آمبولیزاسیون مداخله‌ای}
+};
+
+% 4. Mandatory Biologic Characterization
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.20) {
+    \colorbox{hlyellow}{\strut\textbf{\rl{ارزیابی بیولوژیک و ایمونوهیستوشیمی طبقه‌بندی \lr{ISSVA / WHO 5th Ed 2024}}}}\\[2pt]
+    \scriptsize \rl{تمایز تومور حقیقی از مالفورماسیون عروقی: مارکر \lr{GLUT-1} (در اینفانتایل مثبت، مالفورماسیون منفی) $\bullet$ فاز پرولیفراتیو در برابر اینولوشن}
+};
+
+% 5. Clinical Phenotype Decision
+\node (d2) [decision] at (0, -7.00) {\rl{فنوتیپ بالینی}\\[-1pt]\scriptsize \lr{Clinical Phenotype?}};
+
+% 6. 4 Main Clinical Presentation Columns
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -9.10) {
+    \rl{\textbf{سطحی / نوزادی کم‌خطر}}\\[2pt]
+    \scriptsize \rl{ضایعه مخاطی خفیف، کوچکتر از ۲ سانتی‌متر}\\\rl{فاقد اولسر و اختلال بلع یا تنفس}\\\rl{شانس پس‌رفت: }\colorbox{hlgray}{\strut\textbf{\rl{تا ۹۰٪ تا ۹ سالگی}}}
+};
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -9.10) {
+    \rl{\textbf{لوبولار مخاطی (\lr{LCH/PG})}}\\[2pt]
+    \scriptsize \rl{ندول لب یا مخاط باکال ناشی از تروما}\\\rl{خونریزی‌های مکرر با غذا خوردن}\\\rl{رشد سریع اگزوفیتیک در اطفال و جوانان}
+};
+\node (h3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -9.10) {
+    \rl{\textbf{پرولیفراتیو شدید / اولسره}}\\[2pt]
+    \scriptsize \rl{رشد سریع مخاطی، اختلال تغذیه}\\\rl{زخم دردناک یا تهدید راه هوایی فک}\\\rl{اندیکاسیون: }\colorbox{hlred}{\strut\color{darkred}\textbf{\rl{شروع فوری درمان دارویی}}}
+};
+\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -9.10) {
+    \rl{\textbf{کونژنتال پایدار (\lr{NICH}) / مالفورماسیون}}\\[2pt]
+    \scriptsize \rl{ضایعه عروقی غیرپس‌رونده در بدو تولد}\\\rl{مارکر \lr{GLUT-1 (-)}؛ مقاومت به بتابلوکر}\\\rl{توده عروقی عمقی و آسیمتری بافت نرم}
+};
+
+% 7. Primary Interventions
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -11.35) {
+    \rl{\textbf{تیمولول موضعی / پایش فعال}}\\[2pt]
+    \scriptsize \lr{Timolol 0.5\% GFS} \rl{۲ قطره دوبار در روز}\\\rl{یا پیگیری بدون مداخله تهاجمی}\\\lr{[PMID: 41446713 - 2025]}
+};
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -11.35) {
+    \rl{\textbf{اکسیزیون جراحی یا لیزر}}\\[2pt]
+    \scriptsize \rl{برداشت کامل تا لایه ساب‌موکوزا}\\\rl{هموستاز با لیزر دیود یا کوتر}\\\rl{میزان عود: }\colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۳٪}}}
+};
+\node (i3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -11.35) {
+    \rl{\textbf{پروپرانولول خوراکی خط اول \emoji{🎯}}}\\[2pt]
+    \scriptsize \lr{Propranolol 2--3\,mg/kg/day}\\\rl{منقسم در دو دوز همراه با شیر/تغذیه}\\\lr{[PMID: 25693013 - NEJM RCT]}
+};
+\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -11.35) {
+    \rl{\textbf{اسکلروتراپی هدایت‌شده}}\\[2pt]
+    \scriptsize \rl{تزریق فوم پولیدوکانول ۱٪ تا ۲٪}\\\rl{یا بلئومایسین تحت گاید سونوگرافی}\\\lr{[PMID: 42414159 - da Silva 2026]}
+};
+
+% 8. Recall Schedules
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -13.60) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه یکبار}}}\\[2pt]
+    \scriptsize \rl{فتوگرافی سریال و پایش پس‌رفت}
+};
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -13.60) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlgray}{\strut\textbf{\rl{ماه ۱ و ۳ پس از عمل}}}\\[2pt]
+    \scriptsize \rl{بررسی هیلینگ مخاط و پاتولوژی}
+};
+\node (s3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -13.60) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{ماهانه در فاز رشد}}}\\[2pt]
+    \scriptsize \rl{تنظیم دوز پروپرانولول با وزن کودک}
+};
+\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.60) {
+    \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
+    \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۳ تا ۶ ماه}}}\\[2pt]
+    \scriptsize \rl{سونوگرافی داپلر و پایش ترومبوز}
+};
+
+% 9. Trigger Box
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -16.15) {
+    \centerline{\rl{\textbf{علائم خطر بالینی (\lr{Red Flags}) و اندیکاسیون‌های بستری و مداخله اورژانسی:}}}\par\vspace{3pt}
+    \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{مداخله فوری الزامی است در:}} (۱) استریدور یا انسداد حاد راه هوایی ناشی از گسترش ضایعه به زبان یا حلق $\bullet$ (۲) خونریزی فعال شدید غیرقابل مهار ناشی از ترومای مخاطی $\bullet$ (۳) اولسراسیون وسیع همراه با درد شدید و ناتوانی در تغذیه نوزاد $\bullet$ (۴) عوارض بتابلوکر سیستمیک شامل برادیکاردی (کمتر از ۸۰ ضربان در دقیقه)، هیپوگلیسمی علامت‌دار یا اسپاسم برونش $\bullet$ (۵) ضایعات پلاک‌مانند وسیع صورت با شک به سندرم \lr{PHACE}.}
+};
+
+% 10. Refractory Box
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -18.50) {
+    \centerline{\rl{\textbf{پروتکل پله‌ای برای موارد مقاوم به درمان دارویی / ضایعات عروقی پیچیده:}}}\par\vspace{3pt}
+    \scriptsize \rl{\textbf{سطح ۳ (مقاوم به پروپرانولول):} پردنیزولون خوراکی (\lr{2--3\,mg/kg/day}) یا اضافه کردن لیزر رنگی پالسی (\lr{PDL 595\,nm}) جهت ترمیم اولسر و محو عروق سطحی.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۴ (مهارکننده تارگت بیولوژیک \lr{mTOR}):} سیرولیموس خوراکی (\lr{Sirolimus 0.8\,mg/m$^2$ q12h} با هدف سطح خونی \lr{5--10\,ng/mL}) در ضایعات مالفورماسیون عروقی و لنفاتیک مقاوم.}\par\vspace{2.5pt}
+    \scriptsize \rl{\textbf{سطح ۵ (سالواژ مداخله‌ای و جراحی):} آمبولیزاسیون ترانس‌آرتریال سوپرسلکتیو به همراه اکسیزیون جراحی کامل تحت بیهوشی با کوتر بای‌پولار یا تیغ اولتراسونیک هارمونیک.}
+};
+
+% Connections
+\draw [arrow] (n1) -- (n2);
+\draw [arrow] (n2) -- (d1);
+\draw [arrow] (d1.east) -- node[above, font=\scriptsize\bfseries] {\rl{بله (خطرناک)}} (r_exit.west);
+\draw [arrow] (d1.south) -- node[right=4pt, font=\scriptsize\bfseries] {\rl{خیر (کم‌جریان/مخاطی)}} (n3.north);
+\draw [arrow] (n3.south) -- (d2.north);
+
+% Bus-Bar from Decision 2 to 4 Histology columns
+\draw [thick, black] (d2.south) -- (0, -7.90);
+\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
+\draw [arrow] (-6.15, -7.90) -- (h1.north);
+\draw [arrow] (-2.05, -7.90) -- (h2.north);
+\draw [arrow] (2.05, -7.90) -- (h3.north);
+\draw [arrow] (6.15, -7.90) -- (h4.north);
+
+% Column Downward Arrows
+\draw [arrow] (h1.south) -- (i1.north);
+\draw [arrow] (h2.south) -- (i2.north);
+\draw [arrow] (h3.south) -- (i3.north);
+\draw [arrow] (h4.south) -- (i4.north);
+
+\draw [arrow] (i1.south) -- (s1.north);
+\draw [arrow] (i2.south) -- (s2.north);
+\draw [arrow] (i3.south) -- (s3.north);
+\draw [arrow] (i4.south) -- (s4.north);
+
+% Collector Bus into Trigger Box
+\draw [thick, black] (s1.south) -- (-6.15, -14.90);
+\draw [thick, black] (s2.south) -- (-2.05, -14.90);
+\draw [thick, black] (s3.south) -- (2.05, -14.90);
+\draw [thick, black] (s4.south) -- (6.15, -14.90);
+\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
+\draw [arrow] (0, -14.90) -- (trigger.north);
+
+\draw [arrow] (trigger.south) -- (refract.north);
+
+\end{tikzpicture}
+\end{latin}
+\end{center}
+
+\end{document}

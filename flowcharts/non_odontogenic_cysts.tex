@@ -97,93 +97,93 @@
 };
 
 % 2. Mandatory Step 1
-\node (n2) [stepbox, text width=14.2cm] at (0, -1.90) {
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.55) {
     \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: تصویربرداری سه‌بعدی (\lr{CBCT} / \lr{MRI}) و سنجش حیات پالپ دندان‌های قدامی}}}\\[2pt]
     \scriptsize \rl{رد کیست رادیکولار اینسایزیو با تایید حیات دندان‌های قدامی $\bullet$ بررسی ارتباط توده گردن با استخوان هیوئید یا عضله میلوهیوئید}
 };
 
 % 3. Tooth-Related Vitality Decision
-\node (d1) [decision] at (0, -4.00) {\rl{دندان بدون حیات؟}\\[-1pt]\scriptsize \lr{Non-Vital Teeth?}};
-\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -4.00) {
+\node (d1) [decision] at (0, -3.35) {\rl{دندان بدون حیات؟}\\[-1pt]\scriptsize \lr{Non-Vital Teeth?}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.35) {
     \rl{\textbf{کیست پری‌آپیکال رادیکولار \emoji{🔍}}}\\[2pt]
     \scriptsize \rl{منشأ ادنتوژنیک التهابی؛}\\\rl{درمان ریشه (\lr{RCT}) یا}\\\rl{اپیکواکتومی با حفظ پالپ سالم}
 };
 
 % 4. Mandatory Surgical Mapping & Anatomic Triage
-\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.40) {
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.20) {
     \rl{\colorbox{hlyellow}{\strut\textbf{تریاژ موضع آناتومیک، آسپیراسیون سوزنی (\lr{FNA}) و مپینگ فضاهای فاسیال \emoji{🔬}}}}\\[2pt]
     \scriptsize \rl{تمایز توده‌های داخل استخوانی ماگزیلا (\lr{NPDC}) از ضایعات بافت نرم ساب‌لینگوال، ساب‌منتال و قوس‌های برانشیال \lr{[\textbf{PMID: 41721112}]}}
 };
 
 % 5. Subtype Decision
-\node (d2) [decision] at (0, -8.70) {\rl{موقعیت و پاتولوژی}\\[-1pt]\scriptsize \lr{Anatomic Subtype?}};
+\node (d2) [decision] at (0, -7.00) {\rl{موقعیت و پاتولوژی}\\[-1pt]\scriptsize \lr{Anatomic Subtype?}};
 
 % 6. 4 Main Columns
-\node (h1) [stepbox, text width=3.6cm] at (-6.15, -11.00) {
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -9.10) {
     \rl{\textbf{مجرای نازوپالاتین}}\\[2pt]
     \scriptsize \lr{Nasopalatine Duct Cyst}\\\rl{رادیولوسنسی متقارن قدام ماگزیلا؛}\\\rl{اپیتلیوم تنفسی/مطبق و اعصاب پالاتین؛}\\\rl{عود با انوکلیشن: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۲٪}}}}
 };
-\node (h2) [stepbox, text width=3.6cm] at (-2.05, -11.00) {
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -9.10) {
     \rl{\textbf{درموئید / اپیدرموئید}}\\[2pt]
     \scriptsize \lr{Dermoid / Epidermoid}\\\rl{توده قوام خمیری بالای/زیر میلوهیوئید؛}\\\rl{حاوی کراتین، فولیکول مو و سباسه؛}\\\rl{عود موضعی: \textbf{زیر ۳٪}}
 };
-\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.00) {
+\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -9.10) {
     \rl{\textbf{مجرای تیروگلوسال \emoji{⚡}}}\\[2pt]
     \scriptsize \lr{Thyroglossal Duct Cyst}\\\rl{توده خط وسط گردن متحرک با بلع؛}\\\rl{ریسک بدخیمی کارسینوم پاپیلاری؛}\\\rl{عود بدون سیسترانک:} \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{۵۰٪ تا ۷۰٪}}}
 };
-\node (h4) [stepbox, text width=3.6cm] at (6.15, -11.00) {
+\node (h4) [stepbox, text width=3.6cm] at (6.15, -9.10) {
     \rl{\textbf{لنفواپی‌تلیال گردنی/دهانی}}\\[2pt]
     \scriptsize \lr{Lymphoepithelial Cyst}\\\rl{توده زردرنگ کف دهان یا لترال گردن؛}\\\rl{اپیتلیوم سنگفرشی محصور در لنفوئید؛}\\\rl{عود پس از جراحی: \textbf{کمتر از ۱٪}}
 };
 
 % 7. Primary Interventions
-\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.50) {
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -11.35) {
     \rl{\textbf{انوکلیشن از فلپ پالاتال}}\\[2pt]
     \scriptsize \rl{انوکلیشن کامل از طریق دسترسی کام؛}\\\rl{حفظ عصب و عروق نازوپالاتین؛}\\\rl{مارسوپیالیزاسیون در کیست غول‌آسا}\\\rl{\lr{[\textbf{PMID: 37291808}]}}
 };
-\node (i2) [stepbox, text width=3.6cm] at (-2.05, -13.50) {
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -11.35) {
     \rl{\textbf{انوکلیشن ترانس‌اورال/گردنی}}\\[2pt]
     \scriptsize \rl{خارج‌سازی با برش داخل دهانی}\\\rl{(در صورت بالای عضله میلوهیوئید) یا}\\\rl{برش اکسترااورال زیر چانه؛}\\\rl{\lr{[\textbf{PMID: 41294898}]}}
 };
-\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -13.50) {
+\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.35) {
     \rl{\textbf{پروسیجر سیسترانک (\lr{Sistrunk})}}\\[2pt]
     \scriptsize \textbf{\rl{رزکسیون قطعه میانی استخوان هیوئید}}\\\rl{همراه با هسته عضلات قاعده زبان؛}\\\rl{کاهش عود به کمتر از ۳٪}\\\rl{\lr{[\textbf{PMID: 42840700}]}}
 };
-\node (i4) [stepbox, text width=3.6cm] at (6.15, -13.50) {
+\node (i4) [stepbox, text width=3.6cm] at (6.15, -11.35) {
     \rl{\textbf{اکسیزیون ساده کپسولی}}\\[2pt]
     \scriptsize \rl{اکسیزیون ترانس‌اورال تمیز در کف دهان؛}\\\rl{یا خارج‌سازی جراحی در حاشیه قدامی}\\\rl{عضله استرنوکلیدوماستوئید}\\\rl{\lr{[\textbf{PMID: 41562809}]}}
 };
 
 % 8. Surveillance Regimens
-\node (s1) [stepbox, text width=3.6cm] at (-6.15, -15.90) {
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \rl{\colorbox{hlgray}{\strut\textbf{سالانه تا ۲ سال}}}\\[2pt]
     \scriptsize \rl{رادیوگرافی اکلوزال یا پانورامیک؛}\\\rl{تایید بازسازی استخوان قدام کام}
 };
-\node (s2) [stepbox, text width=3.6cm] at (-2.05, -15.90) {
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \rl{\textbf{هر ۶ ماه تا ۲ سال}}\\[2pt]
     \scriptsize \rl{لمس بالینی کف دهان؛}\\\rl{عدم محدودیت حرکتی زبان و تنفس}
 };
-\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -15.90) {
+\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۶ ماه تا ۵ سال}}}\\[2pt]
     \scriptsize \rl{سونوگرافی بافت نرم گردن؛}\\\rl{پایش دقیق عود در قاعده زبان}
 };
-\node (s4) [stepbox, text width=3.6cm] at (6.15, -15.90) {
+\node (s4) [stepbox, text width=3.6cm] at (6.15, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \rl{\textbf{سالانه در معاینات روتین}}\\[2pt]
     \scriptsize \rl{ضایعه خوش‌خیم بدون عود؛}\\\rl{معاینه روتین مخاطی و گردنی}
 };
 
 % 9. Clinical Red Flags
-\node (redflags) [stepbox, draw=darkred, line width=0.9pt, text width=15.8cm] at (0, -18.25) {
+\node (redflags) [stepbox, draw=darkred, line width=0.9pt, text width=15.8cm] at (0, -16.15) {
     \rl{\textbf{هشدارهای بالینی و اندیکاسیون‌های ارجاع اورژانسی (\lr{Clinical Red Flags}):}}\\[3pt]
     \scriptsize \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{مداخله فوری در:}}} \rl{(۱) انسداد راه هوایی فوقانی یا دیسفونو/دیسفاژی حاد ناشی از اتساع کیست کف دهان به فضای حلقی $\bullet$ (۲) عدم وجود بافت تیروئید نرمال در بستر آناتومیک اسکن تیروئید قبل از جراحی (\lr{Ectopic Lingual Thyroid}) که جراحی منجر به هیپوتیروئیدیسم دائمی خواهد شد $\bullet$ (۳) رشد سریع توده گردنی تیروگلوسال با لنفادنوپاتی مشکوک به کارسینوم پاپیلاری اولیه مجرا \lr{[\textbf{PMID: 42996571}]}.}
 };
 
 % 10. Refractory / Malignancy Protocols
-\node (refractory) [stepbox, line width=0.9pt, text width=15.8cm] at (0, -20.40) {
+\node (refractory) [stepbox, line width=0.9pt, text width=15.8cm] at (0, -18.50) {
     \rl{\textbf{پروتکل موارد راجعه و پایش بدخیمی نادر مجاری تکاملی (\lr{Malignancy Surveillance}):}}\\[3pt]
     \scriptsize \rl{\textbf{سطح ۱ (کیست عودکننده تیروگلوسال):} ارزیابی مجدد سونوگرافی و \lr{MRI}؛ انجام جراحی مجدد با رزکسیون وسیع‌تر بافت هیویید و بافت همبند قاعده زبان به روش \lr{Extended Sistrunk Procedure}.}\\
     \scriptsize \rl{\textbf{سطح ۲ (پایش بدخیمی کارسینوم پاپیلاری):} پاتولوژی قطعی نمونه جراحی؛ در صورت وجود کارسینوم پاپیلاری تیروئید با تهاجم کپسولی، ارزیابی تیروئیدکتومی توتال و درمان با ید رادیواکتیو (\lr{131-I}).}\\
@@ -198,12 +198,12 @@
 \draw [arrow] (n3.south) -- (d2.north);
 
 % Bus-Bar from Decision 2 to 4 Subtype columns
-\draw [thick, black] (d2.south) -- (0, -9.80);
-\draw [thick, black] (-6.15, -9.80) -- (6.15, -9.80);
-\draw [arrow] (-6.15, -9.80) -- (h1.north);
-\draw [arrow] (-2.05, -9.80) -- (h2.north);
-\draw [arrow, darkred] (2.05, -9.80) -- (h3.north);
-\draw [arrow] (6.15, -9.80) -- (h4.north);
+\draw [thick, black] (d2.south) -- (0, -7.90);
+\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
+\draw [arrow] (-6.15, -7.90) -- (h1.north);
+\draw [arrow] (-2.05, -7.90) -- (h2.north);
+\draw [arrow, darkred] (2.05, -7.90) -- (h3.north);
+\draw [arrow] (6.15, -7.90) -- (h4.north);
 
 % Column Downward Arrows
 \draw [arrow] (h1.south) -- (i1.north);
@@ -217,12 +217,12 @@
 \draw [arrow] (i4.south) -- (s4.north);
 
 % Collector Bus into Red Flags Box
-\draw [thick, black] (s1.south) -- (-6.15, -17.30);
-\draw [thick, black] (s2.south) -- (-2.05, -17.30);
-\draw [thick, darkred] (s3.south) -- (2.05, -17.30);
-\draw [thick, black] (s4.south) -- (6.15, -17.30);
-\draw [thick, black] (-6.15, -17.30) -- (6.15, -17.30);
-\draw [arrow] (0, -17.30) -- (redflags.north);
+\draw [thick, black] (s1.south) -- (-6.15, -14.90);
+\draw [thick, black] (s2.south) -- (-2.05, -14.90);
+\draw [thick, darkred] (s3.south) -- (2.05, -14.90);
+\draw [thick, black] (s4.south) -- (6.15, -14.90);
+\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
+\draw [arrow] (0, -14.90) -- (redflags.north);
 
 \draw [arrow] (redflags.south) -- (refractory.north);
 

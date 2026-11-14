@@ -97,93 +97,93 @@
 };
 
 % 2. Mandatory 3D-CT & Endocrine Triage
-\node (n2) [stepbox, text width=14.2cm] at (0, -1.90) {
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.55) {
     \rl{\colorbox{hlyellow}{\strut\textbf{مرحله ۱ الزامی: سی‌تی اسکن سه‌بعدی کرانیوفاشیال، غربالگری اندوکرین و پایش کانال اپتیک}}}\\[2pt]
     \scriptsize \rl{ارزیابی حدود ضایعه (ادغام در استخوان سالم در برابر کپسولاسیون مشخص) $\bullet$ سنجش کلسیم، فسفر و \lr{ALP} $\bullet$ رد سندرم مک‌کون-آلبرایت}
 };
 
 % 3. Growth Phase Decision
-\node (d1) [decision] at (0, -4.00) {\rl{فاز رشد / سن؟}\\[-1pt]\scriptsize \lr{Dormant / Age?}};
-\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -4.00) {
+\node (d1) [decision] at (0, -3.35) {\rl{فاز رشد / سن؟}\\[-1pt]\scriptsize \lr{Dormant / Age?}};
+\node (r_benign) [stepbox, draw=teal, line width=0.9pt, text width=3.8cm] at (5.8, -3.35) {
     \rl{\textbf{فیبروز دیسپلازی خاموش \emoji{⚓}}}\\[2pt]
     \scriptsize \rl{ضایعه پایدار پس از بلوغ؛}\\\rl{فاقد نقص فانکشنال یا دیداری؛}\\\rl{پایش دوره‌ای سالانه بدون جراحی}
 };
 
 % 4. Mandatory Incisional Biopsy & Molecular Testing
-\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.40) {
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.20) {
     \rl{\colorbox{hlyellow}{\strut\textbf{بیوپسی برشی الزامی (\lr{Incisional Biopsy}) + سنجش مولکولی \lr{GNAS (Arg201)} و مارکر \lr{MDM2} \emoji{🔬}}}}\\[2pt]
     \scriptsize \rl{تایید جهش \lr{GNAS} در فیبروز دیسپلازی $\bullet$ رد قطعی استئوسارکوم درجه پایین با منفی بودن \lr{MDM2} \lr{[\textbf{PMID: 42361776}]} $\bullet$ ارزیابی ریمینگ استئوبلاستی}
 };
 
 % 5. Subtype Decision
-\node (d2) [decision] at (0, -8.70) {\rl{نوع هیستوپاتولوژی}\\[-1pt]\scriptsize \lr{Histopathologic Subtype?}};
+\node (d2) [decision] at (0, -7.00) {\rl{نوع هیستوپاتولوژی}\\[-1pt]\scriptsize \lr{Histopathologic Subtype?}};
 
 % 6. 4 Main Columns
-\node (h1) [stepbox, text width=3.6cm] at (-6.15, -11.00) {
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -9.10) {
     \rl{\textbf{فیبروز دیسپلازی (\lr{FD})}}\\[2pt]
     \scriptsize \lr{Fibrous Dysplasia}\\\rl{استخوان نابالغ شبه‌حروف چینی}\\\rl{فاقد ریمینگ استئوبلاستی؛ جهش \lr{GNAS+}}\\\rl{عود پس از بلوغ: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۵٪}}}}
 };
-\node (h2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -11.00) {
+\node (h2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -9.10) {
     \rl{\textbf{اسیفایینگ فیبروم (\lr{OF})}}\\[2pt]
     \scriptsize \lr{Cemento-Ossifying Fibroma}\\\rl{ضایعه نئوپلاستیک کپسول‌دار مشخص}\\\rl{ترابکول استخوان + سمنتوم کروی}\\\rl{عود با خارج‌سازی کامل: \textbf{۸٪ تا ۱۰٪}}
 };
-\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.00) {
+\node (h3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -9.10) {
     \rl{\textbf{اسیفایینگ فیبروم جوانی \emoji{⚡}}}\\[2pt]
     \scriptsize \lr{Juvenile Ossifying Fibroma (JOF)}\\\rl{ساب‌تایپ ترابکولار یا پساموماتوئید}\\\rl{رشد سریع تخریبی در سنین اطفال}\\\rl{عود با کورتاژ: \colorbox{hlred}{\strut\color{darkred}\textbf{۳۰٪ تا ۵۸٪}}}
 };
-\node (h4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -11.00) {
+\node (h4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -9.10) {
     \rl{\textbf{استئوما / سندرم گاردنر}}\\[2pt]
     \scriptsize \lr{Osteoma / Gardner Syndrome}\\\rl{توده متراکم کورتیکال/ترابکولار}\\\rl{غربالگری پولیپوز روده الزامی}\\\rl{عود پس از اکسیزیون: \colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۱٪}}}}
 };
 
 % 7. Primary Interventions
-\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.50) {
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -11.35) {
     \rl{\textbf{کانتورینگ جراحی (\lr{Shaving})}}\\[2pt]
     \scriptsize \textbf{\rl{به تعویق انداختن تا پایان بلوغ}}\\\rl{تراش محافظه‌کارانه برای تقارن صورت}\\\rl{پرهیز اکید از رزکسیون‌های رادیکال}
 };
-\node (i2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -13.50) {
+\node (i2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -11.35) {
     \rl{\textbf{انوکلئیشن ان‌بلوک}}\\[2pt]
     \scriptsize \rl{جداسازی تمیز توده از بستر استخوانی}\\\rl{استفاده از خط انفصال کپسول}\\\rl{کورتاژ حاشیه‌ای برای پیشگیری از عود}
 };
-\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -13.50) {
+\node (i3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -11.35) {
     \rl{\textbf{رزکسیون یا کورتاژ تهاجمی}}\\[2pt]
     \scriptsize \textbf{\rl{اکسیزیون کامل با مارجین سالم استخوان}}\\\rl{\lr{[\textbf{PMID: 42750839}]}}\\\rl{رزکسیون سگمنتال در عودهای مهاجم}
 };
-\node (i4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -13.50) {
+\node (i4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -11.35) {
     \rl{\textbf{اکسیزیون استخوانی ساده}}\\[2pt]
     \scriptsize \rl{استئوتومی در قاعده ضایعه}\\\textbf{\rl{کولونوسکوپی غربالگری روده}}\\\rl{\lr{[\textbf{PMID: 42867685}]}}
 };
 
 % 8. Recall Schedules
-\node (s1) [stepbox, text width=3.6cm] at (-6.15, -16.00) {
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{سالانه تا پایان بلوغ}}}\\[2pt]
     \scriptsize \rl{پایش بالینی و فتوگرافی کانتور صورت؛}\\\rl{سی‌تی اسکن کم‌دوز در صورت تغییر}
 };
-\node (s2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -16.00) {
+\node (s2) [stepbox, line width=0.9pt, text width=3.6cm] at (-2.05, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه تا ۲ سال}}}\\[2pt]
     \scriptsize \rl{رادیوگرافی پانورامیک و \lr{CBCT}؛}\\\rl{پایش پرشدن بستر استخوانی}
 };
-\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -16.00) {
+\node (s3) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (2.05, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۳ تا ۶ ماه (۵ سال)}}}\\[2pt]
     \scriptsize \rl{سی‌تی اسکن دوره‌ای چندمقطعی؛}\\\rl{پایش پنجره اوج عود زودهنگام}
 };
-\node (s4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -16.00) {
+\node (s4) [stepbox, line width=0.9pt, text width=3.6cm] at (6.15, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{سالانه تا ۳ سال}}}\\[2pt]
     \scriptsize \rl{معاینه کلینیکی و تصویربرداری فک؛}\\\rl{پیگیری گوارشی دوره‌ای در گاردنر}
 };
 
 % 9. Trigger Box
-\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -18.70) {
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -16.15) {
     \centerline{\rl{\textbf{هشدارهای بالینی و اندیکاسیون‌های ارجاع فوری یا مداخله جراحی اورژانسی (\lr{Clinical Red Flags}):}}}\par\vspace{3pt}
     \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{مداخله فوری تشخیصی-درمانی در:}} (۱) اختلال حاد دید، افت حدت بینایی یا درگیری کانال اپتیک در اسفنوئید/قاعده جمجمه $\bullet$ (۲) رشد سریع غیرعادی یا بروز درد فزاینده خارج از جهش بلوغ $\bullet$ (۳) پیدایش لیتیک یا تخریب نامنظم استخوانی جدید در سی‌تی اسکن (مشکوک به بدخیمی) $\bullet$ (۴) بیرون‌زدگی کره چشم (\lr{Proptosis}) ناشی از اتساع به اربیت $\bullet$ (۵) شکستگی پاتولوژیک فک.}
 };
 
 % 10. Refractory Box
-\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -21.20) {
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -18.50) {
     \centerline{\rl{\textbf{پروتکل موارد مقاوم، درمان‌های نوین ضد جذب و پایش دگرگونی سارکوماتوز (\lr{Malignancy Surveillance}):}}}\par\vspace{3pt}
     \scriptsize \rl{\textbf{سطح ۱ (منع مطلق):} \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{پرتودرمانی} (\lr{Radiotherapy}) \rl{اکیداً ممنوع است}}} (افزایش خطر ترانسفورماسیون به استئوسارکوم ثانویه ناشی از پرتو تا ۴۰ برابر).}\par\vspace{2.5pt}
     \scriptsize \rl{\textbf{سطح ۲ (مهار دردهای استخوانی مقاوم):} بیس‌فسفونات‌های وریدی (\lr{Pamidronate / Zoledronate}) یا آنتی‌بادی مونوکلونال ضد \lr{RANKL} (\lr{Denosumab}) با پایش دقیق کلسیم و ریسک \lr{MRONJ}.}\par\vspace{2.5pt}
@@ -198,12 +198,12 @@
 \draw [arrow] (n3.south) -- (d2.north);
 
 % Bus-Bar from Decision 2 to 4 Subtype columns
-\draw [thick, black] (d2.south) -- (0, -9.80);
-\draw [thick, black] (-6.15, -9.80) -- (6.15, -9.80);
-\draw [arrow] (-6.15, -9.80) -- (h1.north);
-\draw [arrow] (-2.05, -9.80) -- (h2.north);
-\draw [arrow] (2.05, -9.80) -- (h3.north);
-\draw [arrow] (6.15, -9.80) -- (h4.north);
+\draw [thick, black] (d2.south) -- (0, -7.90);
+\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
+\draw [arrow] (-6.15, -7.90) -- (h1.north);
+\draw [arrow] (-2.05, -7.90) -- (h2.north);
+\draw [arrow] (2.05, -7.90) -- (h3.north);
+\draw [arrow] (6.15, -7.90) -- (h4.north);
 
 % Column Downward Arrows
 \draw [arrow] (h1.south) -- (i1.north);
@@ -217,12 +217,12 @@
 \draw [arrow] (i4.south) -- (s4.north);
 
 % Collector Bus into Trigger Box
-\draw [thick, black] (s1.south) -- (-6.15, -17.30);
-\draw [thick, black] (s2.south) -- (-2.05, -17.30);
-\draw [thick, black] (s3.south) -- (2.05, -17.30);
-\draw [thick, black] (s4.south) -- (6.15, -17.30);
-\draw [thick, black] (-6.15, -17.30) -- (6.15, -17.30);
-\draw [arrow] (0, -17.30) -- (trigger.north);
+\draw [thick, black] (s1.south) -- (-6.15, -14.90);
+\draw [thick, black] (s2.south) -- (-2.05, -14.90);
+\draw [thick, black] (s3.south) -- (2.05, -14.90);
+\draw [thick, black] (s4.south) -- (6.15, -14.90);
+\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
+\draw [arrow] (0, -14.90) -- (trigger.north);
 
 % Final link to Refractory Box
 \draw [arrow] (trigger.south) -- (refract.north);

@@ -14,6 +14,7 @@ echo "=================================================="
 echo "📦 همگام‌سازی فایل‌ها به سرور ${REMOTE_HOST}:${REMOTE_DIR}..."
 rsync -avz --delete \
   --exclude='.git' \
+  --exclude='.venv/' \
   --exclude='.DS_Store' \
   --exclude='__pycache__' \
   --exclude='*.pyc' \
@@ -22,6 +23,8 @@ rsync -avz --delete \
   --exclude='*.log' \
   --exclude='*.aux' \
   --exclude='*.synctex.gz' \
+  --exclude='oralpath_flow_backup/' \
+  --exclude='thesis/' \
   ./ "${REMOTE_HOST}:${REMOTE_DIR}"
 
 # 2. Restarting systemd service

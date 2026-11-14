@@ -99,14 +99,14 @@
 };
 
 % 2. Mandatory Hemodynamic Triage
-\node (n2) [stepbox, text width=14.2cm] at (0, -1.85) {
+\node (n2) [stepbox, text width=14.2cm] at (0, -1.55) {
     \colorbox{hlyellow}{\strut\textbf{\rl{مرحله ۱ الزامی: تریاژ همودینامیک و داپلر (رد قطعی مالفورماسیون شریانی-وریدی پرجریان)}}}\\[2pt]
     \scriptsize \rl{سونوگرافی کالر داپلر (\lr{CDUS}) جهت ارزیابی سرعت جریان $\bullet$ رادیوگرافی/\lr{CBCT} جهت رد درگیری داخل استخوانی فکین}
 };
 
 % 3. High-Flow / Intrabony Decision
-\node (d1) [decision] at (0, -3.85) {\rl{جریان بالا / استخوان؟}\\[-1pt]\scriptsize \lr{High-Flow / Bone?}};
-\node (r_exit) [stepbox, draw=darkred, line width=1.0pt, text width=3.8cm] at (5.8, -3.85) {
+\node (d1) [decision] at (0, -3.35) {\rl{جریان بالا / استخوان؟}\\[-1pt]\scriptsize \lr{High-Flow / Bone?}};
+\node (r_exit) [stepbox, draw=darkred, line width=1.0pt, text width=3.8cm] at (5.8, -3.35) {
     \rl{\textbf{مالفورماسیون پرجریان (\lr{AVM}) \emoji{⚠}}}\\[2pt]
     \scriptsize \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{بیوپسی اکیداً ممنوع}}}\\[2pt]
     \scriptsize \rl{ارجاع اورژانسی به آنژیوگرافی}\\
@@ -114,80 +114,80 @@
 };
 
 % 4. Mandatory Biologic Characterization
-\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -6.15) {
+\node (n3) [stepbox, line width=1.0pt, text width=15.8cm] at (0, -5.20) {
     \colorbox{hlyellow}{\strut\textbf{\rl{ارزیابی بیولوژیک و ایمونوهیستوشیمی طبقه‌بندی \lr{ISSVA / WHO 5th Ed 2024}}}}\\[2pt]
     \scriptsize \rl{تمایز تومور حقیقی از مالفورماسیون عروقی: مارکر \lr{GLUT-1} (در اینفانتایل مثبت، مالفورماسیون منفی) $\bullet$ فاز پرولیفراتیو در برابر اینولوشن}
 };
 
 % 5. Clinical Phenotype Decision
-\node (d2) [decision] at (0, -8.35) {\rl{فنوتیپ بالینی}\\[-1pt]\scriptsize \lr{Clinical Phenotype?}};
+\node (d2) [decision] at (0, -7.00) {\rl{فنوتیپ بالینی}\\[-1pt]\scriptsize \lr{Clinical Phenotype?}};
 
 % 6. 4 Main Clinical Presentation Columns
-\node (h1) [stepbox, text width=3.6cm] at (-6.15, -10.65) {
+\node (h1) [stepbox, text width=3.6cm] at (-6.15, -9.10) {
     \rl{\textbf{سطحی / نوزادی کم‌خطر}}\\[2pt]
     \scriptsize \rl{ضایعه مخاطی خفیف، کوچکتر از ۲ سانتی‌متر}\\\rl{فاقد اولسر و اختلال بلع یا تنفس}\\\rl{شانس پس‌رفت: }\colorbox{hlgray}{\strut\textbf{\rl{تا ۹۰٪ تا ۹ سالگی}}}
 };
-\node (h2) [stepbox, text width=3.6cm] at (-2.05, -10.65) {
+\node (h2) [stepbox, text width=3.6cm] at (-2.05, -9.10) {
     \rl{\textbf{لوبولار مخاطی (\lr{LCH/PG})}}\\[2pt]
     \scriptsize \rl{ندول لب یا مخاط باکال ناشی از تروما}\\\rl{خونریزی‌های مکرر با غذا خوردن}\\\rl{رشد سریع اگزوفیتیک در اطفال و جوانان}
 };
-\node (h3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -10.65) {
+\node (h3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -9.10) {
     \rl{\textbf{پرولیفراتیو شدید / اولسره}}\\[2pt]
     \scriptsize \rl{رشد سریع مخاطی، اختلال تغذیه}\\\rl{زخم دردناک یا تهدید راه هوایی فک}\\\rl{اندیکاسیون: }\colorbox{hlred}{\strut\color{darkred}\textbf{\rl{شروع فوری درمان دارویی}}}
 };
-\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -10.65) {
+\node (h4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -9.10) {
     \rl{\textbf{کونژنتال پایدار (\lr{NICH}) / مالفورماسیون}}\\[2pt]
     \scriptsize \rl{ضایعه عروقی غیرپس‌رونده در بدو تولد}\\\rl{مارکر \lr{GLUT-1 (-)}؛ مقاومت به بتابلوکر}\\\rl{توده عروقی عمقی و آسیمتری بافت نرم}
 };
 
 % 7. Primary Interventions
-\node (i1) [stepbox, text width=3.6cm] at (-6.15, -13.15) {
+\node (i1) [stepbox, text width=3.6cm] at (-6.15, -11.35) {
     \rl{\textbf{تیمولول موضعی / پایش فعال}}\\[2pt]
     \scriptsize \lr{Timolol 0.5\% GFS} \rl{۲ قطره دوبار در روز}\\\rl{یا پیگیری بدون مداخله تهاجمی}\\\lr{[PMID: 41446713 - 2025]}
 };
-\node (i2) [stepbox, text width=3.6cm] at (-2.05, -13.15) {
+\node (i2) [stepbox, text width=3.6cm] at (-2.05, -11.35) {
     \rl{\textbf{اکسیزیون جراحی یا لیزر}}\\[2pt]
     \scriptsize \rl{برداشت کامل تا لایه ساب‌موکوزا}\\\rl{هموستاز با لیزر دیود یا کوتر}\\\rl{میزان عود: }\colorbox{hlgray}{\strut\textbf{\rl{کمتر از ۳٪}}}
 };
-\node (i3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -13.15) {
+\node (i3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -11.35) {
     \rl{\textbf{پروپرانولول خوراکی خط اول \emoji{🎯}}}\\[2pt]
     \scriptsize \lr{Propranolol 2--3\,mg/kg/day}\\\rl{منقسم در دو دوز همراه با شیر/تغذیه}\\\lr{[PMID: 25693013 - NEJM RCT]}
 };
-\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.15) {
+\node (i4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -11.35) {
     \rl{\textbf{اسکلروتراپی هدایت‌شده}}\\[2pt]
     \scriptsize \rl{تزریق فوم پولیدوکانول ۱٪ تا ۲٪}\\\rl{یا بلئومایسین تحت گاید سونوگرافی}\\\lr{[PMID: 42414159 - da Silva 2026]}
 };
 
 % 8. Recall Schedules
-\node (s1) [stepbox, text width=3.6cm] at (-6.15, -15.65) {
+\node (s1) [stepbox, text width=3.6cm] at (-6.15, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{هر ۶ ماه یکبار}}}\\[2pt]
     \scriptsize \rl{فتوگرافی سریال و پایش پس‌رفت}
 };
-\node (s2) [stepbox, text width=3.6cm] at (-2.05, -15.65) {
+\node (s2) [stepbox, text width=3.6cm] at (-2.05, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlgray}{\strut\textbf{\rl{ماه ۱ و ۳ پس از عمل}}}\\[2pt]
     \scriptsize \rl{بررسی هیلینگ مخاط و پاتولوژی}
 };
-\node (s3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -15.65) {
+\node (s3) [stepbox, line width=0.9pt, draw=orange!80!black, text width=3.6cm] at (2.05, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{ماهانه در فاز رشد}}}\\[2pt]
     \scriptsize \rl{تنظیم دوز پروپرانولول با وزن کودک}
 };
-\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -15.65) {
+\node (s4) [stepbox, draw=darkred, line width=1.2pt, text width=3.6cm] at (6.15, -13.60) {
     \rl{\textbf{زمان‌بندی پیگیری:}}\\[2pt]
     \colorbox{hlred}{\strut\color{darkred}\textbf{\rl{هر ۳ تا ۶ ماه}}}\\[2pt]
     \scriptsize \rl{سونوگرافی داپلر و پایش ترومبوز}
 };
 
 % 9. Trigger Box
-\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -18.35) {
+\node (trigger) [stepbox, line width=0.9pt, text width=16.4cm, align=right] at (0, -16.15) {
     \centerline{\rl{\textbf{علائم خطر بالینی (\lr{Red Flags}) و اندیکاسیون‌های بستری و مداخله اورژانسی:}}}\par\vspace{3pt}
     \scriptsize \rl{\colorbox{hlyellow}{\strut\textbf{مداخله فوری الزامی است در:}} (۱) استریدور یا انسداد حاد راه هوایی ناشی از گسترش ضایعه به زبان یا حلق $\bullet$ (۲) خونریزی فعال شدید غیرقابل مهار ناشی از ترومای مخاطی $\bullet$ (۳) اولسراسیون وسیع همراه با درد شدید و ناتوانی در تغذیه نوزاد $\bullet$ (۴) عوارض بتابلوکر سیستمیک شامل برادیکاردی (کمتر از ۸۰ ضربان در دقیقه)، هیپوگلیسمی علامت‌دار یا اسپاسم برونش $\bullet$ (۵) ضایعات پلاک‌مانند وسیع صورت با شک به سندرم \lr{PHACE}.}
 };
 
 % 10. Refractory Box
-\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -20.85) {
+\node (refract) [stepbox, text width=16.4cm, align=right] at (0, -18.50) {
     \centerline{\rl{\textbf{پروتکل پله‌ای برای موارد مقاوم به درمان دارویی / ضایعات عروقی پیچیده:}}}\par\vspace{3pt}
     \scriptsize \rl{\textbf{سطح ۳ (مقاوم به پروپرانولول):} پردنیزولون خوراکی (\lr{2--3\,mg/kg/day}) یا اضافه کردن لیزر رنگی پالسی (\lr{PDL 595\,nm}) جهت ترمیم اولسر و محو عروق سطحی.}\par\vspace{2.5pt}
     \scriptsize \rl{\textbf{سطح ۴ (مهارکننده تارگت بیولوژیک \lr{mTOR}):} سیرولیموس خوراکی (\lr{Sirolimus 0.8\,mg/m$^2$ q12h} با هدف سطح خونی \lr{5--10\,ng/mL}) در ضایعات مالفورماسیون عروقی و لنفاتیک مقاوم.}\par\vspace{2.5pt}
@@ -202,12 +202,12 @@
 \draw [arrow] (n3.south) -- (d2.north);
 
 % Bus-Bar from Decision 2 to 4 Histology columns
-\draw [thick, black] (d2.south) -- (0, -9.45);
-\draw [thick, black] (-6.15, -9.45) -- (6.15, -9.45);
-\draw [arrow] (-6.15, -9.45) -- (h1.north);
-\draw [arrow] (-2.05, -9.45) -- (h2.north);
-\draw [arrow] (2.05, -9.45) -- (h3.north);
-\draw [arrow] (6.15, -9.45) -- (h4.north);
+\draw [thick, black] (d2.south) -- (0, -7.90);
+\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
+\draw [arrow] (-6.15, -7.90) -- (h1.north);
+\draw [arrow] (-2.05, -7.90) -- (h2.north);
+\draw [arrow] (2.05, -7.90) -- (h3.north);
+\draw [arrow] (6.15, -7.90) -- (h4.north);
 
 % Column Downward Arrows
 \draw [arrow] (h1.south) -- (i1.north);
@@ -221,12 +221,12 @@
 \draw [arrow] (i4.south) -- (s4.north);
 
 % Collector Bus into Trigger Box
-\draw [thick, black] (s1.south) -- (-6.15, -16.95);
-\draw [thick, black] (s2.south) -- (-2.05, -16.95);
-\draw [thick, black] (s3.south) -- (2.05, -16.95);
-\draw [thick, black] (s4.south) -- (6.15, -16.95);
-\draw [thick, black] (-6.15, -16.95) -- (6.15, -16.95);
-\draw [arrow] (0, -16.95) -- (trigger.north);
+\draw [thick, black] (s1.south) -- (-6.15, -14.90);
+\draw [thick, black] (s2.south) -- (-2.05, -14.90);
+\draw [thick, black] (s3.south) -- (2.05, -14.90);
+\draw [thick, black] (s4.south) -- (6.15, -14.90);
+\draw [thick, black] (-6.15, -7.90) -- (6.15, -7.90);
+\draw [arrow] (0, -14.90) -- (trigger.north);
 
 \draw [arrow] (trigger.south) -- (refract.north);
 
